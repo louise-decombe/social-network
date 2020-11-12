@@ -20,6 +20,10 @@ session_start();
    ?>
 </header>
 <main>
+
+
+<h1>chat</h1>
+
 </main>
 <footer>
     <?php
