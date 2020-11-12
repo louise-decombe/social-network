@@ -12,6 +12,7 @@ session_start();
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+  
 </head>
 <body>
 <header>
@@ -20,12 +21,33 @@ session_start();
    ?>
 </header>
 <main>
+    <h1>Espace Administrateur</h1>
+    <div id="action_alert" >
+        <form action="POST">
+            <label for="">Etes vous sur de vouloir supprimer cet utilisateur ?</label>
+            <div>
+                <input type="submit" name='oui' value='oui'>
+                <input type="submit" name="non" value='non'>
+            </div>
+        </form>    
+    </div>
+    <table class="table table-active table_admin">
+        <thead>
+            <tr>
+                <td>Prénom</td>
+                <td>Nom</td>
+                <td>Supprimer</td>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
 </main>
 <footer>
     <?php
     include("includes/footer.php") ?>
 </footer>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+<script src="js/admin_users.js"></script>
 </body>
 </html>

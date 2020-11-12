@@ -1,4 +1,4 @@
-<?php include('../class/Config.php'); ?>
+<?php include('class/Config.php'); ?>
 
 <header>
     
