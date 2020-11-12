@@ -22,7 +22,6 @@ session_start();
 <main>
 
 
-<h1>chat</h1>
 
 </main>
 <footer>
