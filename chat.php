@@ -13,9 +13,4 @@ session_start();
 
 
 </main>
-<footer>
-    <?php
-    include("includes/footer.php") ?>
-</footer>
-
 <?php include('includes/footer.php') ?>
