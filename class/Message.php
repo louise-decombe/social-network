@@ -2,7 +2,16 @@
 
 
 class Message extends User {
-    function__construct($db)
+
+
+    private $db;
+
+    public function __construct($db){
+        $this->db = $db;
+        $this->connect = $this->db->connectDb();
+
+    }
+
 }
 
 ?>

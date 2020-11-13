@@ -2,7 +2,8 @@
 
     require 'Db.php';
     $db = new DB();
-    $message = new DB($db);
 
-
+    require 'User.php';
+    $user = new User($db);
+    
 ?>

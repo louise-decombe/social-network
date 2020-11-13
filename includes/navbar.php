@@ -24,7 +24,7 @@
         <a class="dropdown-item" href="#">Paramètres</a>
         <div class="dropdown-divider"></div>
                      <form action="index.php" method="post">
-                        <center><input class="btn btn-danger" id="dropdown-deco" name="deco" value="DECONNEXION" type="submit"/></center>
+                        <input class="btn btn-danger" id="dropdown-deco" name="deco" value="DECONNEXION" type="submit"/>
                      </form>      </div>
     </li>
     <li class="nav-item">
@@ -65,3 +65,5 @@
 <? //} ?> 
 
 </html>
+-->
+<script src="js/search.js"></script>
