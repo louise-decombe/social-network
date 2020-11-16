@@ -1,5 +1,6 @@
 $("#mytext").emojioneArea({
 
-    pickerPosition:"right"
+    pickerPosition:"bottom",
+
 
 });

@@ -2,6 +2,7 @@
 
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 
@@ -15,10 +16,29 @@
     display: inline-block;
   }
 
-  .open-discussion{
+  .user-profile{
       display: flex;
-      flex-direction: row;
+      flex-direction: column;
+      align-items: center;
   }
+
+  .open-discussion{
+      display: ;
+      flex-direction: ;
+      font-size: 10px;
+  }
+
+  .open-discussion p{
+    display: flex;
+    flex-direction: column;
+    font-size: 10px;
+}
+
+.head-discussion{
+    display: flex;
+    flex-direction: row;
+}
+ 
 
   .btn-envoyer{
 
@@ -27,17 +47,26 @@
     width: 50px;
   }
 
-  .form-send-message{
-
-display: flex;
-flex-direction: row;
+  .form-send-message button{
+text-decoration: none;
+background-color: blue;
+color:white;
 
   }
 
+.form-send-message textarea{
+    width: 50px;
+    height: 300px;
+}
 
   .box-message{
+      display: flex;
+      flex-direction: row;
 
-  }
+background-color: lightgray;
+ 
+margin: 1%;
+}
 
 
 /************************/
