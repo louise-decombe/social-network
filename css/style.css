@@ -5,9 +5,26 @@
     box-sizing: border-box;
 }
 
+  /*________________________________*/
+ /*---------CHAT.PHP--------------*/
+/*______________________________*/
 
-/*************************/
 
+#mytext {
+background-color: blue;
+
+}
+/***séparation verticale entre chat actif et discussions**/
+.separation{
+	clear: both;
+	position: absolute;
+margin-top: 10px;
+    height: 700px;
+	width : 5px;
+	background: #275fa0;
+	}
+
+    /****images de profil par défaut***/
 .circle-profile {
     height: 100px;
     width: 100px;
@@ -16,29 +33,76 @@
     display: inline-block;
   }
 
+  /***info de l'utilisateur connecté*****/
   .user-profile{
       display: flex;
       flex-direction: column;
       align-items: center;
+  } 
+
+  .open{
+      margin-top: 2%;
+    border: solid 4px #275fa0;
+
   }
+
+  .open img{
+      width: 60px;
+      height: 60px;
+      margin: 1%;
+
+  }
+
+
+    /****discussions à gauche du chat***/
 
   .open-discussion{
-      display: ;
-      flex-direction: ;
-      font-size: 10px;
+      display: flex;
+      flex-direction: row;
+      margin:10px;
   }
-
-  .open-discussion p{
+  
+  .open-p{
     display: flex;
     flex-direction: column;
-    font-size: 10px;
+    font-size: 15px;
+    margin:5px;
 }
+
+/**header de la conversation active**/
+
 
 .head-discussion{
     display: flex;
     flex-direction: row;
+    padding: 1%;
+    margin-bottom: 10%;
+    margin-top: 2%;
+
 }
- 
+
+/***recherche d'un message**/
+
+.input_container{
+    position: relative;
+    }
+    
+    .input_icon{
+    position: absolute; /*important*/
+    top: 2px;
+    color: #275fa0; 
+    left: 2px;
+    font-size: 15px; 
+    width: 50px;
+    }
+    
+    input[type="text"], input[type="password"] {
+        padding-left:70px; /*Laisse de l'espace pour l'icône*/
+    }
+
+
+/***envoi d'un message**/
+
 
   .btn-envoyer{
 
@@ -49,7 +113,7 @@
 
   .form-send-message button{
 text-decoration: none;
-background-color: blue;
+background-color: #275fa0;
 color:white;
 
   }
@@ -59,6 +123,9 @@ color:white;
     height: 300px;
 }
 
+/**messages affichés***/
+
+
   .box-message{
       display: flex;
       flex-direction: row;
@@ -67,6 +134,5 @@ background-color: lightgray;
  
 margin: 1%;
 }
-
 
 /************************/
