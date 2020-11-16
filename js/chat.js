@@ -1,0 +1,5 @@
+$("#mytext").emojioneArea({
+
+    pickerPosition:"right"
+
+});

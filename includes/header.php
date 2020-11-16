@@ -10,7 +10,7 @@
 
 <html lang="en">
 <head>
-      <meta charset="UTF-8">
+      <meta chars   et="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <!-- liens css (bootstrap, fontawesome, css) -->
       <link rel="stylesheet" href="css/style.css">
@@ -22,7 +22,7 @@
       <!-- liens script, jquery ajax  -->
       <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-<script src="js/search.js"></script>
+    <script src="js/search.js"></script>
     </head>
 
 <header>
