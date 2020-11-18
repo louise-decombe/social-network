@@ -1,5 +1,28 @@
 {
+  "name": "simple-node-chat-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "server": "nodemon app.js",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
   "dependencies": {
-    "@joeattardi/emoji-button": "^4.3.0"
+    "express": "^4.17.1",
+    "mysql": "^2.18.1",
+    "randomcolor": "^0.5.4",
+    "socket.io": "^2.3.0",
+    "uuid": "^7.0.1"
+  },
+  "devDependencies": {
+    "minimist": ">=1.2.3",
+    "nodemon": "^2.0.2"
+  },
+  "engines": {
+    "node": "12.13.1"
   }
 }
