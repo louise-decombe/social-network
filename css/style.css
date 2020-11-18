@@ -16,11 +16,16 @@ a{
 /*----------------------------------------------------*/
 /* HEADER
 ------------------------------------------------------ */
-.navbar{
+.navbar-custom{
     color:white !important;
 }
-#link-header{
+ 
+nav .link-header{
     font-size: 9px !important;
+}
+.vl {
+    border-left: 5px solid white;
+    height: 50px;
 }
 
 
