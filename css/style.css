@@ -24,8 +24,24 @@ nav .link-header{
     font-size: 9px !important;
 }
 .vl {
-    border-left: 5px solid white;
-    height: 50px;
+    border-left: 2.5px solid white;
+    height: 20px;
+}
+
+#nav-forms{
+  display: flex;
+  width: 15%;
+  align-items: center;
+  justify-content: space-around;
+}
+
+#nav-forms li{
+  list-style: none;
+  font-weight: 700;
+}
+
+#nav-forms li a{
+  color: white;
 }
 
 

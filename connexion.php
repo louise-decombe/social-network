@@ -20,7 +20,26 @@ session_start();
     include("includes/header.php");
    ?>
 </header>
-<main>
+<main id="main-connexion">
+    <div class="container">
+        <div class="d-flex justify-content-center">
+            <form id="form-register" method="POST" action="php/form_connexion.php">
+                <h1 id="form-title"><img src="img/PICT_LOGO_BLACK.png" width="70" height="50" alt="blacl_logo_plateformer_">PLATEFORMER_</h1>
+                <h2>Formulaire de connexion</h2>
+                <section>
+                    <div class="form-group">
+                        <label for="mail">email</label>
+                        <input type="email" name="mail" class="form-control" class="col-xs-4" aria-describedby="basic-addon2">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">password</label>
+                        <input type="password" name="password" class="form-control" id="password">
+                    </div>
+                </section>
+                <button type="submit" name="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
 </main>
 <footer>
     <?php

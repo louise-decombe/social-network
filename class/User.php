@@ -32,10 +32,11 @@ class User{
         $q->bindParam(':mail', $mail, PDO::PARAM_STR);
         $q->execute();
         $user = $q->fetch(PDO::FETCH_ASSOC);
+        //var_dump($user);
 
-        if (!empty($email_check)){
+        if (!empty($user)){
             if(password_verify($password, $user['password'])){
-                $this->id_user = $user['id_user'];
+                $this->id_user = $user['id'];
                 $this->firstname = $user['firstname'];
                 $this->lastname = $user['lastname'];
                 $this->mail = $user['mail'];
@@ -50,7 +51,7 @@ class User{
                 $this->droits = $user['droits'];
 
                 $_SESSION['user']=[
-                    'id_user'=>  
+                    'id'=>  
                         $this->id_user,
                     'firstname'=>
                         $this->firstname,
@@ -77,7 +78,9 @@ class User{
                     'droits'=>
                         $this->droits
                 ];
-                return $_SESSION['user'];  
+                header('location:../index.php');
+                return $_SESSION['user']; 
+
             }else{
                 $errors[]="le mot de passe est erroné";
                 $info = new Infos($errors);
