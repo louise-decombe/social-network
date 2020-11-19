@@ -152,7 +152,7 @@ color:white;
 
   .box-message{
       display: flex;
-      flex-direction: row;
+      flex-direction: column;
 color:white;
 background-color: #275fa0; 
  padding: 3%;

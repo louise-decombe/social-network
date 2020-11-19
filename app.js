@@ -12,11 +12,16 @@ var connection = mysql.createConnection({
 });
 connection.connect(function(err) {
     if (err) throw err;
-    connection.query("SELECT * FROM users", function (err, result, fields) {
+    connection.query("SELECT * FROM messages", function (err, result, fields) {
       if (err) throw err;
       console.log(result);
     });
   });
+
+
+
+
+
 const express = require('express');
 const app = express();
 //identifiant unique universel -> au début j'ai fait un chat avec des utilisateurs anonyme DONC besoin de les identifier, je leur accord une genre 
@@ -33,7 +38,7 @@ app.use(express.static('public'));
 
 //routes -> j'ai besoin d'une route pour savoir où diriger les infos de connexion, j'ai besoin de la VUE.
 app.get('/', (req,res)=>{
-    res.sendFile(__dirname + '/client/index.html');
+    res.sendFile(__dirname + '/client/index.php');
 });
 
 //Listen le port 5000 : on aurait pu mettre autre chose comme port, il en faut un pour le socket. 
@@ -51,6 +56,31 @@ io.on('connection', (socket) => {
     connnections.push(socket)
     socket.username = 'Anonymous';
 
+
+
+  var getLastComments = function(){
+    connection.query('' +
+        'SELECT * FROM messages', function(err, rows){
+        if(err){
+            socket.emit('error', err.code);
+        } else {
+            var messages = [];
+            rows.reverse();
+            for(k in rows){
+                var row = rows[k];
+                var message = {
+                    message: row.message,
+                  
+                };
+                messages.push(message)
+            }
+            socket.emit('new_message', messages)
+        }
+    })
+};
+getLastComments()
+
+
     //listen on change_username
     socket.on('change_username', data => {
         let id = uuid.v4(); // crée un UUID pour l'utilisateur connecté.
@@ -65,10 +95,15 @@ io.on('connection', (socket) => {
         io.sockets.emit('get users',users)
     }
 
-    //listen on new_message
+    //listen on le new_message
     socket.on('new_message', (data) => {
         //émet le new message
         io.sockets.emit('new_message', {message : data.message, username : socket.username});
+        var sql = `INSERT INTO messages (message, messageTo, messageFrom, created_at) VALUES ('${data.message}', '1', '1', NOW())`;
+        connection.query(sql, function (err, result) {
+          if (err) throw err;
+          console.log("1 record inserted");
+        })
     })
 
     //listen on typing
@@ -95,3 +130,4 @@ io.on('connection', (socket) => {
         connnections.splice(connnections.indexOf(socket),1);
     })
 })
+

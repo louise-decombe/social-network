@@ -29,12 +29,17 @@ $(function () {
         message.val('');
         //append le nouveau message envoyé
         chatroom.append(`
-                        <div>
-                            <div class="box3 sb14">
-                              <p style='color:${data.color}' class="chat-text user-nickname">${data.username}</p>
-                              <p class="chat-text" style="color: black">${data.message}</p>
-                            </div>
                         </div>
+                        <div class="box-message">
+                        <img src="../images/default-profile.png" class="circle-profile" alt="image-profil">
+                        <p  class="chat-text user-nickname">${data.username}</p>
+                        <br/>
+                        <p> ${data.message}
+                        </p>
+                        <br/>
+                     </div>
+                     <p>Il y a 1h</p>
+
                         `)
         ChatEnBas()
     });
@@ -73,3 +78,10 @@ const ChatEnBas = () => {
     const chatroom = document.getElementById('chatroom');
     chatroom.scrollTop = chatroom.scrollHeight - chatroom.clientHeight;
 }
+
+$("#message").emojioneArea({
+
+    pickerPosition:"bottom",
+
+
+});

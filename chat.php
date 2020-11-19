@@ -7,6 +7,7 @@
       <?php
          include("includes/header.php");
          ?>
+         
       <main>
          <!-- profile de l'utilisateur connecté -->
          <div class="container">
@@ -71,7 +72,7 @@
                   <!-- form d'envoi de message  -->
                   <div class="form-send-message">
                      <form action="post">
-                        <textarea name="" placeholder="votre message..." id="mytext">
+                        <textarea name="" placeholder="votre message..." id="message">
                         </textarea>
                         <button class="btn-envoyer"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
                      </form>
@@ -82,4 +83,6 @@
       </main>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.4.2/emojionearea.min.js"></script>
       <script src="js/chat.js"></script>
-      <?php include('includes/footer.php') ?>
+
+
+      
