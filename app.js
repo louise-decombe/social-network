@@ -19,9 +19,6 @@ connection.connect(function(err) {
   });
 
 
-
-
-
 const express = require('express');
 const app = express();
 //identifiant unique universel -> au début j'ai fait un chat avec des utilisateurs anonyme DONC besoin de les identifier, je leur accord une genre 
@@ -42,7 +39,7 @@ app.get('/', (req,res)=>{
 });
 
 //Listen le port 5000 : on aurait pu mettre autre chose comme port, il en faut un pour le socket. 
-server = app.listen( process.env.PORT || 5000);
+server = app.listen( process.env.PORT || 3000);
 
 //socket.io instantiation -> ici j'appele le module websocket.io avec une const.
 const io = require("socket.io")(server);

@@ -6,7 +6,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.4.2/emojionearea.min.js"></script>
       <script src="js/chat.js"></script>
-      <script src="../js/search.js"></script>
 
 
     <title>chat socket</title>
@@ -86,7 +85,7 @@
             <!-- Input area -->
             <div id="input_zone">
                 <input id="message" class="vertical-align custom-input" type="text" />
-                <button id="send_message" class="vertical-align btn btn-envoyer" type="button"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+                <button id="send_message" class="vertical-align btn btn-envoyer" type="button"><i class="fa fa-paper-plane" aria-hidden="true" require></i></button>
             </div>
 
         </div>
@@ -125,6 +124,8 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.4.2/emojionearea.min.js"></script>
       <script src="../js/chat.js"></script>
+      <script src="../js/search.js"></script>
+
 
 </body>
 </html>
