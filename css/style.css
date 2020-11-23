@@ -152,7 +152,7 @@ color:white;
 
   .box-message{
       display: flex;
-      flex-direction: row;
+      flex-direction: column;
 color:white;
 background-color: #275fa0; 
  padding: 3%;
@@ -160,3 +160,56 @@ margin: 1%;
 }
 
 /************************/
+
+
+/** CHAT POP UP **/
+* {box-sizing: border-box;}
+
+.open-button {
+  background-color: black;
+  color: white;
+  border: none;
+  cursor: pointer;
+  opacity: 0.8;
+  position: fixed;
+  bottom: 23px;
+  right: 28px;
+  width: 280px;
+}
+
+.chat-popup {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  right: 15px;
+  border: 3px solid #f1f1f1;
+  z-index: 9;
+}
+
+.form-container {
+  max-width: 300px;
+  padding: 10px;
+  background-color: white;
+}
+
+
+.form-container textarea:focus {
+  outline: none;
+}
+
+.form-container .btn {
+  background-color: black;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom:10px;
+  opacity: 0.8;
+}
+
+
+
+.form-container .btn:hover, .open-button:hover {
+  opacity: 1;
+}

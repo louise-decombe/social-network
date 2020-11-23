@@ -1,19 +1,28 @@
 
-<?php $page_selected = 'chat'; 
-   session_start();
-   ?>
+<?php session_start();
+$_SESSION['id'] = 1;
+
+echo $_SESSION['id'];?>
 <html>
-   <body>
-      <?php
-         include("includes/header.php");
-         ?>
-      <main>
-         <!-- profile de l'utilisateur connecté -->
-         <div class="container">
+<head>
+    <meta http-equiv="Content-Type" const="text/html;charset=UTF-8" />
+    <!--Socket.io script nécessaire-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.4.2/emojionearea.min.js"></script>
+      <script src="js/chat.js"></script>
+
+
+    <title>chat socket</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<?php include('../includes/header.php') ?>
+<body>
+            <!-- profile de l'utilisateur connecté -->
+            <div class="container">
             <div class="row">
                <div class="col-sm-4 open">
                   <div class="user-profile">
-                     <img src="images/default-profile.png" class="circle-profile" alt="image-profil">
+                     <img src="../images/default-profile.png" class="circle-profile" alt="image-profil">
                      <h4>Prénom Nom</h4>
                      <div class="horizontal"></div>
 
@@ -22,21 +31,22 @@
                      <div class="input_container">
                      <span class="input_icon"><i class="fa fa-search" aria-hidden="true"></i></span>
 
-                     <input type="text" name="search-message" placeholder="chercher un message...">
+                     <input type="text" name="search-message" placeholder="chercher un utilisateur...">
                     </div>  
                
                  </div>
 
                   <!-- discussions en cours -->
                   <div class="open-discussion">
-                     <img src="images/default-profile.png" class="circle-profile" alt="image-profil">
+                     <img src="../images/default-profile.png" class="circle-profile" alt="image-profil">
                      <div class="open-p">
                      <p>Nom prénom</p>
                      <p>dernier message il y a 2 jours</p>
                      </div>
+                     
                   </div>
                   <div class="open-discussion">
-                     <img src="images/default-profile.png" class="circle-profile" alt="image-profil">
+                     <img src="../images/default-profile.png" class="circle-profile" alt="image-profil">
                      <div class="open-p">
                      <p>Nom prénom</p>
                      <p>dernier message il y a 2 jours</p>
@@ -51,35 +61,75 @@
                <!-- discussion ouverte et active  -->
                <div class="col-sm-7">
                   <div class="head-discussion">
-                     <img src="images/default-profile.png" class="circle-profile" alt="image-profil">
+                     <img src="../images/default-profile.png" class="circle-profile" alt="image-profil">
                      <h2>Prénom Nom</h2>
                      <p>En ligne il y a 5mn...
                      </p>
+             
                   </div>
-                  <div class="box-message">
-                     <img src="images/default-profile.png" class="circle-profile" alt="image-profil">
-                     <p> 
-                        Vivamus facilisis magna enim, at rutrum lorem congue in. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nullam vitae ligula eu nunc egestas fringilla. Nullam bibendum, lacus nec pellentesque pellentesque, mi ipsum ornare erat, ut rutrum enim nulla at lacus. Vestibulum interdum quis dui et dignissim. Nunc consectetur et mauris non gravida. 
-                     </p>
-                     <br/>
-                  </div>
-                  <p>Il y a 1h</p>
+                            <!--Messages container-->
+            <div id="chatroom">
+                <!--un utilisateur tape quelque chose va ici-->
+            </div>
+            <div id="feedback"></div>
 
-                  <div class="box-message">
-                     <img src="images/default-profile.png" class="circle-profile" alt="image-profil">
-                  </div>
                   <!-- form d'envoi de message  -->
                   <div class="form-send-message">
                      <form action="post">
-                        <textarea name="" placeholder="votre message..." id="mytext">
+                       <textarea name="" placeholder="votre message..." id="mytext">
                         </textarea>
-                        <button class="btn-envoyer"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
                      </form>
+                     <div class="chat-wrapper">
+            <div class="super-chat-title-container">
+               
+            </div>
+
+          
+
+            <!-- Input area -->
+            <div id="input_zone">
+                <input id="message" class="vertical-align custom-input" type="text" />
+                <button id="send_message" class="vertical-align btn btn-envoyer" type="button"><i class="fa fa-paper-plane" aria-hidden="true" require></i></button>
+            </div>
+
+        </div>
                   </div>
                </div>
             </div>
          </div>
-      </main>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.4.2/emojionearea.min.js"></script>
-      <script src="js/chat.js"></script>
-      <?php include('includes/footer.php') ?>
+ 
+            <h4 class="modal-title">choix nom user</h4>
+            <input id="nickname-input" class="custom-input" type="text" />
+
+
+    <div class="">
+        <!-- Left Column-->
+        <div class="online-user-wrapper">
+            <div class="online-user-header-container">
+                <header>
+                    <h2>Online Users</h2>
+                </header>
+            </div>
+            <div>
+                <!--Gens en ligne-->
+                <ul id="users-list">
+
+                </ul>
+            </div>
+        </div>
+        <!--Chat  -->
+     
+    </div>
+    <!--jQuery script-->
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <!--Scripts-->
+    <script src="./chat.js"></script>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.4.2/emojionearea.min.js"></script>
+      <script src="../js/chat.js"></script>
+      <script src="../js/search.js"></script>
+
+
+</body>
+</html>
