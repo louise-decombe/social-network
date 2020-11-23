@@ -35,7 +35,7 @@ app.use(express.static('public'));
 
 //routes -> j'ai besoin d'une route pour savoir où diriger les infos de connexion, j'ai besoin de la VUE.
 app.get('/', (req,res)=>{
-    res.sendFile(__dirname + '/client/index.php');
+    res.sendFile(__dirname + '/client/chat.php');
 });
 
 //Listen le port 5000 : on aurait pu mettre autre chose comme port, il en faut un pour le socket. 

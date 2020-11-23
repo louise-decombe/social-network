@@ -1,4 +1,8 @@
-<!DOCTYPE html>
+
+<?php session_start();
+$_SESSION['id'] = 1;
+
+echo $_SESSION['id'];?>
 <html>
 <head>
     <meta http-equiv="Content-Type" const="text/html;charset=UTF-8" />
