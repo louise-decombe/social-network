@@ -1,14 +1,16 @@
 // NB : quand on dit listen ou "écoute" cela signifie que mon "server web socket" prend note de toutes les infos sur lesquelles 
 // on lui dit de canaliser son attention.
 
+const dotenv = require('dotenv');
+dotenv.config({ path: './.env'});
 
 //connexion à la BDD
 var mysql = require('mysql');
 var connection = mysql.createConnection({
-	host: 'localhost',
-	user: 'root',
-	password: '',
-	database: 'social-network'
+	host: process.env.DATABASE_HOST,
+	user: process.env.DATABASE_USER,
+	password: process.env.DATABASE_PASSWORD,
+	database: process.env.DATABASE
 });
 connection.connect(function(err) {
     if (err) throw err;
