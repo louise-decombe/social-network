@@ -1,4 +1,4 @@
-$("#mytext").emojioneArea({
+$(".emoji").emojioneArea({
 
     pickerPosition:"bottom",
 

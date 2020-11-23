@@ -75,10 +75,7 @@ echo $_SESSION['id'];?>
 
                   <!-- form d'envoi de message  -->
                   <div class="form-send-message">
-                     <form action="post">
-                       <textarea name="" placeholder="votre message..." id="mytext">
-                        </textarea>
-                     </form>
+                    
                      <div class="chat-wrapper">
             <div class="super-chat-title-container">
                
@@ -86,9 +83,9 @@ echo $_SESSION['id'];?>
 
           
 
-            <!-- Input area -->
+            <!-- Input area (jedois rajouter une classe emoji pour que ça s'envoie mais pb du serveur on y reviens plus tard) -->
             <div id="input_zone">
-                <input id="message" class="vertical-align custom-input" type="text" />
+                <input id="message" class="vertical-align custom-input " type="text" />
                 <button id="send_message" class="vertical-align btn btn-envoyer" type="button"><i class="fa fa-paper-plane" aria-hidden="true" require></i></button>
             </div>
 

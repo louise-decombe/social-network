@@ -79,7 +79,7 @@ const ChatEnBas = () => {
     chatroom.scrollTop = chatroom.scrollHeight - chatroom.clientHeight;
 }
 
-$("#message").emojioneArea({
+$(".emoji").emojioneArea({
 
     pickerPosition:"bottom",
 
