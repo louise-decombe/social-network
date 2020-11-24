@@ -28,7 +28,7 @@ const app = express();
 const uuid = require('uuid');
 
 //Disable x-powered-by header
-app.disable('x-powered-by')
+//app.disable('x-powered-by')
 
 //middlewares : En architecture informatique, 
 //un middleware (anglicisme) est un logiciel tiers qui crée un réseau
@@ -40,7 +40,7 @@ app.get('/', (req,res)=>{
     res.sendFile(__dirname + '/client/chat.php');
 });
 
-//Listen le port 5000 : on aurait pu mettre autre chose comme port, il en faut un pour le socket. 
+//Listen le port 3000 : on aurait pu mettre autre chose comme port, il en faut un pour le socket. 
 server = app.listen( process.env.PORT || 3000);
 
 //socket.io instantiation -> ici j'appele le module websocket.io avec une const.
@@ -51,11 +51,12 @@ let connnections = [];
 
 //écoute toutes les connexions
 io.on('connection', (socket) => {
-    console.log('New user connected');
+    console.log('Nouvel utilisateur connecté');
     connnections.push(socket)
-    socket.username = 'Anonymous';
-
-
+   
+    // ici il faut que je trouve comment mettre le bon utilisateur
+   
+    socket.username = 'Anonyme';
 
   var getLastComments = function(){
     connection.query('' +

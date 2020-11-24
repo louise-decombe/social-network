@@ -23,6 +23,9 @@ $(function () {
         }
     })
 
+    //affiche anciens messages de la conversation
+    
+
     //Listen le new_message
     socket.on("new_message", (data) => {
         feedback.html('');
