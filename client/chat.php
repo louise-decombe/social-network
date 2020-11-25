@@ -30,7 +30,8 @@ echo $_SESSION['id'];?>
                      <!-- recherche d'un message d'une conv -->
                      <div class="input_container">
                      <span class="input_icon"><i class="fa fa-search" aria-hidden="true"></i></span>
-
+                     <div class="search-result2">
+					</div>
                      <input type="text" name="search-message" placeholder="chercher un utilisateur...">
                     </div>  
                
