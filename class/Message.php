@@ -11,6 +11,7 @@ class Message extends User {
         $this->connect = $this->db->connectDb();
 
     }
+  
 
 }
 

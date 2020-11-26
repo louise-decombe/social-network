@@ -1,14 +1,16 @@
 // NB : quand on dit listen ou "écoute" cela signifie que mon "server web socket" prend note de toutes les infos sur lesquelles 
 // on lui dit de canaliser son attention.
 
+const dotenv = require('dotenv');
+dotenv.config({ path: './.env'});
 
 //connexion à la BDD
 var mysql = require('mysql');
 var connection = mysql.createConnection({
-	host: 'localhost',
-	user: 'root',
-	password: '',
-	database: 'social-network'
+	host: process.env.DATABASE_HOST,
+	user: process.env.DATABASE_USER,
+	password: process.env.DATABASE_PASSWORD,
+	database: process.env.DATABASE
 });
 connection.connect(function(err) {
     if (err) throw err;
@@ -26,7 +28,7 @@ const app = express();
 const uuid = require('uuid');
 
 //Disable x-powered-by header
-app.disable('x-powered-by')
+//app.disable('x-powered-by')
 
 //middlewares : En architecture informatique, 
 //un middleware (anglicisme) est un logiciel tiers qui crée un réseau
@@ -38,7 +40,7 @@ app.get('/', (req,res)=>{
     res.sendFile(__dirname + '/client/chat.php');
 });
 
-//Listen le port 5000 : on aurait pu mettre autre chose comme port, il en faut un pour le socket. 
+//Listen le port 3000 : on aurait pu mettre autre chose comme port, il en faut un pour le socket. 
 server = app.listen( process.env.PORT || 3000);
 
 //socket.io instantiation -> ici j'appele le module websocket.io avec une const.
@@ -49,11 +51,12 @@ let connnections = [];
 
 //écoute toutes les connexions
 io.on('connection', (socket) => {
-    console.log('New user connected');
+    console.log('Nouvel utilisateur connecté');
     connnections.push(socket)
-    socket.username = 'Anonymous';
-
-
+   
+    // ici il faut que je trouve comment mettre le bon utilisateur
+   
+    socket.username = 'Anonyme';
 
   var getLastComments = function(){
     connection.query('' +
