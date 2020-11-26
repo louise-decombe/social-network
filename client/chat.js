@@ -47,6 +47,27 @@ $(function () {
         ChatEnBas()
     });
 
+
+    socket.on("message_existant", (data) => {
+        feedback.html('');
+        message.val('');
+        //append le nouveau message envoyé
+        chatroom.append(`
+                        </div>
+                        <div class="box-message">
+                        <img src="../images/default-profile.png" class="circle-profile" alt="image-profil">
+                        <p  class="chat-text user-nickname">${data.username}</p>
+                        <br/>
+                        <p> ${data.message}
+                        </p>
+                        <br/>
+                     </div>
+                     <p>Il y a 1h</p>
+
+                        `)
+        ChatEnBas()
+    });
+
     //Emit un username
     nickName.keypress( e => {
         let keycode = (e.keyCode ? e.keyCode : e.which);

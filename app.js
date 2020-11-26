@@ -95,6 +95,16 @@ getLastComments()
         io.sockets.emit('get users',users)
     }
 
+    socket.on('messa_existant', (data) => {
+        //émet le new message
+        io.sockets.emit('new_message', {message : data.message, username : socket.username});
+        var sql = `INSERT INTO messages (message, messageTo, messageFrom, created_at) VALUES ('${data.message}', '1', '1', NOW())`;
+        connection.query(sql, function (err, result) {
+          if (err) throw err;
+          console.log("1 record inserted");
+        })
+    })
+
     //listen on le new_message
     socket.on('new_message', (data) => {
         //émet le new message
