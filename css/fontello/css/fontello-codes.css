@@ -1,2 +1,10 @@
+@charset "UTF-8";
 
+ 
+.icon-up-fat:before { content: '\21c8'; } /* '⇈' */
+.icon-tools:before { content: '\2692'; } /* '⚒' */
+.icon-trash:before { content: '\e006'; } /* '' */
+.icon-home:before { content: '\e081'; } /* '' */
 .icon-cancel:before { content: '\e109'; } /* '' */
+.icon-bell-alt:before { content: '\f0f3'; } /* '' */
+.icon-user:before { content: '👤'; } /* '\1f464' */

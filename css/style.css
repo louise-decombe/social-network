@@ -3,79 +3,136 @@
     padding: 0;
     box-sizing: border-box;
 }
+body {
+    max-width: 1600px;
+    margin: auto!important;
+}
 
-/* PAGE ADMIN */
+
+/* ****************************************************************************
+************************ ADMIN ***********************************************
+***************************************************************************** */
 
 .admin_main{
     display: flex;
-    height: 100vh;
+    min-height: 100vh;
+}
+.header_admin{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid lightgrey;
+}
+.icones_menu{
+    display: flex;
+    justify-content: flex-end;
+    width: 70%; 
+}
+.icones_menu p{
+    width: 10%;
+    margin: 0 4%;
+    font-size: 25px; 
+}
+
+.icon-bell-alt{
+    color: #FECE66;
+}
+
+.bell{
+    display: inline-block;
+    background: red;
+    color: white;
+    width: 20%;
+    height: 3vh;
+    line-height: 3vh;
+    border-radius: 50%;
+    font-size: 15px;
+    text-align: center;
+}
+#signalement{
+    text-decoration: none;
+}
+.icon-home{
+    color: #275FA2;
+}
+
+.admin_main_button {
+    border: none!important;
+    background-color: transparent!important;
 }
 
 .nav_admin{
    width: 25%;
-   background-color: grey;
+   background-color: #275fa0;
 }
 
-.admin_main img {
+.admin_main_img {
     width: 100%;
     margin: 2%;
 }
 .admin_main nav {
     text-align: center;
 }
-.admin_main nav a {
+.admin_main nav button {
     display: block;
-    margin: 3%;
+    margin: 3% auto;
     color: white;
 }
 .section_infos {
     width: 75%;
+    background-image: url("../images/fond_admin.png");
+    background-size: cover;
+    background-position: center;
 }
 .infos_admin {
     display: flex;
     justify-content: space-between;
 }
-#users, #posts , #alert {
-    width: 30%;
-    height: 20vh;
-    margin: 1%;
-    text-align: center;
-    background-color:#dee2e6;
-    border-radius: 20px;
+#page{
+    min-height: 100vh;
+}
+.div_entete{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 70%;
+    margin: auto;
+}
+
+.div_entete_tab h3{
+    width: 70%;
+}
+.logo_admin{
+    width: 20%; 
+}
+
+.titre_admin {
+    width: 70%;
+    margin: 0 auto 4%;
+}
+#users h3,#alert h3,#posts h3{
+    height: 8vh;
+    line-height: 8vh;
+    border-radius: 20px 20px 0 0;
 }
 #users h3{
-    height: 8vh;
-    line-height: 8vh;
     background-color: #2AB6A4;
-    border-radius: 20px 20px 0 0;
 }
 #alert h3 {
-    height: 8vh;
-    line-height: 8vh;
     background-color: #F1574B;
-    border-radius: 20px 20px 0 0;
 }
 #posts h3 {
-    height: 8vh;
-    line-height: 8vh;
     background-color: #FECE66;
-    border-radius: 20px 20px 0 0;
+}
+.titre_groupe{
+    font-size: 17px;
+    text-align: center;
 }
 .infos_admin div div {
     margin: auto;
 }
 
-.infos_admin div h3 {
-    font-size: 20px;
-}
-.rond{
-    width: 20%;
-    background: white;
-    border-radius: 50%;
-    height: 10vh;
-    line-height: 10vh;
-}
-#action_alert{
+#modale{
     position: fixed;
     top: 0;
     left: 0;
@@ -85,29 +142,53 @@
     background-color: rgba(0,0,0,.7);
     z-index: 100;
     display: none; 
-}
-.form_admin{
     flex-direction: column;
-    align-items: center;
-    background-color: white;
+    justify-content: center;
+    text-align: center;
+}
+
+.form_admin, .comment_affichage , #form_update_cursus {
     width: 35%;
     margin: auto;
     padding: 2%;
-    border-radius: 10px;
+    border-radius: 20px;
+    background-color: white;
+}
+
+#selection{
+    margin-right: 3%;
+}
+
+.table_admin {
+    width: 90%!important;
+    margin: 1% auto;
+}
+
+.table_admin thead {
+    background-color:  #275fa0;
+}
+
+.table_admin thead tr td {
+   color: white;
+}
+
+.table_admin tbody{
+    background-color: #dee2e6;
 }
 
 #action_alert label{
     margin: 5%;
 }
+
 .icon-cancel{
     display: block;
-    text-align: right;
-    color: red;
-    cursor: pointer;
     padding: 1%;
     width: 20px;
     height: 20px;
     margin-left: 90%;
+    text-align: right;
+    color: red;
+    cursor: pointer;
     transition: transform .2s; /* Animation */
 }
 
@@ -116,5 +197,204 @@
 }
 #search_admin{
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
+    width: 90%;
+    margin: auto;  
 }
+
+#search_admin form, #search_admin button{
+    width: 30%;
+    margin: auto;
+}
+
+.div_infos{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+}
+
+#pagination {
+    width: 50%;
+    margin: auto;
+}
+
+.div_infos aside {
+    display: flex;
+}
+.icon-user {
+    color: #88c1d0;
+}
+
+.icon-tools {
+    color:  #ffca4b;
+}
+
+.icon-trash{
+    color: red;
+}
+
+.page {
+    margin: 1%;
+    background-color: #88c1d0!important;
+    color: white!important;
+}
+
+.tableaux {
+    display: flex;
+    justify-content: center;
+}
+
+.tableaux div{
+    width: 40%!important;
+    margin: 1%;
+}
+
+.table_groupe thead{
+    background-color: #275fa0;
+}
+.table_groupe tbody, .table_top_groupe tbody{
+    background-color: #DEE2E6;
+}
+.table_top_groupe thead{
+    background: #F1574B;
+}
+#tbody tr td {
+    width: 25%;
+}
+.logo_langage{
+    width: 30%;
+}
+
+#formlangage{
+    display: none;
+    width: 80%;
+    margin: 4% auto;
+    padding: 2%;
+    background-color:black;
+    color: white;
+    border-radius: 10px;
+}
+
+.table_cursus{
+    width: 50%!important;
+    text-align: center;
+}
+
+.section_form_cursus{
+    width: 50%;
+    margin: auto;
+    padding: 2%;
+    text-align: center;
+    background-color: black;
+    color: white;
+    border-radius: 20px;
+}
+
+/* style boutton */
+.update_cursus, .upgrade, .supp , .supprimer{
+    border: none;
+}
+.upgrade, .supp , .supprimer  {
+    background: transparent;
+}
+.update_cursus{
+    background-color:#ffca4b!important;
+}
+#add_langage{
+    display: block;
+}
+
+#message_admin {
+    display: block;
+    width: 50%;
+    margin: 4% auto;
+}
+
+/* ****************************************************************************
+************************ RESPONSIVE *****************************************
+***************************************************************************** */
+
+@media screen and (max-width: 600px){
+    h2,h3{
+        font-size: 25px!important;
+        text-align: center;
+    }
+    .admin_main {
+        flex-direction: column;
+    }
+    .icones_menu {
+        justify-content: space-evenly;
+        width: 30%;
+    }
+    .nav_admin {
+        width: 100%;
+    }
+    .section_infos {
+        width: 100%;
+        margin: auto;
+    }
+    .admin_main_img {
+        display: block;
+        width: 35%;
+        margin: auto; 
+    }
+    .admin_main nav button {
+        display: inline;
+    }
+    .logo_admin {
+        width: 40%;
+    }
+    #search_admin {
+        width: 100%;
+        flex-direction: column;
+    }
+    #search_admin form, #search_admin button {
+        width: 90%;
+    }
+    .div_infos {
+        width: 100%;
+        flex-direction: column;
+    }
+    #pagination {
+        width: 90%;
+    }
+    .icon-user {
+        color: #275fa0;
+    }
+    .div_entete {
+        display: flex;
+        width: 100%;
+        flex-direction: column;
+    }
+    .tableaux {
+        flex-direction: column;
+    }
+    .tableaux div {
+        width: 95%!important;
+        margin: auto;
+    }
+    #modale {
+        min-height: 100vh;
+    }
+    .form_admin, .comment_affichage, #form_update_cursus {
+        width: 90%;
+    }
+    #formlangage {
+        width: 95%;
+    }
+    .section_form_cursus {
+        width: 95%;
+    }
+}
+
+@media screen and (min-width: 601px) and (max-width: 769px){
+    .nav_admin {
+        width: 20%;
+    }
+    .section_infos {
+        width: 85%;
+    }
+}
+
+/* ********************************** */
