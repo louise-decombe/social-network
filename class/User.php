@@ -24,6 +24,8 @@ class User{
         $this->db = $db;
     }
 
+    // FONCTION CONNEXION USER
+
     public function connect($mail, $password){
 
         $connexion = $this->db->connectDb();
@@ -94,6 +96,8 @@ class User{
         }
     }
 
+    // FONCTION DECONNEXION USER
+
     public function disconnect(){
         $this->id_user = "";
         $this->firstname = "";
@@ -112,6 +116,8 @@ class User{
         session_destroy();
         header('location:index.php');
     }
+
+    // FONCTION REGISTER USER
 
     public function register($firstname, $lastname, $mail, $cursus, $password, $check_pass){
         $connexion = $this->db->connectDb();
@@ -179,6 +185,8 @@ class User{
 
     }
 
+    // FONCTION CHECK MAIL USER
+
     public function get_mail($mail){
         $connexion = $this->db->connectDb();
         $q = $connexion->prepare("SELECT mail FROM users WHERE mail = :mail");
@@ -187,6 +195,8 @@ class User{
         $user = $q->fetch(PDO::FETCH_ASSOC);
         //return $user;
     }
+
+    // FONCTION NEWSLETTER en cours
 
     public function check_newsletter($email_newsletter){
 
@@ -222,6 +232,16 @@ class User{
             header('Location: '.$_SERVER['PHP_SELF']);
         }
     }
+
+    public function infos_user($id_user){
+
+        $q = $connexion->prepare("SELECT * FROM users WHERE id = :id");
+        $q->bindParam(':id', $id_user, PDO::PARAM_INT);
+        $q->execute();
+        $infos_user = $q->fetch(PDO::FETCH_ASSOC);
+
+    }
+
 
 }
 
