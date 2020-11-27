@@ -118,6 +118,11 @@ echo $_SESSION['id'];?>
         <!--Chat  -->
      
     </div>
+    <h1 id="socketio"> not connected </h1>
+    <div id="display"> </div>
+    <script>
+    
+    </script>
     <!--jQuery script-->
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <!--Scripts-->

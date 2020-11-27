@@ -1,6 +1,6 @@
 $(function () {
     //connexion !
-    let socket = io.connect('http://localhost:3000');
+    let socket = io.connect('http://localhost:3001');
 
     //buttons and inputs
     let message = $("#message");
@@ -9,6 +9,8 @@ $(function () {
     let feedback = $("#feedback");
     let usersList = $("#users-list");
     let nickName = $("#nickname-input");
+
+
 
     //Emit message
     // si le btn envoyé est cliqué
@@ -48,25 +50,6 @@ $(function () {
     });
 
 
-    socket.on("message_existant", (data) => {
-        feedback.html('');
-        message.val('');
-        //append le nouveau message envoyé
-        chatroom.append(`
-                        </div>
-                        <div class="box-message">
-                        <img src="../images/default-profile.png" class="circle-profile" alt="image-profil">
-                        <p  class="chat-text user-nickname">${data.username}</p>
-                        <br/>
-                        <p> ${data.message}
-                        </p>
-                        <br/>
-                     </div>
-                     <p>Il y a 1h</p>
-
-                        `)
-        ChatEnBas()
-    });
 
     //Emit un username
     nickName.keypress( e => {

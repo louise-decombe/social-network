@@ -41,7 +41,7 @@ app.get('/', (req,res)=>{
 });
 
 //Listen le port 3000 : on aurait pu mettre autre chose comme port, il en faut un pour le socket. 
-server = app.listen( process.env.PORT || 3000);
+server = app.listen( process.env.PORT || 3001);
 
 //socket.io instantiation -> ici j'appele le module websocket.io avec une const.
 const io = require("socket.io")(server);
@@ -74,10 +74,13 @@ io.on('connection', (socket) => {
                 };
                 messages.push(message)
             }
-            socket.emit('new_message', messages)
+            socket.emit('message_existant', messages)
         }
     })
 };
+
+
+
 getLastComments()
 
 
@@ -95,13 +98,13 @@ getLastComments()
         io.sockets.emit('get users',users)
     }
 
-    socket.on('messa_existant', (data) => {
+    socket.on('message_existant', (data) => {
         //émet le new message
         io.sockets.emit('new_message', {message : data.message, username : socket.username});
-        var sql = `INSERT INTO messages (message, messageTo, messageFrom, created_at) VALUES ('${data.message}', '1', '1', NOW())`;
+        var sql = `SELECT * FROM messages`;
         connection.query(sql, function (err, result) {
           if (err) throw err;
-          console.log("1 record inserted");
+          console.log("show old messages");
         })
     })
 
