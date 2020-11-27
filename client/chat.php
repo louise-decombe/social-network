@@ -29,15 +29,20 @@ echo $_SESSION['id'];?>
                      <h3>MESSAGERIE...</h3>
                      <!-- recherche d'un message d'une conv -->
                      <div class="input_container">
-                     <span class="input_icon"><i class="fa fa-search" aria-hidden="true"></i></span>
-                     <div class="search-result2">
+
+					<input type="text" placeholder="Chercher un utilisateur"  class= "search2 form-control mr-sm-2"/>
+					<div class="search-result2">
 					</div>
-                     <input type="text" name="search-message" placeholder="chercher un utilisateur...">
+				</li>
+
                     </div>  
+
+
                
                  </div>
 
-                  <!-- discussions en cours -->
+                  <!-- discussions en cours 
+                ici il me faut une boucle avec les utilisateurs -->
                   <div class="open-discussion">
                      <img src="../images/default-profile.png" class="circle-profile" alt="image-profil">
                      <div class="open-p">

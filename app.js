@@ -66,6 +66,7 @@ io.on('connection', (socket) => {
         } else {
             var messages = [];
             rows.reverse();
+            console.log(rows[1].id_message);
             for(k in rows){
                 var row = rows[k];
                 var message = {
@@ -78,6 +79,8 @@ io.on('connection', (socket) => {
         }
     })
 };
+
+
 
 
 

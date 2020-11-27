@@ -51,6 +51,8 @@ $(function () {
 
 
 
+
+
     //Emit un username
     nickName.keypress( e => {
         let keycode = (e.keyCode ? e.keyCode : e.which);
