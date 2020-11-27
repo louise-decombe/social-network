@@ -41,7 +41,7 @@ app.get('/', (req,res)=>{
 });
 
 //Listen le port 3000 : on aurait pu mettre autre chose comme port, il en faut un pour le socket. 
-server = app.listen( process.env.PORT || 3000);
+server = app.listen( process.env.PORT || 3001);
 
 //socket.io instantiation -> ici j'appele le module websocket.io avec une const.
 const io = require("socket.io")(server);
@@ -66,6 +66,7 @@ io.on('connection', (socket) => {
         } else {
             var messages = [];
             rows.reverse();
+            console.log(rows[1].id_message);
             for(k in rows){
                 var row = rows[k];
                 var message = {
@@ -74,10 +75,15 @@ io.on('connection', (socket) => {
                 };
                 messages.push(message)
             }
-            socket.emit('new_message', messages)
+            socket.emit('message_existant', messages)
         }
     })
 };
+
+
+
+
+
 getLastComments()
 
 
@@ -94,6 +100,16 @@ getLastComments()
     const updateUsernames = () => {
         io.sockets.emit('get users',users)
     }
+
+    socket.on('message_existant', (data) => {
+        //émet le new message
+        io.sockets.emit('new_message', {message : data.message, username : socket.username});
+        var sql = `SELECT * FROM messages`;
+        connection.query(sql, function (err, result) {
+          if (err) throw err;
+          console.log("show old messages");
+        })
+    })
 
     //listen on le new_message
     socket.on('new_message', (data) => {

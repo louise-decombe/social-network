@@ -19,9 +19,9 @@ $(function(){
 
 
 $(function(){
-	$('.search').keyup(function(){
+	$('.search2').keyup(function(){
 
-        //console.log('ça marche');
+        //console.log('ça fois 2');
 
 		var search = $(this).val();
 		$.post('http://localhost/social-network/php/search.php', {search:search}, function(data){

@@ -1,6 +1,6 @@
 $(function () {
     //connexion !
-    let socket = io.connect('http://localhost:3000');
+    let socket = io.connect('http://localhost:3001');
 
     //buttons and inputs
     let message = $("#message");
@@ -9,6 +9,8 @@ $(function () {
     let feedback = $("#feedback");
     let usersList = $("#users-list");
     let nickName = $("#nickname-input");
+
+
 
     //Emit message
     // si le btn envoyé est cliqué
@@ -46,6 +48,10 @@ $(function () {
                         `)
         ChatEnBas()
     });
+
+
+
+
 
     //Emit un username
     nickName.keypress( e => {
