@@ -242,6 +242,25 @@ class User{
 
     }
 
+    public function all_infos($id_user){
+
+        $q = $connexion->prepare("SELECT *
+                                  FROM users 
+                                  INNER JOIN user_tech
+                                  ON users.id = user_tech.id_user
+                                  INNER JOIN follower
+                                  ON users.id = follower.id_user
+                                  INNER JOIN post
+                                  ON users.id = post.id_user
+                                  INNER JOIN groupe
+                                  ON users.id = groupe.id_user
+                                  WHERE users.id = $id_user");
+        $q->bindParam(':id', $id_user, PDO::PARAM_INT);
+        $q->execute();
+        $all_infos = $q->fetch(PDO::FETCH_ASSOC);
+
+    }
+
 
 }
 
