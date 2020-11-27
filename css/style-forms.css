@@ -23,13 +23,17 @@ a{
   justify-content:center;
   min-height:80vh;
 }
-#form-register{
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  border: 10px solid #275fa0;
-  width:60%;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+
+.form{
+  display:flex !important;
+  flex-direction:column !important;
+  align-items:center !important;
+  border: 10px solid #275fa0 !important;
+  width:50% !important;
+  box-shadow: 20px 20px rgba(221, 222, 225, 0.5) !important;
+  padding : 20px !important;
+  margin-bottom : 10% !important;
+  margin-top:10% !important;
 }
 #form-title{
   display:flex;
@@ -40,6 +44,7 @@ a{
 }
 #form-register h2{
   font-size: 20px;
+  margin-bottom:2.5%;
 }
 
 #form-identity{
@@ -47,6 +52,64 @@ a{
   width:80% !important;
   background-color:red !important;
 }
+
+#form-register input[type=text]{
+  border: 2px solid #275fa0 !important;
+  border-radius:0 !important;
+  box-shadow: 12px 12px #275fa0 !important;
+  margin-bottom: 5%;
+}
+
+#form-register input[type=email]{
+  border: 2px solid #275fa0 !important;
+  border-radius:0 !important;
+  box-shadow: 12px 12px #275fa0 !important;
+  margin-bottom: 5%;
+}
+
+#form-register input[type=email]{
+  border: 2px solid #275fa0 !important;
+  border-radius:0 !important;
+  box-shadow: 12px 12px #275fa0 !important;
+  margin-top: 7.5%;
+}
+
+#form-register input[type=password], .input-group-prepend{
+  border: 2px solid #275fa0 !important;
+  border-radius:0 !important;
+  box-shadow: 12px 12px #275fa0 !important;
+  margin-top: 7.5%;
+}
+
+.custom-select{
+  border: 2px solid #275fa0 !important;
+  border-radius:0 !important;
+  box-shadow: 12px 12px #275fa0 !important;
+  margin-bottom: 5%;
+}
+
+
+.btn {
+  display:flex !important;
+  width: 60% !important;
+  color: #275fa0 !important;
+  background-color: transparent !important;
+  cursor: pointer !important;
+  display: inline-block !important;
+  letter-spacing: 0.075em !important;
+  padding: .8em 1em !important;
+  margin: auto 2em !important;
+  position: relative !important;
+  align-self: center !important;
+  text-transform: uppercase !important;
+  border: 5px #275fa0 solid !important;
+  border-image-slice: 1 1 0 0 !important;
+  z-index: 1 !important;
+  box-shadow: -0.5em .5em transparentize(#275fa0,1);
+  transform-origin: left bottom !important;
+  border-radius: 0 !important;
+}
+
 
 
 /*** RESPONSIVE INSCRIPTION ***/
@@ -57,6 +120,23 @@ a{
 /*----------------------------------------------------*/
 /* CONNEXION
 ------------------------------------------------------ */
+
+#main-connexion{
+  display: flex;
+  flex-direction: column;
+  align-items:center;
+  justify-content:center;
+  min-height:80vh;
+}
+
+#form-connexion{
+  display:flex !important;
+  flex-direction:column !important;
+  background-color:gray !important;
+  border: 10px solid #275fa0;
+  width:60%;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
 
 
 

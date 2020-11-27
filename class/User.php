@@ -179,6 +179,50 @@ class User{
 
     }
 
+    public function get_mail($mail){
+        $connexion = $this->db->connectDb();
+        $q = $connexion->prepare("SELECT mail FROM users WHERE mail = :mail");
+        $q->bindParam(':mail', $mail, PDO::PARAM_STR);
+        $q->execute();
+        $user = $q->fetch(PDO::FETCH_ASSOC);
+        //return $user;
+    }
+
+    public function check_newsletter($email_newsletter){
+
+        $connexion = $this->db->connectDb();
+        $q = $connexion->prepare("SELECT email_newsletter FROM newsletter WHERE email_newsletter = :email_newsletter");
+        $q->bindParam(':email_newsletter', $email_newsletter, PDO::PARAM_STR);
+        $q->execute();
+        $email_exist = $q->fetchAll();
+
+        //return $email_exist;
+
+    }
+
+    public function newsletter($email_newsletter){
+        $connexion = $this->db->connectDb();
+        $q = $connexion->prepare("SELECT email_newsletter FROM newsletter WHERE email_newsletter = :email_newsletter");
+        $q->bindParam(':email_newsletter', $email_newsletter, PDO::PARAM_STR);
+        $q->execute();
+        $email_exist = $q->fetchAll();
+
+        if (!empty($email_exist)) {
+
+            $errors[] = "Cette adresse mail est déjà utilisée.";
+            $info = new Infos($errors);
+            echo $info->renderInfo();
+        }
+        else{
+
+            $q1 = $connexion->prepare("INSERT INTO newsletter(email_newsletter) VALUES (:email_newsletter)");
+            $q1->bindParam(':email_newsletter', $email_newsletter, PDO::PARAM_STR);
+            $q1->execute();
+
+            header('Location: '.$_SERVER['PHP_SELF']);
+        }
+    }
+
 }
 
 
