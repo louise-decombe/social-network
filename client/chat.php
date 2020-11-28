@@ -94,7 +94,10 @@ echo $_SESSION['id'];?>
                 <input id="message" class="vertical-align custom-input " type="text" />
                 <button id="send_message" class="vertical-align btn btn-envoyer" type="button"><i class="fa fa-paper-plane" aria-hidden="true" require></i></button>
             </div>
-
+            <form action="/" enctype="multipart/form-data" method="post">
+    <input type="file" name="upload" multiple>
+    <input type="submit" value="Upload">
+</form>
         </div>
                   </div>
                </div>
@@ -123,11 +126,26 @@ echo $_SESSION['id'];?>
         <!--Chat  -->
      
     </div>
+
     <h1 id="socketio"> not connected </h1>
     <div id="display"> </div>
-    <script>
-    
+    <script src="../app.js"></script>
+
+<script>
+      var socket = io();
+      socket.on('connect', function() {
+        document.getElementById("socketio").innerHTML = "socket connected";
+      });
+      socket.on('showrows', function(rows) {
+        var html='';
+        for (var i=0; i<rows.length; i++) {
+          html += rows[i].firstname + ' ' + rows[i].lastname + '<br>';
+        }  
+        document.getElementById("display").innerHTML = html;
+        console.log(rows);
+      });
     </script>
+    
     <!--jQuery script-->
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <!--Scripts-->

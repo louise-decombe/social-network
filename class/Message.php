@@ -1,8 +1,6 @@
-<?php
+<?php 
 
-
-class Message extends User {
-
+Class Message {
 
     private $db;
 
@@ -11,8 +9,13 @@ class Message extends User {
         $this->connect = $this->db->connectDb();
 
     }
+
+
+   
+    public function showMessages($search){
+
+    }
+    
   
 
 }
-
-?>

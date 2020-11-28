@@ -21,6 +21,11 @@ connection.connect(function(err) {
   });
 
 
+
+
+
+
+
 const express = require('express');
 const app = express();
 //identifiant unique universel -> au début j'ai fait un chat avec des utilisateurs anonyme DONC besoin de les identifier, je leur accord une genre 
@@ -71,11 +76,12 @@ io.on('connection', (socket) => {
                 var row = rows[k];
                 var message = {
                     message: row.message,
-                  
+
                 };
                 messages.push(message)
+                socket.emit('message_existant', messages)
+
             }
-            socket.emit('message_existant', messages)
         }
     })
 };
@@ -83,8 +89,8 @@ io.on('connection', (socket) => {
 
 
 
-
 getLastComments()
+
 
 
     //listen on change_username
@@ -147,3 +153,17 @@ getLastComments()
     })
 })
 
+io.on('connection', function (socket) {
+
+    console.log('a client connected');
+
+    connection.query('SELECT * FROM messages',function(err,rows){
+      if(err) throw err;
+      console.log('Data received from Db:\n');
+      console.log(rows);
+      socket.emit('showrows', rows);
+    });
+
+
+
+ });

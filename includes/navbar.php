@@ -8,7 +8,8 @@
 //if(isset($_SESSION['id_user'])){
 
  ?>
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+ <div class="nav-style">
+      <nav class="navbar navbar-expand-lg navbar-dark">
    <a class="navbar-brand" href="index.php">
   </a>
   
@@ -44,10 +45,11 @@
 				</li>
   </ul>
 </nav>
+</div>
 
 <?php //}else{ ?>
 
-  <!--   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <!--   <nav class="navbar navbar-expand-lg navbar-dark">
    <a class="navbar-brand" href="index.php">
   </a>
   
