@@ -2,7 +2,7 @@
 
 require '../class/Config.php';
 
-if(isset($_POST['submit'])){
+if(isset($_POST['submit_register'])){
 
     $firstname = $_POST['firstname'];
     $lastname = $_POST['lastname'];

@@ -1,13 +1,14 @@
 // $(document).ready(function(){
 
-$(".link-navbar").click(function(event){
+$("ul li a").click(function(event){
 
     event.preventDefault();
 
     let href = $(this).attr("href");
 
-    // window.history.pushState(null, null, href);
-
+    window.history.pushState(null, null, href);
+    console.log("test");
+    console.log(href);
     $(".link-navbar").removeClass("link-active");
     $(this).addClass("link-active");
 
@@ -16,6 +17,7 @@ $(".link-navbar").click(function(event){
         success: function(data){
             $(".container-fluid").fadeOut(350, function(){
                 let form_content = $(data).find(".form")
+                
                 //console.log(form_content);
                 $(".container-fluid").html(form_content);
                 //console.log(test);

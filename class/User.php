@@ -114,7 +114,7 @@ class User{
         $this->droits = "";
         session_unset();
         session_destroy();
-        header('location:index.php');
+        header('location: ../index.php');
     }
 
     // FONCTION REGISTER USER
@@ -177,7 +177,7 @@ class User{
             $q1->bindParam(':cursus', $cursus, PDO::PARAM_INT);
             $q1->bindValue(':photo', $photo, PDO::PARAM_STR);
             $q1->execute();
-            header('location:index.php');
+            header('location:../connexion.php');
         }else {
             $info = new Infos($errors);
             echo $info->renderInfo();
@@ -219,7 +219,7 @@ class User{
 
         if (!empty($email_exist)) {
 
-            $errors[] = "Cette adresse mail est déjà utilisée.";
+            $errors[] = "Cette adresse mail est déjà enregistrée.";
             $info = new Infos($errors);
             echo $info->renderInfo();
         }

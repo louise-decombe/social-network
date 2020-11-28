@@ -13,10 +13,10 @@ $(document).ready(function(){
             url : "php/form_newsletter.php", // on donne l'URL du fichier de traitement
             type : "post", // la requête est de type POST
             data : ({email_newsletter: email_newsletter}),// et on envoie nos données
-            success:function(response){
+            success:function(response_news){
                 //console.log(response);
                 //alert(response);
-                if ((response) == 'email_exist'){
+                if ((response_news) == 'email_exist'){
                     $("#email_newsletter").css("background-color", "#7FFF00");   // si le login existe style rouge pour l'input
                     $( "#submit_newsletter" ).prop("disabled", false);           // on rend inaccesible le bouton submit 
                     //$('.error-message').append('<p>cet email est déjà enregistré</p>')         

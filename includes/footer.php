@@ -1,5 +1,4 @@
-<script type="text/javascript" src="js/form_newsletter.js"></script>
-<footer>
+
     <section id="media-footer">
         <span id="social-links">
             <a href="https://www.instagram.com/laplateformeio/"><i class="fab fa-instagram"></i></a>
@@ -39,4 +38,3 @@
         </a>
         <p>© 2020 Plateformer_ Tous droits réservés</p>
     </section>
-</footer>
