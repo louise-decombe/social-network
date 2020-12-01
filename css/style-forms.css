@@ -64,12 +64,28 @@ a{
   margin-bottom: 5%;
 }
 
-#form-register input[type=password], .input-group-prepend{
+#form-register input[type=password]{
+  border: 2px solid #275fa0 !important;
+  border-radius:0 !important;
+  box-shadow: 12px 12px #275fa0 !important;
+  margin-bottom: 2.5% !important;
+  position: relative;
+}
+
+.input-group-prepend{
   border: 2px solid #275fa0 !important;
   border-radius:0 !important;
   box-shadow: 12px 12px #275fa0 !important;
   margin-bottom: 2.5% !important;
 }
+
+.input-group-text{
+  background-color : none !important;
+  border-radius:0 !important;
+  padding-top : 8px !important;
+  padding-bottom : 8px !important;
+}
+
 
 .custom-select{
   border: 2px solid #275fa0 !important;
