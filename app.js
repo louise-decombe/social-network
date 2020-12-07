@@ -22,10 +22,6 @@ connection.connect(function(err) {
 
 
 
-
-
-
-
 const express = require('express');
 const app = express();
 //identifiant unique universel -> au début j'ai fait un chat avec des utilisateurs anonyme DONC besoin de les identifier, je leur accord une genre 

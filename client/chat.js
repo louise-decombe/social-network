@@ -1,3 +1,9 @@
+
+
+
+
+//////////////////////////////////////////////////////////Je fais ici une coupure pour le moment///////////////////////////////////// /////////////////
+
 $(function () {
     //connexion !
     let socket = io.connect('http://localhost:3001');
@@ -43,13 +49,13 @@ $(function () {
                         </p>
                         <br/>
                      </div>
-                     <p>Il y a 1h</p>
+                     <p>${data.created_on}</p>
 
                         `)
         ChatEnBas()
     });
 
-
+// affichage ancien message
 
 
 
@@ -94,3 +100,5 @@ $(".emoji").emojioneArea({
 
 
 });
+
+

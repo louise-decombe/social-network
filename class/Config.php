@@ -5,5 +5,11 @@
 
     require 'User.php';
     $user = new User($db);
+
+    require 'Message.php';
+    $message = new Message($db);
+
+    global $db;
+
     
 ?>
