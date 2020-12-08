@@ -42,7 +42,7 @@ $_SESSION['id'] = 1;
   		?>
 		<div class="popup-message-wrap">
 			<input id="popup-message" type="checkbox" checked="unchecked"/>
-			<div class="wrap2">
+			<div class="container-chat">
 			<div class="message-send">
 				<div class="message-header">
 					<div class="message-h-left">
@@ -56,6 +56,7 @@ $_SESSION['id'] = 1;
 					</div>
 				</div>
 				<div class="message-input">
+							<!-- envoi d'un message à un utilisateur désigné -->
 					<h4>Envoyer un message à:</h4>
 				  	<input type="text" placeholder="Chercher un utilisateur" class="search-user"/>
 					<ul class="search-result down">
@@ -88,7 +89,8 @@ $_SESSION['id'] = 1;
 			
 			</div>
 			<script type="text/javascript" src="js/search.js"></script>
- 			 
+			  
+		<!-- si l'inpu est checké on peut faire apparaître le nouveau chat -->
 				<input id="mass" type="checkbox" checked="unchecked" />
 				<div class="back">
 					<div class="back-header">
@@ -139,7 +141,7 @@ $_SESSION['id'] = 1;
 		<div class="popup-message-body-wrap">
 			<input id="popup-message" type="checkbox" checked="unchecked"/>
 			<input id="message-body" type="checkbox" checked="unchecked"/>
-			<div class="wrap3">
+			<div class="wrap">
 			<div class="message-send2">
 				<div class="message-header2">
 					<div class="message-h-left">
@@ -154,7 +156,7 @@ $_SESSION['id'] = 1;
 					  <label class="close-msgPopup" for="message-body" ><i class="fa fa-times" aria-hidden="true"></i></label> 
 					</div>
 				</div>
-				<div class="message-del">
+				<div class="message-delete">
 					<div class="message-del-inner">
 						<h4> Voulez vous vraiment supprimer ce message ?</h4>
 						<div class="message-del-box">
@@ -175,7 +177,10 @@ $_SESSION['id'] = 1;
 				<div class="main-msg-footer">
 					<div class="main-msg-footer-inner">
 						<ul>
-							<li><textarea id="msg" name="msg" placeholder="Ecrivez le message"></textarea></li>
+							<li><textarea id="msg" name="msg" placeholder="Ecrivez le message" ></textarea></li>
+								
+							<!-- upload d'image dans le chat -->
+
 							<li><input id="msg-upload" type="file" value="upload"/><label for="msg-upload"><i class="fa fa-camera" aria-hidden="true"></i></label></li>
 							<li><input id="send" data-user="<?php echo $messageFrom;?>" type="submit" value="Send"/></li>
 						</ul>
