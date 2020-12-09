@@ -51,7 +51,7 @@ $(function(){
 				});
 			});
 		}
-		//var timer = setInterval(getMessages, 2000);
+		var timer = setInterval(getMessages, 4000);
 		getMessages();
 
 		autoscroll = true;
