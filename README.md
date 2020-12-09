@@ -9,9 +9,10 @@ We provide a complete admin backoffice panel
 	
 ## Technologies
 Project is created with:
-* Javascript
+* Javascript (Jquery, Ajax)
 * PHP
 * Node JS (express.js and websocket.io)
+* CSS (Bootstrap)
 	
 ## Setup
 To run this project, install it locally using npm:
@@ -19,5 +20,5 @@ To run this project, install it locally using npm:
 ```
 $ npm install
 $ npm start
-$node server.js
+$node app.js
 ```
