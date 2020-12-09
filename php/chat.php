@@ -79,7 +79,7 @@ $_SESSION['id'] = 1;
 						<div class="user-message" data-user="<?php echo $message->id;?>">
 							<div class="user-inner">
 								<div class="user-img">
-									<img src="uploads/default_avatar.png"/>
+									<img src="<?php echo $message->photo;?>"/>
 								</div>
 								<div class="name-right2">
 									<span><a href="#"><?php echo $message->firstname;?></a></span><span><?php echo $message->lastname;?></span>
@@ -117,7 +117,7 @@ $_SESSION['id'] = 1;
 							<div class="user-message" data-user="<?php echo $message->id;?>">
 								<div class="user-inner">
 									<div class="user-img">
-										<img src="uploads/default_avatar.png"/>
+										<img src="<?php echo $message->photo;?>"/>
 									</div>
 									<div class="name-right2">
 										<span><a href="#"><?php echo $message->firstname;?></a></span><span><?php echo $message->lastname;?></span>
@@ -156,8 +156,8 @@ $_SESSION['id'] = 1;
 					</div>
 					<div class="message-h-cen">
 						<div class="message-head-img">
-						<img src="uploads/default_avatar.png"/>
-<h4>Chat</h4>
+						<img src="<?php echo $user->photo;?>"/>
+<p>Chat avec <?php echo $user->firstname; echo $user->lastname?></p>
 						</div>
 					</div>
 					<div class="message-h-right">

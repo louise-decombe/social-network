@@ -38,7 +38,7 @@ Class Message extends User {
               echo '<div class="main-msg-body-right">
                   <div class="main-msg">
                     <div class="msg-img">
-                      <a href="#"><img src="uploads/default_avatar.png"/></a>
+                      <a href="#"><img src="'.$message->photo.'"/></a>
                     </div>
                     <div class="msg">'.$message->message_content.'
                       <div class="msg-time">
@@ -53,7 +53,7 @@ Class Message extends User {
               echo '<div class="main-msg-body-left">
                 <div class="main-msg-l">
                   <div class="msg-img-l">
-                    <a href="#"><img src="uploads/default_avatar.png"/></a>
+                    <a href="#"><img src="'.$message->photo.'"/></a>
                   </div>
                   <div class="msg-l">'.$message->message_content.'
                 
