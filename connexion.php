@@ -27,7 +27,7 @@ session_start();
     <div class="ovale_3"></div>
     <div class="container-fluid sh-100 d-flex flex-column justify-content-center index_content">
         <div class="row flex-column align-content-center">
-            <form class="form" id="form_connexion" method="POST" action="php/form_connect.php">
+            <!--<form class="form" id="form_connexion" method="POST" action="">-->
                 <h1 id="form-title"><img src="img/PICT_LOGO_BLACK.png" width="70" height="50" alt="blacl_logo_plateformer_">PLATEFORMER_</h1>
                 <h2>Formulaire de connexion</h2>
                 <section>
@@ -45,7 +45,7 @@ session_start();
                     <div id="error_password"></div>
                 </section>
                 <button id="submit_connexion" type="submit" name="submit_connexion" class="btn btn-primary btn_submit_register">Se connecter</button>
-            </form>
+            <!--</form>-->
         </div>
     </div>
 </main>

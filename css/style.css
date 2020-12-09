@@ -717,20 +717,54 @@ footer{
 ------------------------------------------------------ */
 .left-wave {
   width: 600px;
-  height: 400px;
+  height: 300px;
 }
 
 .right-wave {
   width: 600px;
-  height: 400px;
+  height: 300px;
   margin-left:50%;
   position: absolute;
 }
 
 path {
   stroke: #275fa0;
-  stroke-width: 10px;
+  stroke-width: 20px;
   stroke-linecap: round;
   fill: none;
 }
+
+.wavy-line {
+  display : flex;
+  position : absolute;
+  margin-top : 25%;
+  width:100%;
+  height: 25%;
+  overflow: hidden;
+}
+.wavy-line:before {
+  content: attr(data-text);
+  position: relative;
+  top: -50px;
+  color: rgba(0,0,0,0);
+  font-size: 8em;
+  text-decoration-style: wavy;
+  text-decoration-color: #25173A;
+  text-decoration-line: underline;
+  animation: animate .7s linear infinite;
+  -webkit-animation: animate .7s linear infinite;
+}
+
+@keyframes animate {
+  0% { left: -0px; }
+  100% { left: -70px;}
+}
+@-webkit-keyframes animate {
+  0% { left: -0px; }
+  100% { left: -70px;}
+}
+
+.wavy-line-green:before { text-decoration-color: #275fa0; }
+.wavy-line-blue:before { text-decoration-color: #1FB5D1; }
+.wavy-line-yellow:before { text-decoration-color: #F9B930; }
 

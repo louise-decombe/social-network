@@ -23,6 +23,7 @@ class User{
     {
         $this->db = $db;
     }
+    
 
     // FONCTION CONNEXION USER
 
@@ -34,9 +35,16 @@ class User{
         $q->bindParam(':mail', $mail, PDO::PARAM_STR);
         $q->execute();
         $user = $q->fetch(PDO::FETCH_ASSOC);
+        $passwordHash = '$2y$10$dTmqwdrXkXHRwBO/DxMC2OrTllyWooc83UcMVFv.l6fUfkemkfzP2';
+        $passwordHash = substr( $passwordHash, 0, 60 );
+
         //var_dump($user);
 
         if (!empty($user)){
+            //echo 'avant';
+            //.echo password_verify("Password-1", $passwordHash);
+            // if (password_verify($password, $passwordHash))
+            //     header("Location: www.google.com" );
             if(password_verify($password, $user['password'])){
                 $this->id_user = $user['id'];
                 $this->firstname = $user['firstname'];
@@ -80,14 +88,16 @@ class User{
                     'droits'=>
                         $this->droits
                 ];
-                header('location:../index.php');
+                //echo 'test';
                 return $_SESSION['user']; 
+                // header('location:../profile.php');
+                
 
             }else{
                 $errors[]="le mot de passe est erroné";
                 $info = new Infos($errors);
                 echo $info->renderInfo();
-            }
+             }
 
         }else{
             $errors[]="cette adresse email est introuvable";

@@ -14,6 +14,7 @@ if(isset($_POST['submit_register'])){
 
     // on fait appel à la class user pour enregistrer les infos passées dans le formulaire
     $new_user = $user->register($firstname, $lastname, $mail, $cursus, $password, $check_pass);
+    header('location:../profile.php');
 
 };
 

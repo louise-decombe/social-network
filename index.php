@@ -27,9 +27,12 @@ session_start();
     <div class="ovale_2"></div>
     <div class="ovale_3"></div>
 
-    <!--<svg class="right-wave">
+    <!--<div class="wavy-line wavy-line-green" data-text="xxx"></div>-->
+
+    <svg class="right-wave">
         <path d="M10,10 L50,100 L90,50"></path>
-    </svg>-->
+    </svg>
+
 
     <div class="container-fluid sh-100 d-flex flex-column justify-content-center index_content">
          <div class="row">
