@@ -1,6 +1,4 @@
 <?php $page_selected = 'inscription'; 
-session_start();
-
 ?>
 <!DOCTYPE html>
 <html>

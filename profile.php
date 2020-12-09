@@ -1,6 +1,4 @@
 <?php $page_selected = 'profile'; 
-session_start();
-
 ?>
 <!DOCTYPE html>
 <html>

@@ -1,5 +1,4 @@
 <?php $page_selected = 'index_1'; 
-session_start();
 ?>
 <!DOCTYPE html>
 <html>

@@ -1,5 +1,4 @@
 <?php $page_selected = 'connexion'; 
-session_start();
 ?>
 <!DOCTYPE html>
 <html>

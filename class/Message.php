@@ -2,7 +2,7 @@
 
 Class Message extends User {
 
-    private $db;
+    public $db;
 
     public function __construct($db){
         $this->db = $db;
