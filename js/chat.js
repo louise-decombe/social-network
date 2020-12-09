@@ -11,6 +11,9 @@ $(function(){
   		});
 	});
 
+
+
+
 	$(document).on('click', '.user-message', function(){
 		var get_id = $(this).data('user');
 		$.post('http://localhost/social-network/php/chat.php', {showChatPopup:get_id}, function(data){
@@ -48,7 +51,7 @@ $(function(){
 				});
 			});
 		}
-		var timer = setInterval(getMessages, 2000);
+		//var timer = setInterval(getMessages, 2000);
 		getMessages();
 
 		autoscroll = true;
@@ -69,15 +72,15 @@ $(function(){
 
 		$(document).on('click', '.deleteMsg', function(){
 			var id_message  = $(this).data('message');
-			$('.message-del-inner').height('100px');
+			$('.message-delete-inner').height('100px');
 
 			$(document).on('click', '.cancel', function(){
-				$('.message-del-inner').height('0px');
+				$('.message-delete-inner').height('0px');
 			});
 
 			$(document).on('click', '.delete', function(){
 				$.post('http://localhost/social-network/php/chat.php', {deleteMsg:id_message}, function(data){
-					$('.message-del-inner').height('');
+					$('.message-delete-inner').height('');
 					getMessages();
 				})
 			});
@@ -85,6 +88,11 @@ $(function(){
 		});
 
 	});
+
+
+
+	
+
 })
 
 

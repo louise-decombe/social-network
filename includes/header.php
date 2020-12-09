@@ -23,17 +23,24 @@ $_SESSION['id'] = 1;
       <!-- liens css (bootstrap, fontawesome, css) -->
       <link rel="stylesheet" href="css/style.css">
       <link rel="stylesheet" href="css/chat.css">
-
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.4.2/emojionearea.css">
-      <!-- polices caractère -->
+            <!-- CDN emoji -->
+            <script src="jquery.emojiarea.js"></script>
+
+<script type="text/javascript" src="js/jquery.emojis.js"></script>
+            <!-- polices caractère -->
       <link href="" rel="stylesheet">
       <!-- liens script, jquery ajax  -->
       <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script src="js/search.js"></script>
     <script src="js/chat.js"></script>
+    <script src="js/search_chat.js"></script>
+    <script src="js/hashtag.js"></script>
+
+
 
     </head>
 
@@ -52,7 +59,7 @@ $_SESSION['id'] = 1;
   <ul class="navbar-nav">
     <li class="nav-item">
       <a class="nav-link" href="../index.php" id="" data-toggle="">
-      <img src="../img/PICT_LOGO_WHITE.png" alt="Logo" style="width:40px;">
+      <img src="img/PICT_LOGO_WHITE.png" alt="Logo" style="width:50px;">
       </a>
     </li>
   
@@ -67,10 +74,10 @@ $_SESSION['id'] = 1;
 
     
     <li class="nav-item">
-    <a class="nav-link" href="../index.php"> <button class="btn btn-primary">Mur <i class="fa fa-home" aria-hidden="true"></i></button> </a>
+    <a class="nav-link" href="../index.php">Mur <i class="fa fa-home" aria-hidden="true"></i></a>
     </li>
     <li class="nav-item">
-    <a class="nav-link" href="../profile.php"> <img src="uploads/default_avatar.png" width="10%" alt=""> </i> </a>
+    <a class="nav-link" href="../profile.php"> <img src="uploads/default_avatar.png" width="5%" alt=""> </i> </a>
     </li>
     <li class="nav-item">
     <form action="../index.php" method="post">

@@ -1,8 +1,7 @@
 
-<?php session_start();
+<?php 
 $_SESSION['id'] = 1;
-
-echo $_SESSION['id'];?>
+?>
 <html>
 <head>
     <meta http-equiv="Content-Type" const="text/html;charset=UTF-8" />
@@ -22,7 +21,7 @@ echo $_SESSION['id'];?>
             <div class="row">
                <div class="col-sm-4 open">
                   <div class="user-profile">
-                     <img src="../images/default-profile.png" class="circle-profile" alt="image-profil">
+                     <img src="../uploads/default_avatar.png" class="circle-profile" alt="image-profil">
                      <h4>Prénom Nom</h4>
                      <div class="horizontal"></div>
 
@@ -44,7 +43,7 @@ echo $_SESSION['id'];?>
                   <!-- discussions en cours 
                 ici il me faut une boucle avec les utilisateurs -->
                   <div class="open-discussion">
-                     <img src="../images/default-profile.png" class="circle-profile" alt="image-profil">
+                     <img src="../uploads/default_avatar.png" class="circle-profile" alt="image-profil">
                      <div class="open-p">
                      <p>Nom prénom</p>
                      <p>dernier message il y a 2 jours</p>
@@ -52,7 +51,7 @@ echo $_SESSION['id'];?>
                      
                   </div>
                   <div class="open-discussion">
-                     <img src="../images/default-profile.png" class="circle-profile" alt="image-profil">
+                     <img src="../uploads/default_avatar.png" class="circle-profile" alt="image-profil">
                      <div class="open-p">
                      <p>Nom prénom</p>
                      <p>dernier message il y a 2 jours</p>
@@ -67,7 +66,7 @@ echo $_SESSION['id'];?>
                <!-- discussion ouverte et active  -->
                <div class="col-sm-7">
                   <div class="head-discussion">
-                     <img src="../images/default-profile.png" class="circle-profile" alt="image-profil">
+                     <img src="../uploads/default_avatar.png" class="circle-profile" alt="image-profil">
                      <h2>Prénom Nom</h2>
                      <p>En ligne il y a 5mn...
                      </p>

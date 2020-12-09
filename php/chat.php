@@ -17,6 +17,12 @@ $_SESSION['id'] = 1;
 
 	// envoi du message en BDD
  	if(isset($_POST['sendMessage']) && !empty($_POST['sendMessage'])){
+
+		if(!empty($_FILES['file']['name'][0])){
+			$img_chat = $message->uploadImage($_FILES['file']);
+		  }
+
+
 		 $id  = 1;
 		 //$_SESSION['id'];
 		 $message  = $_POST['sendMessage'];
@@ -61,6 +67,7 @@ $_SESSION['id'] = 1;
 				  	<input type="text" placeholder="Chercher un utilisateur" class="search-user"/>
 					<ul class="search-result down">
 							
+
 					</ul>
 				</div>
 				<div class="message-body">
@@ -72,7 +79,7 @@ $_SESSION['id'] = 1;
 						<div class="user-message" data-user="<?php echo $message->id;?>">
 							<div class="user-inner">
 								<div class="user-img">
-									<img src="upload/default_avatar.png"/>
+									<img src="uploads/default_avatar.png"/>
 								</div>
 								<div class="name-right2">
 									<span><a href="#"><?php echo $message->firstname;?></a></span><span><?php echo $message->lastname;?></span>
@@ -149,7 +156,8 @@ $_SESSION['id'] = 1;
 					</div>
 					<div class="message-h-cen">
 						<div class="message-head-img">
-						  <img src="uploads/default-avatar.png"/><h4>Chat</h4>
+						<img src="uploads/default_avatar.png"/>
+<h4>Chat</h4>
 						</div>
 					</div>
 					<div class="message-h-right">
@@ -157,9 +165,9 @@ $_SESSION['id'] = 1;
 					</div>
 				</div>
 				<div class="message-delete">
-					<div class="message-del-inner">
+					<div class="message-delete-inner">
 						<h4> Voulez vous vraiment supprimer ce message ?</h4>
-						<div class="message-del-box">
+						<div class="message-delete-box">
 							<span>
 								<button class="cancel" value="Cancel">Annuler</button>
 							</span>
@@ -177,10 +185,8 @@ $_SESSION['id'] = 1;
 				<div class="main-msg-footer">
 					<div class="main-msg-footer-inner">
 						<ul>
-							<li><textarea id="msg" name="msg" placeholder="Ecrivez le message" ></textarea></li>
-								
+						<li><textarea id="msg" class="question" name="msg" placeholder="Ecrivez le message" ></textarea></li>
 							<!-- upload d'image dans le chat -->
-
 							<li><input id="msg-upload" type="file" value="upload"/><label for="msg-upload"><i class="fa fa-camera" aria-hidden="true"></i></label></li>
 							<li><input id="send" data-user="<?php echo $messageFrom;?>" type="submit" value="Send"/></li>
 						</ul>
@@ -192,3 +198,4 @@ $_SESSION['id'] = 1;
 		<?php	
 	}
 ?>
+

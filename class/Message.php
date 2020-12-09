@@ -19,6 +19,7 @@ Class Message extends User {
 	}
 
 
+  
         public function recentMessages($id){
           $stmt = $this->connect->prepare("SELECT * FROM `messages` LEFT JOIN users ON `messageFrom` = `id` AND `id_message` IN (SELECT max(`id_message`) FROM `messages` WHERE `messageFrom` = `id`) WHERE `messageTo` = :id and `messageFrom` = id GROUP BY `id` ORDER BY `id_message` DESC ");
           $stmt->bindParam(":id", $id, PDO::PARAM_INT);
@@ -110,12 +111,12 @@ Class Message extends User {
 
         // il faut que je fixe ça l'upload ne marchep as surement le chemin -> j'ai repris le chemin d'un code pour faire ça.
     	public function uploadImage($file){
-            $filename   = $file['name'];
+          $filename   = $file['name'];
           $fileTmp    = $file['tmp_name'];
           $fileSize   = $file['size'];
           $errors     = $file['error'];
     
-           $ext = explode('.', $filename);
+          $ext = explode('.', $filename);
           $ext = strtolower(end($ext));
            
            $allowed_extensions  = array('jpg','png','jpeg');

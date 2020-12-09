@@ -16,8 +16,26 @@
   background-color:black !important;
 }
 
+.nav-item img {
+  border-radius: 50% ;
+}
 
+.nav-item{
+  color:white;
+}
 
+.nav-item a {
+  text-decoration: none;
+  color : white;
+}
+
+#dropdown-deco {
+  text-decoration: none;
+  color:white;
+  background: none;
+  background-color: none;
+  border:none;
+}
 
   /*________________________________*/
  /*---------CHAT.PHP--------------*/
