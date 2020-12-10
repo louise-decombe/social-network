@@ -23,13 +23,12 @@ $_SESSION['id'] = 1;
       <!-- liens css (bootstrap, fontawesome, css) -->
       <link rel="stylesheet" href="css/style.css">
       <link rel="stylesheet" href="css/chat.css">
+      <link rel="stylesheet" type="text/css" href="css/style-forms.css">
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.4.2/emojionearea.css">
-            <!-- CDN emoji -->
-            <script src="jquery.emojiarea.js"></script>
+      <link rel="shortcut icon" type="image/x-icon" href="#">
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 
-<script type="text/javascript" src="js/jquery.emojis.js"></script>
             <!-- polices caractère -->
       <link href="" rel="stylesheet">
       <!-- liens script, jquery ajax  -->
@@ -39,6 +38,8 @@ $_SESSION['id'] = 1;
     <script src="js/chat.js"></script>
     <script src="js/search_chat.js"></script>
     <script src="js/hashtag.js"></script>
+    <script src="js/envoi_message.js"></script>
+
 
 
 
@@ -48,7 +49,7 @@ $_SESSION['id'] = 1;
 <!--  Include de la navbar -->
 
 <?php 
-//if(isset($_SESSION['id_user'])){
+if(isset($_SESSION['id'])){
 
  ?>
  <div class="nav-style">
@@ -88,42 +89,15 @@ $_SESSION['id'] = 1;
   </ul>
 </nav>
 </div>
-<script src="js/search.js"></script>
-<script src="js/chat.js"></script>
-<script src="js/envoi_message.js"></script>
+
 
 <?php
 
-// ici conditions d'accès si pas connecté
-
-//}else{ ?>
-
-  <!--   <nav class="navbar navbar-expand-lg navbar-dark">
-   <a class="navbar-brand" href="index.php">
-  </a>
-  
-  <ul class="navbar-nav">
-    
-    <li class="nav-item">
-    <a class="nav-link" href="connexion.php"> Connexion </button> </a>
-    </li>
-    <li class="nav-item">
-    <a class="nav-link" href="inscription.php"> Inscription </button> </a>
-    </li>
-  </ul>
-</nav>
-    
-<? //} ?> 
-</html>
--->
-    
-</header>
-
-
+}else{ ?>
 
 <header>
     <?php
-    if($page_selected == ('index_1') OR $page_selected == ('connexion') OR $page_selected == ('inscription') ){
+    //if($page_selected == ('index_1') OR $page_selected == ('connexion') OR $page_selected == ('inscription') ){
     ?>
 
     <nav class="navbar navbar-dark" style="background-color: #000000;">
@@ -139,5 +113,6 @@ $_SESSION['id'] = 1;
         </ul>
     </nav>
 
-    <?php }; ?>
 </header>
+    
+<?}   ?> 

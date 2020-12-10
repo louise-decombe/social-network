@@ -1,25 +1,11 @@
 <?php $page_selected = 'connexion'; 
 ?>
-<!DOCTYPE html>
-<html>
-<head>
-    <title>social_network - connexion</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="shortcut icon" type="image/x-icon" href="#">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="css/style.css">
-    <link rel="stylesheet" type="text/css" href="css/style-forms.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 
-</head>
-<body>
-<header>
+    <title>social_network - connexion</title>
+
     <?php
     include("includes/header.php");
    ?>
-</header>
 <main>
     <div class="ovale_1"></div>
     <div class="ovale_2"></div>
@@ -59,7 +45,7 @@
 <script type="text/javascript" src="js/form_connexion.js"></script>
 <!--<script type="text/javascript" src="js/transition.js"></script>-->
 
-<!-- <script type="text/javascript" src="js/wave.js"></script> -->
+<!-- <script type="text/javascr ipt" src="js/wave.js"></script> -->
 
 </body>
 </html>

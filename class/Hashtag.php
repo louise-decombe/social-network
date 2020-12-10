@@ -34,6 +34,7 @@ Class Hashtag  {
     }
 
 
+
     //method qui récupère les post qui contiennent le hashtag -> surement un JOIN entre les tables de post et de hashtag
     public function getHashtagPosts($hashtag){
 	
