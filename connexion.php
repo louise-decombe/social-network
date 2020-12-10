@@ -6,6 +6,7 @@
     <?php
     include("includes/header.php");
    ?>
+   <body>
 <main>
     <div class="ovale_1"></div>
     <div class="ovale_2"></div>
@@ -34,18 +35,14 @@
         </div>
     </div>
 </main>
-<footer>
     <?php
     include("includes/footer.php") 
     ?>
-</footer>
 
 <!--<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>-->
 <!--<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>-->
 <script type="text/javascript" src="js/form_connexion.js"></script>
+
 <!--<script type="text/javascript" src="js/transition.js"></script>-->
 
 <!-- <script type="text/javascr ipt" src="js/wave.js"></script> -->
-
-</body>
-</html>

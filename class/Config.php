@@ -13,8 +13,6 @@
     require 'Hashtag.php';
     $tendance = new Hashtag($db);
 
-    global $db;
-
     
     
 ?>

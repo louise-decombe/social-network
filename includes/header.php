@@ -9,9 +9,9 @@ session_start();
 
 include 'class/Config.php';
 
-// pour le moment la var de session est en dur 
 
-$_SESSION['id'] = 1;
+
+
 ?>
 
 <!DOCTYPE html>
@@ -25,23 +25,22 @@ $_SESSION['id'] = 1;
       <link rel="stylesheet" href="css/chat.css">
       <link rel="stylesheet" type="text/css" href="css/style-forms.css">
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
       <link rel="shortcut icon" type="image/x-icon" href="#">
       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+      <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 
             <!-- polices caractère -->
       <link href="" rel="stylesheet">
-      <!-- liens script, jquery ajax  -->
-      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+      <!-- liens script, jquery ajax 
+          <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="js/search.js"></script>
     <script src="js/chat.js"></script>
     <script src="js/search_chat.js"></script>
     <script src="js/hashtag.js"></script>
     <script src="js/envoi_message.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 
-
-
+    -->
 
     </head>
 
@@ -49,7 +48,7 @@ $_SESSION['id'] = 1;
 <!--  Include de la navbar -->
 
 <?php 
-if(isset($_SESSION['id'])){
+if(isset($_SESSION['user']['id'])){
 
  ?>
  <div class="nav-style">
@@ -95,11 +94,6 @@ if(isset($_SESSION['id'])){
 
 }else{ ?>
 
-<header>
-    <?php
-    //if($page_selected == ('index_1') OR $page_selected == ('connexion') OR $page_selected == ('inscription') ){
-    ?>
-
     <nav class="navbar navbar-dark" style="background-color: #000000;">
         <a class="navbar-brand" href="index.php">
             <img src="img/PICT_LOGO_WHITE_TEXT.png" width="60" height="45" class="d-inline-block align-top" alt="white_logo_plateformer_" loading="lazy">
@@ -112,7 +106,5 @@ if(isset($_SESSION['id'])){
             <li><a class="link-navbar" href="connexion.php">se connecter</a></li>
         </ul>
     </nav>
-
-</header>
     
-<?}   ?> 
+<?  } ?> 
