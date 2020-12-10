@@ -1,0 +1,80 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,800;1,300;1,400;1,600;1,700;1,800&display=swap');
+
+/*----------------------------------------------------*/
+/* PROFILE 
+------------------------------------------------------ */
+#main-profile{
+    display:flex;
+    flex-direction:column;
+    align-items: center;
+    justify-content:center;
+    min-height:80vh;
+}
+
+#cover-pic{
+    display:flex;
+    width: 90%;
+    height : 40vh;
+    background-color:#275fa0;
+}
+
+#profile-mini-pic{
+    width:15%;
+    height:auto;
+    border-radius:50%;
+    margin-top:30%;
+    margin-left:10%;
+}
+
+#name_profile{
+    display:flex !important;
+    background-color : red !important;
+    font-size : 40px !important;
+    text-transform : uppercase !important;
+    font-weight : 700 !important;
+    z-index: 10 !important;
+    color : blueviolet !important;
+    position:absolute !important;
+}
+
+#infos_user_profile{
+    display:flex !important;
+    background-color : rgba(221, 222, 225, 0.5) !important;
+    height : 20vh;
+    width : 100%;
+    font-size:30px;
+    font-weight:700;
+}
+
+#infos_user_profile span{
+    display:flex;
+    align-items: center;
+    justify-content:center;
+    width:100%;
+    text-decoration: #275fa0 wavy underline;
+}
+
+#infos_user_profile span i{
+    font-size : 20px;
+}
+
+#relations_user_profile{
+    display:flex !important;
+    background-color : rgba(221, 222, 225, 0.5) !important;
+    height : 40vh;
+    width : 100%;
+    margin-top:5%;
+}
+
+.profile_category{
+    display:flex;
+    width:95%;
+    background-color: rgba(221, 222, 225, 0.5)!important;
+    font-size : 20px;
+    font-weight : 700;
+}
+
+/*** RESPONSIVE PROFILE ***/
+/*** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - ***/
+

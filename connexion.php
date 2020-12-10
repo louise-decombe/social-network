@@ -28,6 +28,7 @@ session_start();
     <div class="container-fluid sh-100 d-flex flex-column justify-content-center index_content">
         <div class="row flex-column align-content-center">
             <!--<form class="form" id="form_connexion" method="POST" action="">-->
+            <div class="form" id="form_connexion">
                 <h1 id="form-title"><img src="img/PICT_LOGO_BLACK.png" width="70" height="50" alt="blacl_logo_plateformer_">PLATEFORMER_</h1>
                 <h2>Formulaire de connexion</h2>
                 <section>
@@ -46,6 +47,7 @@ session_start();
                 </section>
                 <button id="submit_connexion" type="submit" name="submit_connexion" class="btn btn-primary btn_submit_register">Se connecter</button>
             <!--</form>-->
+            </div>
         </div>
     </div>
 </main>
