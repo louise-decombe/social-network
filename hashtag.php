@@ -12,7 +12,7 @@
 
 foreach ($res as $result){
 
-    echo '<a href="#">'.$result->hashtag.'</a>';
+    echo '<a href="hashtag.php?id='.$result->id.'">'.$result->hashtag.'</a>';
 
 ?>
 
