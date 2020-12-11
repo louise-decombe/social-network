@@ -3,6 +3,9 @@
     require 'Db.php';
     $db = new DB();
 
+    require 'Search.php';
+    $search = new DB($db);
+
     require 'User.php';
     $user = new User($db);
 
