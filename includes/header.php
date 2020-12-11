@@ -60,7 +60,7 @@ if(isset($_SESSION['user']['id'])){
         </a>
       <a >
         <!-- lien recherche d'un utilisateur -->
-      <li class="nav-item">
+      <li class="navbar-brand">
 					<input type="text" placeholder="Chercher un utilisateur"  class= "search form-control mr-sm-2"/>
 					<div class="search-result">
 					</div>

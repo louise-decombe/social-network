@@ -8,7 +8,13 @@
      
       <div class="container hashtag">
 
-      <?php $res = $db->query('SELECT * FROM hashtag_trend');
+
+
+      <?php
+      
+      $select = $_GET['id'];
+      
+      $res = $db->query("SELECT * FROM hashtag_trend WHERE id = '$select' " );
          foreach ($res as $result){
          
              echo '<a href="hashtag.php?id='.$result->id.'">'.$result->hashtag.'</a>';
