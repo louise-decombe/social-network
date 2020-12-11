@@ -23,6 +23,7 @@ foreach ($res as $result){
 
 ?>
 
+<div class="popupChat"></div>
 
 </main>
 <script src="js/envoi_message.js"></script>

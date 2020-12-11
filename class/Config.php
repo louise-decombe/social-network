@@ -13,6 +13,9 @@
     require 'Hashtag.php';
     $tendance = new Hashtag($db);
 
-    
+    //traitement de la déconnexion
+if (isset($_POST["deco"])) {
+    $user->disconnect();
+}
     
 ?>
