@@ -8,6 +8,7 @@
 session_start();
 include 'class/Config.php';
 
+
 ?>
 
 <!DOCTYPE html>
@@ -33,7 +34,7 @@ include 'class/Config.php';
     <script src="js/chat.js"></script>
     <script src="js/search_chat.js"></script>
     <script src="js/envoi_message.js"></script>
-    <script src="js/hashtag.js"></script>
+        <script src="js/hashtag.js"></script>
 
 
     </head>
@@ -44,9 +45,13 @@ include 'class/Config.php';
 <?php 
 if(isset($_SESSION['user']['id'])){
 
+  echo $_SESSION['user']['firstname'];
  ?>
+
+ <!-- ancienne nav connectée -->
+
  <div class="nav-style">
-      <nav class="navbar navbar-expand-lg">
+      <nav class="navbar navbar-dark navbar-expand-lg" style="background-color: #000000;">
    <a class="navbar-brand" href="index.php">
   </a>
   
@@ -64,30 +69,49 @@ if(isset($_SESSION['user']['id'])){
         </li>
 
         <!-- quand on clique on déclenche le pop up -->
-        <li id="messagePopup" class="nav-item"><i class="fa fa-envelope" aria-hidden="true"></i>Messages<span id="messages"><span class="span-i"></span></li>
+        <li id="messagePopup" class="nav-item"><i class="fa fa-envelope" aria-hidden="true"></i><span id="messages"><span class="span-i"></span></li>
 
     
     <li class="nav-item">
-    <a class="nav-link" href="../index.php">Mur <i class="fa fa-home" aria-hidden="true"></i></a>
+    <a class="nav-link" href="../index.php"> <i class="fa fa-home" aria-hidden="true"></i></a>
     </li>
     <li class="nav-item">
-    <a class="nav-link" href="../profile.php"> <img src="uploads/default_avatar.png" width="5%" alt=""> </i> </a>
     </li>
     <li class="nav-item">
-    <form action="../index.php" method="post">
-                        <input class="" id="dropdown-deco" name="deco" value="DECONNEXION" type="submit"/>
-                     </form>   
-
     </li>
   </ul>
+
+  <ul id="nav-forms">
+            <li><a class="icon-responsive" href="connexion.php"><i class="fas fa-user-circle"></i></a>
+            <li><a class="icon-responsive" href="inscription.php"><i class="fas fa-user-plus"></i></a>
+          
+            <li><div class="vl"></div></li>
+           
+        </ul>
 </nav>
 </div>
+
+<!-- navbar connecté -->
+<nav class="navbar navbar-dark" style="background-color: #000000;">
+        <a class="navbar-brand" href="index.php">
+            <img src="img/PICT_LOGO_WHITE_TEXT.png" width="60" height="45" class="d-inline-block align-top" alt="white_logo_plateformer_" loading="lazy">
+        </a>
+        <ul id="nav-forms">
+            <li><a class="icon-responsive" href="connexion.php"><i class="fas fa-user-circle"></i></a>
+            <li><a class="icon-responsive" href="inscription.php"><i class="fas fa-user-plus"></i></a>
+            <a class="nav-link" href="../profile.php"> <img src="uploads/default_avatar.png" width="30%" alt=""> </i> </a>
+            <li><div class="vl"></div></li>
+            <li>   <form action="../index.php" method="post">
+                        <input class="" id="dropdown-deco" name="deco" value="DECONNEXION" type="submit"/>
+                     </form>    </li>        </ul>
+    </nav>
 
 
 <?php
 
 }else{ ?>
 
+<!-- navbar non connecté -->
     <nav class="navbar navbar-dark" style="background-color: #000000;">
         <a class="navbar-brand" href="index.php">
             <img src="img/PICT_LOGO_WHITE_TEXT.png" width="60" height="45" class="d-inline-block align-top" alt="white_logo_plateformer_" loading="lazy">

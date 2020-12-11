@@ -4,7 +4,7 @@
     $db = new DB();
 
     require 'Search.php';
-    $search = new DB($db);
+    $search = new Search($db);
 
     require 'User.php';
     $user = new User($db);
