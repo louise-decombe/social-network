@@ -3,8 +3,8 @@
 include('../class/Config.php');
 
 if(isset($_POST['search']) && !empty($_POST['search'])){
-		$search = $user->checkInput($_POST['search']);
-		$result = $user->search($search);
+		$search3 = $search->checkInput($_POST['search']);
+		$result = $search->search($search3);
 		if(!empty($result)){
 		echo ' <div class="nav-right-down-wrap"><ul> ';
 		foreach ($result as $users) {
@@ -31,8 +31,8 @@ if(isset($_POST['search']) && !empty($_POST['search'])){
 	}
 
 	if(isset($_POST['search']) && !empty($_POST['search'])){
-		$search = $user->checkInput($_POST['search']);
-		$result = $user->search($search);
+		$search2 = $search->checkInput($_POST['search']);
+		$result = $search->search($search2);
 		if(!empty($result)){
 		echo ' <div class="nav-right-down-wrap"><ul> ';
 		foreach ($result as $users) {

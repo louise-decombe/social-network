@@ -1,4 +1,7 @@
 .hashtag {
     min-height: 500px;
     min-width: 500px;
+    display: flex;
+align-items: center;
+flex-direction:column ;
 }

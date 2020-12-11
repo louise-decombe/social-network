@@ -4,8 +4,8 @@ session_start();
 	include ('../class/Config.php');
 	if(isset($_POST['search']) && !empty($_POST['search'])){
 		$id = $_SESSION['id'];
-		$search  = $_POST['search'];
-		$result  = $user->search($search);
+		$search1  = $_POST['search'];
+		$result  = $search->search($search1);
 		echo '<h4>Utilisateur</h4><div class="message-recent"> ';
 		foreach ($result as $user) {
 			if($user->id != $id){
