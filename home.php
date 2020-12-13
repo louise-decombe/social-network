@@ -22,7 +22,7 @@
 <?php $res = $db->query('SELECT * FROM hashtag_trend');
    foreach ($res as $result){
    
-	   echo '<a href="hashtag.php?id='.$result->id.'">'.$result->hashtag.'</a>';
+	   echo '<a href="hashtag.php?id='.$result->id_hashtag.'">'.$result->hashtag.'</a>';
    
    ?>
 <?php

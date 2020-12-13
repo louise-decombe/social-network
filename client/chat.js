@@ -2,8 +2,6 @@
 
 
 
-//////////////////////////////////////////////////////////Je fais ici une coupure pour le moment///////////////////////////////////// /////////////////
-
 $(function () {
     //connexion !
     let socket = io.connect('http://localhost:3001');
@@ -93,12 +91,4 @@ const ChatEnBas = () => {
     const chatroom = document.getElementById('chatroom');
     chatroom.scrollTop = chatroom.scrollHeight - chatroom.clientHeight;
 }
-
-$(".emoji").emojioneArea({
-
-    pickerPosition:"bottom",
-
-
-});
-
 

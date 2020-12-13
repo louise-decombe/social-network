@@ -38,7 +38,7 @@ app.use(express.static('public'));
 
 //routes -> j'ai besoin d'une route pour savoir où diriger les infos de connexion, j'ai besoin de la VUE.
 app.get('/', (req,res)=>{
-    res.sendFile(__dirname + '/client/chat.php');
+    res.sendFile(__dirname + 'php/chat.php');
 });
 
 //Listen le port 3000 : on aurait pu mettre autre chose comme port, il en faut un pour le socket. 
@@ -117,11 +117,7 @@ getLastComments()
     socket.on('new_message', (data) => {
         //émet le new message
         io.sockets.emit('new_message', {message : data.message, username : socket.username});
-        var sql = `INSERT INTO messages (message, messageTo, messageFrom, created_at) VALUES ('${data.message}', '1', '1', NOW())`;
-        connection.query(sql, function (err, result) {
-          if (err) throw err;
-          console.log("1 record inserted");
-        })
+        
     })
 
     //listen on typing

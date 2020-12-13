@@ -9,15 +9,30 @@
       <div class="container hashtag">
 
 
-
+   
       <?php
       
       $select = $_GET['id'];
       
-      $res = $db->query("SELECT * FROM hashtag_trend WHERE id = '$select' " );
+      $res = $db->query("   SELECT
+      hashtag_liaison_post.*,
+      hashtag_trend.*,
+      post.*
+    
+  FROM hashtag_liaison_post
+  JOIN hashtag_trend
+      ON hashtag_liaison_post.id_hashtag = hashtag_trend.id_hashtag
+  JOIN post
+      ON hashtag_liaison_post.id_post = post.id
+      
+      WHERE hashtag_trend.id_hashtag =$select" );
+
+
          foreach ($res as $result){
          
-             echo '<a href="hashtag.php?id='.$result->id.'">'.$result->hashtag.'</a>';
+            var_dump($result);
+            echo '<p>'.$result->created_at.'</p>';
+             echo '<p>'.$result->content.'</p>';
          
          ?>
       <?php
