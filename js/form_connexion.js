@@ -10,8 +10,6 @@ const password_error_connect = "Le mot de passe est invalide.";
 ------------------------------------------------------ */
 //console.log('document ok')
 $(document).ready(function(){
-
-
     
     $("#mail_connexion").change(function(){
         $("#error_email1").empty();

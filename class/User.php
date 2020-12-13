@@ -11,11 +11,13 @@ class User{
     public $cursus;
     public $date_promo;
     public $photo;
+    public $cover;
     public $birthday;
     public $entreprise;
     public $localite;
     public $website;
     public $hobbies;
+    public $bio;
     public $droits;
     public $db;
 
@@ -35,8 +37,8 @@ class User{
         $q->bindParam(':mail', $mail, PDO::PARAM_STR);
         $q->execute();
         $user = $q->fetch(PDO::FETCH_ASSOC);
-        $passwordHash = '$2y$10$dTmqwdrXkXHRwBO/DxMC2OrTllyWooc83UcMVFv.l6fUfkemkfzP2';
-        $passwordHash = substr( $passwordHash, 0, 60 );
+        //$passwordHash = '$2y$10$dTmqwdrXkXHRwBO/DxMC2OrTllyWooc83UcMVFv.l6fUfkemkfzP2';
+        //$passwordHash = substr( $passwordHash, 0, 60 );
 
         //var_dump($user);
 
@@ -53,11 +55,13 @@ class User{
                 $this->cursus = $user['cursus'];
                 $this->date_promo = $user['date_promo'];
                 $this->photo = $user['photo'];
+                $this->cover = $user['cover'];
                 $this->birthday = $user['birthday'];
                 $this->entreprise = $user['entreprise'];
                 $this->localite = $user['localite'];
                 $this->website = $user['website'];
                 $this->hobbies = $user['hobbies'];
+                $this->bio = $user['bio'];
                 $this->droits = $user['droits'];
 
                 $_SESSION['user']=[
@@ -75,6 +79,8 @@ class User{
                         $this->date_promo,
                     'photo'=>
                         $this->photo,
+                    'cover'=>
+                        $this->cover,
                     'birthday'=>
                         $this->birthday,
                     'entreprise'=>
@@ -85,6 +91,8 @@ class User{
                         $this->website,
                     'hobbies'=>
                         $this->hobbies,
+                    'bio'=>
+                        $this->bio,
                     'droits'=>
                         $this->droits
                 ];
@@ -116,11 +124,13 @@ class User{
         $this->cursus = "";
         $this->date_promo = "";
         $this->photo = "";
+        $this->cover = "";
         $this->birthday = "";
         $this->entreprise = "";
         $this->localite = "";
         $this->website = "";
         $this->hobbies = "";
+        $this->bio = "";
         $this->droits = "";
         session_unset();
         session_destroy();
@@ -244,7 +254,7 @@ class User{
     }
 
     public function infos_user($id_user){
-
+        $connexion = $this->db->connectDb();
         $q = $connexion->prepare("SELECT * FROM users WHERE id = :id");
         $q->bindParam(':id', $id_user, PDO::PARAM_INT);
         $q->execute();
@@ -253,7 +263,7 @@ class User{
     }
 
     public function all_infos($id_user){
-
+        $connexion = $this->db->connectDb();
         $q = $connexion->prepare("SELECT *
                                   FROM users 
                                   INNER JOIN user_tech
@@ -271,6 +281,50 @@ class User{
 
     }
 
+    public function test($id_user){
+        $connexion = $this->db->connectDb();
+        $q = $connexion->prepare("SELECT *
+                                  FROM users 
+                                  INNER JOIN cursus
+                                  ON users.cursus = cursus.id_cursus
+                                  WHERE users.id = $id_user");
+        $q->execute();
+        $all_infos = $q->fetch(PDO::FETCH_ASSOC);
+        return $all_infos;
+    }
+
+    public function followers($id_user){
+        $connexion = $this->db->connectDb();
+        $q = $connexion->prepare("SELECT *
+                                  FROM follower
+                                  INNER JOIN users
+                                  ON follower.id_user =  users.id
+                                  WHERE follower.id_user_follow = $id_user
+                                  LIMIT 9");
+        $q->execute();
+        $followers = $q->fetchAll(PDO::FETCH_ASSOC);
+        return $followers;
+    }
+
+    public function count_followers($id_user){
+        $connexion = $this->db->connectDb();
+        $q = $connexion->prepare("SELECT COUNT(*)
+                                  FROM follower
+                                  WHERE id_user_follow = $id_user");
+        $q->execute();
+        $count_followers = $q->fetch();
+        return $count_followers;
+    }
+
+    public function post_users($id_user){
+        $connexion = $this->db->connectDb();
+        $q = $connexion->prepare("SELECT *
+                                  FROM post
+                                  WHERE id_user = $id_user");
+        $q->execute();
+        $post_users = $q->fetchAll(PDO::FETCH_ASSOC);
+        return $post_users;
+    }
 
 }
 

@@ -1,7 +1,7 @@
 <?php include('class/Config.php'); ?>
 
 
-<header>
+
     <?php
     if($page_selected == ('index_1') OR $page_selected == ('connexion') OR $page_selected == ('inscription') ){
     ?>
@@ -20,6 +20,6 @@
     </nav>
 
     <?php }; ?>
-</header>
+
 
 
