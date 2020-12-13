@@ -92,18 +92,18 @@ $user = new User($db);
             </div>
             <div class="col-8">
                 <div class="profile_category">
-                    <div class="active">Publications</div>
-                    <div>Relations <span id="count_followers"><?= $count_followers[0] ?></span></div>
-                    <div>Informations</div>
+                    <a href="#" id="profile_pub"class="active">Publications</a>
+                    <a href="#" id="profile_relations">Relations <span id="count_followers"><?= $count_followers[0] ?></span></a>
+                    <a href="#" id="profile_infos">Informations</a>
                 </div>
-                <div id="profile_form">
+                <!--<div id="profile_form">
                     <img id="input-pic" src="<?= $_SESSION['user']['photo']?>" alt="input-pic">
                     <div class="input-icons"> 
                         <i class="far fa-comment-alt"></i>
                         <input class="input-field" id="share_profile" name="share_profile" type="textarea" placeholder="que voulez partager @ <?= $_SESSION['user']['firstname']?> ?"> 
                     </div> 
                     <i class="fas fa-paper-plane"></i>
-                </div>
+                </div>-->
                 <div class="profile_content">
                     <div id="profile_publications">
                         <div id="profile_title">
@@ -130,9 +130,18 @@ $user = new User($db);
             </div>
         </div>
     </div>
+    <script>
+        $("#profile_relations").on("click", function(event){
 
+            $("#profile_publications").hide('');
+            $(".profile_content").load('profile_relations.php');
+        });
+        $("#profile_pub").on("click", function(event){
 
-
+$("#profile_realations").hide('');
+$(".profile_content").load('profile_relations.php');
+});
+    </script>
 </main>
 <footer>
     <?php

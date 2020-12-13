@@ -108,8 +108,9 @@
     font-weight : 700;
 }
 
-.profile_category div{
+.profile_category a{
     padding-right : 40px;
+    color : black;
 }
 
 #count_followers{
