@@ -1,3 +1,7 @@
+
+
+
+
 $(function () {
     //connexion !
     let socket = io.connect('http://localhost:3001');
@@ -43,13 +47,13 @@ $(function () {
                         </p>
                         <br/>
                      </div>
-                     <p>Il y a 1h</p>
+                     <p>${data.created_on}</p>
 
                         `)
         ChatEnBas()
     });
 
-
+// affichage ancien message
 
 
 
@@ -88,9 +92,3 @@ const ChatEnBas = () => {
     chatroom.scrollTop = chatroom.scrollHeight - chatroom.clientHeight;
 }
 
-$(".emoji").emojioneArea({
-
-    pickerPosition:"bottom",
-
-
-});
