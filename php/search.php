@@ -1,6 +1,6 @@
 <?php 
 
-include('../class/Config.php');
+// include('../class/Config.php');
 
 if(isset($_POST['search']) && !empty($_POST['search'])){
 		$search3 = $search->checkInput($_POST['search']);

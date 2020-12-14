@@ -13,8 +13,8 @@ $db = new DB();
     require 'Post.php';
     $post = new Post($db);
 
-    require 'Search.php';
-    $search = new Search($db);
+    // require 'Search.php';
+    // $search = new Search($db);
 
     require 'Message.php';
     $message = new Message($db);

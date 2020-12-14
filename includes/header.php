@@ -4,8 +4,8 @@
     ---------------------------------------------------------------------------------------------------------------->
 
 
-    <?php
-include 'class/Config.php';
+<?php
+    include 'class/Config.php';
 ?>
 
 <!DOCTYPE html>
@@ -17,6 +17,7 @@ include 'class/Config.php';
       <!-- liens css (css) -->
       <link rel="stylesheet" href="css/style.css">
       <link rel="stylesheet" href="css/hashtag.css">
+      <link  rel="stylesheet" href="css/styles.css">
 
       <link rel="stylesheet" href="css/chat.css">
       <link rel="stylesheet" type="text/css" href="css/style-forms.css">
@@ -97,4 +98,4 @@ if(isset($_SESSION['user']['id'])){
         </ul>
     </nav>
     
-<?  }    ?> 
+<?php  }    ?> 
