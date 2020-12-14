@@ -1,5 +1,5 @@
-<?php $page_selected = 'index'; 
-session_start();
+<?php $page_selected = 'admin'; 
+
 include('class/Config.php');
 require 'php/admin.php';
 

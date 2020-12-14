@@ -8,6 +8,7 @@ function RegisterLangage(){
    data.append("logo",$("#logo").val());
    data.append('action',"enregistrer");
    data.append('valider',$("#btn_valider"));
+   
     $.ajax({
 
         url : 'php/traitement_langage.php',

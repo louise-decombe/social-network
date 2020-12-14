@@ -51,6 +51,23 @@ Class User {
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_OBJ);
     }
+
+    
+    public function Recuperation_personnes_suivis($id_user){
+        $requete = $this->connect->prepare('SELECT * , count(id_user_follow) AS nbr FROM users INNER JOIN follower ON users.id = follower.id_user WHERE users.id = ?');
+        $requete->execute([$id_user]);
+        $resultat = $requete->fetchAll(PDO::FETCH_ASSOC);
+        return $resultat;
+    }
+
+    public function GetUserById($id){
+        $requete = $this->connect->prepare("SELECT * FROM users WHERE id= ?");
+        $requete->execute([$id]);
+        $resultat = $requete->fetch(PDO::FETCH_ASSOC);
+        return $resultat;
+    }
+
+
 }
 
 

@@ -9,31 +9,31 @@
     {
       "uid": "1dq4tek4k8ea7zlj4kc3w83itnutaxg5",
       "css": "cancel",
-      "code": 57609,
+      "code": 59392,
       "src": "typicons"
     },
     {
       "uid": "6a7b9d4863bb7e6c79e9457a72d689b6",
       "css": "tools",
-      "code": 9874,
+      "code": 59394,
       "src": "entypo"
     },
     {
       "uid": "8b80d36d4ef43889db10bc1f0dc9a862",
       "css": "user",
-      "code": 128100,
+      "code": 59395,
       "src": "fontawesome"
     },
     {
       "uid": "d21293ba68a7dcfec696464ae64949e1",
       "css": "up-fat",
-      "code": 8648,
+      "code": 59396,
       "src": "mfglabs"
     },
     {
       "uid": "2cc73cc335f054682c04fe63439c4dcb",
       "css": "trash",
-      "code": 57350,
+      "code": 59399,
       "src": "linecons"
     },
     {
@@ -45,8 +45,38 @@
     {
       "uid": "w3nzesrlbezu6f30q7ytyq919p6gdlb6",
       "css": "home",
-      "code": 57473,
+      "code": 59393,
       "src": "typicons"
+    },
+    {
+      "uid": "2c0b53280f82068f6bab4e2200025d9f",
+      "css": "chat",
+      "code": 59397,
+      "src": "entypo"
+    },
+    {
+      "uid": "381da2c2f7fd51f8de877c044d7f439d",
+      "css": "picture",
+      "code": 59398,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "47a1f80457068fbeab69fdb83d7d0817",
+      "css": "youtube-play",
+      "code": 61802,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "815503841e980c848f55e0271deacead",
+      "css": "link",
+      "code": 59400,
+      "src": "entypo"
+    },
+    {
+      "uid": "8da3ac534210aae9c0f0e13804c1df97",
+      "css": "cancel-1",
+      "code": 59401,
+      "src": "websymbols"
     }
   ]
 }

@@ -1,10 +1,13 @@
-@charset "UTF-8";
 
- 
-.icon-up-fat:before { content: '\21c8'; } /* '⇈' */
-.icon-tools:before { content: '\2692'; } /* '⚒' */
-.icon-trash:before { content: '\e006'; } /* '' */
-.icon-home:before { content: '\e081'; } /* '' */
-.icon-cancel:before { content: '\e109'; } /* '' */
+.icon-cancel:before { content: '\e800'; } /* '' */
+.icon-home:before { content: '\e801'; } /* '' */
+.icon-tools:before { content: '\e802'; } /* '' */
+.icon-user:before { content: '\e803'; } /* '' */
+.icon-up-fat:before { content: '\e804'; } /* '' */
+.icon-chat:before { content: '\e805'; } /* '' */
+.icon-picture:before { content: '\e806'; } /* '' */
+.icon-trash:before { content: '\e807'; } /* '' */
+.icon-link:before { content: '\e808'; } /* '' */
+.icon-cancel-1:before { content: '\e809'; } /* '' */
 .icon-bell-alt:before { content: '\f0f3'; } /* '' */
-.icon-user:before { content: '👤'; } /* '\1f464' */
+.icon-youtube-play:before { content: '\f16a'; } /* '' */
