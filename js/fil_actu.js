@@ -3,11 +3,6 @@ $(document).ready(function(){
     //FUNCTIONS
 
     
-    //FINIR LE STYLE DU FORMULAIRE ==> ajouter label + style input
-
-    // ESSAYRE DE REMETTRE LES PICTO SOUS BTN ET AU CLICK LE FORM S AFFICHE AVEC LE BON INPUT
-    // MAIS QUAND MEME AVOIR LA POSIBLITE DE CHANGER DE INPUT EN CAS ERREUR
- 
     //GESTION AFFICHAGE EN CAS ERREUR FORMULAIRE
     // voir pour la librairie pour les url
     //GERER AFFICHAGE POSTE SI CONTENT ==> NULL 
@@ -50,11 +45,11 @@ $(document).ready(function(){
            
             if ( id == "photo"){
                 console.log("photo")
-                SavePost(CreateForm("file","photo","image/png , image/jpg , image/jpeg , image/gif "))
+                SavePost(CreateForm("Vote image","file","photo","image/png , image/jpg , image/jpeg , image/gif "))
             }
             else if ( id == "video" ){
                 console.log("video")
-                SavePost(CreateForm("file","video","video/mp4 , video/mpeg , video/avi"))
+                SavePost(CreateForm("Votre vidéo","file","video","video/mp4 , video/mpeg , video/avi"))
              }
             else{
                 console.log("url")

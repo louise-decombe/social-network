@@ -99,6 +99,8 @@ if (isset($_POST['valider'])){
             echo true;
 
         
+        }else {
+            echo json_encode(["erreur" => " Au moins un des champs doit etre remplis !"]);
         }
     }
             
