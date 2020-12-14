@@ -326,6 +326,192 @@ class User{
         return $post_users;
     }
 
+
+
+    //UPDATE PERSONAL INFOS
+    public function modify_infos($id_user, $new_firstname, $new_lastname)
+    {  
+        $connexion = $this->db->connectDb();
+
+
+        //UPDATE FIRSTNAME
+        if(isset($new_firstname))
+        {
+            $firstname_required = preg_match("/^(?=.*[A-Za-z]$)[A-Za-z][A-Za-z\-]{2,19}$/", $new_firstname);
+            if (!$firstname_required) 
+            {
+                $errors[] = "Le prénom doit :<br>- Comporter entre 3 et 19 caractères.<br>- Commencer et finir par une lettre.<br>- Ne contenir aucun caractère spécial (excepté -).";
+            }
+            
+            if (empty($errors)) 
+            {   
+            $update_f = "UPDATE users SET firstname=:firstname WHERE id = '$id_user' ";
+            $update_firstname = $connexion -> prepare($update_f);
+            $update_firstname->bindParam(':firstname',$new_firstname, PDO::PARAM_STR);
+            $update_firstname->execute();
+            }
+        }
+
+        //UPDATE LASTNAME
+        if(isset($new_lastname))
+        {
+            $lastname_required = preg_match("/^(?=.*[A-Za-z]$)([A-Za-z]{2,25}[\s]?[A-Za-z]{1,25})$/", $new_lastname);
+            if (!$lastname_required) 
+            {
+                $errors[] = "Le nom doit:<br>- Comporter entre 3 et 50 caractètres.<br>- Commencer et finir par une lettre.<br>- Ne contenir aucun caractère spécial (excepté un espace).";
+            }
+            
+            if (empty($errors)) 
+            {
+            $update_l = "UPDATE utilisateurs SET lastname=:lastname WHERE id = '$id_user' ";
+            $update_lastname = $connexion -> prepare($update_l);
+            $update_lastname->bindParam(':lastname',$new_lastname, PDO::PARAM_STR);
+            $update_lastname->execute();
+            }   
+        }
+          
+        if (!empty($errors))
+        {
+            $message = new messages($errors);
+            echo $message->renderMessage();
+        }
+
+    }
+
+    //UPDATE PASSWORD
+
+    public function modify_password ($id_user, $new_password, $check_password)
+    {
+        $connexion = $this->db->connectDb(); 
+        if(isset($new_password) && isset($check_password)){
+            $password_required = preg_match("/^(?=.*?[A-Z]{1,})(?=.*?[a-z]{1,})(?=.*?[0-9]{1,})(?=.*?[\W]{1,}).{8,20}$/",$new_password);
+            if (!$password_required) {
+                $errors[] = "Le mot de passe doit contenir:<br>- Entre 8 et 20 caractères<br>- Au moins 1 caractère spécial<br>- Au moins 1 majuscule et 1 minuscule<br>- Au moins un chiffre.";
+            }
+            if ($new_password != $check_password) {
+                $errors[] = "Les mots de passe ne correspondent pas.";
+            } else {
+    
+                $password_modified = password_hash($new_password, PASSWORD_BCRYPT, array('cost' => 10));
+
+                $update_pass = "UPDATE users SET password=:pass WHERE id = '$id_user' ";
+                $update_password = $connexion -> prepare($update_pass);
+                $update_password->bindParam(':pass',$password_modified, PDO::PARAM_STR);
+                $update_password->execute();
+            }
+        }
+        if (!empty($errors))
+        {
+            $message = new messages($errors);
+            echo $message->renderMessage();
+        }
+    }
+
+     //UPDATE BIRTHDAY
+
+     public function modify_promo ($id_user, $new_promo)
+     {
+         $connexion = $this->db->connectDb(); 
+         if(isset($new_promo)){
+                 $update_prom = "UPDATE users SET date_promo=:date_promo WHERE id = '$id_user' ";
+                 $update_promo = $connexion -> prepare($update_prom);
+                 $update_promo->bindParam(':date_promo',$new_promo, PDO::PARAM_STR);
+                 $update_promo->execute();
+         }
+   }
+ 
+    //UPDATE BIRTHDAY
+
+    public function modify_birthday ($id_user, $new_birthday)
+    {
+        $connexion = $this->db->connectDb(); 
+        if(isset($new_birthday)){
+                $update_birth = "UPDATE users SET birthday=:birthday WHERE id = '$id_user' ";
+                $update_birthday = $connexion -> prepare($update_birth);
+                $update_birthday->bindParam(':birthday',$new_birthday, PDO::PARAM_STR);
+                $update_birthday->execute();
+        }
+  }
+
+
+    //UPDATE ENTREPRISE
+
+      public function modify_cie ($id_user, $new_cie)
+      {
+          $connexion = $this->db->connectDb(); 
+          if(isset($new_cie)){
+                  $update_cie = "UPDATE users SET entreprise=:entreprise WHERE id = '$id_user' ";
+                  $update_entreprise = $connexion -> prepare($update_cie);
+                  $update_entreprise->bindParam(':entreprise',$new_cie, PDO::PARAM_STR);
+                  $update_entreprise->execute();
+          }
+    }
+
+    //UPDATE LOCALITE
+
+    public function modify_localite ($id_user, $new_localite)
+    {
+        $connexion = $this->db->connectDb(); 
+        if(isset($new_localite)){
+                $update_loc = "UPDATE users SET localite=:localite WHERE id = '$id_user' ";
+                $update_localite = $connexion -> prepare($update_loc);
+                $update_localite->bindParam(':localite',$new_localite, PDO::PARAM_STR);
+                $update_localite->execute();
+        }
+    }
+
+
+    //UPDATE WEBSITE EN COURS
+    public function modify_website($id_user, $new_website)
+    {  
+        $connexion = $this->db->connectDb();
+
+        if(isset($new_website))
+        {
+            $url_required = preg_match("/^(?=.*[A-Za-z]$)[A-Za-z][A-Za-z\-]{2,19}$/", $new_website);
+            preg_match('#(https?|ftp|ssh|mailto):\/\/[a-z0-9\/:%_+.,\#?!@&=-]+#i', $variableChaine, $matches);
+            if (!$url_required) 
+            {
+                $errors[] = "Vous devez entrer une adresse URL";
+            }
+            
+            if (empty($errors)) 
+            {   
+            $update_w = "UPDATE users SET website=:website WHERE id = '$id_user' ";
+            $update_website = $connexion -> prepare($update_website);
+            $update_website->bindParam(':website',$new_website, PDO::PARAM_STR);
+            $update_website->execute();
+            }
+        }
+
+    }
+
+    //UPDATE HOBBIES
+
+    public function modify_hobbies ($id_user, $new_hobbies)
+    {
+        $connexion = $this->db->connectDb(); 
+        if(isset($new_hobbies)){
+                $update_hobbies = "UPDATE users SET hobbies=:hobbies WHERE id = '$id_user' ";
+                $update_hob = $connexion -> prepare($update_hobbies);
+                $update_hob->bindParam(':hobbies',$new_hobbies, PDO::PARAM_STR);
+                $update_hob->execute();
+        }
+    }
+
+    //UPDATE BIO
+
+    public function modify_bio ($id_user, $new_bio)
+    {
+        $connexion = $this->db->connectDb(); 
+        if(isset($new_bio)){
+                $update_b = "UPDATE users SET bio=:bio WHERE id = '$id_user' ";
+                $update_bio = $connexion -> prepare($update_b);
+                $update_bio->bindParam(':bio',$new_bio, PDO::PARAM_STR);
+                $update_bio->execute();
+        }
+    }
+
 }
 
 
