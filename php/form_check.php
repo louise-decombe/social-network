@@ -1,8 +1,8 @@
 <?php
 
-require '../class/Config.php';
+//require '../class/Config.php';
 
-if (isset($_POST['submit_connexion']) && !empty($_POST['mail']) && isset($_POST['mail']) && !empty($_POST['password']) && isset($_POST['password'])){
+/*if (isset($_POST['submit_connexion']) && !empty($_POST['mail']) && isset($_POST['mail']) && !empty($_POST['password']) && isset($_POST['password'])){
 
     $mail = $_POST['mail'];
     $password = $_POST['password'];
@@ -11,7 +11,7 @@ if (isset($_POST['submit_connexion']) && !empty($_POST['mail']) && isset($_POST[
     $connect_user = $user->connect($mail, $password);
     //header('location:../profile.php');
 
-}
+}*/
 
 try
 {
