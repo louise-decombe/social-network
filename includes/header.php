@@ -5,10 +5,7 @@
 
 
     <?php
-session_start();
 include 'class/Config.php';
-
-
 ?>
 
 <!DOCTYPE html>
@@ -29,7 +26,8 @@ include 'class/Config.php';
       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     <!-- liens script, jquery ajax -->
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <!--    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+ -->
     <script src="js/search.js"></script>
     <script src="js/chat.js"></script>
     <script src="js/search_chat.js"></script>
@@ -99,4 +97,4 @@ if(isset($_SESSION['user']['id'])){
         </ul>
     </nav>
     
-<?  } ?> 
+<?  }    ?> 

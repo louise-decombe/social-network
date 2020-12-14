@@ -6,7 +6,6 @@ Class Search  {
     public function __construct($db){
         $this->db = $db;
         $this->connect = $this->db->connectDb();
-
     }
 
 

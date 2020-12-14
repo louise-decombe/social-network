@@ -3,12 +3,15 @@
 <header>
     <?php
     include("includes/header.php");
+
    ?>
+
+   
 </header>
 <main>
 
 <div class="container-l"></div>
-<form method="post" enctype="multipart/form-data">
+<form method="post" action="php/traitement_hashtag.php">
 							<textarea class="status"  maxlength="200" name="status" placeholder="entrer le message" rows="" cols=""></textarea>
  						 	<div class="hash-box">
 						 		<ul>
@@ -19,15 +22,13 @@
 						 
 						 <div class="container hashtag">
 
+                   <h2>Tendances du moment</h2>
 <?php $res = $db->query('SELECT * FROM hashtag_trend');
    foreach ($res as $result){
    
 	   echo '<a href="hashtag.php?id='.$result->id_hashtag.'">'.$result->hashtag.'</a>';
-   
-   ?>
-<?php
+
    }
-   
    ?>
 </div>
 <!-- ouverture du chat -->
@@ -40,7 +41,6 @@
 <script src="js/hashtag.js"></script>
 
 <!-- c'est cette div qui permet d'ouvrir le pop up du chat -->
-<div class="popupChat"></div>
 
 <footer>
     <?php

@@ -5,7 +5,6 @@
    if(isset($_POST['hashtag'])){	
    	  if(!empty($_POST['hashtag'])){
 
-//	$_POST['hashtag'] = '#ok';
 
    	  	 $hashtag = $_POST['hashtag'];
 

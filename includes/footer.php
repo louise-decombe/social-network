@@ -38,12 +38,10 @@
         </a>
         <p>© 2020 Plateformer_ Tous droits réservés</p>
     </section>
-<!--<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 <script src="../js/envoi_message.js"></script>
 <script src="../js/search.js"></script>
 <script src="../js/chat.js"></script>
--->
 
 </body>
 </html>
