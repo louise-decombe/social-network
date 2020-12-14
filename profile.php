@@ -27,7 +27,7 @@ $user = new User($db);
     $id_user = $_SESSION['user']['id'];
     //var_dump($id_user);
     $user_details = $user->test($id_user);
-    //var_dump($user_details);
+    var_dump($user_details);
     $user_followers = $user->followers($id_user);
     //var_dump($user_followers);
     $count_followers = $user->count_followers($id_user);
@@ -64,10 +64,19 @@ $user = new User($db);
                         <p id="user_localite"><i class="fas fa-map-marker-alt"></i>&nbsp;<?= $_SESSION['user']['localite']?></p>
                         <p id="user_cursus"><i class="fas fa-info-circle"></i>&nbsp;<?= $user_details['name_cursus'] ?></p>
                     </div>
-                    <p id="user_bio">
-                        <!--<strong>BIO</strong>-->
-                        <?= $_SESSION['user']['bio'] ?>
-                    </p>
+                    <?php if(!empty($user_details['bio'] )){ ?>
+                        <span id="user_bio"> BIO <?= $user_details['bio']  ?></span>
+                    <?php } ?>
+                    <?php if(!empty($user_details['hobbies'] )){ ?>
+                        <span id="loisirs"> Centres d'intérêt : <?= $user_details['hobbies']  ?></span>
+                    <?php } ?>
+                    <?php if(!empty($user_details['entreprise'] )){ ?>
+                        <span id="entreprise"> Entreprise : <?= $user_details['entreprise']  ?></span>
+                    <?php } ?>
+                    <?php if(!empty($user_details['website'] )){ ?>
+                        <span id="website"> website <?= $user_details['website'] ?></span>
+                    <?php } ?>
+                    
                 </article>
                
                 <article class="infos_user_profile">

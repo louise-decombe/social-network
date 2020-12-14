@@ -39,6 +39,20 @@
     margin-left:-65%;
 }
 
+#change_profile_pic{
+    position:absolute;
+    color:#EEEFEE;
+    margin-left:-52.5%;
+    margin-top:32.5%;
+}
+
+#change_cover_pic{
+    position:absolute;
+    color:#EEEFEE;
+    margin-left:92.5%;
+    margin-top:-25%;
+}
+
 #profile_name{
     position:absolute;
     margin-top:42.5%;
@@ -59,7 +73,7 @@
 
 #name_profile{
     display:flex !important;
-    background-color : red !important;
+    background-color :gray !important;
     font-size : 40px !important;
     text-transform : uppercase !important;
     font-weight : 700 !important;
