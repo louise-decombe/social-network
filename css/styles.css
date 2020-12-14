@@ -719,6 +719,7 @@ body {
 .medias{
     display: flex;
     margin-left: 3%;
+    padding-top: 3%;
     padding-bottom: 3%;
     color: #666666;
 }
