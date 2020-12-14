@@ -1,6 +1,6 @@
 <?php 
     $page_selected = 'feed'; 
-    require 'php/Config.php';
+    // require 'class/Config.php';
     require 'class/Groupe.php';
     require 'class/Follower.php';
 

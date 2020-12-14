@@ -1,6 +1,6 @@
 <?php session_start();
-    // //include 'includes/header.php' ;
-    //  require "class/Config.php";
+    include 'includes/header.php' ;
+    // require "class/Config.php";
     require 'php/traitement_feed.php';
 ?>
 
