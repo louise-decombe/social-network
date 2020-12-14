@@ -16,7 +16,7 @@ const check_error = "Les mots de passe ne correspondent pas.";
 // modification input prénom
 $(document).ready(function(){
 
-    var regexfirstname=/^([a-zA-Z]{3,25})$/;
+    var regexfirstname=/^([a-zA-Z\-]{3,25})$/;
     $("#firstname").change(function(){
  
         var firstname = $(this).val();
@@ -38,7 +38,7 @@ $(document).ready(function(){
 // modification input nom
 $(document).ready(function(){
 
-    var regexlastname=/^([a-zA-Z]{3,25})$/;
+    var regexlastname=/^([a-zA-Z\-]{3,25})$/;
     $("#lastname").change(function(){
  
         var lastname = $(this).val();
@@ -59,7 +59,7 @@ $(document).ready(function(){
 //modification input email
 $(document).ready(function(){
 
-    var regexemail=/^[a-zA-Z0-9]+@laplateforme\.io$/;
+    var regexemail=/^[a-zA-Z0-9\-\.]+@laplateforme\.io$/;
     $("#mail").change(function(){
         var mail = $(this).val();
         // alert(mail);
