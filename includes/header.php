@@ -97,4 +97,4 @@ if(isset($_SESSION['user']['id'])){
         </ul>
     </nav>
     
-<?  }    ?> 
+<?php  }    ?> 

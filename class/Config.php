@@ -4,11 +4,11 @@
 require 'Db.php';
 $db = new DB();
     
-    require 'User.php';
-    $user = new User($db);
+    //require 'User.php';
+   // $user = new User($db);
 
-    //require 'test_user.php';
-    //$user = new User($db);
+    require 'test_user.php';
+    $user = new User($db);
 
     require 'Post.php';
     $post = new Post($db);
