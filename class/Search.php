@@ -25,7 +25,6 @@ public function search($search){
 
 
 }
-}
 
 
 ?>
