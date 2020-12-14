@@ -1,32 +1,8 @@
-<?php 
-<<<<<<< HEAD
+<?php session_start();
     include 'includes/header.php' ;
     require 'php/traitement_feed.php';  
 ?>
 
-=======
-require 'class/Config.php';
-require 'php/traitement_feed.php';
-?>
-<!DOCTYPE html>
-<html>
-<head>
-    <title>social_network - index</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="shortcut icon" type="image/x-icon" href="#">
-    <link rel="stylesheet" type="text/css" href="css/fontello/css/fontello.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="css/styles.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-</head>
-<body>
-   
-<header>
-    <!--  -->
-</header>
->>>>>>> 108fe620d73db74705f7eb7fac5cef2a9fc48ebc
 <main class="main_feed">
     <div class="ovale_1"></div>
     <div class="ovale_2"></div>
@@ -57,30 +33,52 @@ require 'php/traitement_feed.php';
         <?php endif ;?>
         <h3 class="titre_h3_feed">Groupes</h3>
         <ul>
-            <?php foreach ($groupes as $nom) :?>
-                <li><?= $nom['nom'] ?></li>
-            <?php endforeach ;?>
+            <?php if (!empty($groupes)) :?>
+                <?php foreach ($groupes as $nom) : ?>
+                    <li><?= $nom['nom'] ?></li>
+                <?php endforeach ;?>
+            <?php else : ?>
+                <li>Vous n'etes dans auncun groupe</li>
+            <?php endif ;?>
         </ul>
         <h3 class="titre_h3_feed">Vous connessez peut etre ?</h3>
        
             
             <!-- A RENDRE DYNAMIQUE METTRE LE NOM EN LIEN VERS LE PROFIL -->
-            <?php foreach($amis_en_communs as $key => $valeur) :?>  
-                <div class="div_amis_communs">
-                    <?php   $info = $user->GetUserById($valeur);  ?>
-                    <?php if ($info['photo'] == NULL) :?>
-                        <img  src="images/default_avatar.png" alt="<?= $info['firstname']." ".$info['lastname'] ?>">
-                    <?php else :?>
-                    <!-- A RENDRE DINAMIQUE -->
-                        <img  src="images/default_avatar.png" alt="<?= $info['firstname']." ".$info['lastname'] ?>">
-                    <?php endif ;?>
-                    <div class="div_suggestion_amis">
-                        <h4><?= $info['firstname']." ".$info['lastname'] ?></h4>
-                        <p><?php echo  $nbr_amis_commun[$valeur]?> ami(s) en commun</p>
-                        
+            <?php if (isset($amis_en_communs)) :?>
+                <?php foreach($amis_en_communs as $key => $valeur) :?>  
+                    <div class="div_amis_communs">
+                        <?php   $info = $user->GetUserById($valeur);   ?>
+                        <?php if ($info['photo'] == NULL) :?>
+                            <img  src="uploads/default_avatar.png" alt="<?= $info['firstname']." ".$info['lastname'] ?>">
+                        <?php else :?>
+                        <!-- A RENDRE DINAMIQUE -->
+                            <img  src="uploads/default_avatar.png" alt="<?= $info['firstname']." ".$info['lastname'] ?>">
+                        <?php endif ;?>
+                        <div class="div_suggestion_amis">
+                            <h4><?= $info['firstname']." ".$info['lastname'] ?></h4>
+                            <p><?php echo  $nbr_amis_commun[$valeur]?> ami(s) en commun</p>
+                            
+                        </div>
                     </div>
-                </div>
-            <?php endforeach ;?>
+                <?php endforeach ;?>
+            <?php else :?>
+                <?php $info = $user->GetRandomUsers($id_user) ;  ?>
+                    <?php for ($i = 0 ; $i < COUNT($info) ; $i++) :?>
+                        <div class="div_amis_communs">
+                            <?php if ($info[$i]['photo'] == NULL) :?>
+                                <img  src="images/default_avatar.png" alt="<?= $info[$i]['firstname']." ".$info[$i]['lastname'] ?>">
+                                <?php else :?>
+                            <!-- A RENDRE DINAMIQUE -->
+                                <img  src="images/default_avatar.png" alt="<?= $info[$i]['firstname']." ".$info[$i]['lastname'] ?>">
+                            <?php endif ;?>
+                            <div class="div_suggestion_amis">
+                                <a href=""><h4><?= $info[$i]['firstname']." ".$info[$i]['lastname'] ?></h4></a>                            
+                            </div>
+                        </div>
+                    <?php endfor ;?>
+                <!-- faire uen selection de personne au hazard -->
+            <?php endif ;?>
             
        
  
@@ -123,6 +121,7 @@ require 'php/traitement_feed.php';
             </div>
         </section>
         <section id="section_affichage_posts">
+        <?php if (isset($posts)) :?>
             <?php for ($i = 0 ; $i < COUNT( $posts ) ; $i++) :?>
             <section class="section_posts">
                 <div class="infos_user">
@@ -163,6 +162,10 @@ require 'php/traitement_feed.php';
                 </div>
             </section>
             <?php endfor ;?>
+
+        <?php else : ?>
+            <p>Aucun posts</p>
+        <?php endif ;?>
         </section>
         
     </section>

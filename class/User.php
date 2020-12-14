@@ -576,6 +576,16 @@ class User{
         return $resultat;
     }
 
+    //recuperation aleatoire de 3 personnes
+    public function GetRandomUsers($id_user){
+        $connexion = $this->db->connectDb();
+        $requete = $connexion->prepare(" SELECT * FROM `users`where id != ? ORDER BY RAND() LIMIT 3");
+        $requete->execute([$id_user]);
+        $resultat = $requete->fetchAll(PDO::FETCH_ASSOC);
+        return $resultat;
+       
+    }
+
 }
 
 

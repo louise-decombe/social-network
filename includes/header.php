@@ -1,9 +1,3 @@
-
-      <!---------------------------------------------------------------------------------------------------------- 
-      Se trouvent dans cette page, la navbar et tout les liens de script / css nécessaires dans le head + les meta. 
-    ---------------------------------------------------------------------------------------------------------------->
-
-
 <?php
     include 'class/Config.php';
 ?>
@@ -18,6 +12,7 @@
       <link rel="stylesheet" href="css/style.css">
       <link rel="stylesheet" href="css/hashtag.css">
       <link  rel="stylesheet" href="css/styles.css">
+      <link rel="stylesheet" type="text/css" href="css/fontello/css/fontello.css">
 
       <link rel="stylesheet" href="css/chat.css">
       <link rel="stylesheet" type="text/css" href="css/style-forms.css">
@@ -72,7 +67,7 @@ if(isset($_SESSION['user']['id'])){
                     <!-- quand on clique on déclenche le pop up -->
 
             <li id="messagePopup" class="nav-item"><i class="fa fa-envelope" aria-hidden="true"></i><span id="messages"><span class="span-i"></span></li>
-            <a class="" href="profile.php"> <img src="<?php echo '../'.$_SESSION['id']['photo']; ?>" width=""/></a>
+            <!-- <a class="" href="profile.php"> <img src="<?php echo '../'.$_SESSION['id']['photo']; ?>" width=""/></a> -->
             <li><div class="vl"></div></li>
             <li>   <form action="index.php" method="post">
                         <input class="" id="dropdown-deco" name="deco" value="DECONNEXION" type="submit"/>
