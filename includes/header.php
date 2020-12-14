@@ -1,36 +1,25 @@
-<?php include('../class/Config.php'); ?>
-
-      <!---------------------------------------------------------------------------------------------------------- 
-      Se trouvent dans cette page, la navbar et tout les liens de script / css nécessaires dans le head + les meta. 
-    ---------------------------------------------------------------------------------------------------------------->
+<?php include('class/Config.php'); ?>
 
 
-<?php  ?>
 
-<!DOCTYPE html>
+    <?php
+    if($page_selected == ('index_1') OR $page_selected == ('connexion') OR $page_selected == ('inscription') ){
+    ?>
 
-<html lang="en">
-<head>
-      <meta chars   et="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <!-- liens css (bootstrap, fontawesome, css) -->
-      <link rel="stylesheet" href="css/style.css">
-      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.4.2/emojionearea.css">
-      <!-- polices caractère -->
-      <link href="" rel="stylesheet">
-      <!-- liens script, jquery ajax  -->
-      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-    <script src="js/search.js"></script>
-    </head>
+    <nav class="navbar navbar-dark" style="background-color: #000000;">
+        <a class="navbar-brand" href="index.php">
+            <img src="img/PICT_LOGO_WHITE_TEXT.png" width="60" height="45" class="d-inline-block align-top" alt="white_logo_plateformer_" loading="lazy">
+        </a>
+        <ul id="nav-forms">
+            <li><a class="icon-responsive" href="connexion.php"><i class="fas fa-user-circle"></i></a>
+            <li><a class="icon-responsive" href="inscription.php"><i class="fas fa-user-plus"></i></a>
+            <li><a class="link-navbar" class="link-active" href="inscription.php">s'inscrire</a></li>
+            <li><div class="vl"></div></li>
+            <li><a class="link-navbar" href="connexion.php">se connecter</a></li>
+        </ul>
+    </nav>
 
-<header>
-<!--  Include de la navbar -->
-<?php include('navbar.php') ?>
-    
+    <?php }; ?>
 
-</header>
 
 

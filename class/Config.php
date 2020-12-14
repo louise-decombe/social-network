@@ -1,9 +1,8 @@
 <?php 
 
     require 'Db.php';
-    $db = new DB();
-
     require 'User.php';
+    $db = new DB();
     $user = new User($db);
     
 ?>
