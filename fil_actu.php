@@ -1,7 +1,7 @@
 <?php session_start();
-    include 'includes/header.php' ;
-    //require 'class/Config.php';
-    require 'php/traitement_feed.php';  
+    // //include 'includes/header.php' ;
+    //  require "class/Config.php";
+    require 'php/traitement_feed.php';
 ?>
 
 <main class="main_feed">
