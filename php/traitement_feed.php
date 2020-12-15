@@ -55,6 +55,7 @@
         for ($i=0 ; $i < count($followers); $i++){
             $tab_user[$i]=$followers[$i]['id_user_follow'];
         }
+        
 
         //tab des personne qui suive les meme personne
 
@@ -66,57 +67,20 @@
 
         //comparer les 2 Tab //On supprime les valeurs identique car cela nous indique que l utilisateur sur deja la personne
         $amis_en_communs = array_unique(array_diff($tab_communs,$tab_user));
+        
 
-        if ( COUNT($amis_en_communs) <= 5 ){
-            for ( $p = 1 ; $p <= COUNT($amis_en_communs) ; $p++ ){
-                $nbr_amis_commun[$amis_en_communs[$p]] = COUNT($follow->GetFollowerUser($amis_en_communs[$p]));  
-           }
-        }else {
-            for ( $p = 1 ; $p <= 5 ; $p++ ){
-                $nbr_amis_commun[$amis_en_communs[$p]] = COUNT($follow->GetFollowerUser($amis_en_communs[$p]));  
-           }
+        //recuperation de tous les amis de cette personnes
+        for ($i = 0 ; $i < COUNT($amis_en_communs) ; $i++){
+            $tab1[$i] = count($follow->GetFollowerUser($amis_en_communs[$i]));
         }
-
+            
+    
     }
 
       
-
-        // //tab des amis
-        // $tab_user=[];
-        // for ($i=0 ; $i < count($followers); $i++){
-        //     $tab_user[$i]=$followers[$i]['id_user_follow'];
-        // }
-
-        // //tab des personne qui suive les meme personne
-
-        // for ($i=0 ; $i < count($nbr); $i++){
-        //     for ($j=0 ; $j < count($nbr[$i]); $j++){
-        //         $tab_communs[]=$nbr[$i][$j]['id_user'];
-        //     }
-        // }
-
-        // //comparer les 2 Tab //On supprime les valeurs identique car cela nous indique que l utilisateur sur deja la personne
-        // $amis_en_communs = array_values(array_unique(array_diff($tab_communs,$tab_user)));
-        // //  var_dump($tab_user);
-        // // var_dump($tab_communs);
-        // //  var_dump($amis_en_communs);
-       
-        //  //recup amis
+}
 
 
-    }
-
-
-
-
-
-
-
-
-
-
-
-    
 
     // RECUPERATION DE TOUT LES POST
     $All_posts = $post->GetPostsByIdUser();

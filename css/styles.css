@@ -772,3 +772,8 @@ body {
     width: 100%;
     height: auto;
 }
+
+#form_erreur {
+    margin-bottom: 3%!important;
+    border-radius: 10px;
+}

@@ -58,7 +58,7 @@
                         <?php endif ;?>
                         <div class="div_suggestion_amis">
                             <a href=""><h4><?= $info['firstname']." ".$info['lastname'] ?></h4></a>
-                            <!-- <p><?php echo  $nbr_amis_commun[$valeur]?> ami(s) en commun</p> -->
+                            <p><?php echo  $tab1[$key] ?> ami(s) en commun</p>
                             
                         </div>
                     </div>
@@ -105,7 +105,7 @@
                     <button id="form_close"><span class="icon-cancel-1"></span></button>
                 </div>
                 <form id="form_post" action="php/traitement_messages.php"  method="POST" enctype="multipart/form-data"> 
-                
+                    <p class="text-center w-75 m-auto" id="form_erreur"></p>
                     <textarea name="message" id="message" cols="30" rows="10" >De quoi souhaitez-vous discuter ?</textarea>
                     <div id="input_form">
                         <p id="message_erreur" class="alert"></p>

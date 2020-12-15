@@ -2,8 +2,7 @@ $(document).ready(function(){
 
     //FUNCTIONS
 
-    
-    //GESTION AFFICHAGE EN CAS ERREUR FORMULAIRE
+    //message success
     // voir pour la librairie pour les url
     //GERER AFFICHAGE POSTE SI CONTENT ==> NULL 
     // ajouter les picto en bas de l image
@@ -64,6 +63,12 @@ $(document).ready(function(){
     $("#btn_valider").click(function(e){
         e.preventDefault();
 
+        $("#form_erreur").empty();
+                $("#message").css('border',"none")
+               
+                $("#form_erreur").removeClass("alert-danger")
+                $(".source").css('color',"#275FA0")
+
         //Si message different du placeholder du textarea
         if ($("#message").val() !== "De quoi souhaitez-vous discuter ?"){
             //si pas vide
@@ -82,9 +87,6 @@ $(document).ready(function(){
                     RegisterPost();  
                 }
                     
-            }else{
-                console.log('vide')
-                   
             }
         }else{
             //SI MESSAGE VIDE MAIS IMAGE OK
@@ -101,7 +103,13 @@ $(document).ready(function(){
                     RegisterPost();  
                 }
             }else {
-                // console.log("au moins un des deux champs doit etre remplis");
+                $("#form_erreur").text('Au moins un des deux champs doit etre remplis, message et/ou media');
+                $("#message").css('border',"#E66C78 1px solid")
+                $("#message").css('border-radius',"10px")
+                $("#form_erreur").addClass("alert-danger")
+                $(".source").css('color',"#E66C78")
+                
+                console.log("au moins un des deux champs doit etre remplis , message et/ou media");
                
             }
               
