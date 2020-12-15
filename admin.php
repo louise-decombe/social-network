@@ -1,6 +1,6 @@
 <?php $page_selected = 'admin'; 
 
-//include 'class/Config.php';
+require 'class/Config.php';
 require 'php/admin.php';
 
 ?>

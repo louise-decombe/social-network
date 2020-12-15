@@ -10,7 +10,7 @@ $db = new DB();
     require 'Post.php';
     $post = new Post($db);
 
-    require 'Search.php';
+    require 'Searchs.php';
     $search = new Search($db);
 
     require 'Message.php';
@@ -18,8 +18,6 @@ $db = new DB();
 
     require 'Hashtag.php';
     $tendance = new Hashtag($db);
-
-    
 
     //traitement de la déconnexion
 if (isset($_POST["deco"])) {

@@ -10,7 +10,6 @@ function On_load_data(){
         dataType: "json",
 
         success: function(data){
-                
             if(data.length != 0){
                 let donnee = "initialisation";
                 for ( let i = 0 ; i < 6 ; i++){
