@@ -68,11 +68,12 @@ $(document).ready(function(){
         if ($("#message").val() !== "De quoi souhaitez-vous discuter ?"){
             //si pas vide
             if ($("#message").val() !== ""){
-                console.log("ici")
+                
                 // enrigistrement en fonction du media 
                 if ( $("#type_media").val() === "photo" || $("#type_media").val() === "video"){
-                    console.log("1")
-                    RegisterPost();   
+                    
+                    RegisterPost();  
+                    
                 }
                 else if  ($("#type_media").val() === "url"){
                     registerPostUrl()

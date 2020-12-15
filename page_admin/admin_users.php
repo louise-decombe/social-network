@@ -1,4 +1,4 @@
-<?php $page_selected = 'index'; 
+<?php 
 
 
 require '../php/admin2.php';

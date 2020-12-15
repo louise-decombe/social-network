@@ -1,5 +1,6 @@
 <?php session_start();
-    include 'includes/header.php' ;
+
+    require 'includes/header.php' ;
     require 'php/traitement_feed.php';  
 ?>
 
@@ -45,8 +46,8 @@
        
             
             <!-- A RENDRE DYNAMIQUE METTRE LE NOM EN LIEN VERS LE PROFIL -->
-            <?php if (isset($amis_en_communs)) :?>
-                <?php foreach($amis_en_communs as $key => $valeur) :?>  
+            <?php if (isset($amis_en_communs))   : ?>
+                <?php foreach($amis_en_communs as $key => $valeur) : ?>  
                     <div class="div_amis_communs">
                         <?php   $info = $user->GetUserById($valeur);   ?>
                         <?php if ($info['photo'] == NULL) :?>
@@ -56,8 +57,8 @@
                             <img  src="uploads/default_avatar.png" alt="<?= $info['firstname']." ".$info['lastname'] ?>">
                         <?php endif ;?>
                         <div class="div_suggestion_amis">
-                            <h4><?= $info['firstname']." ".$info['lastname'] ?></h4>
-                            <p><?php echo  $nbr_amis_commun[$valeur]?> ami(s) en commun</p>
+                            <a href=""><h4><?= $info['firstname']." ".$info['lastname'] ?></h4></a>
+                            <!-- <p><?php echo  $nbr_amis_commun[$valeur]?> ami(s) en commun</p> -->
                             
                         </div>
                     </div>

@@ -32,7 +32,7 @@
     //recuperation de toutes les personnes suivi par l utilisateur
     $followers = $follow->GetFollowerUser($id_user);
     
-    
+   
 
     //on boucle sur les id des personnes suivi
     if (!empty($followers)){
@@ -41,6 +41,7 @@
         //on recupere les personnes qui suive ces personnes
         if (!isset($nbr)){
             $nbr=[];
+            $nbr[]= $follow->Get_follow($followers[$i]['id_user_follow'],$id_user);
             
         }else{
             $nbr[]= $follow->Get_follow($followers[$i]['id_user_follow'],$id_user);
@@ -48,6 +49,7 @@
 
         }
 
+      
 
         //tab des amis
         $tab_user=[];
@@ -64,19 +66,13 @@
         }
 
         //comparer les 2 Tab //On supprime les valeurs identique car cela nous indique que l utilisateur sur deja la personne
-        $amis_en_communs = array_unique(array_diff($tab_communs,$tab_user));
+        $amis_en_communs = array_values(array_unique(array_diff($tab_communs,$tab_user)));
+        //  var_dump($tab_user);
+        // var_dump($tab_communs);
+        //  var_dump($amis_en_communs);
+       
+         //recup amis
 
-        if ( COUNT($amis_en_communs) <= 5 ){
-            for ( $p = 1 ; $p <= COUNT($amis_en_communs) ; $p++ ){
-                $nbr_amis_commun[$amis_en_communs[$p]] = COUNT($follow->GetFollowerUser($amis_en_communs[$p]));  
-           }
-        }else {
-            for ( $p = 1 ; $p <= 5 ; $p++ ){
-                $nbr_amis_commun[$amis_en_communs[$p]] = COUNT($follow->GetFollowerUser($amis_en_communs[$p]));  
-           }
-        }
-
-    }else{
 
     }
 
@@ -94,7 +90,7 @@
 
     // RECUPERATION DE TOUT LES POST
     $All_posts = $post->GetPostsByIdUser();
-
+  
     //recuperation des posts des tout les amis 
     
     if (!empty($followers)){
