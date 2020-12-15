@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 <footer>
 <section id="media-footer">
+=======
+
+    <section id="media-footer">
+>>>>>>> main
         <span id="social-links">
             <a href="https://www.instagram.com/laplateformeio/"><i class="fab fa-instagram"></i></a>
             <a href="https://www.facebook.com/LaPlateformeIO"> <i class="fab fa-facebook-square"></i></a>
@@ -38,4 +43,7 @@
         </a>
         <p>© 2020 Plateformer_ Tous droits réservés</p>
     </section>
+<<<<<<< HEAD
 </footer>
+=======
+>>>>>>> main

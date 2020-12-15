@@ -6,7 +6,11 @@
 
 <html lang="en">
 <head>
+<<<<<<< HEAD
       <meta chars   et="UTF-8">
+=======
+      <meta charset="UTF-8">
+>>>>>>> main
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <!-- liens css (css) -->
       <link rel="stylesheet" href="css/style.css">
@@ -28,7 +32,11 @@
     <script src="js/chat.js"></script>
     <script src="js/search_chat.js"></script>
     <script src="js/envoi_message.js"></script>
+<<<<<<< HEAD
     <script src="js/hashtag.js"></script>
+=======
+    <!-- <script src="js/hashtag.js"></script> -->
+>>>>>>> main
 
 
     </head>
@@ -93,4 +101,9 @@ if(isset($_SESSION['user']['id'])){
         </ul>
     </nav>
     
+<<<<<<< HEAD
 <?php  }    ?> 
+=======
+<?php  }    ?> 
+</header>
+>>>>>>> main

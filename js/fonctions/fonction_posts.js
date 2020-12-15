@@ -26,10 +26,9 @@ function RegisterPost(){
     
         success: function(data){
         console.log(data);
-            if (data == '1'){
+            if (data == 1){
                 console.log("ici")
-                $("#form_post")[0].reset();
-                $("#modale2").css('display',"none");
+               
                 $("#toto").append("<p> Post envoyé !</p>")
                 $("#toto").css('color','green')
                 form.delete("message");
@@ -38,6 +37,9 @@ function RegisterPost(){
                 form.delete("type");
                 $("#message").text('De quoi souhaitez-vous discuter ?')
                 $("#input_form").empty();
+
+                $("#form_post")[0].reset();
+                $("#modale2").css('display',"none");
                 
                 
                
