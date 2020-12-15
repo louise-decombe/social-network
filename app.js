@@ -21,7 +21,6 @@ connection.connect(function(err) {
   });
 
 
-
 const express = require('express');
 const app = express();
 //identifiant unique universel -> au début j'ai fait un chat avec des utilisateurs anonyme DONC besoin de les identifier, je leur accord une genre 
@@ -38,7 +37,7 @@ app.use(express.static('public'));
 
 //routes -> j'ai besoin d'une route pour savoir où diriger les infos de connexion, j'ai besoin de la VUE.
 app.get('/', (req,res)=>{
-    res.sendFile(__dirname + 'php/chat.php');
+    res.sendFile(__dirname + '/client/chat.php');
 });
 
 //Listen le port 3000 : on aurait pu mettre autre chose comme port, il en faut un pour le socket. 
@@ -72,12 +71,11 @@ io.on('connection', (socket) => {
                 var row = rows[k];
                 var message = {
                     message: row.message,
-
+                  
                 };
                 messages.push(message)
-                socket.emit('message_existant', messages)
-
             }
+            socket.emit('message_existant', messages)
         }
     })
 };
@@ -85,8 +83,8 @@ io.on('connection', (socket) => {
 
 
 
-getLastComments()
 
+getLastComments()
 
 
     //listen on change_username
@@ -117,7 +115,11 @@ getLastComments()
     socket.on('new_message', (data) => {
         //émet le new message
         io.sockets.emit('new_message', {message : data.message, username : socket.username});
-        
+        var sql = `INSERT INTO messages (message, messageTo, messageFrom, created_at) VALUES ('${data.message}', '1', '1', NOW())`;
+        connection.query(sql, function (err, result) {
+          if (err) throw err;
+          console.log("1 record inserted");
+        })
     })
 
     //listen on typing
@@ -145,17 +147,3 @@ getLastComments()
     })
 })
 
-io.on('connection', function (socket) {
-
-    console.log('a client connected');
-
-    connection.query('SELECT * FROM messages',function(err,rows){
-      if(err) throw err;
-      console.log('Data received from Db:\n');
-      console.log(rows);
-      socket.emit('showrows', rows);
-    });
-
-
-
- });

@@ -1,7 +1,7 @@
 $(function(){
 	$('.search').keyup(function(){
 
-        //console.log('ça marche');
+       // console.log('ça marche');
 
 		var search = $(this).val();
 		$.post('http://localhost/social-network/php/search.php', {search:search}, function(data){

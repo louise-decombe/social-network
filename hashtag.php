@@ -15,15 +15,16 @@
       $select = $_GET['id'];
       
       $res = $db->query("   SELECT
-      hashtag_liaison_post.*,
-      hashtag_trend.*,
-      post.*
+
+*
     
   FROM hashtag_liaison_post
   JOIN hashtag_trend
       ON hashtag_liaison_post.id_hashtag = hashtag_trend.id_hashtag
   JOIN post
       ON hashtag_liaison_post.id_post = post.id
+      JOIN users 
+      ON hashtag_liaison_post.id_user = users.id
       
       WHERE hashtag_trend.id_hashtag =$select" );
 

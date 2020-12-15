@@ -48,17 +48,7 @@ class DB
 			{
 				die('<h1>Impossible de se connecter a la BDD</h1>');
 			}
-		}
-		
-		 //méthode qui permet de faire une requête  SELECT rapidement, prend en paramètre la requête à faire
-    // pour faire une requête : $db->query('SELECT * FROM table')
-    public function query($sql, $data = array())
-    {
-        $req =$this->db->prepare($sql);
-        $req->execute($data);
-        //le résultat est retourné sous forme d'objet
-        return $req->fetchAll(PDO::FETCH_OBJ);
-    }
+	    }
 
     }
 
