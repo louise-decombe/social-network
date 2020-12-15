@@ -101,7 +101,8 @@ $(document).ready(function(){
                     RegisterPost();  
                 }
             }else {
-                console.log("au moins un des deux champs doit etre remplis")
+                // console.log("au moins un des deux champs doit etre remplis");
+               
             }
               
         }
