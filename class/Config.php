@@ -10,7 +10,7 @@ $db = new DB();
     require 'Post.php';
     $post = new Post($db);
 
-    require 'Searchs.php';
+    require 'Search.php';
     $search = new Search($db);
 
     require 'Message.php';
