@@ -3,10 +3,30 @@
 <header>
 <!--  Include de la navbar -->
 
+
 <?php 
 if(isset($_SESSION['user']['id'])){
 
  ?>
+
+
+</nav>
+</div>
+
+<!-- navbar connecté -->
+<nav class="navbar navbar-dark" style="background-color: #000000;">
+
+<!-- lien vers home le mur -->
+        <a class="navbar-brand" href="home.php">
+            <img src="img/PICT_LOGO_WHITE_TEXT.png" width="60" height="45" class="d-inline-block align-top" alt="white_logo_plateformer_" loading="lazy">
+        </a>
+      <a >
+        <!-- lien recherche d'un utilisateur -->
+      <li class="navbar-brand">
+					<input type="text" placeholder="Chercher un utilisateur"  class= "search form-control mr-sm-2"/>
+					<div class="search-result">
+					</div>
+        </li>
 
 
 </nav>
