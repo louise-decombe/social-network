@@ -20,6 +20,7 @@ $user = new User($db);
     <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"></script>
 
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
 </head>
@@ -60,6 +61,7 @@ $user = new User($db);
                 <article class="infos_user_profile">
                     <span data-text="vos informations">
                         VOS INFORMATIONS &nbsp; 
+
                         <!-- Link to open the modal -->
                         <?php if(isset($_SESSION['user'])){ ?>
                             <p><a href="#ex1" rel="modal:open"><i class="fas fa-pen-alt"></i></a></p>
@@ -134,9 +136,6 @@ $user = new User($db);
                         <span id="loisirs"> <i class="far fa-heart"></i> Centres d'intérêt : <?= $user_details['hobbies']  ?></span>
                     <?php } ?>
 
-                   
-                    
-                   
                     
                 </article>
                
@@ -164,6 +163,7 @@ $user = new User($db);
                 <div class="profile_category">
                     <a href="#" id="profile_pub"class="active">Publications</a>
                     <a href="#" id="profile_relations">Relations <span id="count_followers"><?= $count_followers[0] ?></span></a>
+
                     <a href="#" id="profile_infos">Vos Paramètres</a>
                 </div>
                 <!--<div id="profile_form">

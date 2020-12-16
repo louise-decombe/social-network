@@ -77,7 +77,9 @@ $(document).ready(function(){
                     //console.log(response_mail);
                     // alert(response);
                     if ((response_mail) === 'exist'){
+
                         $("#mail").css("background-color", "#D30404");// si l'email existe dans la bdd style rouge pour l'input
+
                         $("#error_email").append(mail_exist);
                   
                     }else{

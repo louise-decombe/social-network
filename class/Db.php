@@ -48,7 +48,15 @@ class DB
 			{
 				die('<h1>Impossible de se connecter a la BDD</h1>');
 			}
-	    }
+		}
+		
+		public function query($sql, $data = array())
+		{
+			$req =$this->db->prepare($sql);
+			$req->execute($data);
+			//le résultat est retourné sous forme d'objet
+			return $req->fetchAll(PDO::FETCH_OBJ);
+		}
 
     }
 

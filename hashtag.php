@@ -4,7 +4,7 @@
 
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="fr">
 <head>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -32,49 +32,58 @@
 
 
     </head>
-  <header>
+   <header>
+      <?php
+         include("includes/header.php");
+         ?>
+   </header>
+   <main>
+     
+      <div class="container hashtag">
 
-    <?php include('includes/header.php');?>
-
- 
 
    
-</header>
-<main>
+      <?php
+      
+      $select = $_GET['id'];
+      
+      $res = $db->query("   SELECT
 
-<div class="container-l"></div>
-<form method="post" action="php/traitement_hashtag.php">
-							<textarea class="status"  maxlength="200" name="status" placeholder="entrer le message" rows="" cols=""></textarea>
- 						 	<div class="hash-box">
-						 		<ul>
-  						 		</ul>
-						 	</div>						 
-						 		<input type="submit" name="" value="envoi"/>
-						 </form>
-						 
-						 <div class="container hashtag">
+*
+    
+  FROM hashtag_liaison_post
+  JOIN hashtag_trend
+      ON hashtag_liaison_post.id_hashtag = hashtag_trend.id_hashtag
+  JOIN post
+      ON hashtag_liaison_post.id_post = post.id
+      JOIN users 
+      ON hashtag_liaison_post.id_user = users.id
+      
+      WHERE hashtag_trend.id_hashtag =$select" );
 
-                   <h2>Tendances du moment</h2>
-<?php $res = $db->query('SELECT * FROM hashtag_trend');
-   foreach ($res as $result){
-   
-	   echo '<a href="hashtag.php?id='.$result->id_hashtag.'">'.$result->hashtag.'</a>';
 
-   }
-   ?>
-</div>
-<!-- ouverture du chat -->
-<div class="popupChat"></div>
-
-</main>
-<script src="js/envoi_message.js"></script>
-<script src="js/chat.js"></script>
-<script src="js/search.js"></script>
-<script src="js/hashtag.js"></script>
-
-<!-- c'est cette div qui permet d'ouvrir le pop up du chat -->
-
-<footer>
-    <?php
-    include("includes/footer.php") ?>
-</footer>
+         foreach ($res as $result){
+         
+            echo '<p>'.$result->created_at.'</p>';
+            echo '<p>'.$result->firstname.'</p>';
+            echo '<p>'.$result->lastname.'</p>';
+             echo '<p>'.$result->content.'</p>';
+         
+         ?>
+      <?php
+         }
+         
+         ?>
+      </div>
+      <div class="popupChat"></div>
+   </main>
+   <script src="js/envoi_message.js"></script>
+   <script src="js/chat.js"></script>
+   <script src="js/search.js"></script>
+   <script src="js/hashtag.js"></script>
+   <!-- c'est cette div qui permet d'ouvrir le pop up du chat -->
+   <div class="popupChat"></div>
+   <footer>
+      <?php
+         include("includes/footer.php") ?>
+   </footer>
