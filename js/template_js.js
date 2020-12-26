@@ -17,7 +17,7 @@ function tableau(donnee,data,i){
    
     if (donnee === "initialisation" || donnee === "tout" || donnee === "ORDER BY" ){
      
-        if (data[i].droits == "administrateur"){
+        if (data[i].droits === "administrateur"){
             return `<tr>
                         <td>${data[i].firstname}</td>
                         <td>${data[i].lastname}</td>
@@ -33,7 +33,7 @@ function tableau(donnee,data,i){
                         <td class="icon-user"><button class="upgrade icon-up-fat" value="upgrade" id="${data[i].id}"></button></td>
                         <td>${data[i].name_cursus}</td>
                         <td><button  class="supp icon-trash" value='supprimer_users' id="${data[i].id}"></button></td>
-                </tr>`;
+                    </tr>`;
         }
         
     }
@@ -150,7 +150,6 @@ function tablePost(signal){
          return `   <tr>
             <td>Date</td>
             <td>Auteur</td>
-            <td>Image</td>
             <td>Contenu</td>
         </tr>`;
     }else{
@@ -167,22 +166,46 @@ function tablePost(signal){
         }
 }
 
+function AffichagePosSansContent(data,i){
+    return `<tr>
+            <td>${data[i].date_created}</td>
+            <td>${data[i].lastname} ${data[i].firstname}</td>
+            <td><img src='${data[i].media}'</td>
+            <td>${data[i].content} </td>
+            </tr>`;
+}
 //tableau post
 function tableauPost(data,i,signal,genre){
     if (signal == 'signal'){
         if (genre == "posts"){
-            return `<tr>
-            <td>${data[i].date_created}</td>
-            <td>${data[i].lastname} ${data[i].firstname}</td>
-            <td>${data[i].content.substring(0, 100)} <a href="post.php?id=${data[i].id}"> Voir la suite</a></td>
-            <td>${data[i].nbr}</td>
-            <td>Post</td>
-            <td><button value='annuler_signal_post' class='annuler_signal ' id='${data[i].id_signal}'>X</button></td>
-            <td><button value='supprimer_post' class='supp_post icon-trash' id='${data[i].id_post}'></button></td>
-        </tr>`;
+            if (data[i].content == null){
+                
+                return `<tr>
+                <td>${data[i].date_created}</td>
+                <td>${data[i].lastname} ${data[i].firstname}</td>
+                <td>Aucun contenu</td>
+                <td>${data[i].nbr}</td>
+                <td>Post</td>
+                <td><button value='annuler_signal_post' class='annuler_signal ' id='${data[i].id_signal}'>X</button></td>
+                <td><button value='supprimer_post' class='supp_post icon-trash' id='${data[i].id_post}'></button></td>
+                </tr>`;
+            }else{
+            
+                return `<tr>
+                        <td>${data[i].date_created}</td>
+                        <td>${data[i].lastname} ${data[i].firstname}</td>
+                        <td>${data[i].content.substring(0, 100)} <a href="post.php?id=${data[i].id}"> Voir la suite</a></td>
+                        <td>${data[i].nbr}</td>
+                        <td>Post</td>
+                        <td><button value='annuler_signal_post' class='annuler_signal ' id='${data[i].id_signal}'>X</button></td>
+                        <td><button value='supprimer_post' class='supp_post icon-trash' id='${data[i].id_post}'></button></td>
+                        </tr>`;
+            }
+            
 
         }
         else{
+            
             return `<tr>
             <td>${data[i].date_created}</td>
             <td>${data[i].lastname} ${data[i].firstname}</td>
@@ -196,12 +219,23 @@ function tableauPost(data,i,signal,genre){
             
     }
     else{
+        console.log(data[i].content );
+        if (data[i].content == 'null' ){
             return `<tr>
-        <td>${data[i].date_created}</td>
-        <td>${data[i].lastname} ${data[i].firstname}</td>
-        <td><img src='${data[i].media}'</td>
-        <td>${data[i].content.substring(0, 100)} <a href="post.php?id=${data[i].id}"> Voir la suite</a></td>
-        </tr>`;
+            <td>${data[i].date_created}</td>
+            <td>${data[i].lastname} ${data[i].firstname}</td>
+            <td>Aucun contenu</td>
+            </tr>`;
+           
+        }else {
+            return `<tr>
+            <td>${data[i].date_created}</td>
+            <td>${data[i].lastname} ${data[i].firstname}</td>
+            <td>${data[i].content.substring(0, 100) } </td>
+            </tr>`;
+            
+        }
+            
     }
     
 }

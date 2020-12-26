@@ -1,14 +1,12 @@
 function recuperationPost(){
-        
     $("thead").empty();
     let signal = "post";
     $("thead").append( tablePost(signal) );
     $.ajax({
-        url: "php/traitement_posts_admin.php",
+        url:"php/traitement_posts_admin.php",
         method: "POST",
         dataType: "json",
         data: {action: "recuperation"},
-
         success:function(data){
             
             if (data.length != 0){
@@ -22,13 +20,35 @@ function recuperationPost(){
             }
         }
     })
+    // $.ajax({
+    //     url: "php/traitement_posts_admin.php",
+    //     method: "POST",
+    //     //dataType: "json",
+    //     data: {action: "recuperation"},
+
+    //     success:function(data){
+    //         console.log("ici");
+    //         if (data.length != 0){
+    //             for (let i = 0 ; i<5 ; i++){
+    //                 $("#tbody").append(tableauPost(data,i));
+    //             }
+    //             paginationPost(data);  
+    //         }
+    //         else{
+    //             $("#tbody").append("<tr class='text-center'><td colspan = 5>Aucun posts aujourd'hui</td></tr>");
+    //         }
+    //     },error: function(data){
+    //         console.log(data);
+    //     }
+    // })
 }
 
 function paginationPost(data){
+    console.log(data.length);
     $("#pagination").empty();
     //creation des liens pagination
-    let total_page = (data.length / 5) + 1;
-          
+    let total_page = (data.length / 5) ;
+      console.log(total_page)   ; 
     for (let i = 1 ; i < total_page ; i++){
         $("#pagination").append("<button class='btn page page-link' value='"+i+"'>"+i+"</button>")    
     }

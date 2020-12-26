@@ -59,7 +59,7 @@ $(document).ready(function(){
 
 
     //changemenet de page en fonction du click sur la nav barre
-    $("#posts").click(function(){
+    $("#posts").on("click",function(){
         ChangementDePage("admin_posts.php","post");
         
     })
@@ -216,4 +216,4 @@ $(document).ready(function(){
         $("#modale").css("display","flex");
         deleteCursus(id_cursus);
     })
-})
+});
