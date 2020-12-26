@@ -3,7 +3,7 @@
 require '../class/Config.php';
 
 // A METTRE EN DYNAMIQUE
-$id_user = 101;
+$id_user = 93;
 //  echo json_encode($_POST);
 //  echo json_encode($_FILES);
 
@@ -147,7 +147,7 @@ if (isset($_POST['valider'])){
     }
    
 
-   
+    
     
     
     

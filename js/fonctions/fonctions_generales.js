@@ -156,10 +156,11 @@ function clickOnbtnSupp(){
 }
 
 function pagination(data){
+    
     $("#pagination").empty();
     //creation des liens pagination
     let total_page = (data.length / 6) + 1;
-                          
+               
     for (let i = 1 ; i < total_page ; i++){
         $("#pagination").append("<button class='btn page page-link' value='"+i+"'>"+i+"</button>")    
     } 
@@ -169,8 +170,15 @@ function pagination(data){
         let valeur = $(this).val();
         let debut = (valeur - 1 ) * 6 ; /// valeur de depart de la boucle
         let max = 6 * valeur; 
+        let donne = null;
+   
         for ( let i = debut ; i < max ; i++){
-            $("#tbody").append(tableau(data,i));
+            if (data[i] != undefined){
+                $("#tbody").append(tableau(donne,data,i))
+            }
+          
+            
+            //$("#tbody").append(tableau(data,i));
         }
     })
 }

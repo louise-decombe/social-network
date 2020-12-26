@@ -29,8 +29,9 @@ function RegisterPost(){
             if (data == 1){
                 console.log("ici")
                
-                $("#toto").append("<p> Post envoyé !</p>")
+                $("#toto").append("Post envoyé !")
                 $("#toto").css('color','green')
+            
                 form.delete("message");
                 form.delete("files");
                 form.delete("valider");
@@ -89,6 +90,7 @@ function registerPostUrl(){
                 $("#toto").empty();
                 $("#toto").append("Message Envoyé !");
                
+               
                 $("#form_post")[0].reset();
                 $("#modale2").css('display',"none");
 
@@ -127,4 +129,27 @@ function AlertError(element,input1,input2){
     $(element).css("color","red");
     $(input1).css('background',"red!important")
     $(input2).css('background',"red!important")
+}
+
+function NewPosts(){  
+    $.ajax({
+        url: "php/traitement_posts_feed.php",
+        type: "POST",
+        
+        success: function(data){
+
+           var datas = JSON.parse(data);
+            
+            if (datas.post !== undefined){
+                if ($("#btn_new_post").length == 0 ){
+                    $("#section_affichage_posts").prepend("<button id='btn_new_post'>Nouveaux messages</button>")
+                }
+
+                var val = JSON.stringify(datas.post);
+                localStorage.setItem('post', val);
+            }
+
+        }   
+    
+})
 }
