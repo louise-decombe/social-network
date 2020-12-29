@@ -1,17 +1,21 @@
 $(function(){
-    var regex = /[#|@](\w+)$/ig;
   
-    console.log('ça marche');
+  // REGEX pour vérifier que le mot saisit est un hashtag
+
+  var regex = /[#|@](\w+)$/ig;
+  
+  // vérification 
     $(document).on('keyup','.status', function(){
       var content = $.trim($(this).val());
       var text = content.match(regex);
       var max = 255;
-      console.log('ça marche2');
 
+      // si le texte existe on ajout text rentré et hashtag
       if(text != null){
         var dataString = 'hashtag='+text;
-        console.log('ça marche3');
 
+
+        // requête AJAX qui va permettre d'envoyer le hashtag en traitement
         $.ajax({
           type: "POST",
           url: "http://localhost/social-network/php/traitement_hashtag.php",
@@ -27,7 +31,6 @@ $(function(){
               $('.status').val(apres+value+' ');
               $('.hash-box li').hide();
               $('.status').focus();
-                console.log('ça marche4');
 
             })
           }
