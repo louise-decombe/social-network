@@ -1,5 +1,8 @@
 <?php
     include 'class/Config.php';
+    
+    // ID de session en Dur à supprimer plus tard.
+    $_SESSION['user']['id'] = 1;
 ?>
 
 <!DOCTYPE html>
@@ -29,15 +32,10 @@
     <script src="js/search_chat.js"></script>
     <script src="js/envoi_message.js"></script>
      <script src="js/hashtag.js"></script>
-
-
     </head>
   <header>
 
     <?php include('includes/header.php');?>
-
- 
-
    
 </header>
 <main>
