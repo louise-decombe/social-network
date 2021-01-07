@@ -2,9 +2,12 @@
 session_start();
 require 'class/Db.php';
 require 'class/User.php';
+require 'class/Options.php';
 $db = new DB();
 $user = new User($db);
-
+$options = new Options($db);
+$cursus = $options->cursus_list();
+$date = new DateTime();
 ?>
 <!DOCTYPE html>
 <html>
@@ -18,10 +21,13 @@ $user = new User($db);
     <link rel="stylesheet" type="text/css" href="css/style-profile.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script src="js/profile_transitions.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"></script>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src="js/profile_informations.js"></script>
 </head>
 <body>
 <header>
@@ -30,7 +36,7 @@ $user = new User($db);
     $id_user = $_SESSION['user']['id'];
     //var_dump($id_user);
     $user_details = $user->test($id_user);
-    var_dump($user_details);
+    //var_dump($user_details);
     $user_followers = $user->followers($id_user);
     //var_dump($user_followers);
     $count_followers = $user->count_followers($id_user);
@@ -47,13 +53,35 @@ $user = new User($db);
 
     <section id="cover-pic">
         <img id="cover" src="<?= $_SESSION['user']['cover']?>" alt="cover-picture">
-        <img id="profile-mini-pic" src="<?= $_SESSION['user']['photo']?>" alt="profile-mini-pic">
+        <img id="profile-mini-pic" src="php/<?= $_SESSION['user']['photo']?>" alt="profile-mini-pic">
         <h1 id="profile_name">@ <?= $_SESSION['user']['firstname'] ?> <?= $_SESSION['user']['lastname'] ?></h1>
-        <div id="change_profile_pic"><i class="fas fa-camera"></i></div>
+        <form id="change_profile_pic" method="post" action="php/upload_pics.php" enctype="multipart/form-data">
+            <input type="hidden" name="id_user" class="id_user" value="<?= $id_user ?>">
+            <input id="image" type="file" name="photo" placeholder="Photo" required="" capture>
+            <button type="submit" name="submit" value="Upload"><i class="fas fa-camera"></i></button>
+        </form>
         <div id="change_cover_pic"><i class="fas fa-camera"></i></div>
     </section>
-    
-    
+
+    <div class="row">
+        <div class="small-12 medium-2 large-2 columns">
+            <div class="circle">
+            <!-- User Profile Image -->
+                <img class="profile-pic" src="php/<?= $_SESSION['user']['photo']?>" alt="profile-mini-pic">
+            <!-- Default Image -->
+        <i class="fa fa-user fa-5x"></i>
+            </div>
+            <div class="p-image">
+            <!--form id="" method="post" action="php/upload_test.php" enctype="multipart/form-data"-->
+                <i class="fa fa-camera upload-button"></i>
+                <input type="hidden" name="id_user" class="id_user" value="<?= $id_user ?>">
+                <input class="file-upload" id="image" type="file" name="photo" placeholder="Photo" required="" capture>
+                <!--input class="file-upload" type="file" name="pic" accept="image/png, image/jpeg"/-->
+            <!--/form-->
+            </div>
+        </div>
+    </div>
+
     <div class="container-fluid sh-100 d-flex flex-column justify-content-center index_content">
         <div class="row">
             <div class="col-4">
@@ -67,38 +95,97 @@ $user = new User($db);
                         
                          <!-- Modal HTML embedded directly into document -->
                         <div id="ex1" class="modal">
-                            <p>modifier vos informations personnelles</p>
 
                             <div id="form_user_informations">
+                                <p>modifier vos informations personnelles</p>
                                 <div class="modify_input">
-                                    <label> Modifier la localité</label>
-                                    <input type="text" class="modify_input_details" id="modify_localite" name="modify_localite" placeholder="localité">
-                                    <i class="far fa-check-circle"></i>
+                                    <form id="user_birthday" method="post" action="">
+                                        <label>▪ ajouter ou modifier un anniversaire</label>
+                                        <div class="container_input">
+                                            <input type="hidden" name="id_user" class="id_user" value="<?= $id_user ?>">
+                                            <input type="date" id="modify_birthday" class="modify_input_details" name="modify_birthday">
+                                            <button type="submit" id="submit_birthday"><i class="far fa-check-circle"></i></button>
+                                        </div>
+                                        <div id="message_birthday"></div>
+                                    </form>
+                                </div>
+
+                                <div class="modify_input">
+                                    <form id="user_localite" method="POST" action="">
+                                        <label>▪ ajouter ou modifier la localité</label>
+                                        <div class="container_input">
+                                            <input type="text" class="modify_input_details" id="modify_city" name="modify_city" placeholder="<?= $user_details['localite']?>">
+                                            <input type="hidden" name="id_user" class="id_user" value="<?= $id_user ?>">
+                                            <button type="submit" id="submit_localite"><i class="far fa-check-circle"></i></button>
+                                        </div>
+                                    </form>
+                                    <div id="message_city"></div>
+                                </div>
+                                
+                                <div id="result_city">
+                                    <ul></ul>
+                                </div>
+
+                                <div class="modify_input">
+                                    <form id="user_cursus" method="post" action="">
+                                        <label>▪ ajouter ou modifier le cursus</label>
+                                        <div class="container_input">
+                                            <input type="hidden" name="id_user" class="id_user" value="<?= $id_user ?>">
+                                            <select id="modify_cursus" class="modify_input_details" name="modify_cursus" required>
+                                                <option selected>Sélectionner le cursus</option>
+                                                <?php foreach ($cursus as $all_cursus){ ?>
+                                                <option value="<?= $all_cursus['id_cursus'];?>"><?= $all_cursus['name_cursus'];?></option>
+                                                <?php } ?>
+                                            </select>
+                                            <button type="submit" id="submit_cursus"><i class="far fa-check-circle"></i></button>
+                                        </div>
+                                    </form>
+                                    <div id="message_cursus"></div>
+                                </div>
+
+                                <div class="modify_input">
+                                    <form id="user_entreprise" method="post" action="">
+                                        <label>▪ ajouter ou modifier l'entreprise</label>
+                                        <div class="container_input">
+                                            <input type="hidden" name="id_user" class="id_user" value="<?= $id_user ?>">
+                                            <input type="text" id="modify_entreprise" class="modify_input_details" name="modify_entreprise" placeholder="entreprise">
+                                            <button type="submit" id="submit_entreprise"><i class="far fa-check-circle"></i></button>
+                                        </div>
+                                    </form>
+                                    <div id="message_entreprise"></div>
                                 </div>
                                 <div class="modify_input">
-                                    <label> Modifier le cursus</label>
-                                    <input type="text" id="modify_cursus" name="modify_cursus" placeholder="cursus">
-                                    <i class="far fa-check-circle"></i>
+                                    <form id="user_site" method="post" action="">
+                                        <label>▪ ajouter ou modifier le site internet</label>
+                                        <div class="container_input">
+                                            <input type="hidden" name="id_user" class="id_user" value="<?= $id_user ?>">
+                                            <input type="text" id="modify_website" class="modify_input_details" name="modify_website" placeholder="website">
+                                            <button type="submit" id="submit_site"><i class="far fa-check-circle"></i></button>
+                                        </div>
+                                    </form>
+                                    <div id="message_site"></div>
                                 </div>
                                 <div class="modify_input">
-                                    <label> Modifier l'entreprise</label>
-                                    <input type="text" id="modify_entreprise" name="modify_entreprise" placeholder="entreprise">
-                                    <i class="far fa-check-circle"></i>
+                                    <form id="user_hobbies" method="post" action="">
+                                        <label>▪ ajouter ou modifier les centres d'intérêt</label>
+                                        <div class="container_input">
+                                            <input type="hidden" name="id_user" class="id_user" value="<?= $id_user ?>">
+                                            <input type="text" id="modify_hobbies" class="modify_input_details" name="modify_hobbies" placeholder="centres d'intérêt">
+                                            <button type="submit" id="submit_site"><i class="far fa-check-circle"></i></button>
+                                        </div>
+                                    </form>
+                                    <div id="message_hobbies"></div>
                                 </div>
                                 <div class="modify_input">
-                                    <label> Modifier le site internet</label>
-                                    <input type="text" id="modify_website" name="modify_website" placeholder="website">
-                                    <i class="far fa-check-circle"></i>
-                                </div>
-                                <div class="modify_input">
-                                    <label> Modifier la bio</label>
-                                    <input type="textarea" id="modify_bio" name="modify_bio" placeholder="bio">
-                                    <i class="far fa-check-circle"></i>
-                                </div>
-                                <div class="modify_input">
-                                    <label> Modifier les centres d'intérêt</label>
-                                    <input type="textarea" id="modify_hobbies" name="modify_hobbies" placeholder="centres d'intérêt">
-                                    <i class="far fa-check-circle"></i>
+                                    <form id="user_bio" method="post" action="">
+                                        <label>▪ ajouter ou modifier la bio</label>
+                                        <div class="container_input">
+                                            <input type="hidden" name="id_user" class="id_user" value="<?= $id_user ?>">
+                                            <input type="textarea" id="modify_bio"name="modify_bio" placeholder="bio">
+                                            <button type="submit" id="submit_site"><i class="far fa-check-circle"></i></button>
+                                        </div>
+                                    </form>
+                                    <div id="message_bio"></div>
                                 </div>
                             </div>
                         
@@ -112,32 +199,31 @@ $user = new User($db);
                     </div>-->
 
                     <div id="user_details1">
+                        <?php if(!empty($user_details['birthday'] )){ $birth = $user_details['birthday']?>
+                        <div class="category_details"><i class="fas fa-birthday-cake"></i><span id="user_birth">&nbsp;<?= (new DateTime($birth))->format('d-m-Y')?></span></div>
+                        <?php } ?>
+
                         <?php if(!empty($user_details['localite'] )){ ?>
-                        <span id="user_localite"><i class="fas fa-map-marker-alt"></i>&nbsp;<?= $user_details['localite']  ?></span>
+                        <div class="category_details"><i class="fas fa-map-marker-alt"></i>&nbsp;<span id="user_city"><?= $user_details['localite']?></span></div>
                         <?php } ?>
                     
-                        <span id="cursus"><i class="fas fa-info-circle"></i>&nbsp<?= $user_details['name_cursus']  ?></span>
+                        <div class="category_details"><i class="fas fa-info-circle"><span id="cursus"></i>&nbsp<?= $user_details['name_cursus']?></span></div>
                  
                         <?php if(!empty($user_details['entreprise'] )){ ?>
-                        <span id="entreprise"><i class="far fa-building"></i>&nbsp<?= $user_details['entreprise']  ?></span>
+                        <div class="category_details"><i class="far fa-building"></i><span id="entreprise">&nbsp<?= $user_details['entreprise'] ?></span></div>
                         <?php } ?>
 
                         <?php if(!empty($user_details['website'] )){ ?>
-                        <span id="website"> <i class="fas fa-globe-americas"></i>&nbsp<?= $user_details['website'] ?></span>
-                    <?php } ?>
+                        <div class="category_details"><i class="fas fa-globe-americas"></i><span id="website">&nbsp<?= $user_details['website'] ?></span></div>
+                        <?php } ?>
                     </div>
 
                     <?php if(!empty($user_details['bio'] )){ ?>
-                        <span id="user_bio"><?= $user_details['bio']  ?></span>
+                        <div class="category_details"><span id="user_bio"><?= $user_details['bio']?></span></div>
                     <?php } ?>
                     <?php if(!empty($user_details['hobbies'] )){ ?>
-                        <span id="loisirs"> <i class="far fa-heart"></i> Centres d'intérêt : <?= $user_details['hobbies']  ?></span>
+                        <div class="category_details"><i class="far fa-heart"></i><span id="loisirs"> Centres d'intérêt : <?= $user_details['hobbies'] ?></span></div>
                     <?php } ?>
-
-                   
-                    
-                   
-                    
                 </article>
                
                 <article class="infos_user_profile">
@@ -162,10 +248,92 @@ $user = new User($db);
             </div>
             <div class="col-8">
                 <div class="profile_category">
-                    <a href="#" id="profile_pub"class="active">Publications</a>
-                    <a href="#" id="profile_relations">Relations <span id="count_followers"><?= $count_followers[0] ?></span></a>
-                    <a href="#" id="profile_infos">Vos Paramètres</a>
+                    <button class="link_content" onclick="show('operation1')">Publications</button>
+                    <button class="link_content" onclick="show('operation2')">Relations &nbsp<span id="count_followers"><?= $count_followers[0]?></span></button>
+                    <button class="link_content" onclick="show('operation3')">Paramètres personnels</button>         
                 </div>
+                <div id="operation1">
+
+        <div id="profile_title">
+            <img class="underline_wave" src="img/wave.png" alt="underline_wave">
+            <h2>vos publications...</h2>
+        </div>
+        <div id="profile_post">
+            <?php foreach($post_users as $post){ ?>
+            <div id="user_post">
+                <img id="input-pic" src="<?= $_SESSION['user']['photo']?>" alt="input-pic">
+                    posté le : <?= $post['created_at'] ?>
+                    message : <?= $post['content'] ?>
+                    media : <?= $post['media'] ?>
+            </div>
+            <?php } ?>
+            <?php 
+                echo date_format($date, 'd/m/Y H:i:s'); 
+            ?>
+        </div>
+  
+</div>
+
+<div id="operation2">
+<div id="profile_title">
+            <img class="underline_wave" src="img/wave.png" alt="underline_wave">
+            <h2>vos relations...</h2>
+        </div>
+        <div id="container-followers">
+<?php foreach ($user_followers as $followers){ ?>
+
+                        <div class="followers">
+                            <a href="profile_public.php?id=<?= $followers['id'] ?>" target="_blank"><img class="followers_img" src="<?=$followers['photo'] ?>" alt="follower_mini_pic"></a>
+                            <span><?=$followers['firstname']?><?=$followers['lastname']?></span>
+                        </div>
+
+                    <?php
+                        }
+                    ?>
+        </div>
+</div>
+
+<div id="operation3">
+    <div id="profile_title">
+        <img class="underline_wave" src="img/wave.png" alt="underline_wave">
+        <h2>vos paramètres personnels...</h2>
+    </div>
+    <p>modifier vos informations personnelles</p>
+
+                                <div class="modify_input">
+                                    <form id="user_firstname" method="post" action="">
+                                        <label> Modifier le prénom</label>
+                                        <input type="hidden" name="id_user" class="id_user" value="<?= $id_user ?>">
+                                        <input type="text" id="modify_firstname" name="modify_firstname" placeholder="prénom">
+                                        <button type="submit" id="submit_firstname"><i class="far fa-check-circle"></i></button>
+                                    </form>
+                                </div>
+                                <div class="modify_input">
+                                    <form id="user_lastname" method="post" action="">
+                                        <label> Modifier le nom</label>
+                                        <input type="hidden" name="id_user" class="id_user" value="<?= $id_user ?>">
+                                        <input type="text" id="modify_lastname" name="modify_lastname" placeholder="nom">
+                                        <button type="submit" id="submit_lastname" value='<?= $id_user ?>'><i class="far fa-check-circle"></i></button>
+                                    </form>
+                                </div>
+                                
+                                <div class="modify_input">
+                                    <form id="user_password" method="post" action="">
+                                        <label> Modifier votre password</label>
+                                        <input type="hidden" name="id_user" class="id_user" value="<?= $id_user ?>">
+                                        <input type="password" id="modify_password" name="modify_password" placeholder="nouveau password">
+                                        <input type="password" id="modify_confirmation_password" name="modify_confirmation_password" placeholder="confirmer le nouveau password">
+                                        <button type="submit" id="submit_password"><i class="far fa-check-circle"></i></button>
+                                    </form>
+                                    <div id="error_newPassword"></div>
+                                </div>
+</div>
+
+<script>
+  function show(param_div_id) {
+    document.getElementById('profile_publications').innerHTML = document.getElementById(param_div_id).innerHTML;
+  }
+</script>
                 <!--<div id="profile_form">
                     <img id="input-pic" src="<?= $_SESSION['user']['photo']?>" alt="input-pic">
                     <div class="input-icons"> 
@@ -190,7 +358,7 @@ $user = new User($db);
                                 </div>
         
                            <?php } ?>
-                           <?php $date = new DateTime();;
+                           <?php 
                            echo date_format($date, 'd/m/Y H:i:s'); ?>
                      
 
@@ -200,17 +368,9 @@ $user = new User($db);
             </div>
         </div>
     </div>
+
     <script>
-        $("#profile_relations").on("click", function(event){
-
-            $("#profile_publications").hide('');
-            $(".profile_content").load('profile_relations.php');
-        });
-        $("#profile_pub").on("click", function(event){
-
-$("#profile_realations").hide('');
-$(".profile_content").load('profile_relations.php');
-});
+     
     </script>
 </main>
 <footer>

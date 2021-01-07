@@ -154,6 +154,26 @@
     font-size:15px;
 }
 
+#button_follow{
+    display:flex;
+    width: 120px;
+    border: 1px solid #275fa0;
+    background-color: transparent;
+    border-radius: 10px;
+    font-size:20px;
+    align-items:center;
+    justify-content:space-around;
+    text-transform: uppercase;
+    font-weight:700;
+    position:absolute;
+    margin-top:2.5%;
+    margin-left:-20%;
+}
+
+#button_follow:hover{
+    color: #275fa0;
+}
+
 #user_followers{
     display:flex;
     flex-wrap: wrap !important;
@@ -262,22 +282,83 @@
     font-size:15px;
 }
 
+/*----------------------------------------------------------------------------------------------------------------------------*/
+/* MODAL MODIFICATION PROFIL
+------------------------------------------------------ */
 #form_user_informations{
     display: flex !important;
     align-items: center !important;
     justify-content : center !important;
-    background-color:red !important;
     flex-direction: column !important;
     width: 100% !important;
 }
 
 .modify_input{
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
     background-color: greenyellow;
-    width:95%;
+    width:90%;
+    margin-bottom : 2.5%;
 }
+
+.modify_input form label{
+    font-size: 14px;
+    text-transform: uppercase;
+}
+
+.container_input{
+    display: flex;
+    justify-content:space-between;
+    width: 100%;
+    background-color: yellow;
+}
+
+.modify_input_details{
+    width: 300px;
+    border-radius:20px;
+    border:0.1px solid gray;
+    padding: 5px 10px;
+    font-size:12px;
+    margin-right:30px;
+}
+
+#submit_localite, #submit_birthday, #submit_cursus,
+#submit_entreprise, #submit_bio, #submit_site, #submit_hobbies{
+    border:none;
+    background-color: transparent;
+}
+
+#submit_localite i:hover, #submit_birthday i:hover, #submit_cursus i:hover,
+#submit_entreprise i:hover, #submit_bio i:hover, #submit_site i:hover,
+#submit_hobbies i:hover{
+    color: #275fa0;
+}
+
+#message_city, #message_birthday, #message_cursus,
+#message_entreprise, #message_bio, #message_site,
+#message_hobbies{
+    display: flex;
+    width: 90%;
+    background-color:pink;
+    font-size:12px;
+    padding-top:10px;
+    color: #275fa0;
+}
+
+#modify_bio{
+    display: flex;
+    background-color:blue;
+    width:100%;
+}
+
+#form_user_informations p{
+    font-size:15px;
+    font-weight:700;
+    border-bottom:1px solid black !important;
+}
+
+
 
 .modify_input label{
     font-size : 11px;
@@ -288,14 +369,89 @@
     font-weight:400;
 }
 
-.modify_input_details{
-    border-radius:20px;
-    border:0.1px solid gray;
-    width: 75%;
-    padding: 5px 10px;
-    font-size:12px;
+#result_city{
+    display: flex;
+    width: 80%;
+    max-height: 150px;
+    overflow-y: scroll !important;
+    font-size: 12px;
+   
+}
+
+.category_details{
+    display: flex;
+    align-items: center;
+    background-color: blue;
+    width:100%;
 }
 
 /*** RESPONSIVE PROFILE ***/
 /*** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - ***/
+
+.profile-pic {
+    max-width: 200px;
+    max-height: 200px;
+    display: block;
+}
+
+.file-upload {
+    display: none;
+}
+.circle {
+    border-radius: 1000px !important;
+    overflow: hidden;
+    width: 128px;
+    height: 128px;
+    border: 8px solid rgba(255, 255, 255, 0.7);
+    position: absolute;
+    top: 72px;
+}
+.p-image {
+  position: absolute;
+  top: 167px;
+  right: 30px;
+  color: #666666;
+  transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
+}
+.p-image:hover {
+  transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
+}
+.upload-button {
+  font-size: 1.2em;
+}
+
+.upload-button:hover {
+  transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
+  color: #999;
+}
+
+
+.link_content{
+    display: flex;
+    justify-content: center;
+    border:none;
+    background-color:transparent;
+    font-size:18px;
+    margin-right:2.5%;
+}
+
+#count_followers{
+    font-weight:700;
+}
+
+.link_content:hover{
+    border-bottom: 3px solid black;
+}
+
+
+#operation1,#operation2,#operation3 {
+    display: none;
+    visibility: hidden;
+}
+
+#container_followers{
+    display:flex;
+    background-color:yellow;
+    width:100%;
+}
 

@@ -1,6 +1,6 @@
 <?php
 
-require 'Infos.php';
+require 'Infos.php'; // permets d'afficher les messages d'erreur
 
 class User{
     private $id_user;
@@ -26,8 +26,10 @@ class User{
         $this->db = $db;
     }
     
-
-    // FONCTION CONNEXION USER
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  //
+    /*----------------------------------------------------*/
+    /* FONCTION CONNEXION USER
+    ------------------------------------------------------ */
 
     public function connect($mail, $password){
 
@@ -114,7 +116,10 @@ class User{
         }
     }
 
-    // FONCTION DECONNEXION USER
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  //
+    /*----------------------------------------------------*/
+    /* FONCTION DECONNEXION USER
+    ------------------------------------------------------ */
 
     public function disconnect(){
         $this->id_user = "";
@@ -134,10 +139,13 @@ class User{
         $this->droits = "";
         session_unset();
         session_destroy();
-        header('location: ../index.php');
+        header('location: index.php');
     }
 
-    // FONCTION REGISTER USER
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  //
+    /*----------------------------------------------------*/
+    /* FONCTION ENREGISTREMENT USER
+    ------------------------------------------------------ */
 
     public function register($firstname, $lastname, $mail, $cursus, $password, $check_pass){
         $connexion = $this->db->connectDb();
@@ -205,7 +213,10 @@ class User{
 
     }
 
-    // FONCTION CHECK MAIL USER
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  //
+    /*----------------------------------------------------*/
+    /* FONCTION FONCTION CHECK MAIL USER
+    ------------------------------------------------------ */
 
     public function get_mail($mail){
         $connexion = $this->db->connectDb();
@@ -216,7 +227,457 @@ class User{
         //return $user;
     }
 
-    // FONCTION NEWSLETTER en cours
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  //
+    /*-------------------------------------------------------------------------------------------*/
+    /* FONCTION INFOS PERSONNELLES USER = récupère seulement les infos de la table Users
+    ---------------------------------------------------------------------------------------------*/
+
+    public function infos_user($id_user){
+        $connexion = $this->db->connectDb();
+        $q = $connexion->prepare("SELECT * FROM users WHERE id = :id");
+        $q->bindParam(':id', $id_user, PDO::PARAM_INT);
+        $q->execute();
+        $infos_user = $q->fetch(PDO::FETCH_ASSOC);
+
+    }
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  //
+    /*---------------------------------------------------------------------------------------------------------------*/
+    /* FONCTION INFOS USER = récupère seulement les infos de la table Users + technos + followers + posts + groupes
+    -----------------------------------------------------------------------------------------------------------------*/
+
+    public function all_infos($id_user){
+        $connexion = $this->db->connectDb();
+        $q = $connexion->prepare("SELECT *
+                                  FROM users 
+                                  INNER JOIN user_tech
+                                  ON users.id = user_tech.id_user
+                                  INNER JOIN follower
+                                  ON users.id = follower.id_user
+                                  INNER JOIN post
+                                  ON users.id = post.id_user
+                                  INNER JOIN groupe
+                                  ON users.id = groupe.id_user
+                                  WHERE users.id = $id_user");
+        $q->bindParam(':id', $id_user, PDO::PARAM_INT);
+        $q->execute();
+        $all_infos = $q->fetch(PDO::FETCH_ASSOC);
+        return all_infos;
+    }
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  //
+    /*------------------------------------------------------------------------------------------------------*/
+    /* FONCTION INFOS USER + CURSUS = récupère seulement les infos de la table Users + Cursus
+    --------------------------------------------------------------------------------------------------------*/
+    public function test($id_user){
+        $connexion = $this->db->connectDb();
+        $q = $connexion->prepare("SELECT *
+                                  FROM users 
+                                  INNER JOIN cursus
+                                  ON users.cursus = cursus.id_cursus
+                                  WHERE users.id = $id_user");
+        $q->execute();
+        $all_infos = $q->fetch(PDO::FETCH_ASSOC);
+        return $all_infos;
+    }
+
+    /*---------------------------------------------*/
+    /* FONCTION UNFOLLOW
+    -----------------------------------------------*/
+
+    public function unfollow ($id_user, $id_user_follow)
+    {
+        $connexion = $this->db->connectDb(); 
+        if(isset($id_user_follow)){
+            $del_follow = "DELETE FROM follower WHERE id_user = $id_user AND id_user_follow = $id_user_follow";
+            $delete_follower = $connexion -> prepare($del_follow);
+            $delete_follower->execute();
+        }
+    }
+
+    /*---------------------------------------------*/
+    /* FONCTION FOLLOW
+    -----------------------------------------------*/
+
+    public function follow($id_user, $id_user_follow)
+    {
+        $connexion = $this->db->connectDb(); 
+        if(isset($id_user_follow)){
+            $new_follow = "INSERT INTO follower(id_user, id_user_follow) values (:id_user, :id_user_follow)";
+            $follower = $connexion -> prepare($new_follow);
+            $follower->bindParam(':id_user',$id_user, PDO::PARAM_INT);
+            $follower->bindParam(':id_user_follow',$id_user_follow, PDO::PARAM_INT);
+            $follower->execute();
+        }
+    }
+
+    /*---------------------------------------------*/
+    /* FONCTION LAST POST
+    -----------------------------------------------*/
+
+    public function last_post($id_user)
+    {
+        $connexion = $this->db->connectDb(); 
+        if(isset($id_user)){
+            $last_p = $connexion -> prepare("SELECT *
+                                             FROM users 
+                                             INNER JOIN post
+                                             ON users.id = post.id_user
+                                             WHERE post.id_user = $id_user 
+                                             ORDER BY post.created_at DESC");
+            $last_p->execute();
+            $last_post = $last_p->fetch();
+            return $last_post;
+        }
+    }
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  //
+    /*------------------------------------------------------------------------------------------------------*/
+    /* FONCTION INFOS USER + FOLLOWERS = récupère seulement les infos de la table Users + Followers
+    --------------------------------------------------------------------------------------------------------*/
+    public function followers($id_user){
+        $connexion = $this->db->connectDb();
+        $q = $connexion->prepare("SELECT *
+                                  FROM follower
+                                  INNER JOIN users
+                                  ON follower.id_user =  users.id
+                                  WHERE follower.id_user_follow = $id_user
+                                  LIMIT 9");
+        $q->execute();
+        $followers = $q->fetchAll(PDO::FETCH_ASSOC);
+        return $followers;
+    }
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  //
+    /*------------------------------------------------------------------------------------------------------*/
+    /* FONCTION COUNT nb de Followers d'un User = récupère seulement les infos de la table Users + followers
+    --------------------------------------------------------------------------------------------------------*/
+
+    public function count_followers($id_user){
+        $connexion = $this->db->connectDb();
+        $q = $connexion->prepare("SELECT COUNT(*)
+                                  FROM follower
+                                  WHERE id_user_follow = $id_user");
+        $q->execute();
+        $count_followers = $q->fetch();
+        return $count_followers;
+    }
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  //
+    /*------------------------------------------------------------------------------------------------------*/
+    /* FONCTION INFOS USER + CURSUS = récupère seulement les infos de la table Users + Cursus
+    --------------------------------------------------------------------------------------------------------*/
+
+    public function post_users($id_user){
+        $connexion = $this->db->connectDb();
+        $q = $connexion->prepare("SELECT *
+                                  FROM post
+                                  WHERE id_user = $id_user");
+        $q->execute();
+        $post_users = $q->fetchAll(PDO::FETCH_ASSOC);
+        return $post_users;
+    }
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  //
+    /*---------------------------------------------*/
+    /* UPDATE PROFILE USER = FIRSTNAME + LASTNAME
+    -----------------------------------------------*/
+
+    public function modify_firstname($id_user, $new_firstname)
+    {  
+        $connexion = $this->db->connectDb();
+
+        //UPDATE FIRSTNAME
+        if(isset($new_firstname))
+        {
+            $firstname_required = preg_match("/^(?=.*[A-Za-z]$)[A-Za-z][A-Za-z\-]{2,19}$/", $new_firstname);
+            if (!$firstname_required) 
+            {
+                $errors[] = "Le prénom doit :<br>- Comporter entre 3 et 19 caractères.<br>- Commencer et finir par une lettre.<br>- Ne contenir aucun caractère spécial (excepté -).";
+            }
+            
+            if (empty($errors)) 
+            {   
+            $update_f = "UPDATE users SET firstname=:firstname WHERE id = $id_user ";
+            $update_firstname = $connexion -> prepare($update_f);
+            $update_firstname->bindParam(':firstname',$new_firstname, PDO::PARAM_STR);
+            $update_firstname->execute();
+            }
+        }
+    }
+
+    public function modify_lastname($id_user, $new_lastname)
+    {  
+        $connexion = $this->db->connectDb();
+
+        //UPDATE LASTNAME
+        if(isset($new_lastname))
+        {
+            $lastname_required = preg_match("/^(?=.*[A-Za-z]$)([A-Za-z]{2,25}[\s]?[A-Za-z]{1,25})$/", $new_lastname);
+            if (!$lastname_required) 
+            {
+                $errors[] = "Le nom doit:<br>- Comporter entre 3 et 50 caractètres.<br>- Commencer et finir par une lettre.<br>- Ne contenir aucun caractère spécial (excepté un espace).";
+            }
+            
+            if (empty($errors)) 
+            {
+            $update_l = "UPDATE users SET lastname=:lastname WHERE id = $id_user ";
+            $update_lastname = $connexion -> prepare($update_l);
+            $update_lastname->bindParam(':lastname',$new_lastname, PDO::PARAM_STR);
+            $update_lastname->execute();
+            }   
+        }
+          
+        if (!empty($errors))
+        {
+            $message = new messages($errors);
+            echo $message->renderMessage();
+        }
+
+    }
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  //
+    /*---------------------------------------------*/
+    /* UPDATE PROFILE USER = BIRTHDAY
+    -----------------------------------------------*/
+    public function modify_birthday ($id_user, $new_birthday)
+     {
+         $connexion = $this->db->connectDb(); 
+         if(isset($new_birthday)){
+                 $update_b = "UPDATE users SET birthday=:birthday WHERE id = $id_user ";
+                 $update_birthday = $connexion -> prepare($update_b);
+                 $update_birthday->bindParam(':birthday',$new_birthday, PDO::PARAM_STR);
+                 $update_birthday->execute();
+         }
+   }
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  //
+    /*---------------------------------------------*/
+    /* UPDATE PROFILE USER = PASSWORD
+    -----------------------------------------------*/
+
+    public function modify_password ($id_user, $new_password, $new_check_password)
+    {
+        $connexion = $this->db->connectDb(); 
+
+        if(isset($new_password) && isset($check_password)){
+            $password_required = preg_match("/^(?=.*?[A-Z]{1,})(?=.*?[a-z]{1,})(?=.*?[0-9]{1,})(?=.*?[\W]{1,}).{8,20}$/",$new_password);
+            if (!$password_required) {
+                $errors[] = "Le mot de passe doit contenir:<br>- Entre 8 et 20 caractères<br>- Au moins 1 caractère spécial<br>- Au moins 1 majuscule et 1 minuscule<br>- Au moins un chiffre.";
+            }
+            if ($new_password != $check_password) {
+                $errors[] = "Les mots de passe ne correspondent pas.";
+            } else {
+    
+                $password_modified = password_hash($new_password, PASSWORD_BCRYPT, array('cost' => 10));
+
+                $update_pass = "UPDATE users SET password=:pass WHERE id = $id_user";
+                $update_password = $connexion -> prepare($update_pass);
+                $update_password->bindParam(':pass',$password_modified, PDO::PARAM_STR);
+                $update_password->execute();
+            }
+        }
+        if (!empty($errors))
+        {
+            $message = new messages($errors);
+            echo $message->renderMessage();
+        }
+    }
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  //
+    /*---------------------------------------------*/
+    /* UPDATE PROFILE USER = PROMO 
+    -----------------------------------------------*/
+
+     public function modify_promo ($id_user, $new_promo)
+     {
+         $connexion = $this->db->connectDb(); 
+         if(isset($new_promo)){
+                 $update_prom = "UPDATE users SET date_promo=:date_promo WHERE id = '$id_user' ";
+                 $update_promo = $connexion -> prepare($update_prom);
+                 $update_promo->bindParam(':date_promo',$new_promo, PDO::PARAM_STR);
+                 $update_promo->execute();
+         }
+   }
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  //
+    /*---------------------------------------------*/
+    /* UPDATE PROFILE USER = LOCALITE
+    -----------------------------------------------*/
+
+    public function modify_localite ($id_user, $new_localite)
+    {
+        $connexion = $this->db->connectDb(); 
+        if(isset($new_localite)){
+                $update_loc = "UPDATE users SET localite=:localite WHERE id = $id_user ";
+                $update_localite = $connexion -> prepare($update_loc);
+                $update_localite->bindParam(':localite',$new_localite, PDO::PARAM_STR);
+                $update_localite->execute();
+        }
+    }
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  //
+    /*---------------------------------------------*/
+    /* UPDATE PROFILE USER = CURSUS
+    -----------------------------------------------*/
+
+     public function modify_cursus ($id_user, $new_cursus)
+     {
+         $connexion = $this->db->connectDb(); 
+         if(isset($new_cursus)){
+                 $update_curs = "UPDATE users SET cursus=:cursus WHERE id = $id_user ";
+                 $update_cursus = $connexion -> prepare($update_curs);
+                 $update_cursus->bindParam(':cursus',$new_cursus, PDO::PARAM_INT);
+                 $update_cursus->execute();
+         }
+     }
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  //
+    /*---------------------------------------------*/
+    /* UPDATE PROFILE USER = ENTREPRISE
+    -----------------------------------------------*/
+
+     public function modify_cie ($id_user, $new_cie)
+     {
+         $connexion = $this->db->connectDb(); 
+         if(isset($new_cie)){
+                 $update_cie = "UPDATE users SET entreprise=:entreprise WHERE id = $id_user ";
+                 $update_entreprise = $connexion -> prepare($update_cie);
+                 $update_entreprise->bindParam(':entreprise',$new_cie, PDO::PARAM_STR);
+                 $update_entreprise->execute();
+         }
+   }
+
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  //
+    /*---------------------------------------------*/
+    /* UPDATE PROFILE USER = WEBSITE
+    -----------------------------------------------*/
+    public function modify_website($id_user, $new_website)
+    {  
+        $connexion = $this->db->connectDb();
+
+        if(isset($new_website))
+        {
+            $url_required = preg_match("/^(?=.*[A-Za-z]$)[A-Za-z][A-Za-z\-]{2,19}$/", $new_website);
+            preg_match('#(https?|ftp|ssh|mailto):\/\/[a-z0-9\/:%_+.,\#?!@&=-]+#i', $variableChaine, $matches);
+            if (!$url_required) 
+            {
+                $errors[] = "Vous devez entrer une adresse URL";
+                $info = new Infos($errors);
+                echo $info->renderInfo();
+            }
+            
+            if (empty($errors)) 
+            { 
+            $update_w = "UPDATE users SET website=:website WHERE id = $id_user ";
+            $update_website = $connexion -> prepare($update_w);
+            $update_website->bindParam(':website',$new_website, PDO::PARAM_STR);
+            $update_website->execute();
+            }
+            
+        }
+
+    }
+
+   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  //
+    /*---------------------------------------------*/
+    /* UPDATE PROFILE USER = BIO
+    -----------------------------------------------*/
+
+    public function modify_bio ($id_user, $new_bio)
+    {
+        $connexion = $this->db->connectDb(); 
+        if(isset($new_bio)){
+                $update_b = "UPDATE users SET bio=:bio WHERE id = $id_user ";
+                $update_bio = $connexion -> prepare($update_b);
+                $update_bio->bindParam(':bio',$new_bio, PDO::PARAM_STR);
+                $update_bio->execute();
+        }
+    }
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  //
+    /*---------------------------------------------*/
+    /* UPDATE PROFILE USER = HOBBIES
+    -----------------------------------------------*/
+
+     public function modify_hobbies ($id_user, $new_hobbies)
+     {
+         $connexion = $this->db->connectDb(); 
+         if(isset($new_hobbies)){
+                 $update_hobbies = "UPDATE users SET hobbies=:hobbies WHERE id = $id_user ";
+                 $update_hob = $connexion -> prepare($update_hobbies);
+                 $update_hob->bindParam(':hobbies',$new_hobbies, PDO::PARAM_STR);
+                 $update_hob->execute();
+         }
+     }
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  //
+    /*----------------------------------------------------*/
+    /* FONCTION UPLOAD PIC USER
+    ------------------------------------------------------ */
+    public function upload_picture($id_user, $files){
+        
+        // Vérifie si le fichier a été uploadé sans erreur.
+        if(isset($files) && !empty($files)){
+            $allowed = array("jpg" => "image/jpg", "jpeg" => "image/jpeg", "gif" => "image/gif", "png" => "image/png");
+            $filename = $_FILES["photo"]["name"];
+            $filetype = $_FILES["photo"]["type"];
+            $filesize = $_FILES["photo"]["size"];
+    
+            // Vérifie l'extension du fichier
+            $ext = pathinfo($filename, PATHINFO_EXTENSION);
+            if(!array_key_exists($ext, $allowed)){
+                $errors[] = "Veuillez sélectionner un format de fichier valide.";
+                $info = new Infos($errors);
+                echo $info->renderInfo();
+            };
+    
+            // Vérifie la taille du fichier - 5Mo maximum
+            $maxsize = 5 * 1024 * 1024;
+            if($filesize > $maxsize){
+                $errors[] = "La taille du fichier est supérieure à la limite autorisée.";
+                $info = new Infos($errors);
+                echo $info->renderInfo();
+            };
+    
+            // Vérifie le type MIME du fichier
+            if(in_array($filetype, $allowed)){
+                // Vérifie si le fichier existe avant de le télécharger.
+                if(file_exists("upload/" . $_FILES["photo"]["name"])){
+                    echo $_FILES["photo"]["name"] . " existe déjà.";
+                } else{
+                    move_uploaded_file($_FILES["photo"]["tmp_name"], "upload/" . $_FILES["photo"]["name"]);
+                    echo "Votre fichier a été téléchargé avec succès.";
+                    
+                    $file_path="upload/" . $_FILES["photo"]["name"];
+    
+                    //récupérer le chemin du serveur soit avec une super globale SERVER ou le taper en dur
+    
+    
+                   // "UPDATE utilisateurs SET avatar='$file_path'"; //ajouter id utilisateur
+                    
+                    $requestimg = "UPDATE `users` SET `avatar`='$file_path' WHERE login = $id_user";
+                    $resultimg = mysqli_query($connect, $requestimg);
+          
+                    header("location:connexion.php");
+                    
+                } 
+            } else{
+                echo "Error: Il y a eu un problème de téléchargement de votre fichier. Veuillez réessayer."; 
+            }
+        } else{
+            echo "Error: " . $_FILES["photo"]["error"];
+        }
+    }
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  //
+   
+
+
+    
+
+
+     // FONCTION NEWSLETTER en cours
 
     public function check_newsletter($email_newsletter){
 
@@ -253,265 +714,10 @@ class User{
         }
     }
 
-    public function infos_user($id_user){
-        $connexion = $this->db->connectDb();
-        $q = $connexion->prepare("SELECT * FROM users WHERE id = :id");
-        $q->bindParam(':id', $id_user, PDO::PARAM_INT);
-        $q->execute();
-        $infos_user = $q->fetch(PDO::FETCH_ASSOC);
-
-    }
-
-    public function all_infos($id_user){
-        $connexion = $this->db->connectDb();
-        $q = $connexion->prepare("SELECT *
-                                  FROM users 
-                                  INNER JOIN user_tech
-                                  ON users.id = user_tech.id_user
-                                  INNER JOIN follower
-                                  ON users.id = follower.id_user
-                                  INNER JOIN post
-                                  ON users.id = post.id_user
-                                  INNER JOIN groupe
-                                  ON users.id = groupe.id_user
-                                  WHERE users.id = $id_user");
-        $q->bindParam(':id', $id_user, PDO::PARAM_INT);
-        $q->execute();
-        $all_infos = $q->fetch(PDO::FETCH_ASSOC);
-
-    }
-
-    public function test($id_user){
-        $connexion = $this->db->connectDb();
-        $q = $connexion->prepare("SELECT *
-                                  FROM users 
-                                  INNER JOIN cursus
-                                  ON users.cursus = cursus.id_cursus
-                                  WHERE users.id = $id_user");
-        $q->execute();
-        $all_infos = $q->fetch(PDO::FETCH_ASSOC);
-        return $all_infos;
-    }
-
-    public function followers($id_user){
-        $connexion = $this->db->connectDb();
-        $q = $connexion->prepare("SELECT *
-                                  FROM follower
-                                  INNER JOIN users
-                                  ON follower.id_user =  users.id
-                                  WHERE follower.id_user_follow = $id_user
-                                  LIMIT 9");
-        $q->execute();
-        $followers = $q->fetchAll(PDO::FETCH_ASSOC);
-        return $followers;
-    }
-
-    public function count_followers($id_user){
-        $connexion = $this->db->connectDb();
-        $q = $connexion->prepare("SELECT COUNT(*)
-                                  FROM follower
-                                  WHERE id_user_follow = $id_user");
-        $q->execute();
-        $count_followers = $q->fetch();
-        return $count_followers;
-    }
-
-    public function post_users($id_user){
-        $connexion = $this->db->connectDb();
-        $q = $connexion->prepare("SELECT *
-                                  FROM post
-                                  WHERE id_user = $id_user");
-        $q->execute();
-        $post_users = $q->fetchAll(PDO::FETCH_ASSOC);
-        return $post_users;
-    }
-
-
-
-    //UPDATE PERSONAL INFOS
-    public function modify_infos($id_user, $new_firstname, $new_lastname)
-    {  
-        $connexion = $this->db->connectDb();
-
-
-        //UPDATE FIRSTNAME
-        if(isset($new_firstname))
-        {
-            $firstname_required = preg_match("/^(?=.*[A-Za-z]$)[A-Za-z][A-Za-z\-]{2,19}$/", $new_firstname);
-            if (!$firstname_required) 
-            {
-                $errors[] = "Le prénom doit :<br>- Comporter entre 3 et 19 caractères.<br>- Commencer et finir par une lettre.<br>- Ne contenir aucun caractère spécial (excepté -).";
-            }
-            
-            if (empty($errors)) 
-            {   
-            $update_f = "UPDATE users SET firstname=:firstname WHERE id = '$id_user' ";
-            $update_firstname = $connexion -> prepare($update_f);
-            $update_firstname->bindParam(':firstname',$new_firstname, PDO::PARAM_STR);
-            $update_firstname->execute();
-            }
-        }
-
-        //UPDATE LASTNAME
-        if(isset($new_lastname))
-        {
-            $lastname_required = preg_match("/^(?=.*[A-Za-z]$)([A-Za-z]{2,25}[\s]?[A-Za-z]{1,25})$/", $new_lastname);
-            if (!$lastname_required) 
-            {
-                $errors[] = "Le nom doit:<br>- Comporter entre 3 et 50 caractètres.<br>- Commencer et finir par une lettre.<br>- Ne contenir aucun caractère spécial (excepté un espace).";
-            }
-            
-            if (empty($errors)) 
-            {
-            $update_l = "UPDATE utilisateurs SET lastname=:lastname WHERE id = '$id_user' ";
-            $update_lastname = $connexion -> prepare($update_l);
-            $update_lastname->bindParam(':lastname',$new_lastname, PDO::PARAM_STR);
-            $update_lastname->execute();
-            }   
-        }
-          
-        if (!empty($errors))
-        {
-            $message = new messages($errors);
-            echo $message->renderMessage();
-        }
-
-    }
-
-    //UPDATE PASSWORD
-
-    public function modify_password ($id_user, $new_password, $check_password)
-    {
-        $connexion = $this->db->connectDb(); 
-        if(isset($new_password) && isset($check_password)){
-            $password_required = preg_match("/^(?=.*?[A-Z]{1,})(?=.*?[a-z]{1,})(?=.*?[0-9]{1,})(?=.*?[\W]{1,}).{8,20}$/",$new_password);
-            if (!$password_required) {
-                $errors[] = "Le mot de passe doit contenir:<br>- Entre 8 et 20 caractères<br>- Au moins 1 caractère spécial<br>- Au moins 1 majuscule et 1 minuscule<br>- Au moins un chiffre.";
-            }
-            if ($new_password != $check_password) {
-                $errors[] = "Les mots de passe ne correspondent pas.";
-            } else {
-    
-                $password_modified = password_hash($new_password, PASSWORD_BCRYPT, array('cost' => 10));
-
-                $update_pass = "UPDATE users SET password=:pass WHERE id = '$id_user' ";
-                $update_password = $connexion -> prepare($update_pass);
-                $update_password->bindParam(':pass',$password_modified, PDO::PARAM_STR);
-                $update_password->execute();
-            }
-        }
-        if (!empty($errors))
-        {
-            $message = new messages($errors);
-            echo $message->renderMessage();
-        }
-    }
-
-     //UPDATE BIRTHDAY
-
-     public function modify_promo ($id_user, $new_promo)
-     {
-         $connexion = $this->db->connectDb(); 
-         if(isset($new_promo)){
-                 $update_prom = "UPDATE users SET date_promo=:date_promo WHERE id = '$id_user' ";
-                 $update_promo = $connexion -> prepare($update_prom);
-                 $update_promo->bindParam(':date_promo',$new_promo, PDO::PARAM_STR);
-                 $update_promo->execute();
-         }
-   }
- 
-    //UPDATE BIRTHDAY
-
-    public function modify_birthday ($id_user, $new_birthday)
-    {
-        $connexion = $this->db->connectDb(); 
-        if(isset($new_birthday)){
-                $update_birth = "UPDATE users SET birthday=:birthday WHERE id = '$id_user' ";
-                $update_birthday = $connexion -> prepare($update_birth);
-                $update_birthday->bindParam(':birthday',$new_birthday, PDO::PARAM_STR);
-                $update_birthday->execute();
-        }
-  }
-
-
-    //UPDATE ENTREPRISE
-
-      public function modify_cie ($id_user, $new_cie)
-      {
-          $connexion = $this->db->connectDb(); 
-          if(isset($new_cie)){
-                  $update_cie = "UPDATE users SET entreprise=:entreprise WHERE id = '$id_user' ";
-                  $update_entreprise = $connexion -> prepare($update_cie);
-                  $update_entreprise->bindParam(':entreprise',$new_cie, PDO::PARAM_STR);
-                  $update_entreprise->execute();
-          }
-    }
-
-    //UPDATE LOCALITE
-
-    public function modify_localite ($id_user, $new_localite)
-    {
-        $connexion = $this->db->connectDb(); 
-        if(isset($new_localite)){
-                $update_loc = "UPDATE users SET localite=:localite WHERE id = '$id_user' ";
-                $update_localite = $connexion -> prepare($update_loc);
-                $update_localite->bindParam(':localite',$new_localite, PDO::PARAM_STR);
-                $update_localite->execute();
-        }
-    }
-
-
-    //UPDATE WEBSITE EN COURS
-    public function modify_website($id_user, $new_website)
-    {  
-        $connexion = $this->db->connectDb();
-
-        if(isset($new_website))
-        {
-            $url_required = preg_match("/^(?=.*[A-Za-z]$)[A-Za-z][A-Za-z\-]{2,19}$/", $new_website);
-            preg_match('#(https?|ftp|ssh|mailto):\/\/[a-z0-9\/:%_+.,\#?!@&=-]+#i', $variableChaine, $matches);
-            if (!$url_required) 
-            {
-                $errors[] = "Vous devez entrer une adresse URL";
-            }
-            
-            if (empty($errors)) 
-            {   
-            $update_w = "UPDATE users SET website=:website WHERE id = '$id_user' ";
-            $update_website = $connexion -> prepare($update_website);
-            $update_website->bindParam(':website',$new_website, PDO::PARAM_STR);
-            $update_website->execute();
-            }
-        }
-
-    }
-
-    //UPDATE HOBBIES
-
-    public function modify_hobbies ($id_user, $new_hobbies)
-    {
-        $connexion = $this->db->connectDb(); 
-        if(isset($new_hobbies)){
-                $update_hobbies = "UPDATE users SET hobbies=:hobbies WHERE id = '$id_user' ";
-                $update_hob = $connexion -> prepare($update_hobbies);
-                $update_hob->bindParam(':hobbies',$new_hobbies, PDO::PARAM_STR);
-                $update_hob->execute();
-        }
-    }
-
-    //UPDATE BIO
-
-    public function modify_bio ($id_user, $new_bio)
-    {
-        $connexion = $this->db->connectDb(); 
-        if(isset($new_bio)){
-                $update_b = "UPDATE users SET bio=:bio WHERE id = '$id_user' ";
-                $update_bio = $connexion -> prepare($update_b);
-                $update_bio->bindParam(':bio',$new_bio, PDO::PARAM_STR);
-                $update_bio->execute();
-        }
-    }
-
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  //
+    /*---------------------------------------------*/
+    /* ADMIN
+    -----------------------------------------------*/
 
     public function GetUsers(){
         $connexion = $this->db->connectDb();
