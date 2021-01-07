@@ -26,6 +26,7 @@ $(document).ready(function() {
         }
     }
     
+    
 
     $(".file-upload").on('change', function(){
         console.log(this.files[0]);
