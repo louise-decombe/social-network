@@ -1,6 +1,11 @@
-<?php $page_selected = 'inscription'; 
+<?php 
+$page_selected = 'inscription'; 
 session_start();
-
+include 'class/Config.php';
+require 'class/Options.php';
+$options = new Options($db);
+$cursus = $options->cursus_list();
+//var_dump($cursus);
 ?>
 <!DOCTYPE html>
 <html>
@@ -19,10 +24,6 @@ session_start();
 <header class = "header">
     <?php
     include("includes/header.php");
-    require 'class/Options.php';
-    $options = new Options($db);
-    $cursus = $options->cursus_list();
-    //var_dump($cursus);
    ?>
 </header>
 <main id="main-index">
@@ -32,7 +33,7 @@ session_start();
     <div class="ovale_3"></div>
 
     <div class="container-fluid sh-100 d-flex flex-column justify-content-center align-content-center index_content">
-        <div class="row flex-column align-content-center">
+        <div class="row flex-column align-content-center op1">
             <form class="form" id="form-register" method="POST" action="php/form_inscription.php">
                 <h1 id="form-title"><img src="img/PICT_LOGO_BLACK.png" width="70" height="50" alt="blacl_logo_plateformer_">PLATEFORMER_</h1>
                 <h2>Formulaire d'inscription</h2>

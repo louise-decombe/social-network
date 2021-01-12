@@ -4,12 +4,13 @@
 const password_error = "Le mot de passe n'est pas conforme.";
 const check_error = "Les mots de passe ne correspondent pas.";
 const modification_ok = "la modification a bien été prise en compte";
+const site_error = "veuillez entrer une adresse url valide";
 
 
 /*----------------------------------------------------*/
 /* UPLOAD PROFILE PIC
 ------------------------------------------------------ */
-$(document).ready(function() {
+/*$(document).ready(function() {
 
     var readURL = function(input) {
         if (input.files && input.files[0]) {
@@ -41,6 +42,9 @@ $(document).ready(function() {
         $.ajax({
             url : "php/upload_test.php", // on donne l'URL du fichier de traitement
             type : "POST", // la requête est de type POST
+            //enctype:'multipart/form-data',
+            //dataType: 'json',
+            //data : formdata,
             data : ({id_user: id_user, photo: photo, type:type, size:size}),// et on envoie nos données
             success:function(response){
                 console.log(response);
@@ -54,7 +58,7 @@ $(document).ready(function() {
     $(".upload-button").on('click', function() {
        $(".file-upload").click();
     });
-});
+});*/
 
 /*----------------------------------------------------*/
 /* LOCALITE AUTOCOMPLETION
@@ -132,7 +136,6 @@ $(document).ready(function(){
                     $('#user_city').append(new_localite);
                     $('#message_city').append(modification_ok);
                     
-                    
                 }
             });
     });
@@ -201,10 +204,13 @@ $(document).ready(function(){
 
     $('#user_website').submit(function(e){
         e.preventDefault(); // on empêche le bouton d'envoyer le formulaire
-            
+          
+        var urlregex = /^(http:\/\/www.|https:\/\/www.|ftp:\/\/www.|www.){1}([0-9A-Za-z]+\.)$/;
         var id_user = $(this).find("input[name=id_user]").val();
         var new_website = $('#modify_website').val();;
         //alert(new_website);
+
+        if (!(new_website).match(urlregex)){
                     
             $.ajax({
                 url : "php/form_profile.php", // on donne l'URL du fichier de traitement
@@ -213,9 +219,15 @@ $(document).ready(function(){
                 success:function(response){
                     console.log(response);
                     //alert(response);
-                    
+
+                    $('#user_site').empty();
+                    $('#user_site').append(new_localite);
+                    $('#message_site').append(modification_ok);
                 }
             });
+        }else{
+            $('#message_site').append(site_error);
+        };   
     });
 });
 
@@ -274,16 +286,16 @@ $(document).ready(function(){
 /* FIRSTNAME UPDATE
 ------------------------------------------------------ */
 
-$(document).ready(function(){
+/*$(document).ready(function(){
 
     $('#user_firstname').submit(function(e){
-        e.preventDefault(); // on empêche le bouton d'envoyer le formulaire
+        //e.preventDefault(); // on empêche le bouton d'envoyer le formulaire
             
-        var id_user = $(this).find("input[name=id_user]").val();
+        //var id_user = $(this).find("input[name=id_user]").val();
         var new_firstname = $('#modify_firstname').val();
-        //alert(new_firstname);
+        alert(new_firstname);
                     
-            $.ajax({
+            /*$.ajax({
                 url : "php/form_profile.php", // on donne l'URL du fichier de traitement
                 type : "POST", // la requête est de type POST
                 data : ({id_user: id_user, new_firstname: new_firstname}),// et on envoie nos données
@@ -300,7 +312,7 @@ $(document).ready(function(){
 /* LASTNAME UPDATE
 ------------------------------------------------------ */
 
-$(document).ready(function(){
+/*$(document).ready(function(){
 
     $('#user_lastname').submit(function(e){
         e.preventDefault(); // on empêche le bouton d'envoyer le formulaire
@@ -320,7 +332,7 @@ $(document).ready(function(){
                 }
             });
     });
-});
+});*/
 
 /*----------------------------------------------------*/
 /* BIRTHDAY UPDATE

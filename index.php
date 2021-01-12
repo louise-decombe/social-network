@@ -1,5 +1,6 @@
 <?php $page_selected = 'index_1'; 
 session_start();
+require 'class/Config.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -65,7 +66,6 @@ session_start();
 </footer>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 <script type="text/javascript" src="js/wave.js"></script>
-<script type="text/javascript" src="js/form_newsletter.js"></script>
 <!-- <script type="text/javascript" src="js/transition.js"></script> -->
 <!-- <script type="text/javascript" src="js/form_connexion.js"></script> -->
 <!-- <script type="text/javascript" src="js/form_inscription.js"></script> -->

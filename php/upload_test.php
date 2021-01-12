@@ -21,7 +21,7 @@ $connexion->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
     //$filesize = $_POST['size'];
     //$filetype= $_POST['type'];
 
-        //$_FILES["photo"];
+    //$_FILES["photo"];
     // Vérifie si le fichier a été uploadé sans erreur.
 var_dump($_FILES);
    
@@ -40,7 +40,9 @@ var_dump($_FILES);
                $update_pic->execute(); 
 
                
-               //echo 'photo';
+              
+    }else{
+        echo 'error';
     }
         
         

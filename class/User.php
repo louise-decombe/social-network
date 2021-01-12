@@ -150,19 +150,19 @@ class User{
     public function register($firstname, $lastname, $mail, $cursus, $password, $check_pass){
         $connexion = $this->db->connectDb();
         //firstname
-        $firstname_required = preg_match("/^(?=.*[A-Za-z]$)[A-Za-z][A-Za-z\-]{2,19}$/", $firstname);
+        $firstname_required = preg_match("/^([a-zA-Z\-]{3,25})$/", $firstname);
         if (!$firstname_required) {
             $errors[] = "Le prénom doit :<br>- Comporter entre 3 et 19 caractères.<br>- Commencer et finir par une lettre.<br>- Ne contenir aucun caractère spécial (excepté -).";
         }
 
         //lastname
-        $lastname_required = preg_match("/^(?=.*[A-Za-z]$)([A-Za-z]{2,25}[\s]?[A-Za-z]{1,25})$/", $lastname);
+        $lastname_required = preg_match("/^([a-zA-Z\-]{3,25})$/", $lastname);
         if (!$lastname_required) {
             $errors[] = "Le nom doit:<br>- Comporter entre 3 et 50 caractètres.<br>- Commencer et finir par une lettre.<br>- Ne contenir aucun caractère spécial (excepté un espace).";
         }
         
         //email
-        $email_required = preg_match("/^[a-zA-Z0-9]+@laplateforme\.io$/", $mail);
+        $email_required = preg_match("/^[a-zA-Z0-9._%+-]+@laplateforme\.io$/", $mail);
         if (!$email_required) {
             $errors[] = "L'email n'est pas conforme. Vous devez entrer une adresse email se terminant par @laplateforme.io";
         }
@@ -256,13 +256,11 @@ class User{
                                   ON users.id = follower.id_user
                                   INNER JOIN post
                                   ON users.id = post.id_user
-                                  INNER JOIN groupe
-                                  ON users.id = groupe.id_user
                                   WHERE users.id = $id_user");
         $q->bindParam(':id', $id_user, PDO::PARAM_INT);
         $q->execute();
         $all_infos = $q->fetch(PDO::FETCH_ASSOC);
-        return all_infos;
+        return $all_infos;
     }
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  //
@@ -309,6 +307,22 @@ class User{
             $follower->bindParam(':id_user_follow',$id_user_follow, PDO::PARAM_INT);
             $follower->execute();
         }
+    }
+
+    /*---------------------------------------------*/
+    /* FONCTION FOLLOW
+    -----------------------------------------------*/
+
+    public function already_follow($id_user_follow, $id_user){
+
+        $connexion = $this->db->connectDb($id_user); 
+        $q = $connexion->prepare("SELECT id_user_follow FROM follower WHERE id_user_follow = :id_user_follow AND id_user = :id_user");
+        $q->bindParam(':id_user_follow', $id_user_follow, PDO::PARAM_INT);
+        $q->bindParam(':id_user', $id_user, PDO::PARAM_INT);
+        $q->execute();
+        $follow_check = $q->fetch();
+        
+        return $follow_check;
     }
 
     /*---------------------------------------------*/
@@ -533,6 +547,23 @@ class User{
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  //
     /*---------------------------------------------*/
+    /* UPDATE PROFILE USER = TECHNOLOGIES
+    -----------------------------------------------*/
+
+    public function modify_tech ($id_user, $new_tech)
+    {
+        $connexion = $this->db->connectDb(); 
+        if(isset($new_tech)){
+            $new_technologies = "INSERT INTO user_tech(id_user, id_technologie) values (:id_user, :id_technologie)";
+            $tech = $connexion -> prepare($new_technologies);
+            $tech->bindParam(':id_user',$id_user, PDO::PARAM_INT);
+            $tech->bindParam(':id_technologie',$id_user_follow, PDO::PARAM_INT);
+            $tech->execute();
+        }
+    }
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  //
+    /*---------------------------------------------*/
     /* UPDATE PROFILE USER = ENTREPRISE
     -----------------------------------------------*/
 
@@ -613,25 +644,9 @@ class User{
 
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  //
-   
-
-
-    
-
-
-     // FONCTION NEWSLETTER en cours
-
-    public function check_newsletter($email_newsletter){
-
-        $connexion = $this->db->connectDb();
-        $q = $connexion->prepare("SELECT email_newsletter FROM newsletter WHERE email_newsletter = :email_newsletter");
-        $q->bindParam(':email_newsletter', $email_newsletter, PDO::PARAM_STR);
-        $q->execute();
-        $email_exist = $q->fetchAll();
-
-        //return $email_exist;
-
-    }
+    /*---------------------------------------------*/
+    /* INSCRIPTION NEWSLETTER
+    -----------------------------------------------*/
 
     public function newsletter($email_newsletter){
         $connexion = $this->db->connectDb();
@@ -644,7 +659,7 @@ class User{
 
             $errors[] = "Cette adresse mail est déjà enregistrée.";
             $info = new Infos($errors);
-            echo $info->renderInfo();
+            echo 'error'; 
         }
         else{
 
@@ -652,7 +667,9 @@ class User{
             $q1->bindParam(':email_newsletter', $email_newsletter, PDO::PARAM_STR);
             $q1->execute();
 
-            header('Location: '.$_SERVER['PHP_SELF']);
+            echo 'news';
+
+            //header('Location: '.$_SERVER['PHP_SELF']);
         }
     }
 

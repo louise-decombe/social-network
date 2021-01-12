@@ -12,7 +12,7 @@
                 <input type="email" name="email_newsletter" id="email_newsletter" required type="email" spellcheck="false" placeholder="Entrez votre email">
                 <button type="submit" name="submit_newsletter" id="submit_newsletter"><i class="fa fa-arrow-right"></i></button>
             </div>
-            <span class="error-message"></span>
+            <div id="message-newsletter"></div>
             <small id="emailHelp" class="form-text text-muted">Retrouvez les news de Plateformer_ </small>
         </form>
     </section>
@@ -38,3 +38,4 @@
         </a>
         <p>© 2020 Plateformer_ Tous droits réservés</p>
     </section>
+    <script type="text/javascript" src="js/form_newsletter.js"></script>

@@ -65,10 +65,18 @@
     display: flex;
     flex-direction: column;
     width : 90%;
-    background-color:red;
     padding: 2.5%;
-    margin-bottom:2.5%;
-    border-radius:15px;
+    margin-bottom:5%;
+    border-radius:30px;
+    border-radius:0 !important;
+    box-shadow: 20px 20px rgba(221, 222, 225, 0.5) !important;
+    background-color:white;
+    border:1px solid #275fa0;
+}
+
+.reaction_posts{
+    display: flex;
+    min-height:10%;
 }
 
 #name_profile{
@@ -178,7 +186,7 @@
     display:flex;
     flex-wrap: wrap !important;
     justify-content:space-between !important;
-    width: 280px;
+    width: 350px;
 }
 
 .followers{
@@ -188,16 +196,18 @@
     font-weight:200;
     width : 25%;
     height:25%;
+    margin-bottom:2.5%;
 }
 
-.followers span{
-    font-size:10px;
+.followers a{
+    font-size:11px;
+    color:black;
 }
 
 .followers_img{
     position:relative;
-    width : 100% !important;
-    height : auto !important;
+    width : 90% !important;
+    height : 90% !important;
 }
 
 #profile_form{
@@ -282,6 +292,25 @@
     font-size:15px;
 }
 
+.personal_details{
+    display:flex;
+    width: 100%;
+    align-items: center;
+    justify-content:center;
+    margin-bottom:5%;
+}
+
+.user_details1{
+    display:flex;
+    justify-content:center;
+    align-items: center;
+    width: 90%;
+    font-size:12px;
+    padding-left:20px;
+}
+
+
+
 /*----------------------------------------------------------------------------------------------------------------------------*/
 /* MODAL MODIFICATION PROFIL
 ------------------------------------------------------ */
@@ -296,6 +325,7 @@
 .modify_input{
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     align-items: center;
     background-color: greenyellow;
     width:90%;
@@ -311,7 +341,6 @@
     display: flex;
     justify-content:space-between;
     width: 100%;
-    background-color: yellow;
 }
 
 .modify_input_details{
@@ -324,7 +353,8 @@
 }
 
 #submit_localite, #submit_birthday, #submit_cursus,
-#submit_entreprise, #submit_bio, #submit_site, #submit_hobbies{
+#submit_entreprise, #submit_bio, #submit_site, #submit_hobbies,
+#submit_lastname, #submit_tech, #submit_firstname, #submit_password{
     border:none;
     background-color: transparent;
 }
@@ -375,13 +405,12 @@
     max-height: 150px;
     overflow-y: scroll !important;
     font-size: 12px;
-   
 }
 
 .category_details{
     display: flex;
+    justify-content: center;
     align-items: center;
-    background-color: blue;
     width:100%;
 }
 

@@ -8,6 +8,20 @@ $user = new User($db);
 $options = new Options($db);
 $cursus = $options->cursus_list();
 $date = new DateTime();
+$id_user = $_SESSION['user']['id'];
+$id_user_follow = $_GET['id'];
+//var_dump($id_user);
+$user_details = $user->test($id_user_follow);
+//var_dump($user_details);
+$user_followers = $user->followers($id_user_follow);
+$already_follower = $user->already_follow($id_user_follow, $id_user);
+var_dump($already_follower);
+//var_dump($user_followers);
+$count_followers = $user->count_followers($id_user_follow);
+//var_dump($count_followers);
+$post_users = $user->post_users($id_user_follow);
+$last_post = $user->last_post($id_user_follow);
+//var_dump($last_post);
 ?>
 <!DOCTYPE html>
 <html>
@@ -32,19 +46,7 @@ $date = new DateTime();
 <body>
 <header>
     <?php
-    //include("includes/header.php");
-    $id_user = $_SESSION['user']['id'];
-    $id_user_follow = $_GET['id'];
-    //var_dump($id_user);
-    $user_details = $user->test($id_user_follow);
-    //var_dump($user_details);
-    $user_followers = $user->followers($id_user_follow);
-    //var_dump($user_followers);
-    $count_followers = $user->count_followers($id_user_follow);
-    //var_dump($count_followers);
-    $post_users = $user->post_users($id_user_follow);
-    $last_post = $user->last_post($id_user_follow);
-    var_dump($last_post);
+    include("includes/header.php");
    ?>
 </header>
 <main id="main-profile">
@@ -62,7 +64,16 @@ $date = new DateTime();
 
     <input type="hidden" id="id_user" name="id_user" value="<?= $id_user ?>">
     <input type="hidden" id="id_user_follow" name="id_user_follow" value="<?= $id_user_follow ?>">
-    <button type="submit" id="button_follow"><img src="images/icon_follow.png" alt="icon_follow" width=30>Follow</button>
+
+    <?php if(!empty ($already_follower)){ ?>
+        
+        <button type="submit" id="button_follow">Unfollow</button>
+
+    <?php }else{ ?>
+
+        <button type="submit" id="button_follow"><img src="images/icon_follow.png" alt="icon_follow" width=30>Follow</button>
+
+    <?php } ?>
 
     <div class="container-fluid sh-100 d-flex flex-column justify-content-center index_content">
         <div class="row">
@@ -90,6 +101,15 @@ $date = new DateTime();
                         <div class="category_details"><i class="fas fa-globe-americas"></i><span id="website">&nbsp<?= $user_details['website'] ?></span></div>
                         <?php } ?>
                     </div>
+                </article>
+
+                <article class="infos_user_profile">
+                    <span data-text="vos skills">
+                        SKILLS 
+                    </span>
+                    <img class="underline_wave" src="img/wave.png" alt="underline_wave">
+
+            
                 </article>
                
                 <article class="infos_user_profile">
