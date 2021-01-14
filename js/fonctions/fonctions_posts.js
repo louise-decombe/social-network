@@ -60,13 +60,14 @@ function paginationPost(data){
         let debut = (valeur - 1 ) * 5 ; /// valeur de depart de la boucle
         let max = 5 * valeur; 
         for ( let i = debut ; i < max ; i++){
-            let toto = 'posts';
-            $("#tbody").append(tableauPost(data,i,toto));
+            let type = 'posts';
+            $("#tbody").append(tableauPost(data,i,type));
         }
     })
 }
 
 function recuperationPostsSignal(){
+   
     $("thead").empty();
     $("#message_admin").empty();
     $("#message_admin").remove('.alert');

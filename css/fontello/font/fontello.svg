@@ -1,7 +1,7 @@
 <?xml version="1.0" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg xmlns="http://www.w3.org/2000/svg">
-<metadata>Copyright (C) 2020 by original authors @ fontello.com</metadata>
+<metadata>Copyright (C) 2021 by original authors @ fontello.com</metadata>
 <defs>
 <font id="fontello" horiz-adv-x="1000" >
 <font-face font-family="fontello" font-weight="400" font-stretch="normal" units-per-em="1000" ascent="850" descent="-150" />
@@ -31,6 +31,8 @@
 <glyph glyph-name="chat-1" unicode="&#xe80b;" d="M834 767q65 0 110-46t46-110l0-365q0-65-46-111t-110-45l-469 0-156-157 0 157-53 0q-65 0-110 45t-46 111l0 365q0 65 46 110t110 46l678 0z m51-521l0 365q0 21-15 37t-36 15l-678 0q-21 0-37-15t-15-37l0-365q0-21 15-36t37-15l678 0q21 0 36 15t15 36z m-625 79q-42 0-73 30t-31 73 31 74 73 30q44 0 74-31t31-73-31-73-74-30z m0 156q-21 0-36-16t-15-37 15-36 36-15 37 15 16 36-16 37-37 16z m235-156q-44 0-74 30t-31 73 31 73 74 31q43 0 73-30t31-74-31-73-73-30z m0 156q-21 0-37-16t-15-37 15-36 37-15 37 15 16 36-16 37-37 16z m234-156q-44 0-74 30t-30 73 30 74 74 30 74-31 31-73-31-73-74-30z m0 156q-21 0-36-16t-15-37 15-36 36-15 37 15 15 36-15 37-37 16z" horiz-adv-x="990" />
 
 <glyph glyph-name="share" unicode="&#xe80c;" d="M0-121q0 143 24 256t60 186 95 124 107 76 122 38 114 15 107 2l0 245 371-372-371-371 0 268q-102 0-151-1t-126-10-114-26-86-51-74-83-47-124-31-172z" horiz-adv-x="1000" />
+
+<glyph glyph-name="menu" unicode="&#xe80d;" d="M650 400q22 0 36-15t14-35-15-35-35-15l-600 0q-20 0-35 15t-15 35 14 35 36 15l600 0z m-600 100q-20 0-35 15t-15 35 14 35 36 15l600 0q22 0 36-15t14-35-15-35-35-15l-600 0z m600-300q22 0 36-15t14-35-15-35-35-15l-600 0q-20 0-35 15t-15 35 14 35 36 15l600 0z" horiz-adv-x="700" />
 
 <glyph glyph-name="bell-alt" unicode="&#xf0f3;" d="M509-96q0 8-9 8-33 0-57 24t-23 57q0 9-9 9t-9-9q0-41 29-70t69-28q9 0 9 9z m455 160q0-29-21-50t-50-21h-250q0-59-42-101t-101-42-101 42-42 101h-250q-29 0-50 21t-21 50q28 24 51 49t47 67 42 89 27 115 11 145q0 84 66 157t171 89q-5 10-5 21 0 23 16 38t38 16 38-16 16-38q0-11-5-21 106-16 171-89t66-157q0-78 11-145t28-115 41-89 48-67 50-49z" horiz-adv-x="1000" />
 

@@ -82,7 +82,7 @@ function tableau(donnee,data,i){
     
     
 } 
-//ICI
+
 //faire une fonction pou eviter de repeter 3 fois le form
 function formConfirmation(donnee){
     $("#action_alert").empty();
@@ -137,7 +137,7 @@ function template_upgrade(id_user){
                 <span class="icon-cancel"></span>
                 <label>Choissir le statut de l'utilisateur</label>
                 <input type="hidden" id="${id_user}">
-                <select name="statut" id="statut">
+                <select class='form-control' name="statut" id="statut">
                     <option value="utilisateur">Utilisateur</option>
                     <option value="administrateur">Administrateur</option>
                 </select>
@@ -183,22 +183,22 @@ function tableauPost(data,i,signal,genre){
                 return `<tr>
                 <td>${data[i].date_created}</td>
                 <td>${data[i].lastname} ${data[i].firstname}</td>
-                <td>Aucun contenu</td>
+                <td>Aucun contenu <button class='voir_post' data-genre= 'post' data-id=${data[i].id_post}> Voir le post</button></td>
                 <td>${data[i].nbr}</td>
                 <td>Post</td>
-                <td><button value='annuler_signal_post' class='annuler_signal ' id='${data[i].id_signal}'>X</button></td>
-                <td><button value='supprimer_post' class='supp_post icon-trash' id='${data[i].id_post}'></button></td>
+                <td><button value='annuler_signal_post' class='annuler_signal icon-cancel-1' id='${data[i].id_signal}'></button></td>
+                <td><button value='supprimer_post' class='supp supp_post icon-trash' id='${data[i].id_post}'></button></td>
                 </tr>`;
             }else{
             
                 return `<tr>
                         <td>${data[i].date_created}</td>
                         <td>${data[i].lastname} ${data[i].firstname}</td>
-                        <td>${data[i].content.substring(0, 100)} <a href="post.php?id=${data[i].id}"> Voir la suite</a></td>
+                        <td>${data[i].content.substring(0, 100)} <button class='voir_post' data-genre= 'post' data-id=${data[i].id_post}> Voir la suite</button></td>
                         <td>${data[i].nbr}</td>
                         <td>Post</td>
-                        <td><button value='annuler_signal_post' class='annuler_signal ' id='${data[i].id_signal}'>X</button></td>
-                        <td><button value='supprimer_post' class='supp_post icon-trash' id='${data[i].id_post}'></button></td>
+                        <td><button value='annuler_signal_post' class='annuler_signal icon-cancel-1' id='${data[i].id_signal}'></button></td>
+                        <td><button value=' supprimer_post' class='supp supp_post icon-trash' id='${data[i].id_post}'></button></td>
                         </tr>`;
             }
             
@@ -209,11 +209,11 @@ function tableauPost(data,i,signal,genre){
             return `<tr>
             <td>${data[i].date_created}</td>
             <td>${data[i].lastname} ${data[i].firstname}</td>
-            <td>${data[i].content.substring(0, 100)} <button value='${data[i].id_comment}' id='voir_comment'> Voir la suite</button></td>
+            <td>${data[i].content.substring(0, 100)} <button class='voir_post'data-genre= 'comment' data-id=${data[i].id_comment}> Voir la suite</button></td>
             <td>${data[i].nbr}</td>
             <td>Commentaire</td>
-            <td><button value='annuler_signal_comment' class='annuler_signal ' id='${data[i].id_signal_comment}'>X</button></td>
-            <td><button value='supprimer_comment' class='supp_comment icon-trash' id='${data[i].id_comment}'></button></td>
+            <td><button value='annuler_signal_comment' class='annuler_signal icon-cancel-1' id='${data[i].id_signal_comment}'></button></td>
+            <td><button value='supprimer_comment' class='supp supp_comment icon-trash' id='${data[i].id_comment}'></button></td>
         </tr>`;
         }
             
@@ -224,7 +224,7 @@ function tableauPost(data,i,signal,genre){
             return `<tr>
             <td>${data[i].date_created}</td>
             <td>${data[i].lastname} ${data[i].firstname}</td>
-            <td>Aucun contenu</td>
+            <td>Aucun contenu </td>
             </tr>`;
            
         }else {
@@ -240,29 +240,8 @@ function tableauPost(data,i,signal,genre){
     
 }
 
-//tableau groupe
-function tabGroupe(data,i){
-    
-    if (data[i].id_statut === "1"){
-        return `<tr>
-                    <td>${data[i].nom}</td>
-                    <td>Privé</td>
-                </tr>`;
-    }else{
-        return `<tr>
-                    <td>${data[i].nom}</td>
-                    <td>Public</td>
-                </tr>`;
-    }
-    
-}
 
-function tabTopGroup(data,i){
-    return `<tr>
-                <td>${ i + 1}</td>
-                <td>${data[i].nom}</td>
-            </tr>`;
-}
+
 
 function tabLangage(data,i){
     return `<tr>

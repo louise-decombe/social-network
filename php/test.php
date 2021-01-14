@@ -1,306 +1,939 @@
-<?php 
+function template_affichage_post(donnees,i,media,classe,reaction){
+   let dateJour = Formatdate(donnees[i].created_at)
+   //  ==>   if  (donnees[i].content != null && donnees[i].content.length  >= 200){
+//   ==>      return `<section class="section_posts" id='section_${donnees[i].id_post}'>
+//   ==>  <div class="infos_user">
+//   ==>          <img src="${donnees[i].photo}" alt="Photo par defaut">
+//     ==>    <div class="div_flex">
+//      ==>       <div class="div_first">
+//     ==>            <p> <a href='profile_public.php?id=${donnees[i].id_user}'>${donnees[i].firstname}  ${donnees[i].lastname}</a></p>
+//       ==>          <p>Suivis par ${donnees[i][1]} personne(s) </p>
+//       ==>          <p>${ dateJour }</p>
+//         ==>    </div>
+//          ==>   <div class="div2">
+//     ==>            <div>
+//     ==>                <p class="menu_signal menu_signal_${donnees[i].id_post}" data-id_post='${donnees[i].id_post}' data-statut='off'>°°°</p>
+//     ==>                <div class='div_signal div_signal_${donnees[i].id_post}' data-id_post='${donnees[i].id_post}' >
+//                         <a href="" >Signaler le post</a>
+//                     </div>
+//                 </div>
+                            
+//             </div>
+             
+           
+//         </div>
+//   ==>  </div>
+//    ==> <div>
+//    ==>     <p id="p_${donnees[i].id_post}" class="p_content">${donnees[i].content.substr(0, 200)} </p>
+//    =+>     <a class="plus plus_${donnees[i].id_post}" id ="${donnees[i].id_post}" href="fil_actu.php?id=${donnees[i].id_post}#section_${donnees[i].id_post}" >... Voir plus</a>
+//        ${media}
+//         <div>
+//         </div>
 
-    // $page_selected = 'feed'; 
-   
+//      ==>   <div>
 
-    // // A RENDRE DINAMIQUE
-    // $id_user = 93;
-    // $_SESSION['user']['id'] = 93;
-
-    // if (!isset($id_user)){
-    //     $_SESSION['erreur'] = "Vous devez etre connecté pour acceder à cette page";
-    //     header("location: connexion.php");
-    // }
-var_dump($_POST['action']);
-if ($_POST["action"] != 'refresh'){
-   
-    // require 'class/Groupe.php';
-    // require 'class/Follower.php';
-
-    // $groupe = new Groupe($db);
-    // $follow = new Follower($db);
-
-
-    //recuperation des infos de bases
-    //infos perso + nombre de personne suivis
-    // $infos_user = $user->Recuperation_personnes_suivis($id_user);
-
-    // //recuperation groupe
-    // $groupes = $groupe->getNameGroupeByUser($id_user);
-
-    // //recuperation de toutes les personnes suivi par l utilisateur
-    // $followers = $follow->GetFollowerUser($id_user);
-
-     //on boucle sur les id des personnes suivi
-    //  if (!empty($followers)){
-    //     for ($i = 0 ; $i < COUNT($followers) ; $i++){
-    //     //requete avec les id des amis de l'utilisateurs
-    //     //on recupere les personnes qui suive ces personnes
-    //     if (!isset($nbr)){
-    //         $nbr=[];
-    //         $nbr[]= $follow->Get_follow($followers[$i]['id_user_follow'],$id_user);
-            
-    //     }else{
-    //         $nbr[]= $follow->Get_follow($followers[$i]['id_user_follow'],$id_user);
-    //     }
-      
-
-
-    //     //tab des amis
-    //     $tab_user=[];
-    //     for ($i=0 ; $i < count($followers); $i++){
-    //         $tab_user[$i]=$followers[$i]['id_user_follow'];
-    //     }
-       
-
-    //     //tab des personne qui suive les meme personne
-
-    //     for ($i=0 ; $i < count($nbr); $i++){
-    //         for ($j=0 ; $j < count($nbr[$i]); $j++){
-    //             $tab_communs[]=$nbr[$i][$j]['id_user'];
-    //         }
-    //     }
-
-    //     //comparer les 2 Tab //On supprime les valeurs identique car cela nous indique que l utilisateur sur deja la personne
-    //     $amis_en_communs = array_unique(array_diff($tab_communs,$tab_user));
-        
-
-    //     //recuperation de tous les amis de cette personnes
-    //     for ($i = 0 ; $i < COUNT($amis_en_communs) ; $i++){
-    //         $tab1[$i] = count($follow->GetFollowerUser($amis_en_communs[$i]));
-    //     }
-            
+//         ==>    <!-- Les likes , recation et nombre commentaire -->
+//             <a href=''><div class="reactions_miniatures reactions_miniatures_${donnees[i].id_post}" data-id_post='${donnees[i].id_post}'>
+//             </div></a>
+//             <p class="p_commentaires p_commentaires_${donnees[i].id_post}" data-id_post='${donnees[i].id_post}'></p>
+//        ==>     <hr>
+//             <div class="reactions">
+//                 <!-- Reactions -->
+//          ==>       <div class="modale_reaction modale_reaction_${donnees[i].id_post}">
+                               
+//                     <div>
+//                         <span class="jaime span_titre_reaction">J'aime</span>
+//                         <a href="" ><img id="jaime" class="icon_block" src="images/pouce.png" alt="j'aime" data-id_post='${donnees[i].id_post}'></a>
+//                     </div> 
+//                     <div>  
+//                         <span class="bravo span_titre_reaction">Bravo</span>
+//                         <a href=""  ><img id="bravo" class="icon_block" src="images/bravo.png" alt="bravo" data-id_post='${donnees[i].id_post}'></a>
+//                     </div>
+//                     <div>    
+//                         <span class="soutien span_titre_reaction">Soutien</span>
+//                         <a href=""  ><img id="soutien" class="icon_block" src="images/soutien.png" alt="soutien" data-id_post='${donnees[i].id_post}'></a>
+//                     </div>
+//                     <div>    
+//                         <span class="jadore span_titre_reaction">J'adore</span>
+//                         <a href="" ><img id="jadore" class="icon_block" src="images/jadore.png" alt="j'adore" data-id_post='${donnees[i].id_post}'></a>
+//                     </div>
+//                     <div>    
+//                         <span class="instructif span_titre_reaction">Instructif</span>
+//                         <a href="" ><img id="instructif" class="icon_block" src="images/instructif.png" alt="instructif" data-id_post='${donnees[i].id_post}'></a>
+//                     </div>    
+//                     <div>     
+//                         <span class="interressant span_titre_reaction">Interressant</span>
+//                         <a href="" ><img id="interressant" class="icon_block" src="images/interressant.png" alt="interressant" data-id_post='${donnees[i].id_post}'></a>
+//                     </div>
+//                 </div>
+//                 <div class='${classe} div_icon  div_icon-thumbs-up${donnees[i].id_post}' data-react='modale_reaction_${donnees[i].id_post}' data-id_post='${donnees[i].id_post}'><span class="icon-thumbs-up"></span>${reaction}</div>
+//                 <div class="icon-c icon-c${donnees[i].id_post}" data-id_post='${donnees[i].id_post}'><span class="icon-chat-1"></span>Commenter</div>
+//             </div>
+//         </div>
+//  ==<   </div>
     
-    // }
-
-      
-}
-
-
-
-    // RECUPERATION DE TOUT LES POST
-    $All_posts = $post->GetPostsByIdUser();
-   //var_dump($All_posts);
-  
-    //recuperation des posts des tout les amis et les siens 
-    
-    if (!empty($followers)){
-        for ($i = 0 ; $i < COUNT($tab_user) ; $i ++){
-       
-            for ($j = 0 ; $j < COUNT($All_posts) ; $j++){
+//     <section class="section_list" id="section_liste_reactions_${donnees[i].id_post}"  >
                 
-                if ($tab_user[$i] == $All_posts[$j]['id_user'] ){
-                    $posts[] = $All_posts[$j];
-                    $tab_id_posts[] = $posts[$j]['id_post'];
-                    if (!isset($_SESSION['posts'])){
-                        $_SESSION['posts'] = [];
-                        $_SESSION['posts'] = $tab_id_posts;
-                    }else{
-                        $_SESSION['posts'] = $tab_id_posts;
-                    }
-                   
-                }
-                if ($All_posts[$j]['id_user'] == $id_user){
-                    $posts[] = $All_posts[$i];
-                    $tab_id_posts = $posts[$i]['id_post'];
-                    if (!isset($_SESSION['posts'])){
-                        $_SESSION['posts'] = [];
-                        $_SESSION['posts'] = $tab_id_posts;
-                    }else{
-                        $_SESSION['posts'] = $tab_id_posts;
-                    } 
-                }
-            }
-        }
-        //recuperation des posts de l'utilosateur
-        for ($i = 0 ; $i < COUNT($All_posts) ; $i++){
-            
-        }
+//     </section>
 
-    }
+//     <section id="section_form_commentaire_p${donnees[i].id_post}">
 
+//     </section>
+//     <section id='formulaire_ajout_commentaire_${donnees[i].id_post}'>
 
+//     </section>
 
-
-
- }
-
- //ajax
-else {
-    echo "ici";
-    // echo json_encode($_SESSION['posts']);
-    // var_dump($_SESSION['posts']);
-}
-//     require '../class/Groupe.php';
-//     require '../class/Follower.php';
-//     require '../class/Config.php';
-
-//     $groupe = new Groupe($db);
-//     $follow = new Follower($db);
-
-//     // A RENDRE DINAMIQUE
-//     // $id_user = 93;
-//     // $_SESSION['user']['id'] = 93;
-
-//        //recuperation des infos de bases
-//     //infos perso + nombre de personne suivis
-//     $infos_user = $user->Recuperation_personnes_suivis($id_user);
-    
-    
-
-    
-
-//     //recuperation groupe
-//     $groupes = $groupe->getNameGroupeByUser($id_user);
-    
-
-//     //recuperation de toutes les personnes suivi par l utilisateur
-//     $followers = $follow->GetFollowerUser($id_user);
-    
-   
-
-//     //on boucle sur les id des personnes suivi
-//     if (!empty($followers)){
-//         for ($i = 0 ; $i < COUNT($followers) ; $i++){
-//         //requete avec les id des amis de l'utilisateurs
-//         //on recupere les personnes qui suive ces personnes
-//         if (!isset($nbr)){
-//             $nbr=[];
-//             $nbr[]= $follow->Get_follow($followers[$i]['id_user_follow'],$id_user);
-            
-//         }else{
-//             $nbr[]= $follow->Get_follow($followers[$i]['id_user_follow'],$id_user);
-//         }
-      
-
-
-//         //tab des amis
-//         $tab_user=[];
-//         for ($i=0 ; $i < count($followers); $i++){
-//             $tab_user[$i]=$followers[$i]['id_user_follow'];
-//         }
        
-
-//         //tab des personne qui suive les meme personne
-
-//         for ($i=0 ; $i < count($nbr); $i++){
-//             for ($j=0 ; $j < count($nbr[$i]); $j++){
-//                 $tab_communs[]=$nbr[$i][$j]['id_user'];
-//             }
-//         }
-
-//         //comparer les 2 Tab //On supprime les valeurs identique car cela nous indique que l utilisateur sur deja la personne
-//         $amis_en_communs = array_unique(array_diff($tab_communs,$tab_user));
-        
-
-//         //recuperation de tous les amis de cette personnes
-//         for ($i = 0 ; $i < COUNT($amis_en_communs) ; $i++){
-//             $tab1[$i] = count($follow->GetFollowerUser($amis_en_communs[$i]));
-//         }
-            
-    
+// ==> </section>`
 //     }
-
-      
-// }
-
-//  //on boucle sur les id des personnes suivi
-//  if (!empty($followers)){
-//     for ($i = 0 ; $i < COUNT($followers) ; $i++){
-//     //requete avec les id des amis de l'utilisateurs
-//     //on recupere les personnes qui suive ces personnes
-//     if (!isset($nbr)){
-//         $nbr=[];
-//         $nbr[]= $follow->Get_follow($followers[$i]['id_user_follow'],$id_user);
-        
-//     }else{
-//         $nbr[]= $follow->Get_follow($followers[$i]['id_user_follow'],$id_user);
-//     }
+//     else if (donnees[i].content != null && donnees[i].content.length  <= 200) {
+//         return `<section class="section_posts" id='section_${donnees[i].id_post}'>
+//     <div class="infos_user">
+//         <img src="${donnees[i].photo}" alt="Photo par defaut">
+//         <div class="div_flex">
+//             <div class="div_first">
+//                 <p> <a href='profile_public.php?id=${donnees[i].id_user}'>${donnees[i].firstname}  ${donnees[i].lastname}</a></p>
+//                 <p>Suivis par ${donnees[i][1]} personne(s) </p>
+//                 <p>${ dateJour }</p>
+//             </div>
+//             <div class="div2">
+//                 <div>
+//                     <p class="menu_signal menu_signal_${donnees[i].id_post}" data-id_post='${donnees[i].id_post}' data-statut='off'>°°°</p>
+//                     <div class='div_signal div_signal_${donnees[i].id_post}' data-id_post='${donnees[i].id_post}' >
+//                         <a href="" >Signaler le post</a>
+//                     </div>
+//                 </div>
+                            
+//             </div>
   
+//         </div>
+//     </div>
+//     <div>
+//         <p class="p_content">${donnees[i].content} </p>
+//          ${media}
+//         <div>
+//         </div>
 
+//         <div>
+//             <!-- Les likes , recation et nombre commentaire -->
+//             <a href=''><div class="reactions_miniatures reactions_miniatures_${donnees[i].id_post}" data-id_post='${donnees[i].id_post}'>
+//             </div></a>
+//             <p class="p_commentaires p_commentaires_${donnees[i].id_post}" data-id_post='${donnees[i].id_post}'></p>
+//             <hr>
+//             <div class="reactions">
+//                 <!-- Reactions -->
+//                 <div class="modale_reaction modale_reaction_${donnees[i].id_post}">
+                               
+//                     <div>
+//                         <span class="jaime span_titre_reaction">J'aime</span>
+//                         <a href="" ><img id="jaime" class="icon_block" src="images/pouce.png" alt="j'aime" data-id_post='${donnees[i].id_post}'></a>
+//                     </div> 
+//                     <div>  
+//                         <span class="bravo span_titre_reaction">Bravo</span>
+//                         <a href=""  ><img id="bravo" class="icon_block" src="images/bravo.png" alt="bravo" data-id_post='${donnees[i].id_post}'></a>
+//                     </div>
+//                     <div>    
+//                         <span class="soutien span_titre_reaction">Soutien</span>
+//                         <a href=""  ><img id="soutien" class="icon_block" src="images/soutien.png" alt="soutien" data-id_post="${donnees[i].id_post}"></a>
+//                     </div>
+//                     <div>    
+//                         <span class="jadore span_titre_reaction">J'adore</span>
+//                         <a href="" ><img id="jadore" class="icon_block" src="images/jadore.png" alt="j'adore" data-id_post="${donnees[i].id_post}"></a>
+//                     </div>
+//                     <div>    
+//                         <span class="instructif span_titre_reaction">Instructif</span>
+//                         <a href="" ><img id="instructif" class="icon_block" src="images/instructif.png" alt="instructif" data-id_post="${donnees[i].id_post}"></a>
+//                     </div>    
+//                     <div>     
+//                         <span class="interressant span_titre_reaction">Interressant</span>
+//                         <a href="" ><img id="interressant" class="icon_block" src="images/interressant.png" alt="interressant" data-id_post="${donnees[i].id_post}"></a>
+//                     </div>
+//                 </div>
+//                 <div class='${classe} div_icon  div_icon-thumbs-up${donnees[i].id_post}' data-react='modale_reaction_${donnees[i].id_post}' data-id_post='${donnees[i].id_post}'><span class="icon-thumbs-up"></span>${reaction}</div>
+//                 <div class="icon-c icon-c${donnees[i].id_post}" data-id_post='${donnees[i].id_post}'><span class="icon-chat-1"></span>Commenter</div>
+               
+//             </div>
+//         </div>
+//     </div>   
+    
+//     <section class="section_list" id="section_liste_reactions_${donnees[i].id_post}"  >
+                
+//     </section>
+//     <section id="section_form_commentaire_p${donnees[i].id_post}">
 
-//     //tab des amis
-//     $tab_user=[];
-//     for ($i=0 ; $i < count($followers); $i++){
-//         $tab_user[$i]=$followers[$i]['id_user_follow'];
+//     </section>
+//     <section id='formulaire_ajout_commentaire_${donnees[i].id_post}'>
+
+//     </section>
+    
+       
+       
+// </section>`
+//     }
+//     else {
+//         return `<section class="section_posts" id='section_${donnees[i].id_post}'>
+//     <div class="infos_user">
+//         <img src="${donnees[i].photo}" alt="Photo par defaut">
+//         <div class="div_flex">
+//             <div class="div_first">
+//                 <p> <a href='profile_public.php?id=${donnees[i].id_user}'>${donnees[i].firstname}  ${donnees[i].lastname}</a></p>
+//                 <p>Suivis par ${donnees[i][1]} personne(s) </p>
+//                 <p>${ dateJour }</p>
+//             </div>
+//             <div class="div2">
+//                 <div>
+//                     <p class="menu_signal menu_signal_${donnees[i].id_post}" data-id_post='${donnees[i].id_post}' data-statut='off'>°°°</p>
+//                     <div class='div_signal div_signal_${donnees[i].id_post}' data-id_post='${donnees[i].id_post}' >
+//                         <a href="" >Signaler le post</a>
+//                     </div>
+//                 </div>
+                            
+//             </div>
+//         </div>
+//     </div>
+//     <div>
+        
+//          ${media}
+//         <div>
+//         </div>
+
+//         <div>
+//             <!-- Les likes , recation et nombre commentaire -->
+//             <a href=''><div class="reactions_miniatures reactions_miniatures_${donnees[i].id_post}" data-id_post='${donnees[i].id_post}'>
+//             </div></a>
+//             <p class="p_commentaires p_commentaires_${donnees[i].id_post}" data-id_post='${donnees[i].id_post}'></p>
+//             <hr>
+//             <div class="reactions">
+//                 <!-- Reactions -->
+//                 <div class="modale_reaction modale_reaction_${donnees[i].id_post}">
+                               
+//                     <div>
+//                         <span class="jaime span_titre_reaction">J'aime</span>
+//                         <a href="" ><img id="jaime" class="icon_block" src="images/pouce.png" alt="j'aime" data-id_post='${donnees[i].id_post}'></a>
+//                     </div> 
+//                     <div>  
+//                         <span class="bravo span_titre_reaction">Bravo</span>
+//                         <a href=""  ><img id="bravo" class="icon_block" src="images/bravo.png" alt="bravo" data-id_post='${donnees[i].id_post}'></a>
+//                     </div>
+//                     <div>    
+//                         <span class="soutien span_titre_reaction">Soutien</span>
+//                         <a href=""  ><img id="soutien" class="icon_block" src="images/soutien.png" alt="soutien" data-id_post='${donnees[i].id_post}'></a>
+//                     </div>
+//                     <div>    
+//                         <span class="jadore span_titre_reaction">J'adore</span>
+//                         <a href="" ><img id="jadore" class="icon_block" src="images/jadore.png" alt="j'adore" data-id_post='${donnees[i].id_post}'></a>
+//                     </div>
+//                     <div>    
+//                         <span class="instructif span_titre_reaction">Instructif</span>
+//                         <a href="" ><img id="instructif" class="icon_block" src="images/instructif.png" alt="instructif" data-id_post='${donnees[i].id_post}'></a>
+//                     </div>    
+//                     <div>     
+//                         <span class="interressant span_titre_reaction">Interressant</span>
+//                         <a href="" ><img id="interressant" class="icon_block" src="images/interressant.png" alt="interressant" data-id_post='${donnees[i].id_post}'></a>
+//                     </div>
+//                 </div>
+//                 <div class=' ${classe} div_icon  div_icon-thumbs-up${donnees[i].id_post}' data-react='modale_reaction_${donnees[i].id_post}' data-id_post='${donnees[i].id_post}'><span class="icon-thumbs-up"></span>${reaction}</div>
+//                 <div class="icon-c icon-c${donnees[i].id_post}" data-id_post='${donnees[i].id_post}'><span class="icon-chat-1"></span>Commenter</div>
+                
+//             </div>
+//         </div>
+//     </div>   
+    
+//     <section class="section_list" id="section_liste_reactions_${donnees[i].id_post}"  >
+                
+//     </section>
+//     <section id="section_form_commentaire_p${donnees[i].id_post}">
+
+//     </section>
+//     <section id='formulaire_ajout_commentaire_${donnees[i].id_post}'>
+
+//     </section>
+    
+       
+// </section>`
 //     }
    
 
-//     //tab des personne qui suive les meme personne
 
-//     for ($i=0 ; $i < count($nbr); $i++){
-//         for ($j=0 ; $j < count($nbr[$i]); $j++){
-//             $tab_communs[]=$nbr[$i][$j]['id_user'];
-//         }
+/////////////////////////////////////////////////////////////
+
+
+
+}// function template_affichage_post2(donnees,i,classe,reaction){
+//     let dateJour = Formatdate(donnees[i].created_at)
+//     if (donnees[i].photo == null ){
+//         var image_profile = "images/default_avatar.png";
+//         var alt ='alt="Photo par defaut1111';
+//     }else {
+//         var image_profile = donnees[i].photo;
+//         var alt ="${donnees[i].firstname}  ${donnees[i].lastname}";
 //     }
-
-//     //comparer les 2 Tab //On supprime les valeurs identique car cela nous indique que l utilisateur sur deja la personne
-//     $amis_en_communs = array_unique(array_diff($tab_communs,$tab_user));
+//     //contenue
+//     var content;
+//     if (donnees[i].content != null && donnees[i].content.length  > 200){
+//         content= `<p id="p_${donnees[i].id_post}" class="p_content">ICI222${donnees[i].content.substr(0, 200)} </p>
+//                         <a class="plus plus_${donnees[i].id_post}" id ="${donnees[i].id_post}" href="fil_actu.php?id=${donnees[i].id_post}#section_${donnees[i].id_post}" >... Voir plus</a>`;
+//     }else if (donnees[i].content != null && donnees[i].content.length  < 200){
+//         content = ` <p class="p_content">LA222${donnees[i].content} </p>`; 
+//     }else {
+//         content = ``;
+//     }
     
-
-//     //recuperation de tous les amis de cette personnes
-//     for ($i = 0 ; $i < COUNT($amis_en_communs) ; $i++){
-//         $tab1[$i] = count($follow->GetFollowerUser($amis_en_communs[$i]));
-//     }
-        
-
-// }
-
-  
-// }
-// //RECUPERATION DE TOUT LES POSTS
-// $All_posts2 = $post->GetPostsByIdUser();
-// //var_dump($All_posts2);
-// //recuperation des posts des tout les amis et les siens 
-
-// if (!empty($followers)){
-// for ($i = 0 ; $i < COUNT($tab_user) ; $i ++){
-
-//     for ($j = 0 ; $j < COUNT($All_posts2) ; $j++){
-        
-      
-//         if ($tab_user[$i] == $All_posts2[$j]['id_user'] ){
-//             $posts2[] = $All_posts2[$j];
-//             $tab_id_posts2[] = $posts2[$j]['id_post'];
+//     return `<section class="section_posts" id='section_${donnees[i].id_post}'>
+//             <div class="infos_user">
+//             <img src="${image_profile}" alt="${alt}">
+//             <div class="div_flex">
+//             <div class="div_first">
+//             <p> <a href='profile_public.php?id=${donnees[i].id_user}'>${donnees[i].firstname}  ${donnees[i].lastname}</a></p>
+//             <p>Suivis par ${donnees[i][1]} personne(s) </p>
+//             <p>${ dateJour }</p>
+//             </div>
+//             <div class="div2">
+//             <div>
+//             <p class="menu_signal menu_signal_${donnees[i].id_post}" data-id_post='${donnees[i].id_post}' data-statut='off'>°°°</p>
+//             <div class='div_signal div_signal_${donnees[i].id_post}' data-id_post='${donnees[i].id_post}' >
+//             <a href="" >Signaler le post</a>
+//             </div>
+//             </div>
+                            
+//              </div>
+                
             
-//         }
-//         if ($All_posts2[$j]['id_user'] == $id_user){
-//             $posts2[] = $All_posts2[$i];
-//             $tab_id_posts2[] = $posts2[$i]['id_post'];  
-//         }
-//     }
-// }
+//              </div>
+//             </div>
+//             <div>
+//             <p id="p_${donnees[i].id_post}" class="p_content">${donnees[i].content.substr(0, 200)} </p>
+//             ${content}
+//             <div>
+//             <!-- Les likes , recation et nombre commentaire -->
+//             <a href=''><div class="reactions_miniatures reactions_miniatures_${donnees[i].id_post}" data-id_post='${donnees[i].id_post}'>
+//             </div></a>
+//             <p class="p_commentaires p_commentaires_${donnees[i].id_post}" data-id_post='${donnees[i].id_post}'></p>
+//             <hr>
+//             <div class="reactions">
+//                      <!-- Reactions -->
+//                      <div class="modale_reaction modale_reaction_${donnees[i].id_post}">
+                               
+//                     <div>
+//                         <span class="jaime span_titre_reaction">J'aime</span>
+//                         <a href="" ><img id="jaime" class="icon_block" src="images/pouce.png" alt="j'aime" data-id_post='${donnees[i].id_post}'></a>
+//                     </div> 
+//                      <div>  
+//                          <span class="bravo span_titre_reaction">Bravo</span>
+//                          <a href=""  ><img id="bravo" class="icon_block" src="images/bravo.png" alt="bravo" data-id_post='${donnees[i].id_post}'></a>
+//                      </div>
+//                     <div>    
+//                          <span class="soutien span_titre_reaction">Soutien</span>
+//                          <a href=""  ><img id="soutien" class="icon_block" src="images/soutien.png" alt="soutien" data-id_post='${donnees[i].id_post}'></a>
+//                      </div>
+//                      <div>    
+//                          <span class="jadore span_titre_reaction">J'adore</span>
+//                          <a href="" ><img id="jadore" class="icon_block" src="images/jadore.png" alt="j'adore" data-id_post='${donnees[i].id_post}'></a>
+//                      </div>
+//                      <div>    
+//                          <span class="instructif span_titre_reaction">Instructif</span>
+//                         <a href="" ><img id="instructif" class="icon_block" src="images/instructif.png" alt="instructif" data-id_post='${donnees[i].id_post}'></a>
+//                     </div>    
+//                     <div>     
+//                         <span class="interressant span_titre_reaction">Interressant</span>
+//                         <a href="" ><img id="interressant" class="icon_block" src="images/interressant.png" alt="interressant" data-id_post='${donnees[i].id_post}'></a>
+//                     </div>
+//                 </div>
+//                     <div class='${classe} div_icon  div_icon-thumbs-up${donnees[i].id_post}' data-react='modale_reaction_${donnees[i].id_post}' data-id_post='${donnees[i].id_post}'><span class="icon-thumbs-up"></span>${reaction}</div>
+//                     <div class="icon-c icon-c${donnees[i].id_post}" data-id_post='${donnees[i].id_post}'><span class="icon-chat-1"></span>Commenter</div>
+                    
+//                 </div>
+//              /div>
+//         </div>  
+        
+//         <section id="section_liste_reactions_${donnees[i].id_post}"  >
+                
+//         </section>
+//   </section>`;
+            
+// }   
+    //      return `<section class="section_posts" id='section_${donnees[i].id_post}'>
+    //   ==>      <div class="infos_user">
+    //         <img src="${image_profile}" alt="${alt}">
+    //  ==>       <div class="div_flex">
+    //  ==>           <div class="div_first">
+    //    ==>             <p> <a href='profile_public.php?id=${donnees[i].id_user}'>${donnees[i].firstname}  ${donnees[i].lastname}</a></p>
+    //                 <p>Suivis par ${donnees[i][1]} personne(s) </p>
+    //                 <p>${ dateJour }</p>
+    //             </div>
+    //             <div class="div2">
+    //             <div>
+    //                 <p class="menu_signal menu_signal_${donnees[i].id_post}" data-id_post='${donnees[i].id_post}' data-statut='off'>°°°</p>
+    //                 <div class='div_signal div_signal_${donnees[i].id_post}' data-id_post='${donnees[i].id_post}' >
+    //                     <a href="" >Signaler le post</a>
+    //                 </div>
+    //             </div>
+                            
+    //         </div>
+                
+            
+    //         </div>
+    //     </div>
+    //    ==> <div>
+    //         <p id="p_${donnees[i].id_post}" class="p_content">${donnees[i].content.substr(0, 200)} </p>
+    //   ==>     <a class="plus plus_${donnees[i].id_post}" id ="${donnees[i].id_post}" href="fil_actu.php?id=${donnees[i].id_post}#section_${donnees[i].id_post}">... Voir plus</a>
 
-
-// //var_dump($tab_id_posts);
-// //var_dump($tab_id_posts2);
-// //on compare les deux tableaux pour recuperer les differences
-
-// $diff_news = array_diff($tab_id_posts2,$tab_id_posts);
-// //var_dump($diff_news);
-
-// //Si vide pas de nouveaux posts
-// if (empty($diff_news)){
-//     echo json_encode(["message" => "Pas de diff"]);
-// }
-// else {
-//     echo json_encode(["message" => "nouveau message"]);
-// }
-// }
-
-
-
-
-// }
-
-
-
-
+    //         <div>
+    //             <!-- Les likes , recation et nombre commentaire -->
+    //             <a href=''><div class="reactions_miniatures reactions_miniatures_${donnees[i].id_post}" data-id_post='${donnees[i].id_post}'>
+    //             </div></a>
+    //             <p class="p_commentaires p_commentaires_${donnees[i].id_post}" data-id_post='${donnees[i].id_post}'></p>
+    //             <hr>
+    //             <div class="reactions">
+    //                 <!-- Reactions -->
+    //                 <div class="modale_reaction modale_reaction_${donnees[i].id_post}">
+                               
+    //                 <div>
+    //                     <span class="jaime span_titre_reaction">J'aime</span>
+    //                     <a href="" ><img id="jaime" class="icon_block" src="images/pouce.png" alt="j'aime" data-id_post='${donnees[i].id_post}'></a>
+    //                 </div> 
+    //                 <div>  
+    //                     <span class="bravo span_titre_reaction">Bravo</span>
+    //                     <a href=""  ><img id="bravo" class="icon_block" src="images/bravo.png" alt="bravo" data-id_post='${donnees[i].id_post}'></a>
+    //                 </div>
+    //                 <div>    
+    //                     <span class="soutien span_titre_reaction">Soutien</span>
+    //                     <a href=""  ><img id="soutien" class="icon_block" src="images/soutien.png" alt="soutien" data-id_post='${donnees[i].id_post}'></a>
+    //                 </div>
+    //                 <div>    
+    //                     <span class="jadore span_titre_reaction">J'adore</span>
+    //                     <a href="" ><img id="jadore" class="icon_block" src="images/jadore.png" alt="j'adore" data-id_post='${donnees[i].id_post}'></a>
+    //                 </div>
+    //                 <div>    
+    //                     <span class="instructif span_titre_reaction">Instructif</span>
+    //                     <a href="" ><img id="instructif" class="icon_block" src="images/instructif.png" alt="instructif" data-id_post='${donnees[i].id_post}'></a>
+    //                 </div>    
+    //                 <div>     
+    //                     <span class="interressant span_titre_reaction">Interressant</span>
+    //                     <a href="" ><img id="interressant" class="icon_block" src="images/interressant.png" alt="interressant" data-id_post='${donnees[i].id_post}'></a>
+    //                 </div>
+    //             </div>
+    //                 <div class='${classe} div_icon  div_icon-thumbs-up${donnees[i].id_post}' data-react='modale_reaction_${donnees[i].id_post}' data-id_post='${donnees[i].id_post}'><span class="icon-thumbs-up"></span>${reaction}</div>
+    //                 <div class="icon-c icon-c${donnees[i].id_post}" data-id_post='${donnees[i].id_post}'><span class="icon-chat-1"></span>Commenter</div>
+                    
+    //             </div>
+    //         /div>
+    //     </div>  
+        
+    //     <section id="section_liste_reactions_${donnees[i].id_post}"  >
+                
+    //     </section>
+    // ==></section>`
 
    
+    // else{
+    //     TemplatePost_avec_photo_profile(donnees,i)
+    //     return `<section class="section_posts" id='section_${donnees[i].id_post}'>
+    //     <div class="infos_user">
+    //         <img src="${donnees[i].photo}" alt="Photo par defaut">
+    //         <div class="div_flex">
+    //             <div class="div_first">
+    //                 <p> <a href='profile_public.php?id=${donnees[i].id_user}'>${donnees[i].firstname}  ${donnees[i].lastname}</a></p>
+    //                 <p>Suivis par ${donnees[i][1]} personne(s) </p>
+    //                 <p>${ dateJour }</p>
+    //             </div>
+    //             <div class="div2">
+    //             <div>
+    //                 <p class="menu_signal menu_signal_${donnees[i].id_post}" data-id_post='${donnees[i].id_post}' data-statut='off'>°°°</p>
+    //                 <div class='div_signal div_signal_${donnees[i].id_post}' data-id_post='${donnees[i].id_post}' >
+    //                     <a href="" >Signaler le post</a>
+    //                 </div>
+    //             </div>
+                            
+    //         </div>
+    //         </div>
+    //     </div>
+    //     <div>
+    //         <p id="p_${donnees[i].id_post}" class="p_content">${donnees[i].content.substr(0, 200)} </p>
+    //         <a cls="plus plus_${donnees[i].id_post}" id ="${donnees[i].id}" href="fil_actu.php?id=${donnees[i].id_post}#section_${donnees[i][0].id_post}">... Voir plus</a>
+
+    //         <div>
+    //         </div>
+
+    //         <div>
+    //             <!-- Les likes , recation et nombre commentaire -->
+    //             <a href=''><div class="reactions_miniatures reactions_miniatures_${donnees[i].id_post}" data-id_post='${donnees[i].id_post}'>
+    //             </div></a>
+    //             <p class="p_commentaires p_commentaires_${donnees[i].id_post}" data-id_post='${donnees[i].id_post}'></p>
+    //             <hr>
+    //             <div class="reactions">
+    //                 <!-- Reactions -->
+    //                 <div class="modale_reaction modale_reaction_${donnees[i].id_post}">
+                               
+    //                 <div>
+    //                     <span class="jaime span_titre_reaction">J'aime</span>
+    //                     <a href="" ><img id="jaime" class="icon_block" src="images/pouce.png" alt="j'aime" data-id_post='${donnees[i].id_post}'></a>
+    //                 </div> 
+    //                 <div>  
+    //                     <span class="bravo span_titre_reaction">Bravo</span>
+    //                     <a href=""  ><img id="bravo" class="icon_block" src="images/bravo.png" alt="bravo" data-id_post='${donnees[i].id_post}'></a>
+    //                 </div>
+    //                 <div>    
+    //                     <span class="soutien span_titre_reaction">Soutien</span>
+    //                     <a href=""  ><img id="soutien" class="icon_block" src="images/soutien.png" alt="soutien" data-id_post='${donnees[i].id_post}'></a>
+    //                 </div>
+    //                 <div>    
+    //                     <span class="jadore span_titre_reaction">J'adore</span>
+    //                     <a href="" ><img id="jadore" class="icon_block" src="images/jadore.png" alt="j'adore" data-id_post='${donnees[i].id_post}'></a>
+    //                 </div>
+    //                 <div>    
+    //                     <span class="instructif span_titre_reaction">Instructif</span>
+    //                     <a href="" ><img id="instructif" class="icon_block" src="images/instructif.png" alt="instructif" data-id_post='${donnees[i].id_post}'></a>
+    //                 </div>    
+    //                 <div>     
+    //                     <span class="interressant span_titre_reaction">Interressant</span>
+    //                     <a href="" ><img id="interressant" class="icon_block" src="images/interressant.png" alt="interressant" data-id_post='${donnees[i].id_post}'></a>
+    //                 </div>
+    //             </div>
+    //                 <div class=' ${classe} div_icon  div_icon-thumbs-up${donnees[i].id_post}' data-react='modale_reaction_${donnees[i].id_post}' data-id_post='${donnees[i].id_post}'><span class="icon-thumbs-up"></span>${reaction}</div>
+    //                 <div class="icon-c icon-c${donnees[i].id_post}" data-id_post='${donnees[i].id_post}'><span class="icon-chat-1"></span>Commenter</div>
+                    
+    //             </div>
+    //         </div>
+    //     </div> 
+        
+    //     <section  class="section_list" id="section_liste_reactions_${donnees[i].id_post}"  >
+                
+    //     </section>
+    //     <section id="section_form_commentaire_p${donnees[i].id_post}">
+
+    //     </section>
+    //     <section id='formulaire_ajout_commentaire_${donnees[i].id_post}'>
+
+    //     </section>
+        
+           
+           
+    // </section>`;}
 
 
+    <!-- :::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
 
+
+    function templatesPosts(donnees,i,media){
+    let dateJour = Formatdate(donnees[i][0].created_at)
+    //     if  (donnees[i][0].content != null && donnees[i][0].content.length  >= 200){
+//         return `<section class="section_posts" id='section_${donnees[i][0].id_post}'>
+//   ==>  <div class="infos_user">
+//   ==>          <img src="${donnees[i][0].photo}" alt="Photo par defaut">
+//    ==>     <div class="div_flex">
+//    ==>         <div class="div_first">
+//     ==>            <p> <a href='profile_public.php?id=${donnees[i][0].id_user}'>${donnees[i][0].firstname}  ${donnees[i][0].lastname}</a></p>
+//    ==>             <p>Suivis par ${donnees[i][1]} personne(s) </p>
+//    ==>             <p>${ dateJour }</p>
+//     ==>        </div>
+//    ==>         <div class="div2">
+//    ==>             <div>
+//    ==>                 <p class="menu_signal menu_signal_${donnees[i][0].id_post}" data-id_post='${donnees[i][0].id_post}' data-statut='off'>°°°</p>
+//    ==>                 <div class='div_signal div_signal_${donnees[i][0].id_post}' data-id_post='${donnees[i][0].id_post}' >
+//     ==>                    <a href="" >Signaler le post</a>
+//     ==>                </div>
+//     ==>            </div>
+//     ==>        </div>
+           
+//   ==>      </div>
+//  ==>   </div>
+//   ==>  <div>
+//  ==>       <p id="p_${donnees[i][0].id_post}" class="p_content">${donnees[i][0].content.substr(0, 200)} </p>
+//  ==>       <a class = "plus plus_${donnees[i][0].id_post}" id ="${donnees[i][0].id}" href="fil_actu.php?id=${donnees[i][0].id_post}#section_${donnees[i][0].id_post}" >... Voir plus</a>
+//  ==>      ${media}
+//  ==>       <div>
+// ==>        </div>
+
+//  ==>       <div>
+//  ==>           <!-- Les likes , recation et nombre commentaire -->
+//   ==>          <a href=''><div class="reactions_miniatures reactions_miniatures_${donnees[i][0].id_post}" data-id_post='${donnees[i][0].id_post}'>
+//  ==>           Soyez le premier a réagir à ce post !</div></a>
+//  ==>           <p class="p_commentaires p_commentaires_${donnees[i][0].id_post}" data-id_post='${donnees[i][0].id_post}'>0 commentaire(s)</p>
+//   ==>          <hr>
+//   ==>          <div class="reactions">
+//   ==>              <!-- Reactions -->
+//   ==>              <div class="modale_reaction modale_reaction_${donnees[i][0].id_post}">
+                               
+//   ==>                  <div>
+//   ==>                      <span class="jaime span_titre_reaction">J'aime</span>
+//   ==>                      <a href="" ><img id="jaime" class="icon_block" src="images/pouce.png" alt="j'aime" data-id_post=></a>
+//                     </div> 
+//   ==>                  <div>  
+//                         <span class="bravo span_titre_reaction">Bravo</span>
+//                         <a href=""  ><img id="bravo" class="icon_block" src="images/bravo.png" alt="bravo" data-id_post='${donnees[i][0].id_post}'></a>
+//                     </div>
+//                     <div>    
+//                         <span class="soutien span_titre_reaction">Soutien</span>
+//                         <a href=""  ><img id="soutien" class="icon_block" src="images/soutien.png" alt="soutien" data-id_post='${donnees[i][0].id_post}'></a>
+//                     </div>
+//                     <div>    
+//                         <span class="jadore span_titre_reaction">J'adore</span>
+//                         <a href="" ><img id="jadore" class="icon_block" src="images/jadore.png" alt="j'adore" data-id_post='${donnees[i][0].id_post}'></a>
+//                     </div>
+//                     <div>    
+//                         <span class="instructif span_titre_reaction">Instructif</span>
+//                         <a href="" ><img id="instructif" class="icon_block" src="images/instructif.png" alt="instructif" data-id_post='${donnees[i][0].id_post}'></a>
+//                     </div>    
+//                     <div>     
+//                         <span class="interressant span_titre_reaction">Interressant</span>
+//                         <a href="" ><img id="interressant" class="icon_block" src="images/interressant.png" alt="interressant" data-id_post='${donnees[i][0].id_post}'></a>
+//                     </div>
+//                 </div>
+//                 <div class='div_icon  div_icon-thumbs-up${donnees[i][0].id_post}' data-react='modale_reaction_${donnees[i][0].id_post}' data-id_post='${donnees[i][0].id_post}'><span class="icon-thumbs-up"></span>J'aime</div>
+//                 <div class="icon-c icon-c${donnees[i][0].id_post}" data-id_post='${donnees[i][0].id_post}'><span class="icon-chat-1"></span>Commenter</div>
+                
+//             </div>
+//         </div>
+//  ==>   </div>  
     
+//     <section class="section_list" id="section_liste_reactions_${donnees[i][0].id_post}"  >
+                
+//     </section>
+    
+//     <section id="section_form_commentaire_p${donnees[i][0].id_post}">
 
-?>
+//     </section>
+//     <section id='formulaire_ajout_commentaire_${donnees[i][0].id_post}'>
+
+//     </section>
+
+       
+       
+//==> </section>`
+//     }
+//     else if (donnees[i][0].content != null && donnees[i][0].content.length  <= 200) {
+//         return `<section class="section_posts" id='section_${donnees[i][0].id_post}'>
+//     <div class="infos_user">
+//         <img src="${donnees[i][0].photo}" alt="Photo par defaut">
+//         <div class="div_flex">
+//             <div class="div_first">
+//                 <p> <a href='profile_public.php?id=${donnees[i][0].id_user}'>${donnees[i][0].firstname}  ${donnees[i][0].lastname}</a></p>
+//                 <p>Suivis par ${donnees[i][1]} personne(s) </p>
+//                 <p>${ dateJour }</p>
+//             </div>
+//             <div class="div2">
+//                 <div>
+//                     <p class="menu_signal menu_signal_${donnees[i][0].id_post}" data-id_post='${donnees[i][0].id_post}' data-statut='off'>°°°</p>
+//                     <div class='div_signal div_signal_${donnees[i][0].id_post}' data-id_post='${donnees[i][0].id_post}' >
+//                         <a href="" >Signaler le post</a>
+//                     </div>
+//                 </div>
+//             </div>
+  
+//         </div>
+//     </div>
+//     <div>
+//         <p class="p_content">${donnees[i][0].content} </p>
+//          ${media}
+//         <div>
+//         </div>
+
+//         <div>
+//             <!-- Les likes , recation et nombre commentaire -->
+//             <a href=''><div class="reactions_miniatures reactions_miniatures_${donnees[i][0].id_post}" data-id_post='${donnees[i][0].id_post}'>
+//             Soyez le premier a réagir à ce post !</div></a>
+//             <p class="p_commentaires p_commentaires_${donnees[i][0].id_post}" data-id_post='${donnees[i][0].id_post}'>0 commentaire(s)</p>
+//             <hr>
+//             <div class="reactions">
+//                 <!-- Reactions -->
+//                 <div class="modale_reaction modale_reaction_${donnees[i][0].id_post}">
+                               
+//                     <div>
+//                         <span class="jaime span_titre_reaction">J'aime</span>
+//                         <a href="" ><img id="jaime" class="icon_block" src="images/pouce.png" alt="j'aime" data-id_post='${donnees[i][0].id_post}'>></a>
+//                     </div> 
+//                     <div>  
+//                         <span class="bravo span_titre_reaction">Bravo</span>
+//                         <a href=""  ><img id="bravo" class="icon_block" src="images/bravo.png" alt="bravo" data-id_post='${donnees[i][0].id_post}'></a>
+//                     </div>
+//                     <div>    
+//                         <span class="soutien span_titre_reaction">Soutien</span>
+//                         <a href=""  ><img id="soutien" class="icon_block" src="images/soutien.png" alt="soutien" data-id_post='${donnees[i][0].id_post}'></a>
+//                     </div>
+//                     <div>    
+//                         <span class="jadore span_titre_reaction">J'adore</span>
+//                         <a href="" ><img id="jadore" class="icon_block" src="images/jadore.png" alt="j'adore" data-id_post='${donnees[i][0].id_post}'></a>
+//                     </div>
+//                     <div>    
+//                         <span class="instructif span_titre_reaction">Instructif</span>
+//                         <a href="" ><img id="instructif" class="icon_block" src="images/instructif.png" alt="instructif" data-id_post='${donnees[i][0].id_post}'></a>
+//                     </div>    
+//                     <div>     
+//                         <span class="interressant span_titre_reaction">Interressant</span>
+//                         <a href="" ><img id="interressant" class="icon_block" src="images/interressant.png" alt="interressant" data-id_post='${donnees[i][0].id_post}'></a>
+//                     </div>
+//                 </div>
+//                 <div class='div_icon  div_icon-thumbs-up${donnees[i][0].id_post}' data-react='modale_reaction_${donnees[i][0].id_post}' data-id_post='${donnees[i][0].id_post}'><span class="icon-thumbs-up"></span>J'aime</div>
+//                 <div class="icon-c icon-c${donnees[i][0].id_post}" data-id_post='${donnees[i][0].id_post}'><span class="icon-chat-1"></span>Commenter</div>
+                
+//             </div>
+//         </div>
+//     </div> 
+    
+//     <section class="section_list" id="section_liste_reactions_${donnees[i][0].id_post}"  >
+                
+//     </section>
+//     <section id="section_form_commentaire_p${donnees[i][0].id_post}">
+
+//     </section>
+//     <section id='formulaire_ajout_commentaire_${donnees[i][0].id_post}'>
+
+//     </section>
+    
+       
+// </section>`
+//     }
+//     else {
+//         return `<section class="section_posts" id='section_${donnees[i][0].id_post}'>
+//     <div class="infos_user">
+//         <img src="${donnees[i][0].photo}" alt="Photo par defaut">
+//         <div class="div_flex">
+//             <div class="div_first">
+//                 <p> <a href='profile_public.php?id=${donnees[i][0].id_user}'>${donnees[i][0].firstname}  ${donnees[i][0].lastname}</a></p>
+//                 <p>Suivis par ${donnees[i][1]} personne(s) </p>
+//                 <p>${ dateJour }</p>
+//             </div>
+//             <div class="div2">
+//                 <div>
+//                     <p class="menu_signal menu_signal_${donnees[i][0].id_post}" data-id_post='${donnees[i][0].id_post}' data-statut='off'>°°°</p>
+//                     <div class='div_signal div_signal_${donnees[i][0].id_post}' data-id_post='${donnees[i][0].id_post}' >
+//                         <a href="" >Signaler le post</a>
+//                     </div>
+//                 </div>
+//             </div> 
+//         </div>
+//     </div>
+//     <div>
+        
+//          ${media}
+//         <div>
+//         </div>
+
+//         <div>
+//             <!-- Les likes , recation et nombre commentaire -->
+//             <a href=''><div class="reactions_miniatures reactions_miniatures_${donnees[i][0].id_post}" data-id_post='${donnees[i][0].id_post}'>
+//             Soyez le premier a réagir à ce post !</div></a>
+//             <p class="p_commentaires p_commentaires_${donnees[i][0].id_post}" data-id_post='${donnees[i][0].id_post}'>0 commentaire(s)</p>
+//             <hr>
+//             <div class="reactions">
+//                 <!-- Reactions -->
+//                 <div class="modale_reaction modale_reaction_${donnees[i][0].id_post}">
+                               
+//                     <div>
+//                         <span class="jaime span_titre_reaction">J'aime</span>
+//                         <a href="" ><img id="jaime" class="icon_block" src="images/pouce.png" alt="j'aime" data-id_post='${donnees[i][0].id_post}'></a>
+//                     </div> 
+//                     <div>  
+//                         <span class="bravo span_titre_reaction">Bravo</span>
+//                         <a href=""  ><img id="bravo" class="icon_block" src="images/bravo.png" alt="bravo" data-id_post='${donnees[i][0].id_post}'></a>
+//                     </div>
+//                     <div>    
+//                         <span class="soutien span_titre_reaction">Soutien</span>
+//                         <a href=""  ><img id="soutien" class="icon_block" src="images/soutien.png" alt="soutien" data-id_post='${donnees[i][0].id_post}'></a>
+//                     </div>
+//                     <div>    
+//                         <span class="jadore span_titre_reaction">J'adore</span>
+//                         <a href="" ><img id="jadore" class="icon_block" src="images/jadore.png" alt="j'adore" data-id_post='${donnees[i][0].id_post}'></a>
+//                     </div>
+//                     <div>    
+//                         <span class="instructif span_titre_reaction">Instructif</span>
+//                         <a href="" ><img id="instructif" class="icon_block" src="images/instructif.png" alt="instructif" data-id_post='${donnees[i][0].id_post}'></a>
+//                     </div>    
+//                     <div>     
+//                         <span class="interressant span_titre_reaction">Interressant</span>
+//                         <a href="" ><img id="interressant" class="icon_block" src="images/interressant.png" alt="interressant" data-id_post='${donnees[i][0].id_post}'></a>
+//                     </div>
+//                 </div>
+//                 <div class='div_icon  div_icon-thumbs-up${donnees[i][0].id_post}' data-react='modale_reaction_${donnees[i][0].id_post}' data-id_post='${donnees[i][0].id_post}'><span class="icon-thumbs-up"></span>J'aime</div>
+//                 <div class="icon-c icon-c${donnees[i][0].id_post}" data-id_post='${donnees[i][0].id_post}'><span class="icon-chat-1"></span>Commenter</div>
+                
+//             </div>
+//         </div>
+//     </div>  
+    
+//     <section class="section_list" id="section_liste_reactions_${donnees[i][0].id_post}"  >
+                
+//     </section>
+//     <section id="section_form_commentaire_p${donnees[i][0].id_post}">
+
+//     </section>
+//     <section id='formulaire_ajout_commentaire_${donnees[i][0].id_post}'>
+
+//     </section>
+    
+       
+// </section>`
+//     }
+}
+
+
+<!-- :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
+// function templatePost(donnees,i){
+//     let dateJour = Formatdate(donnees[i][0].created_at)
+ 
+//     if (donnees[i][0].photo == null ){
+//         return `<section class="section_posts" id='section_${donnees[i][0].id_post}'>
+//         <div class="infos_user">
+//             <img src="images/default_avatar.png" alt="Photo par defaut">
+//             <div class="div_flex">
+//                 <div class="div_first">
+//                     <p> <a href='profile_public.php?id=${donnees[i][0].id_user}'>${donnees[i][0].firstname}  ${donnees[i][0].lastname}</a></p>
+//                     <p>Suivis par ${donnees[i][1]} personne(s) </p>
+//                     <p>${ dateJour }</p>
+//                 </div>
+//                 <div class="div2">
+//                 <div>
+//                     <p class="menu_signal menu_signal_${donnees[i][0].id_post}" data-id_post='${donnees[i][0].id_post}' data-statut='off'>°°°</p>
+//                     <div class='div_signal div_signal_${donnees[i][0].id_post}' data-id_post='${donnees[i][0].id_post}' >
+//                         <a href="" >Signaler le post</a>
+//                     </div>
+//                 </div>
+//             </div>
+                
+            
+//             </div>
+//         </div>
+//         <div>
+//             <p id="p_${donnees[i][0].id_post}" class="p_content">${donnees[i][0].content.substr(0, 200)} </p>
+//             <a class ="plus plus_${donnees[i][0].id_post}" id="${donnees[i][0].id_post}" href="fil_actu.php?id=${donnees[i][0].id_post}#section_${donnees[i][0].id_post}}">... Voir plus</a>
+
+//             <div>
+//                 <!-- Les likes , recation et nombre commentaire -->
+//                 <a href=''><div class="reactions_miniatures reactions_miniatures_${donnees[i][0].id_post}" data-id_post='${donnees[i][0].id_post}'>
+//                 Soyez le premier a réagir à ce post !</div></a>
+//                 <p class="p_commentaires p_commentaires_${donnees[i][0].id_post}" data-id_post='${donnees[i][0].id_post}'>0 commentaire(s)</p>
+//                 <hr>
+//                 <div class="reactions">
+//                     <!-- Reactions -->
+//                     <div class="modale_reaction modale_reaction_${donnees[i][0].id_post}">
+                               
+//                     <div>
+//                         <span class="jaime span_titre_reaction">J'aime</span>
+//                         <a href="" ><img id="jaime" class="icon_block" src="images/pouce.png" alt="j'aime" data-id_post='${donnees[i][0].id_post}'></a>
+//                     </div> 
+//                     <div>  
+//                         <span class="bravo span_titre_reaction">Bravo</span>
+//                         <a href=""  ><img id="bravo" class="icon_block" src="images/bravo.png" alt="bravo" data-id_post='${donnees[i][0].id_post}'></a>
+//                     </div>
+//                     <div>    
+//                         <span class="soutien span_titre_reaction">Soutien</span>
+//                         <a href=""  ><img id="soutien" class="icon_block" src="images/soutien.png" alt="soutien" data-id_post='${donnees[i][0].id_post}'></a>
+//                     </div>
+//                     <div>    
+//                         <span class="jadore span_titre_reaction">J'adore</span>
+//                         <a href="" ><img id="jadore" class="icon_block" src="images/jadore.png" alt="j'adore" data-id_post='${donnees[i][0].id_post}'></a>
+//                     </div>
+//                     <div>    
+//                         <span class="instructif span_titre_reaction">Instructif</span>
+//                         <a href="" ><img id="instructif" class="icon_block" src="images/instructif.png" alt="instructif" data-id_post='${donnees[i][0].id_post}'></a>
+//                     </div>    
+//                     <div>     
+//                         <span class="interressant span_titre_reaction">Interressant</span>
+//                         <a href="" ><img id="interressant" class="icon_block" src="images/interressant.png" alt="interressant" data-id_post='${donnees[i][0].id_post}'></a>
+//                     </div>
+//                 </div>
+//                     <div class='div_icon  div_icon-thumbs-up${donnees[i][0].id_post}' data-react='modale_reaction_${donnees[i][0].id_post}' data-id_post='${donnees[i][0].id_post}'><span class="icon-thumbs-up"></span>J'aime</div>
+//                     <div class="icon-c icon-c${donnees[i][0].id_post}" data-id_post='${donnees[i][0].id_post}'><span class="icon-chat-1"></span>Commenter</div>
+                    
+//                 </div>
+//             /div>
+//         </div>  
+        
+//         <section class="section_list" id="section_liste_reactions_${donnees[i][0].id_post}"  >
+                
+//         </section>
+//         <section id="section_form_commentaire_p${donnees[i][0].id_post}">
+
+//         </section>
+//         <section id='formulaire_ajout_commentaire_${donnees[i][0].id_post}'>
+
+//         </section>
+       
+//     </section>`
+
+//     }
+//     else{
+//         return `<section class="section_posts" id='section_${donnees[i][0].id_post}'>
+//         <div class="infos_user">
+//             <img src="${donnees[i][0].photo}" alt="Photo par defaut">
+//             <div class="div_flex">
+//                 <div class="div_first">
+//                     <p> <a href='profile_public.php?id=${donnees[i][0].id_user}'>${donnees[i][0].firstname}  ${donnees[i][0].lastname}</a></p>
+//                     <p>Suivis par ${donnees[i][1]} personne(s) </p>
+//                     <p>${ dateJour }</p>
+//                 </div>
+//                 <div class="div2">
+//                 <div>
+//                     <p class="menu_signal menu_signal_${donnees[i][0].id_post}" data-id_post='${donnees[i][0].id_post}' data-statut='off'>°°°</p>
+//                     <div class='div_signal div_signal_${donnees[i][0].id_post}' data-id_post='${donnees[i][0].id_post}' >
+//                         <a href="" >Signaler le post</a>
+//                     </div>
+//                 </div>
+//             </div>
+//             </div>
+//         </div>
+//         <div>
+//             <p id="p_${donnees[i][0].id_post}" class="p_content">${donnees[i][0].content.substr(0, 200)} </p>
+//             <a class ="plus plus_${donnees[i][0].id_post}" id="${donnees[i][0].id_post}" href="fil_actu.php?id=${donnees[i][0].id_post}#section_${donnees[i][0].id_post}">... Voir plus</a>
+
+//             <div>
+//             </div>
+
+//             <div>
+//                 <!-- Les likes , recation et nombre commentaire -->
+//                 <a href=''><div class="reactions_miniatures reactions_miniatures_${donnees[i][0].id_post}" data-id_post='${donnees[i][0].id_post}'>
+//                 Soyez le premier a réagir à ce post !</div></a>
+//                 <p class="p_commentaires p_commentaires_${donnees[i][0].id_post}" data-id_post='${donnees[i][0].id_post}'>0 commentaire(s)</p>
+//                 <hr>
+//                 <div class="reactions">
+//                     <!-- Reactions -->
+//                     <div class="modale_reaction modale_reaction_${donnees[i][0].id_post}">
+                               
+//                     <div>
+//                         <span class="jaime span_titre_reaction">J'aime</span>
+//                         <a href="" ><img id="jaime" class="icon_block" src="images/pouce.png" alt="j'aime" data-id_post='${donnees[i][0].id_post}'></a>
+//                     </div> 
+//                     <div>  
+//                         <span class="bravo span_titre_reaction">Bravo</span>
+//                         <a href=""  ><img id="bravo" class="icon_block" src="images/bravo.png" alt="bravo" data-id_post='${donnees[i][0].id_post}'></a>
+//                     </div>
+//                     <div>    
+//                         <span class="soutien span_titre_reaction">Soutien</span>
+//                         <a href=""  ><img id="soutien" class="icon_block" src="images/soutien.png" alt="soutien" data-id_post='${donnees[i][0].id_post}'></a>
+//                     </div>
+//                     <div>    
+//                         <span class="jadore span_titre_reaction">J'adore</span>
+//                         <a href="" ><img id="jadore" class="icon_block" src="images/jadore.png" alt="j'adore" data-id_post='${donnees[i][0].id_post}'></a>
+//                     </div>
+//                     <div>    
+//                         <span class="instructif span_titre_reaction">Instructif</span>
+//                         <a href="" ><img id="instructif" class="icon_block" src="images/instructif.png" alt="instructif" data-id_post='${donnees[i][0].id_post}'></a>
+//                     </div>    
+//                     <div>     
+//                         <span class="interressant span_titre_reaction">Interressant</span>
+//                         <a href="" ><img id="interressant" class="icon_block" src="images/interressant.png" alt="interressant" data-id_post='${donnees[i][0].id_post}'></a>
+//                     </div>
+//                 </div>
+//                     <div class='div_icon  div_icon-thumbs-up${donnees[i][0].id_post}' data-react='modale_reaction_${donnees[i][0].id_post}' data-id_post='${donnees[i][0].id_post}'><span class="icon-thumbs-up"></span>J'aime</div>
+//                     <div class="icon-c icon-c${donnees[i][0].id_post}" data-id_post='${donnees[i][0].id_post}'><span class="icon-chat-1"></span>Commenter</div>
+                    
+//                 </div>
+//             </div>
+//         </div>    
+
+//         <section class="section_list" id="section_liste_reactions_${donnees[i][0].id_post}"  >
+                
+//         </section>
+//         <section id="section_form_commentaire_p${donnees[i][0].id_post}">
+
+//         </section>
+//         <section id='formulaire_ajout_commentaire_${donnees[i][0].id_post}'>
+
+//         </section>
+      
+           
+//     </section>`
+//     }
+    
+// }

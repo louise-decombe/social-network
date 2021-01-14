@@ -80,6 +80,18 @@ if (isset($_POST['action'])){
         $resultat = $post->GetContentById($id);
         echo json_encode($resultat);
     }
+    if ($_POST['action'] == "affichage post signalé"){
+        
+        $id_post = $_POST['id'];
+        $resultat = $post->getPostByIdPost($id_post);
+        echo json_encode($resultat);
+    }
+    if ($_POST['action'] == "affichage comment signalé"){
+        // echo 'comment 2';
+         $id_post = $_POST['id'];
+         $resultat = $commentaire->GetCommentById($id_post);
+        echo json_encode($resultat);
+    }
 }
 
 

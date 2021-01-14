@@ -19,8 +19,8 @@ class Post
     }
 
     //recuperation des 5 derniers articles
-    public function GetPostsByIdUser(){
-        $requete = $this->connect->prepare("SELECT *,post.id as id_post, date_format(post.created_at,'%d/%m/%Y') AS date_created,post.media FROM post INNER JOIN users ON post.id_user = users.id  ORDER BY post.id DESC LIMIT 5");
+    public function GetPostsByIdUser($limit){
+        $requete = $this->connect->prepare("SELECT *,post.id as id_post, date_format(post.created_at,'%d/%m/%Y') AS date_created,post.media FROM post INNER JOIN users ON post.id_user = users.id  ORDER BY post.id DESC LIMIT 5 offset $limit ");
         $requete->execute();
         $resultat = $requete->fetchall(PDO::FETCH_ASSOC);
 

@@ -7,6 +7,7 @@ body {
     max-width: 1600px;
     margin: auto!important;
 }
+
 /* ***************************************************************************
 ************************* FOND ***********************************************
 **************************************************************************** */
@@ -221,6 +222,13 @@ body {
 #signalement{
     text-decoration: none;
 }
+#signal_posts{
+    margin-left: 2%;
+    padding: 0.5%;
+    border: 1px solid red;
+    background-color: white;
+    color: red;
+}
 .icon-home{
     color: #275FA2;
 }
@@ -305,7 +313,7 @@ body {
     position: fixed;
     top: 0;
     left: 0;
-    height: 100vh;
+    min-height: 100vh;
     width: 100%;
     text-align: center; 
     background-color: rgba(0,0,0,.7);
@@ -314,6 +322,25 @@ body {
     flex-direction: column;
     justify-content: center;
     text-align: center;
+    overflow: scroll;
+}
+.img_signal {
+    display: block;
+    width: 80%;
+    margin: auto;
+}
+.p_post_signal{
+    padding: 2%;
+}
+#fermeture_post_signal{
+    display: block;
+    width: 25%;
+    margin: 1% auto;
+    padding: 1%;
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 10px;
 }
 
 .form_admin, .comment_affichage , #form_update_cursus {
@@ -344,7 +371,14 @@ body {
 .table_admin tbody{
     background-color: #dee2e6;
 }
-
+#action_alert {
+    width: 80%;
+    min-height: 100VH;
+    margin: auto;
+}
+#action_alert img {
+    width: 100%;
+}
 #action_alert label{
     margin: 5%;
 }
@@ -419,15 +453,6 @@ body {
     margin: 1%;
 }
 
-.table_groupe thead{
-    background-color: #275fa0;
-}
-.table_groupe tbody, .table_top_groupe tbody{
-    background-color: #DEE2E6;
-}
-.table_top_groupe thead{
-    background: #F1574B;
-}
 #tbody tr td {
     width: 25%;
 }
@@ -461,11 +486,20 @@ body {
 }
 
 /* style boutton */
-.update_cursus, .upgrade, .supp , .supprimer{
+.update_cursus, #upgrade,.upgrade, .supp , .supprimer{
     border: none;
 }
-.upgrade, .supp , .supprimer  {
+#upgrade, .upgrade,.supp , .supprimer  {
     background: transparent;
+}
+#upgrade{
+    display: block;
+    width: 50%;
+    margin: 2% auto;
+    padding: 1%;
+    color: white;
+    background-color: #275fa0;
+    border-radius: 10px;
 }
 .update_cursus{
     background-color:#ffca4b!important;
@@ -476,8 +510,22 @@ body {
 
 #message_admin {
     display: block;
-    width: 50%;
+    width: 90%;
     margin: 4% auto;
+}
+
+.voir_post{
+    display: block;
+    width: 100%;
+    padding: 0.5%;
+    background-color: #275fa0;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+.voir_post:hover{
+    background-color: #0b2747;
 }
 
 /* ****************************************************************************
@@ -543,9 +591,6 @@ body {
         width: 95%!important;
         margin: auto;
     }
-    #modale {
-        min-height: 100vh;
-    }
     .form_admin, .comment_affichage, #form_update_cursus {
         width: 90%;
     }
@@ -575,19 +620,25 @@ body {
 /* ****  TITRES **** */
 .titre_h3_feed{
     padding-bottom: 2%;
-    font-size: 20px;
+    padding-left: 2%;
+    font-size: 19px;
     text-decoration:#88c1d0 solid underline;;
 }
 /* **************** */
+
+.p_default{
+    font-size: 25px;
+    color: #275fa0;
+}
 .main_feed{
     display: flex;
 }
 
 .section_perso{
-    width: 20%;
+    width: 25%;
     margin: 2%;
-    border: 3px solid #275fa0;
-    background: #ffffffe0;
+    border: 1.5px solid #275fa0;
+    background:white;
 }
 .div_infos_perso{
     margin-top: 15%;
@@ -604,42 +655,56 @@ body {
 
 .feed{
     width: 80%;
-    border-left: 3px solid #275fa0;
+    border-left: 1.5px solid #275fa0;
+    min-height: 100vh; 
+
+        overflow: hidden;
+        position: relative;
 }
 
 .p_relations{
     text-align: center;
     font-size: 25px;
-    color: #88c1d0;
+    font-weight: bold;
+    color: #275fa0;
 }
 .section_post{
-    width: 70%;
+    width: 60%;
     margin: 2%;
-    padding: 3%;
-    border: 3px solid #275fa0;
+    padding: 1%;
+    border: 1.5px solid #275fa0;
 }
 .div_post{
     display: flex;
     align-items: center;
     justify-content: flex-start;
+    width: 95%;
 
 }
 .section_post img {
-    width: 15%;
+    width: 8%;
     border-radius: 50%;
 }
 .section_post form {
     width: 90%;
     text-align: center;
 }
-
+.section_amis_en_communs {
+    margin-top: 18%;
+}
 .div_amis_communs{
     display: flex;
     align-items: flex-start;
+    padding: 2%;
+}
+.div_suggestion_amis h4 {
+    margin: 0!important;
+    color: #275fa0!important;
+    font-size: 20px!important;
 }
 
 .div_amis_communs img{
-    width: 25%;
+    width: 15%;
 }
 
 #btn_form_form{
@@ -647,6 +712,7 @@ body {
     height: 8vh;
     line-height: 8vh;
     padding-left: 6%;
+    margin-left: 2%;
     border: none;
     border-radius: 50px;
     background-color: #EBEBEB;
@@ -746,34 +812,95 @@ body {
 }
 
 #section_affichage_posts{
-    width: 80%;
-    max-height: 100vh;
+    position: absolute;
+    top: 26%;
+    bottom: 0;
+    left: 0;
+    right: -25px; /* Il faut varier cette variable en fonction du navigateur utilisé (la barre de défilement n'a pas toujours la même largeur) */
     overflow: auto;
-    margin: auto;
+    margin: 1%;
+    
+}
+
+#btn_new_post{
+    display: block;
+    width: 22%;
+    margin: 0 auto 1%;
+    padding: 0.5%;
+    z-index: 100;
+    border: none;
+    border-radius: 20px;
+    background: #275fa0;
+    color: white;
+   
+}
+#btn_new_post:hover{
+    background: #275fa0da;
 }
 
 .section_posts{
+    width: 90%;
     margin: 2% auto;
     padding: 1%;
     background-color: #EBEBEB;
-    border: 3px solid #275fa0;
+    border: 1.3px solid #275fa0;
+    border-radius: 10px;
 }
 
 .infos_user{
     display:flex;
+    align-items: flex-start;
     width: 100%;
 }
 .infos_user img {
     width: 10%;
 }
+.div_flex{
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+.div_first {
+    width: 70%;
+}
 
+.div2{
+    width: 33%;
+    text-align: right;
+}
+.menu_signal , .sous_menu_signal {
+    cursor: pointer;
+}
+.div_signal , .sous_div_signal {
+  cursor: pointer;
+    background-color: black;
+    width: 100%;
+    text-align: CENTER;
+}
+.div_signal a , .sous_div_signal a {
+    color: white!important;
+}
+.infos_user div p {
+    margin: 0!important;
+}
+
+.infos_user div p:first-child a {
+   font-weight: bold;
+   font-size: 18px!important;
+   color: black!important;
+}
+.infos_user div p{
+    color: grey;
+    font-size: 13px;
+}
 .media{
     width: 100%;
 }
 
 .media img , .media video{
-    width: 100%;
-    height: auto;
+    width: 85%;
+    max-height: 85vh;
+    margin: auto;
 }
 
 #form_erreur {
@@ -781,11 +908,309 @@ body {
     border-radius: 10px;
 }
 
+
+
+/* ** PARTIE REACTION **  */
+
 .reactions {
     display: flex;
     align-items: flex-end;
+    position: relative;
     
 }
 .reactions div {
     margin: 0 2%;
 }
+.reaction_div a p {
+    margin-bottom: 0;
+}
+.div_icon,.icon-c,.icon-s{
+    padding: 1%;
+    border-radius: 5px;
+}
+.div_icon:hover,.icon-c:hover,.icon-s:hover{
+    background-color: rgb(221, 221, 221);
+}
+
+.modale_reaction{
+    position: absolute;
+    top: -115%;
+    display: none;
+    justify-content: space-around;
+    width: 50%; 
+    background-color: white;
+    border-radius: 20px;
+    border: .5px solid #275fa0;
+}
+
+.modale_reaction a {
+    width: 15%;
+    text-align: center;
+}
+.span_titre_reaction {
+    display: none;
+    position: absolute;
+    top: -85%;
+    background-color:#275fa0;
+    padding: 1%;
+    border-radius: 20px;
+    color: white;
+}
+.icon_block{
+    display: block;
+}
+.modale_reaction img {
+    width:100%;
+}
+.bleu {
+    color: #275fa0;
+    font-weight: bold;
+}
+
+.petite_icon img{
+    width: 10%;
+}
+
+.reactions_miniatures{
+    display: flex;
+    justify-content: flex-start;
+  
+   
+    width: 50%;
+}
+.reactions_miniatures img {
+    max-width: 100%;
+}
+
+.reactions_miniatures div {
+    display: flex;
+    align-items: flex-end;
+    width: 10%;
+}
+
+.p_reaction {
+    font-size: 13px;
+    font-weight: bold;
+    color: #275fa0;
+}
+
+/* FORMULAIRE DE CONTACT FEED */
+.form_feed_comm{
+   display: flex;
+   align-items: center;
+}
+.textarea {
+    width: 85%;
+    height: 45px;
+    margin-top: 1%;
+    padding-left: 5px;
+    padding-top: 10px;
+    border-radius: 20px;
+    outline-style: none;
+    
+}
+
+.btn_form_comm{
+    display: none!important;
+    margin-left: 1%;
+    background-color: #275fa0!important;
+    border-radius: 15px!important;
+    color: white!important;
+  
+}
+
+.btn_form_comm:hover{
+    background-color: #275fa0a6!important;
+}
+.block{
+    display: block!important;
+}
+.none{
+    display: none;
+}
+.plus {
+    display: inline-block;
+    width: 36%;
+    text-align: right;
+    color: grey;
+    cursor: pointer;
+}
+
+.moins{
+    display: inline-block;
+    width: 98%;
+    text-align: right;
+    color: grey;
+    cursor: pointer;
+}
+
+.p_commentaires {
+    cursor: pointer;
+}
+
+
+.section_commentaire_div {
+    display: flex;
+    align-items: flex-start;
+    width: 90%;
+    margin: 2%;
+}
+
+.section_commentaire div img {
+    width: 5%;
+    margin-top: 2%;
+}
+
+.div_fist  {
+    width: 90%;
+    margin-left: 1%;
+    margin-top: 1%;
+    padding-top: 1%;
+    padding-left: 1%;
+  
+  
+    background-color: white;
+    border-radius:0 10px 10px;
+}
+
+.section_commentaire_div2{
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.p_nom{
+    width: 65%;
+}
+
+.p_nom a {
+    color: black!important;
+    font-weight: bold!important;
+}
+
+.hr_comm{
+    
+    margin-top: -10px;
+}
+.p_signal{
+    width: 10%;
+}
+
+.section_list{
+    margin: 1% ;
+    padding: 1%;
+    background-color: whitesmoke;
+    border-radius: 10px;
+    box-shadow: 8px 8px 8px lightgrey;
+}
+
+.section_list h2 {
+    font-size: 20px;
+    color: #275fa0;
+}
+
+
+
+.reaction_div{
+    width: 50%;
+    display: flex;
+    align-items: center;
+}
+
+.reaction_div img{
+   width: 20%;
+}
+
+.section_perso_mobile{
+    display: none;
+}
+
+.btn_nav_bar_mobile{
+    display: none;
+}
+.btn_close {
+
+    background: black;
+    color: white;
+    border: none;
+    padding: 5px;
+    border-radius: 10px;
+}
+#More_post{
+
+    width: 25%;
+    border: none;
+    background: black;
+    color: white;
+    height: 7vh;
+    margin: 2% auto;
+    display: block;
+    box-shadow: 8px 8px 8px grey;
+
+}
+#More_post:hover{
+    background-color: rgb(53, 53, 53);
+}
+/* ***********************************************************
+************************ RESPONSIVE FEED *********************
+*********************************************************** */
+
+/* VERSION MOBILE */
+@media screen and (max-width: 326px){
+    #btn_form_form {
+        line-height: 7vh;
+        font-size: 11px;
+    }
+}
+@media screen and (max-width: 769px){
+    .section_perso{
+        display: none;
+    }
+    .btn_nav_bar_mobile{
+        display: block;
+    }
+    .feed {
+        width: 100%;
+    }
+    .icon-menu:before {
+        font-size: 32px;
+    }
+    .section_post {
+        width: 95%;
+    }
+    .section_posts {
+        width: 95%;
+    }
+    #section_affichage_posts {
+        right: 0;
+        margin: 0;
+    }
+    .photo_profil_feed {
+        width: 16%;
+    }
+    .titre_h3_feed {
+        margin-top: 5%;
+        font-size: 19px!important;
+        text-align: left;
+    }
+    .div_amis_communs img {
+        width: 11%;
+    }
+    .reactions_miniatures {
+        width: 70%;
+    }
+    .section_commentaire_div {
+        width: 100%;
+    }
+    .div_first {
+        width: 70%;
+    }
+    .div2 {
+        width: 100%;
+    }
+    .plus {
+        width: 98%;
+    }
+}
+
+

@@ -8,11 +8,17 @@ if ($_SESSION['user']['droits'] != "administrateur"){
 $page_selected = 'admin'; 
 
 require 'class/Config.php';
+require "class/Cursus.php";
+
+$cursus = new Cursus($db);
+
+$formations = $cursus->getCursus();
+
 
 
 ?>
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html >
+<html lang="fr">
 <head>
     <title>social_network - admin</title>
     <meta charset="utf-8">
@@ -29,7 +35,6 @@ require 'class/Config.php';
     <script src="js/fonctions/fonctions_generales.js"></script>
     <script src="js/fonctions/fonctions_users.js"></script>
     <script src="js/fonctions/fonctions_posts.js"></script>
-    <script src="js/fonctions/fonctions_groupe.js"></script>
     <script src="js/fonctions/fonctions_langages.js"></script>
     <script src="js/fonctions/fonctions_cursus.js"></script>
     
@@ -43,18 +48,17 @@ require 'class/Config.php';
 <header class="header_admin">
     <h1>DashBord</h1>
     <div class="icones_menu">
-        <p><a id="signalement"class="icon-bell-alt"href='#' title="Signalement"></a> </p>
+        <p><a id="signalement" class="icon-bell-alt" href='#' title="Signalement"></a> </p>
         <p><a class="icon-home" href="index.php"></a></p>
     </div>
 </header>
 <main class="admin_main">
     <section class="nav_admin">
-        <img class="admin_main_img"src="images/dashbord.png" alt="Logo">
+        <img class="admin_main_img" src="images/dashbord.png" alt="Logo">
         <nav>
             <button id="utilisateurs" class="btn btn-info admin_main_button">Utilisateurs</button>
-            <button id="posts"class="btn btn-info admin_main_button">Les Posts</button>
+            <button id="posts" class="btn btn-info admin_main_button">Les Posts</button>
             <button id="btn_signal" class="btn btn-info admin_main_button">Signalements</button>
-            <button id="groupe" class="btn btn-info admin_main_button">Les groupes</button>
             <button id="langages" class="btn btn-info admin_main_button">Les langages</button>
             <button id="cursus" class="btn btn-info admin_main_button">Les Cursus</button>
         </nav>

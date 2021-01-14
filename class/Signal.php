@@ -17,7 +17,7 @@ class Signal{
     }
 
     public function DeletePostsSignal($id){
-        $requete = $this->connect->prepare("DELETE FROM `signal_post` WHERE id_post = ?");
+        $requete = $this->connect->prepare("DELETE FROM `signal_post` INNER JOIN post ON signal_post.id_post = post.id  WHERE id_post = ?");
         $requete->execute([$id]);
         return true;
     }
@@ -27,6 +27,18 @@ class Signal{
         return true;  
     }
 
+    public function setSignal($id_post,$id_user){
+        $requete = $this->connect->prepare("INSERT INTO `signal_post`( `id_post` , id_user) VALUES (?,?)");
+        $requete->execute([$id_post,$id_user]);
+        return true;
+    }
+
+    public function GetPostSignal($id_user,$id_post){
+        $requete = $this->connect->prepare("SELECT * FROM `signal_post` WHERE id_user = ? AND id_post= ?");
+        $requete->execute([$id_user,$id_post]);
+        $resultat = $requete->fetchall(PDO::FETCH_ASSOC);
+        return $resultat;
+    }
   
 }
 
@@ -49,6 +61,19 @@ class Signal_comment{
         $requete = $this->connect->prepare("DELETE FROM `signal_comment` WHERE id = ?");
         $requete->execute([$id]);
         return true;  
+    }
+
+    public function GetCommentSignal($id_user,$id_comment){
+        $requete = $this->connect->prepare("SELECT * FROM `signal_comment` WHERE id_user=? and id_comment=?");
+        $requete->execute([$id_user,$id_comment]);
+        $resultat = $requete->fetchall(PDO::FETCH_ASSOC);
+        return $resultat;
+    }
+
+    public function setCommentSignal($id_user,$id_comment){
+        $requete = $this->connect->prepare("INSERT INTO `signal_comment`( `id_comment`, `id_user`) VALUES (?,?)");
+        $requete->execute([$id_comment,$id_user]);
+        return true;
     }
    
 }
