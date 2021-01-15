@@ -379,7 +379,7 @@ class User{
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  //
     /*------------------------------------------------------------------------------------------------------*/
-    /* FONCTION INFOS USER + CURSUS = récupère seulement les infos de la table Users + Cursus
+    /* FONCTION SELECT POST USER : récupère les posts d'un utilisateur
     --------------------------------------------------------------------------------------------------------*/
 
     public function post_users($id_user){
@@ -391,6 +391,25 @@ class User{
         $post_users = $q->fetchAll(PDO::FETCH_ASSOC);
         return $post_users;
     }
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  //
+    /*------------------------------------------------------------------------------------------------------*/
+    /* FONCTION SELECT RÉACTIONS POST USER : récupère les reactions + commentaires selon le post
+    --------------------------------------------------------------------------------------------------------*/
+
+    public function post_reactions(){
+        $connexion = $this->db->connectDb();
+        $q = $connexion->prepare("SELECT *
+                                  FROM post
+                                  INNER JOIN comment
+                                  ON post.id = comment.id_post
+                                  INNER JOIN like_post
+                                  ON post.id = like_post.id_post");
+        $q->execute();
+        $post_react = $q->fetchAll();
+        return $post_react;
+    }
+
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  //
     /*---------------------------------------------*/

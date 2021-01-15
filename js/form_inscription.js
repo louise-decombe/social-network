@@ -41,6 +41,7 @@ $(document).ready(function(){
 
     var regexlastname=/^([a-zA-Z\-]{3,25})$/;
     $("#lastname").change(function(){
+        $("#error_lastname").empty();
  
         var lastname = $(this).val();
         //alert(email);

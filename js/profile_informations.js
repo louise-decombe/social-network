@@ -10,7 +10,7 @@ const site_error = "veuillez entrer une adresse url valide";
 /*----------------------------------------------------*/
 /* UPLOAD PROFILE PIC
 ------------------------------------------------------ */
-/*$(document).ready(function() {
+$(document).ready(function() {
 
     var readURL = function(input) {
         if (input.files && input.files[0]) {
@@ -38,8 +38,12 @@ const site_error = "veuillez entrer une adresse url valide";
         var id_user = $('.id_user').val();
 
         console.log(id_user);
+
+        $(".upload-button").remove();
+        $(".submit-pic").css("visibility", "visible");
+        //$(".upload-button").append();
     
-        $.ajax({
+        /*$.ajax({
             url : "php/upload_test.php", // on donne l'URL du fichier de traitement
             type : "POST", // la requête est de type POST
             //enctype:'multipart/form-data',
@@ -50,15 +54,15 @@ const site_error = "veuillez entrer une adresse url valide";
                 console.log(response);
                 //alert(response);
                 
-        }
-});
+        }*/
+//});
         
     });
     
     $(".upload-button").on('click', function() {
        $(".file-upload").click();
     });
-});*/
+});
 
 /*----------------------------------------------------*/
 /* LOCALITE AUTOCOMPLETION

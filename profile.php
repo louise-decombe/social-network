@@ -1,4 +1,5 @@
-<?php $page_selected = 'profile'; 
+<?php 
+$page_selected = 'profile'; 
 session_start();
 require 'class/Db.php';
 require 'class/User.php';
@@ -55,31 +56,28 @@ $tech_name = $options->techno($id_user);
 
     <section id="cover-pic">
         <img id="cover" src="<?= $_SESSION['user']['cover']?>" alt="cover-picture">
-        <img id="profile-mini-pic" src="php/<?= $_SESSION['user']['photo']?>" alt="profile-mini-pic">
         <h1 id="profile_name">@ <?= $_SESSION['user']['firstname'] ?> <?= $_SESSION['user']['lastname'] ?></h1>
-        <form id="change_profile_pic" method="post" action="php/upload_pics.php" enctype="multipart/form-data">
-            <input type="hidden" name="id_user" class="id_user" value="<?= $id_user ?>">
-            <input id="image" type="file" name="photo" placeholder="Photo" required="" capture>
-            <button type="submit" name="submit" value="Upload"><i class="fas fa-camera"></i></button>
-        </form>
         <div id="change_cover_pic"><i class="fas fa-camera"></i></div>
     </section>
 
-    <div class="row">
+    <div class="row container_pic_profile">
         <div class="small-12 medium-2 large-2 columns">
             <div class="circle">
-            <!-- User Profile Image -->
-                <img class="profile-pic" src="php/<?= $_SESSION['user']['photo']?>" alt="profile-mini-pic">
-            <!-- Default Image -->
-        <i class="fa fa-user fa-5x"></i>
+                <!-- User Profile Image -->
+                <img class="profile-pic" src="php/<?= $user_details['photo']?>" alt="profile-mini-pic">
+                <!-- Default Image -->
+                <i class="fa fa-user fa-5x"></i>
             </div>
             <div class="p-image">
-            <!--form id="" method="post" action="php/upload_test.php" enctype="multipart/form-data"-->
-                <i class="fa fa-camera upload-button"></i>
-                <input type="hidden" name="id_user" class="id_user" value="<?= $id_user ?>">
-                <input class="file-upload" id="image" type="file" name="photo" placeholder="Photo" required="" capture>
-                <!--input class="file-upload" type="file" name="pic" accept="image/png, image/jpeg"/-->
-            <!--/form-->
+                <form class="form_pic_upload" method="post" action="php/upload_pics.php" enctype="multipart/form-data">
+                    <i class="fa fa-camera upload-button"></i>
+                    <button id="button_pic" type="submit" name='submit_pic'>
+                        <i class="far fa-check-circle submit-pic">&nbsp valider la photo de profil</i>
+                    </button>
+                    <input type="hidden" name="id_user" class="id_user" value="<?= $id_user ?>">
+                    <input class="file-upload" id="image" type="file" name="photo" placeholder="Photo" required="" capture>
+                    <!--input class="file-upload" type="file" name="pic" accept="image/png, image/jpeg"/-->
+                <form>
             </div>
         </div>
     </div>
@@ -147,7 +145,7 @@ $tech_name = $options->techno($id_user);
 
                                 <div class="modify_input">
                                     <form id="user_tech" method="post" action="">
-                                        <span>▪ Technologies maîtrisées</span>
+                                        <span>▪ technologies</span>
                                         <?php
                                         foreach ($technos as $tech) { //var_dump($tech);
                                             
@@ -247,7 +245,7 @@ $tech_name = $options->techno($id_user);
                        
                         <div class="personal_details">
                             <?php if(!empty($user_details['bio'] )){ ?>
-                            <div><strong>BIO</strong> &nbsp<?= $user_details['bio']?></div>
+                            <div id="user_details_bio"><strong>À PROPOS DE MOI</strong> &nbsp<?= $user_details['bio']?></div>
                             <?php } ?>
                         </div>
 
@@ -263,9 +261,9 @@ $tech_name = $options->techno($id_user);
                     
                     <div class="category_details">
                     <?php
-                    if(!empty($tech_name)){ 
+                        if(!empty($tech_name)){ 
                         foreach ($tech_name as $technologies){ //var_dump($technologies);
-                    ?>
+                        ?>
                         <span id="technologies"><i class="fas fa-check"></i>&nbsp<?= $technologies['nom']?></span>
                     <?php }; }; ?>
                     </div>
@@ -305,7 +303,7 @@ $tech_name = $options->techno($id_user);
                         $date_post =  $post['created_at']
                     ?>
                         <div id="user_post">
-                            <img id="input-pic" src="<?= $_SESSION['user']['photo']?>" alt="input-pic">
+                            <img id="input-pic" src="php/<?= $user_details['photo']?>" alt="input-pic">
                             posté le : <?= (new DateTime($date_post))->format('d-m-Y')?>
                             message : <?= $post['content'] ?>
                             media : <?= $post['media'] ?>
@@ -348,29 +346,6 @@ $tech_name = $options->techno($id_user);
                             <input type="text" id="modify_firstname" name="modify_firstname" placeholder="prénom">
                             <button type="submit" id="submit_firstname"><i class="far fa-check-circle"></i></button>
                         </form>
-                        <script>
-
-
-$('#tete').submit(function(e){
-    //e.preventDefault(); // on empêche le bouton d'envoyer le formulaire
-        
-    //var id_user = $(this).find("input[name=id_user]").val();
-    var new_firstname = $('#modify_firstname').val();
-    console.log(new_firstname);
-                
-        /*$.ajax({
-            url : "php/form_profile.php", // on donne l'URL du fichier de traitement
-            type : "POST", // la requête est de type POST
-            data : ({id_user: id_user, new_firstname: new_firstname}),// et on envoie nos données
-            success:function(response){
-                console.log(response);
-                //alert(response);
-                
-            }
-        });*/
-});
-
-</script>
                     </div>
                     <div class="modify_input">
                         <form id="user_lastname" method="post" action="">
@@ -398,17 +373,6 @@ $('#tete').submit(function(e){
   }
 </script>
 
-<?php 
-                echo date_format($date, 'd/m/Y H:i:s'); 
-            ?>
-                <!--<div id="profile_form">
-                    <img id="input-pic" src="<?= $_SESSION['user']['photo']?>" alt="input-pic">
-                    <div class="input-icons"> 
-                        <i class="far fa-comment-alt"></i>
-                        <input class="input-field" id="share_profile" name="share_profile" type="textarea" placeholder="que voulez partager @ <?= $_SESSION['user']['firstname']?> ?"> 
-                    </div> 
-                    <i class="fas fa-paper-plane"></i>
-                </div>-->
                 <div class="profile_content">
                     <div id="profile_publications">
                         <div id="profile_title">
@@ -416,25 +380,71 @@ $('#tete').submit(function(e){
                             <h2>vos publications...</h2>
                         </div>
                         <div id="profile_post">
-                            <?php foreach($post_users as $post){ ?>
-                                <div id="user_post">
-                                <img id="input-pic" src="<?= $_SESSION['user']['photo']?>" alt="input-pic">
-                                posté le : <?= (new DateTime($date_post))->format('d-m-Y')?>
-                                message : <?= $post['content'] ?>
-                                media : <?= $post['media'] ?>
+                            <?php foreach($post_users as $post){ var_dump($post);
+                            $date_post = $post['created_at'];
+                            $id_post = $post['id'];
+                            ?>
+                            <div id="user_post">
+                                <div>
+                                    <img id="input-pic" src="php/<?= $user_details['photo']?>" alt="input-pic">
+                                    <span class="date_post">le : <?= (new DateTime($date_post))->format('d-m-Y')?></span>
+                                    <?php
+                                        $date_origin = new DateTime($date_post);
+                                        $date_target = new DateTime();
+                                        $interval = $date_origin->diff($date_target);
+                                        echo $interval->format('%R%a jours');
+                                    ?>
+                                </div>
+                                <div class="post_content">message : <?= $post['content'] ?></div>
+                                <?php if(!empty($post['content'])){ ?>
+                                    media : <?= $post['media'] ?>
+                                <?php } ?>
                                 <div class="reaction_posts">
                                     10<i class="far fa-thumbs-up"></i>
                                     <i class="far fa-comment-dots"></i>
-                            </div>
+                                </div>
                                 
                                 </div>
         
                            <?php } ?>
                            <?php 
-                           echo date_format($date, 'd/m/Y H:i:s'); ?>
+                           echo date_format($date, 'd/m/Y H:i:s'); 
+                           $reactions = $user -> post_reactions($id_post);
+                            var_dump($reactions);
+                           ?>
                      
 
                         </div>
+                        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+                        <script>
+                        $( function() {
+    $( "#datepicker" ).datepicker();
+  } );
+  </script>
+
+20
+21
+22
+23
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>jQuery UI Datepicker - Default functionality</title>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script>
+  $( function() {
+    $( "#datepicker" ).datepicker();
+  } );
+  </script>
+</head>
+<body>
+ 
+<p>Date: <input type="text" id="datepicker"></p>
                     </div>
                 </div>
             </div>

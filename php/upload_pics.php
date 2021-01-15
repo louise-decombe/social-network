@@ -44,6 +44,8 @@ $connexion->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
                $update_pic->bindParam(':photo',$file_path, PDO::PARAM_STR);
                //$update_pic->bindParam(':id',$id_user, PDO::PARAM_INT);
                $update_pic->execute(); 
+
+               header('location:../profile.php');
                 
             } 
         } else{

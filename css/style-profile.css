@@ -150,6 +150,15 @@
     justify-content:space-around;
 }
 
+#user_details_bio{
+    display:flex;
+    flex-direction : column;
+    width:95%;
+    padding-left:10px;
+    padding-right:10px;
+    text-align : justify;
+}
+
 #user_bio{
     display:flex;
     width:90%;
@@ -309,6 +318,17 @@
     padding-left:20px;
 }
 
+#technologies{
+    display:flex;
+    flex-wrap:wrap;
+    font-size:12px;
+}
+
+#technologies i{
+    font-size:10px;
+}
+
+
 
 
 /*----------------------------------------------------------------------------------------------------------------------------*/
@@ -434,13 +454,16 @@
     border: 8px solid rgba(255, 255, 255, 0.7);
     position: absolute;
     top: 72px;
+    margin-left: -35%;
+    margin-top:27.5%;
 }
+
 .p-image {
-  position: absolute;
-  top: 167px;
-  right: 30px;
-  color: #666666;
-  transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
+    position: absolute;
+    color: #666666;
+    transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
+    margin-left: -27.5%;
+    /*margin-top:27.5%;*/
 }
 .p-image:hover {
   transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
@@ -461,7 +484,8 @@
     border:none;
     background-color:transparent;
     font-size:18px;
-    margin-right:2.5%;
+    margin-right:3.5%;
+    border-bottom: 3px solid black;
 }
 
 #count_followers{
@@ -469,7 +493,9 @@
 }
 
 .link_content:hover{
-    border-bottom: 3px solid black;
+    border-bottom: 3px solid #275fa0;
+    color: #275fa0;
+    transition: 1.5s;
 }
 
 
@@ -483,4 +509,21 @@
     background-color:yellow;
     width:100%;
 }
+
+.post_content{
+    display:flex;
+    width:90%;
+    color:gray;
+}
+
+.submit-pic{
+    /*display:none;*/
+    visibility: hidden;
+}
+
+#button_pic{
+    border:none;
+    background-color:transparent;
+}
+
 
