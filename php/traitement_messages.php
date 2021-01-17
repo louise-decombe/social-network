@@ -55,10 +55,7 @@ if (isset($_POST['valider'])){
             else{
                 $message = NULL;
             }
-                  //
-                
-            
-           
+                  // 
             
             if (!empty($_FILES['files']['name'])){
                 if($_POST['type'] == "photo" || $_POST['type'] == "video"){
@@ -144,19 +141,8 @@ if (isset($_POST['valider'])){
         if (empty($_POST['files'])){
             echo "false";
         }
-    }
-   
-
-   
-    
-    
-    
-    
+    }  
     
 }
-
-
-
-
 
 ?>

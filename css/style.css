@@ -120,6 +120,17 @@ nav .link-header{
   }
 }
 
+.fa-envelope {
+  color:white;
+width: 5px;
+}
+
+
+.fa-envelope:hover {
+  color:lightgray;
+}
+
+
 /*** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - ***/
 /*----------------------------------------------------*/
 /* FOOTER
@@ -294,11 +305,11 @@ footer{
   
 }
 
-search-header-result a {
+search-result  {
    color : white !important; 
 }
 
-search-header-result a:hover {
+search-result a:hover {
   color : lightgray;
 }
 
