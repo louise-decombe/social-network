@@ -1,6 +1,8 @@
 
 
 
+// montrer le chat
+
 $(function(){
 	$(document).on('click', '#messagePopup', function(){
 		console.log('ok popup');
@@ -11,8 +13,7 @@ $(function(){
   		});
 	});
 
-
-
+	//récup les données demandées de chaque conversation
 
 	$(document).on('click', '.user-message', function(){
 		var get_id = $(this).data('user');
@@ -28,10 +29,14 @@ $(function(){
 					autoscroll = true;
 				}
 			});
+
+			//fermeture du chat
 		$('.close-msgPopup').click(function(){
 			 clearInterval(timer);
 		});
 		});
+
+
 
 		getMessages = function(){
 			$.post('http://localhost/social-network/php/chat.php', {showChatMessage:get_id}, function(data){
@@ -51,9 +56,12 @@ $(function(){
 				});
 			});
 		}
+		// ici interval rechargement page Ajax
 		var timer = setInterval(getMessages, 4000);
 		getMessages();
 
+
+		// ici définition du scroll sur le chat
 		autoscroll = true;
 		scrollDown = function(){
 			var chat  = $('#chat')[0];
@@ -70,6 +78,9 @@ $(function(){
 			});	
 		});
 
+					//suppression message par l'utilisateur
+
+
 		$(document).on('click', '.deleteMsg', function(){
 			var id_message  = $(this).data('message');
 			$('.message-delete-inner').height('100px');
@@ -77,6 +88,7 @@ $(function(){
 			$(document).on('click', '.cancel', function(){
 				$('.message-delete-inner').height('0px');
 			});
+
 
 			$(document).on('click', '.delete', function(){
 				$.post('http://localhost/social-network/php/chat.php', {deleteMsg:id_message}, function(data){
@@ -88,10 +100,6 @@ $(function(){
 		});
 
 	});
-
-
-
-	
 
 })
 

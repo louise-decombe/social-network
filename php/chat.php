@@ -17,9 +17,9 @@
    	// envoi du message en BDD
     	if(isset($_POST['sendMessage']) && !empty($_POST['sendMessage'])){
    
-   		if(!empty($_FILES['file']['name'][0])){
-   			$img_chat = $message->uploadImage($_FILES['file']);
-   		  }
+   		// if(!empty($_FILES['file']['name'][0])){
+   		//	$img_chat = $message->uploadImage($_FILES['file']);
+   		//  }
    
    
    		 $id  = 1;
@@ -179,9 +179,10 @@
             <div class="main-msg-footer-inner">
                <ul>
                   <li><textarea id="msg" class="question" name="msg" placeholder="Ecrivez le message" ></textarea></li>
-                  <!-- upload d'image dans le chat -->
-                  <li><input id="msg-upload" type="file" value="upload"/><label for="msg-upload"><i class="fa fa-camera" aria-hidden="true"></i></label></li>
-                  <li><input id="send" data-user="<?php echo $messageFrom;?>" type="submit" value="Send"/></li>
+                  <!-- upload d'image dans le chat 
+                  <li><input id="msg-upload" type="file" value="upload"/><label for="msg-upload"><i class="fa fa-camera" aria-hidden="true"></i></label></li> -->
+                  <li>
+                     <input id="send" data-user="<?php echo $messageFrom;?>" type="submit" value="Send"/></li>
                </ul>
             </div>
          </div>
