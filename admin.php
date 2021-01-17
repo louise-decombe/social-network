@@ -25,7 +25,6 @@ require 'php/admin.php';
     <script src="js/fonctions/fonctions_groupe.js"></script>
     <script src="js/fonctions/fonctions_langages.js"></script>
     <script src="js/fonctions/fonctions_cursus.js"></script>
-    
     <script src="js/admin.js"></script>
 
     <!-- template -->

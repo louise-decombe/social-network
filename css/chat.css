@@ -144,7 +144,7 @@ ul {
 	float: left;
 	font-size: 16px;
 	font-weight: normal;
-	color: #275fa0	;
+	color: #88c1d0	;
 }
 .message-h-right{
 	width:10%;
@@ -226,7 +226,7 @@ ul {
 }
 .ms-fo-right label{
 	color: rgb(255, 255, 255);
-	background:#275fa0;
+	background:#88c1d0;
 	padding: 10px 20px;
 	border-radius: 4px;
 }
@@ -243,8 +243,7 @@ ul {
 	right: 25%;
 	background: white;
 	border-radius: 10px;
-	border: 1px solid #275fa0
-	ite;
+	border: 1px solid #88c1d0;
 }
 .popwrap-header{
 	width: 100%;
@@ -278,7 +277,7 @@ ul {
 }
 
 .popwrap-full{
-	background: #275fa0;
+	background: #88c1d0;
 	width: 100%;
     overflow: hidden;
     padding: 10px 0px;
@@ -425,7 +424,7 @@ ul {
 }
 
 .msg{
-	background: #275fa0;
+	background: #88c1d0;
 	color: white;
 	padding: 10px;
 	top: 5px;
@@ -481,7 +480,7 @@ ul {
 
 
 .msg-l{
-	background: #275fa0;
+	background: #88c1d0;
 	color: white;
 	padding: 10px;
 	top: 5px;
@@ -518,7 +517,7 @@ ul {
 /*message send2  footer*/
 
 .main-msg-footer{
-	background: #275fa0;
+	background: #88c1d0;
 	border-top: 1px solid black;
 	height: 20%;
 }
@@ -547,7 +546,7 @@ ul {
 .main-msg-footer-inner ul li .fa-camera{
 	font-size: 28px;
 	line-height: 40px;
-	color: #ffca4b;
+	color: black;
 }
 .main-msg-footer-inner ul li input[type="submit"]{
 	padding: 7px 8px;
@@ -569,3 +568,39 @@ ul {
 .main-msg-footer-inner input[type="file"]{
 	display: none;
 }
+
+/* MEDIA QUERIES */
+
+  /* 
+	##Device = Tablets, Ipads (portrait)
+	##Screen = B/w 768px to 1024px
+  */
+  
+  @media (min-width: 768px) and (max-width: 1024px) {
+	
+	/* CSS */
+	
+  }
+  
+  /* 
+	##Device = Tablets, Ipads (landscape)
+	##Screen = B/w 768px to 1024px
+  */
+  
+  @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+	
+	/* CSS */
+	
+  }
+  
+  
+  /* 
+	##Device = Most of the Smartphones Mobiles (Portrait)
+	##Screen = B/w 320px to 479px
+  */
+  
+  @media (min-width: 320px) and (max-width: 480px) {
+	
+	/* CSS */
+	
+  }

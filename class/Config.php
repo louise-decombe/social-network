@@ -16,9 +16,6 @@ $db = new DB();
     require 'Message.php';
     $message = new Message($db);
 
-    require 'Hashtag.php';
-    $tendance = new Hashtag($db);
-
     //traitement de la déconnexion
 if (isset($_POST["deco"])) {
     $user->disconnect();
