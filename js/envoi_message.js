@@ -2,7 +2,7 @@ $(function(){
 
 	// quand send est cliqué on envoi une data, qui correspond à l'id du destinataire + redirection vers traitement en PHP
 
-	$(document).off().on('click', '#send', function(){
+	$(document).off('click').on('click', '#send', function(){
 		var message = $('#msg').val();
 		var get_id   = $(this).data('user');
 		console.log(get_id);
