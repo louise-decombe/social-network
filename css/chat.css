@@ -578,8 +578,55 @@ ul {
   
   @media (min-width: 768px) and (max-width: 1024px) {
 	
-	/* CSS */
 	
+		.back{
+			margin: 0px auto;
+			width: 50%;
+			position: fixed;
+			height: 80%;
+			bottom: 10%;
+			right: 28%;
+			background: white;
+			border-radius: 10px;
+			display: none;
+			overflow: hidden;
+		}
+		.back-inner{
+			height: 91%;
+			overflow: auto;;
+		}
+		.back-header{
+			height: 50px;
+			padding: 7px 0px;
+		}
+		
+		.back-left{
+			float: left;
+			font-size: 20px;
+			padding: 10px 15px;
+		}
+		.back-right{
+			float: right;
+			padding: 15px 5px;
+		}
+
+
+
+
+		.main-msg-l{
+			display: flex;
+			flex-direction: column;
+		}
+		
+
+		.user-inner{
+			display: flex;
+			flex-direction: column;
+			width:90%;
+			overflow: hidden;
+		}
+
+
   }
   
   /* 
@@ -589,8 +636,7 @@ ul {
   
   @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
 	
-	/* CSS */
-	
+
   }
   
   
@@ -600,7 +646,53 @@ ul {
   */
   
   @media (min-width: 320px) and (max-width: 480px) {
+
+	.back{
+		margin: 0px auto;
+		width: 50%;
+		position: fixed;
+		height: 80%;
+		bottom: 10%;
+		right: 28%;
+		background: white;
+		border-radius: 10px;
+		display: none;
+		overflow: hidden;
+	}
+	.back-inner{
+		height: 91%;
+		overflow: auto;;
+	}
+	.back-header{
+		height: 50px;
+		padding: 7px 0px;
+	}
 	
-	/* CSS */
+	.back-left{
+		float: left;
+		font-size: 20px;
+		padding: 10px 15px;
+	}
+	.back-right{
+		float: right;
+		padding: 15px 5px;
+	}
+
+
+
+
+	.main-msg-l{
+		display: flex;
+		flex-direction: column;
+	}
+	
+
+	.user-inner{
+		display: flex;
+		flex-direction: column;
+		width:90%;
+		overflow: hidden;
+	}
+
 	
   }

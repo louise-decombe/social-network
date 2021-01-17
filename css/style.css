@@ -122,7 +122,8 @@ nav .link-header{
 
 .fa-envelope {
   color:white;
-width: 5px;
+  width: 200%;
+  font-size: 180%;
 }
 
 

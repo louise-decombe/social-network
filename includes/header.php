@@ -11,20 +11,22 @@
    <!-- navbar connect -->
    <nav class="navbar navbar-dark navbar-expand-lg" style="background-color: #000000;">
       <a class="navbar-brand" href="home.php">
-      <img src="img/PICT_LOGO_WHITE_TEXT.png" width="60" height="45" class="d-inline-block align-top" alt="white_logo_plateformer_" loading="lazy">
+      <img src="img/PICT_LOGO_WHITE_TEXT.png" width="80" height="65" class="d-inline-block align-top" alt="white_logo_plateformer_" loading="lazy">
       </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-      </button>      
-      <div class="collapxse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
+    <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
          <!-- lien recherche d'un utilisateur -->
-         <li class="nav-item">
+         <li class="nav-item active">
             <input type="text" placeholder="Chercher un utilisateur"  class= "form-control mr-sm-2 search"/>
             <div class="search-result">
             </div>
          </li>
       </ul>
+      </div>
       <ul id="nav-forms">
          <li>    <a class="nav-link" href="../index.php"> <i class="fa fa-home" aria-hidden="true"></i></a></li>
          <!-- quand on clique on déclenche le pop up -->
@@ -39,6 +41,7 @@
             </form>
          </li>
       </ul>
+      </div>
    </nav>
    <?php
       }else{ ?>
