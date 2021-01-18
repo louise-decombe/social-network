@@ -3,7 +3,7 @@
 /// FONCTIONS
 /////////////////////////////////////////////////////////////////////////////////////////
 
-//FUNCTION TOTO
+
 function affichage_pictogramme($react,$i,$image){
     if ($react[$i][0]["nbr"] != 0) {
       

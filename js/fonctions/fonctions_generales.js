@@ -176,9 +176,7 @@ function pagination(data){
             if (data[i] != undefined){
                 $("#tbody").append(tableau(donne,data,i))
             }
-          
-            
-            //$("#tbody").append(tableau(data,i));
+
         }
     })
 }

@@ -1,7 +1,6 @@
 <?php session_start();
 
 require "../class/Config.php";
-//require "../class/Post.php";
 require "../class/Signal.php";
 require "../class/Comment.php";
 
@@ -87,7 +86,6 @@ if (isset($_POST['action'])){
         echo json_encode($resultat);
     }
     if ($_POST['action'] == "affichage comment signalé"){
-        // echo 'comment 2';
          $id_post = $_POST['id'];
          $resultat = $commentaire->GetCommentById($id_post);
         echo json_encode($resultat);

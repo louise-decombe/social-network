@@ -7,10 +7,9 @@ $signal = new Signal($db);
 $comment = new Signal_comment($db);
 
 
-
 //a rendre dynamique
 //$id_user = $_SESSION['user']['id'];
-$id_user = 93;
+$id_user = $_SESSION['user']['id'];
 
 
 if ($_POST['action'] == "enregistrement"){
@@ -108,7 +107,7 @@ if ( $_POST['action'] == 'signal commentaire' ){
     $id_comment = $_POST['id_comment'];
     //verification si l utilisateur n'a pas dejas signalé le commentaire
     $commentaires = $comment->GetCommentSignal($id_user,$id_comment);
-    var_dump($commentaires);
+   
 
     if (empty($commentaires)){
 
@@ -120,7 +119,7 @@ if ( $_POST['action'] == 'signal commentaire' ){
 
 if ($_POST['action'] == 'update_reactions'){
     $id_post = $_POST['id_post'];
-    //echo $id_post;
+
  
     //on recupere toutes les reactions
     $r = $reaction->getAllreactionsByIdPost($id_post);

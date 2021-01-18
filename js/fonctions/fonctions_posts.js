@@ -20,27 +20,7 @@ function recuperationPost(){
             }
         }
     })
-    // $.ajax({
-    //     url: "php/traitement_posts_admin.php",
-    //     method: "POST",
-    //     //dataType: "json",
-    //     data: {action: "recuperation"},
-
-    //     success:function(data){
-    //         console.log("ici");
-    //         if (data.length != 0){
-    //             for (let i = 0 ; i<5 ; i++){
-    //                 $("#tbody").append(tableauPost(data,i));
-    //             }
-    //             paginationPost(data);  
-    //         }
-    //         else{
-    //             $("#tbody").append("<tr class='text-center'><td colspan = 5>Aucun posts aujourd'hui</td></tr>");
-    //         }
-    //     },error: function(data){
-    //         console.log(data);
-    //     }
-    // })
+   
 }
 
 function paginationPost(data){

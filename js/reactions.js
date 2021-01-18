@@ -208,7 +208,7 @@ $(document).ready(function(){
             }
             
             for (let i = 0 ; i < data.user.length ; i++){
-                //////FONCTION OU SWITCH
+               
                 if (data.user[i].id_reactions == '1'){
                     $("#section_liste_reactions_"+id_post).append('<div class="reaction_div"><img class="picto_reaction" src="images/pouce.png" /><a href="profile_public.php?id='+data.user[i].id_user+'"><p>'+ data.user[i].firstname + ' ' + data.user[i].lastname +'</p></a></div>')   
                 }
@@ -428,14 +428,7 @@ $(document).ready(function(){
     // fermeture de la section reaction et commentaires
     $(document).on('click','.btn_close',function(){
         let id_post = $(this).attr('data-btn_id_post');
-
-
-        //On efface efface le contenu de la section
-       
-            // $("#section_liste_reactions_"+id_post).empty();
-            // $("#formulaire_ajout_commentaire_"+id_post).empty();
-            $("#section_liste_reactions_"+id_post).removeClass('section_list')
-            // $(".btn_close").detach();
+        $("#section_liste_reactions_"+id_post).removeClass('section_list')
     })
 
 })

@@ -40,12 +40,7 @@ function RegisterPost(){
                 $("#input_form").empty();
 
                 $("#form_post")[0].reset();
-                $("#modale2").css('display',"none");
-
-            
-                
-                
-               
+                $("#modale2").css('display',"none");  
             }else {
                 let json_datas = JSON.parse(data);
 
@@ -56,8 +51,6 @@ function RegisterPost(){
                     $("#message_erreur").addClass('color',"red")
                 }
             }
-
-            
 
         }
     })
@@ -95,7 +88,6 @@ function NewPosts(){
           
             if (datas.post !== undefined ){
                 if ($("#btn_new_post").length == 0 ){
-                    //$("#section_affichage_posts").prepend("<button id='btn_new_post'><span class='icon-up-fat'></span>Nouveaux messages</button>")
                     $("#btn_new_message").append("<button id='btn_new_post'><span class='icon-up-fat'></span>Nouveaux messages</button>");
                 }
 

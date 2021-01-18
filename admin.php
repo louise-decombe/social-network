@@ -1,6 +1,6 @@
 <?php session_start();
 
-$_SESSION['user']['droits'] = "administrateur";
+//$_SESSION['user']['droits'] = "administrateur";
 
 if ($_SESSION['user']['droits'] != "administrateur"){
     header('location: index.php');

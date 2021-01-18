@@ -4,8 +4,10 @@ $page_selected = 'feed';
 
 
 // A RENDRE DINAMIQUE
-$id_user = 93;
-$_SESSION['user']['id'] = 93;
+// $id_user = 93;
+// $_SESSION['user']['id'] = 93;
+
+$id_user = $_SESSION['user']['id'];
 
 if (!isset($id_user)){
     $_SESSION['erreur'] = "Vous devez etre connecté pour acceder à cette page";
@@ -167,7 +169,7 @@ if (isset($_POST['action'])){
             $compteurCommentaires[$i] = COUNT($comment->GetCommentByIdPost($tableau_limit[$i]['id_post']));
             // ajout du nombre de personne qui suit l'auteur du post
             $nombre_de_suivis = $follow->FollowedBy($tableau_limit[$i]['id_user']);
-            //echo json_encode($nombre_de_suivis);
+            
         }
        
         

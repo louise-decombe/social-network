@@ -2,7 +2,8 @@
 session_start();
 
 //A RENDRE DYNAMIQUE
-$id_user = 93;
+$id_user = $_SESSION['user']['id'];
+
 
 require '../class/Config.php';
 require '../class/Comment.php';

@@ -1,7 +1,5 @@
 $(document).ready(function(){
 
-    //rangement du code
-
     //VIDER LE TEXTAREA 
     $("#message").blur( function(){
         if ($("#message").val()== "")
@@ -145,7 +143,6 @@ $(document).ready(function(){
         dataType: "json",
         
         success: function(data){
-            //  console.log('tot')
             //on efface le contenu du p
             $("#p_"+id_post).empty();
             $("#p_"+id_post).append(data[0]);

@@ -4,7 +4,7 @@ require '../class/Config.php';
 
 
 // A METTRE EN DYNAMIQUE
-$id_user = 93;
+$id_user = $_SESSION['user']['id'];
 
 
 //function
@@ -12,9 +12,9 @@ function PictureVerify($name, $type , $size){
     //controle de l image et upload
     $allowed = array("jpg" => "image/jpg", "jpeg" => "image/jpeg", "gif" => "image/gif", "png" => "image/png" , "mp4" => "video/mp4" , "mpeg" => "video/mpeg" , "avi" => "video/avi");
 
-    $filename = strtolower($name); //$_FILES["files"]["name"]
-    $filetype = $type ; //$_FILES["files"]["type"];
-    $filesize = $size; //$_FILES["files"]["size"];
+    $filename = strtolower($name); 
+    $filetype = $type ;
+    $filesize = $size; 
 
     // Vérifie l'extension du fichier
     $ext = pathinfo($filename, PATHINFO_EXTENSION);
@@ -34,7 +34,6 @@ function PictureVerify($name, $type , $size){
     if(in_array($filetype, $allowed)){
     
         move_uploaded_file($_FILES["files"]["tmp_name"], "upload_media_post/" . $_FILES["files"]["name"]);
-        //$image = $_FILES["files"]["name"];
         return true;
     }
     else{
