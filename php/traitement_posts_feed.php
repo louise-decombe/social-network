@@ -3,8 +3,8 @@ session_start();
 
 
 // A RENDRE DINAMIQUE
-$id_user = $_SESSION['user']['id'];
-// $_SESSION['user']['id'] = 93;
+ $id_user = $_SESSION['user']['id'];
+$_SESSION['user']['id'] = 93;
 
 $tab_id_posts = $_SESSION['posts'];
 $followers = $_SESSION['followers'];

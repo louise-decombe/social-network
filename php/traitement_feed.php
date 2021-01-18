@@ -4,10 +4,10 @@ $page_selected = 'feed';
 
 
 // A RENDRE DINAMIQUE
-// $id_user = 93;
+ $id_user = 93;
 // $_SESSION['user']['id'] = 93;
 
-$id_user = $_SESSION['user']['id'];
+//$id_user = $_SESSION['user']['id'];
 
 if (!isset($id_user)){
     $_SESSION['erreur'] = "Vous devez etre connecté pour acceder à cette page";

@@ -3,7 +3,7 @@ session_start();
 try
 {
 
-$connexion=new PDO("mysql:host=localhost;dbname=social-network",'root','root');
+$connexion=new PDO("mysql:host=localhost;dbname=social-network",'root','');
 $connexion->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 
 

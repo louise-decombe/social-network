@@ -277,10 +277,10 @@ $(document).ready(function(){
     
 
     $(document).on('keyup',"#comm_"+id_post,function(){
-    
+        
         //on recupere la valeur de l'input
         let commentaire = $("#comm_"+id_post).val();
-    
+        
         if (commentaire != ""){
             //on affiche le btn
             $(".btn_form_comm").addClass('block')
@@ -291,7 +291,7 @@ $(document).ready(function(){
 
     })
 
-    $(document).on("click",".btn_form_comm",function(e){
+    $(document).off("click",".btn_form_comm").on("click",".btn_form_comm",function(e){
        
         var btn = $(".btn_form_comm").val();
         let commentaire = $("#comm_"+id_post).val();
@@ -302,15 +302,16 @@ $(document).ready(function(){
             data: {enregistrer: btn, commentaire: commentaire , id_post: id_post},
 
             success:function(data){
+                console.log(data);
                
                 if (data == 1 ){
-                    //on reinitialise le form
+                //     //on reinitialise le form
                     $("#comm_"+id_post).val('');
                    
-                    //on enleve le btn
+                //     //on enleve le btn
                     $(".btn_form_comm").removeClass('block')
 
-                    //on va recupere le postv et affichage
+                     //on va recupere le post et affichage
                     $.ajax({
                         url: 'php/traitement_formulaire_commentaire.php',
                         type: 'POST',
@@ -318,20 +319,21 @@ $(document).ready(function(){
                         data: {action: 'update_commentaires',id_post: id_post},
 
                         success:function(data){
+                            console.log(data);
                            $("#formulaire_ajout_commentaire_"+id_post).empty();
 
                            for (let i = 0 ; i < data.length ; i++){
                             $("#formulaire_ajout_commentaire_"+id_post).append(templateCommentaire(data,i));
                            }
 
-                           //mise a jour du nombre de commentaires
+                        //    //mise a jour du nombre de commentaires
                            $(".p_commentaires_"+id_post).empty();
                            $(".p_commentaires_"+id_post).append(data.length+" commentaire(s)")
                         
                         }
                     })
                     
-                }
+                 }
             }
         })
     })
