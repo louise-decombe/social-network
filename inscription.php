@@ -34,50 +34,58 @@ $cursus = $options->cursus_list();
 
     <div class="container-fluid sh-100 d-flex flex-column justify-content-center align-content-center index_content">
         <div class="row flex-column align-content-center op1">
-            <form class="form" id="form-register" method="POST" action="php/form_inscription.php">
-                <h1 id="form-title"><img src="img/PICT_LOGO_BLACK.png" width="70" height="50" alt="blacl_logo_plateformer_">PLATEFORMER_</h1>
-                <h2>Formulaire d'inscription</h2>
-                <section>
-                    <div class="form-group">
-                        <input type="text" class="form-control" id="firstname" name="firstname" aria-describedby="firstname" placeholder="prénom" required>
-                        <div id="error_firstname"></div>
-                    </div>
-                    <div class="form-group">
-                        <input type="text" class="form-control" id="lastname" name="lastname" aria-describedby="lastname" placeholder="nom" required>
-                        <div id="error_lastname"></div>
-                    </div>
-                    <div class="form-group">
-                        <input id="mail" type="email" name="mail" class="form-control" class="col-xs-4" aria-describedby="mail" placeholder="email@laplateforme.io" required>
-                        <small id="emailHelp" class="form-text text-muted">Rejoignez Plateformer_ avec votre adresse email @laplateforme.io</small>
-                        <div id="error_email"></div>
-                        <div id="error_email1"></div>
-                    </div>
-                    <div class="input-group mb-2 mr-sm-2">
-                        <div class="input-group-prepend">
-                            <div class="input-group-text"><i class="fas fa-eye-slash" id="eye"></i></div>
+            <?php if(empty($_SESSION['user'])){ ?>
+                <form class="form" id="form-register" method="POST" action="php/form_inscription.php">
+                    <h1 id="form-title"><img src="img/PICT_LOGO_BLACK.png" width="70" height="50" alt="blacl_logo_plateformer_">PLATEFORMER_</h1>
+                    <h2>Formulaire d'inscription</h2>
+                    <section>
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="firstname" name="firstname" aria-describedby="firstname" placeholder="prénom" required>
+                            <div id="error_firstname"></div>
                         </div>
-                        <input type="password" class="form-control" name="password" id="password" placeholder="mot de passe" required>
-                    </div>
-                    <div id="error_password"></div>
-                    <div class="input-group mb-2 mr-sm-2">
-                        <div class="input-group-prepend">
-                            <div class="input-group-text"><i class="fas fa-eye-slash" id="eye1"></i></div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="lastname" name="lastname" aria-describedby="lastname" placeholder="nom" required>
+                            <div id="error_lastname"></div>
                         </div>
-                        <input type="password" class="form-control" name="check_password" id="check_password" placeholder="confirmer mot de passe" required>
-                    </div>
-                    <small id="emailHelp" class="form-text text-muted">Le mot de passe doit contenir:<br>- Entre 8 et 20 caractères dont 1 caractère spécial<br>- Au moins 1 majuscule et 1 minuscule - Au moins 1 chiffre.</small>
-                    <div id="error_check"></div>
-                    <div class="input-group mb-3">
-                        <select class="custom-select" id="inputGroupSelect01" name="cursus" required>
-                            <option selected>Sélectionner le cursus</option>
-                            <?php foreach ($cursus as $all_cursus){ ?>
+                        <div class="form-group">
+                            <input id="mail" type="email" name="mail" class="form-control" class="col-xs-4" aria-describedby="mail" placeholder="email@laplateforme.io" required>
+                            <small id="emailHelp" class="form-text text-muted">Rejoignez Plateformer_ avec votre adresse email @laplateforme.io</small>
+                            <div id="error_email"></div>
+                            <div id="error_email1"></div>
+                        </div>
+                        <div class="input-group mb-2 mr-sm-2">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text"><i class="fas fa-eye-slash" id="eye"></i></div>
+                            </div>
+                            <input type="password" class="form-control" name="password" id="password" placeholder="mot de passe" required>
+                        </div>
+                        <div id="error_password"></div>
+                        <div class="input-group mb-2 mr-sm-2">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text"><i class="fas fa-eye-slash" id="eye1"></i></div>
+                            </div>
+                            <input type="password" class="form-control" name="check_password" id="check_password" placeholder="confirmer mot de passe" required>
+                        </div>
+                        <small id="emailHelp" class="form-text text-muted">Le mot de passe doit contenir:<br>- Entre 8 et 20 caractères dont 1 caractère spécial<br>- Au moins 1 majuscule et 1 minuscule - Au moins 1 chiffre.</small>
+                        <div id="error_check"></div>
+                        <div class="input-group mb-3">
+                            <select class="custom-select" id="inputGroupSelect01" name="cursus" required>
+                                <option selected>Sélectionner le cursus</option>
+                                <?php foreach ($cursus as $all_cursus){ ?>
                                 <option value="<?= $all_cursus['id_cursus'];?>"><?= $all_cursus['name_cursus'];?></option>
-                            <?php } ?>
-                        </select>
-                    </div>
-                </section>
-                <button type="submit" name="submit_register" class="btn btn-primary btn_submit_register">Enregistrer</button>
-            </form>
+                                <?php } ?>
+                            </select>
+                        </div>
+                    </section>
+                    <button type="submit" name="submit_register" class="btn btn-primary btn_submit_register">Enregistrer</button>
+                </form>
+            <?php } else {  ?>
+                <article class="info_connected">
+                    Vous avez déjà un compte Plateformer ! 
+                    <br>Vous souhaitez modifier votre profil ? 
+                    <a href="profile.php">Cliquez ici !</a>
+                </article>
+            <?php } ?>
         </div>
     </div>
 </main>

@@ -193,9 +193,10 @@ class User{
         }
 
         if (empty($errors)) {
-            $photo = "uploads/default_avatar.png";
+            $photo = "upload/default_avatar.png";
+            $cover = "upload_cover/default_cover.jpg";
             $q1 = $connexion->prepare(
-                "INSERT INTO users (firstname, lastname, password, mail, cursus, photo) VALUES (:firstname,:lastname,:password,:mail,:cursus, :photo)"
+                "INSERT INTO users (firstname, lastname, password, mail, cursus, photo, cover) VALUES (:firstname,:lastname,:password,:mail,:cursus, :photo, :cover)"
             );
             //var_dump($q1);
             $q1->bindParam(':firstname', $firstname, PDO::PARAM_STR);
@@ -204,6 +205,7 @@ class User{
             $q1->bindParam(':mail', $mail, PDO::PARAM_STR);
             $q1->bindParam(':cursus', $cursus, PDO::PARAM_INT);
             $q1->bindValue(':photo', $photo, PDO::PARAM_STR);
+            $q1->bindValue(':cover', $cover, PDO::PARAM_STR);
             $q1->execute();
             header('location:../connexion.php');
         }else {
@@ -310,7 +312,7 @@ class User{
     }
 
     /*---------------------------------------------*/
-    /* FONCTION FOLLOW
+    /* FONCTION ALREADY FOLLOW
     -----------------------------------------------*/
 
     public function already_follow($id_user_follow, $id_user){
@@ -410,6 +412,31 @@ class User{
         return $post_react;
     }
 
+     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  //
+    /*------------------------------------------------------------------------------------------------------*/
+    /* FONCTION COUNT nb de like d'un Post sur la page profil
+    --------------------------------------------------------------------------------------------------------*/
+
+    public function count_like($id_post){
+        $connexion = $this->db->connectDb();
+        $q = $connexion->prepare("SELECT COUNT(*) FROM like_post WHERE id_post = $id_post");
+        $q->execute();
+        $count_likes = $q->fetch();
+        return $count_likes;
+    }
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  //
+    /*------------------------------------------------------------------------------------------------------*/
+    /* FONCTION COUNT nb de commentaires d'un Post sur la page profil
+    --------------------------------------------------------------------------------------------------------*/
+
+    public function count_comments($id_post){
+        $connexion = $this->db->connectDb();
+        $q = $connexion->prepare("SELECT COUNT(*) FROM comment WHERE id_post = $id_post");
+        $q->execute();
+        $count_com = $q->fetch();
+        return $count_com;
+    }
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  //
     /*---------------------------------------------*/

@@ -32,12 +32,10 @@ $(document).ready(function() {
     $(".file-upload").on('change', function(){
         console.log(this.files[0]);
         readURL(this);
-        var photo = (this.files[0].name);
+        /*var photo = (this.files[0].name);
         var type = (this.files[0].type);
         var size = (this.files[0].size);
-        var id_user = $('.id_user').val();
-
-        console.log(id_user);
+        var id_user = $('.id_user').val();*/
 
         $(".upload-button").remove();
         $(".submit-pic").css("visibility", "visible");
@@ -55,14 +53,48 @@ $(document).ready(function() {
                 //alert(response);
                 
         }*/
-//});
+    //});
         
     });
+    
     
     $(".upload-button").on('click', function() {
        $(".file-upload").click();
     });
 });
+/*----------------------------------------------------*/
+/* UPLOAD COVER PIC
+------------------------------------------------------ */
+$(document).ready(function() {
+
+    var readURL = function(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            //console.log(input.files[0].size)
+            reader.onload = function (e) {
+                console.log(e)
+                $('.cover-pic').attr('src', e.target.result);
+            }
+    
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $(".cover-upload").on('change', function(){
+        console.log(this.files[0]);
+        readURL(this);
+
+        $(".upload-cover").remove();
+        $(".submit-cover").css("visibility", "visible");
+        
+    });
+
+    $(".upload-cover").on('click', function() {
+        $(".cover-upload").click();
+    });
+    
+});
+
 
 /*----------------------------------------------------*/
 /* LOCALITE AUTOCOMPLETION

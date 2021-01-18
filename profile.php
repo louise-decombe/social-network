@@ -1,6 +1,8 @@
 <?php 
 $page_selected = 'profile'; 
 session_start();
+if(isset($_SESSION['user'])){
+
 require 'class/Db.php';
 require 'class/User.php';
 require 'class/Options.php';
@@ -20,6 +22,8 @@ $count_followers = $user->count_followers($id_user);
 //var_dump($count_followers);
 $post_users = $user->post_users($id_user);
 $tech_name = $options->techno($id_user);
+
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -54,10 +58,20 @@ $tech_name = $options->techno($id_user);
     <div class="ovale_2"></div>
     <div class="ovale_3"></div>
 
+    <?php if(!empty($_SESSION['user'])){ ?>
     <section id="cover-pic">
-        <img id="cover" src="<?= $_SESSION['user']['cover']?>" alt="cover-picture">
-        <h1 id="profile_name">@ <?= $_SESSION['user']['firstname'] ?> <?= $_SESSION['user']['lastname'] ?></h1>
-        <div id="change_cover_pic"><i class="fas fa-camera"></i></div>
+        <img class="cover-pic" id="cover" src="php/<?= $user_details['cover']?>" alt="cover-picture">
+        <h1 id="profile_name">@ <?= $user_details['firstname'] ?> <?= $user_details['lastname'] ?></h1>
+        <div class="p-cover">
+            <form class="form_cover_upload" method="post" action="php/upload_cover.php" enctype="multipart/form-data">
+                <i class="fa fa-camera upload-cover"></i>
+                <button id="button_cover" type="submit" name='submit_cover'>
+                    <i class="far fa-check-circle submit-cover">&nbsp valider la photo de cover</i>
+                </button>
+                <input type="hidden" name="id_user" class="id_user" value="<?= $id_user ?>">
+                <input class="cover-upload" id="image1" type="file" name="cover" placeholder="Photo" required="" capture>
+            <form>
+        </div>
     </section>
 
     <div class="row container_pic_profile">
@@ -65,8 +79,6 @@ $tech_name = $options->techno($id_user);
             <div class="circle">
                 <!-- User Profile Image -->
                 <img class="profile-pic" src="php/<?= $user_details['photo']?>" alt="profile-mini-pic">
-                <!-- Default Image -->
-                <i class="fa fa-user fa-5x"></i>
             </div>
             <div class="p-image">
                 <form class="form_pic_upload" method="post" action="php/upload_pics.php" enctype="multipart/form-data">
@@ -248,27 +260,21 @@ $tech_name = $options->techno($id_user);
                             <div id="user_details_bio"><strong>À PROPOS DE MOI</strong> &nbsp<?= $user_details['bio']?></div>
                             <?php } ?>
                         </div>
-
-                        
                     </div>
-                </article>
-
-                <article class="infos_user_profile">
-                    <span data-text="vos skills">
-                        SKILLS 
-                    </span>
-                    <img class="underline_wave" src="img/wave.png" alt="underline_wave">
-                    
-                    <div class="category_details">
-                    <?php
+                    <aside class="infos_user_skills">
+                        <span data-text="vos skills"> SKILLS </span>
+                        <img class="underline_wave" src="img/wave.png" alt="underline_wave">
+                        <div class="category_details">
+                        <?php
                         if(!empty($tech_name)){ 
                         foreach ($tech_name as $technologies){ //var_dump($technologies);
                         ?>
-                        <span id="technologies"><i class="fas fa-check"></i>&nbsp<?= $technologies['nom']?></span>
-                    <?php }; }; ?>
-                    </div>
+                            <span id="technologies"><i class="fas fa-check"></i>&nbsp<?= $technologies['nom']?></span>
+                        <?php }; }; ?>
+                        </div>
+                    </aside>
                 </article>
-               
+
                 <article class="infos_user_profile">
                     <span data-text="vos informations">
                         VOS RELATIONS
@@ -278,7 +284,7 @@ $tech_name = $options->techno($id_user);
                         <?php 
                         foreach ($user_followers as $followers){ ?>
                         <div class="followers">
-                            <a href="profile_public.php?id=<?= $followers['id'] ?>"><img class="followers_img" src="<?=$followers['photo']?>" alt="follower_mini_pic"></a>
+                            <a href="profile_public.php?id=<?= $followers['id'] ?>"><img class="followers_img" src="php/<?=$followers['photo']?>" alt="follower_mini_pic"></a>
                             <a href="profile_public.php?id=<?= $followers['id'] ?>"><?=$followers['firstname']?>&nbsp<?=$followers['lastname']?></a>
                         </div>
                         <?php
@@ -300,14 +306,47 @@ $tech_name = $options->techno($id_user);
                     </div>
                     <div id="profile_post">
                     <?php foreach($post_users as $post){ 
-                        $date_post =  $post['created_at']
+                        $date_post =  $post['created_at'];
+                        $id_post = $post['id'];
                     ?>
-                        <div id="user_post">
-                            <img id="input-pic" src="php/<?= $user_details['photo']?>" alt="input-pic">
-                            posté le : <?= (new DateTime($date_post))->format('d-m-Y')?>
-                            message : <?= $post['content'] ?>
-                            media : <?= $post['media'] ?>
-                            <span class="reaction_posts">10<i class="far fa-thumbs-up"></i></span>
+                    <div id="user_post">
+                        <div>
+                            <img class="pic_post" src="php/<?= $user_details['photo']?>" alt="input-pic">
+                            <?php
+                                $date_origin = new DateTime($date_post);
+                                $date_target = new DateTime();
+                                $interval = $date_origin->diff($date_target);
+                            ?>
+                            <span class="days">
+                                <?= $interval->format('%a j'); ?> 
+                                • 
+                                <i class="fas fa-globe-americas"></i>
+                            <span>
+                            </div>
+                            <div class="post_content">"<?= $post['content'] ?>"</div>
+                                <div class="post_media">
+                                <?php if(!empty($post['media'])){ ?>
+                                    <?= $post['media'] ?>
+                                <?php } ?>
+                            </div>
+                            <div class="post_reactions">
+                                <?php 
+                                $likes = $user->count_like($id_post); 
+                                $com = $user->count_comments($id_post); 
+                                ?>    
+                                <span>
+                                    <?php if($likes[0] > 0){ ?>
+                                        <?= $likes[0];?> 
+                                    <?php } ?>
+                                    <i class="far fa-thumbs-up"></i>
+                                <span>
+                                <span>
+                                    <?php if($com[0] > 0){ ?>
+                                        <?= $com[0];?> 
+                                    <?php } ?>
+                                    <i class="far fa-comment-dots"></i>
+                                <span>
+                            </div>
                         </div>
                     <?php } ?>
                     </div>
@@ -318,19 +357,21 @@ $tech_name = $options->techno($id_user);
                         <img class="underline_wave" src="img/wave.png" alt="underline_wave">
                         <h2>vos relations...</h2>
                     </div>
-                    <div id="container-followers">
+                    <div id="container_followers">
                         <?php foreach ($user_followers as $followers){ ?>
                         <div class="followers">
-                            <a href="profile_public.php?id=<?= $followers['id'] ?>" target="_blank"><img class="followers_img" src="<?=$followers['photo'] ?>" alt="follower_mini_pic"></a>
-                            <span><?=$followers['firstname']?><?=$followers['lastname']?></span>
+                            <a href="profile_public.php?id=<?= $followers['id'] ?>" target="_blank">
+                                <img class="followers_img_section" src="php/<?=$followers['photo'] ?>" alt="follower_mini_pic">
+                            </a>
+                            <span><?=$followers['firstname']?> <?=$followers['lastname']?></span>
                         </div>
                         <?php
                         }
                         ?>
                     </div>
-                    <section id="remove-row">
+                    <!--<section id="remove-row">
                         <button id="load_more" data-id="<?= $id;?>" data-id_page="<?= $id_page;?>">LOAD MORE</button>
-                    </section>
+                    </section>-->
                 </div>
 
                 <div id="operation3">
@@ -380,28 +421,51 @@ $tech_name = $options->techno($id_user);
                             <h2>vos publications...</h2>
                         </div>
                         <div id="profile_post">
-                            <?php foreach($post_users as $post){ var_dump($post);
+                            <?php foreach($post_users as $post){ //var_dump($post);
                             $date_post = $post['created_at'];
                             $id_post = $post['id'];
                             ?>
                             <div id="user_post">
                                 <div>
-                                    <img id="input-pic" src="php/<?= $user_details['photo']?>" alt="input-pic">
-                                    <span class="date_post">le : <?= (new DateTime($date_post))->format('d-m-Y')?></span>
+                                    <img class="pic_post" src="php/<?= $user_details['photo']?>" alt="input-pic">
+                                    <!--<span class="date_post">le : <?= (new DateTime($date_post))->format('d-m-Y')?></span>-->
                                     <?php
                                         $date_origin = new DateTime($date_post);
                                         $date_target = new DateTime();
                                         $interval = $date_origin->diff($date_target);
-                                        echo $interval->format('%R%a jours');
                                     ?>
+                                    <span class="days">
+                                        <?= $interval->format('%a j'); ?> 
+                                         • 
+                                        <i class="fas fa-globe-americas"></i>
+                                    <span>
                                 </div>
-                                <div class="post_content">message : <?= $post['content'] ?></div>
-                                <?php if(!empty($post['content'])){ ?>
-                                    media : <?= $post['media'] ?>
+                                <div class="post_content">"<?= $post['content'] ?>"</div>
+                                <div class="post_media">
+                                <?php if(!empty($post['media'])){ ?>
+                                    <?= $post['media'] ?>
                                 <?php } ?>
-                                <div class="reaction_posts">
-                                    10<i class="far fa-thumbs-up"></i>
-                                    <i class="far fa-comment-dots"></i>
+                                </div>
+                                <div class="post_reactions">
+                                    <?php 
+                                    $likes = $user->count_like($id_post); 
+                                    $com = $user->count_comments($id_post); 
+                                    ?>
+                                        
+                                    <span>
+                                        <?php if($likes[0] > 0){ ?>
+                                            <?= $likes[0];?> 
+                                        <?php } ?>
+                                        <i class="far fa-thumbs-up"></i>
+                                    <span>
+
+                                    <span>
+                                        <?php if($com[0] > 0){ ?>
+                                            <?= $com[0];?> 
+                                        <?php } ?>
+                                        <i class="far fa-comment-dots"></i>
+                                    <span>
+   
                                 </div>
                                 
                                 </div>
@@ -410,50 +474,13 @@ $tech_name = $options->techno($id_user);
                            <?php 
                            echo date_format($date, 'd/m/Y H:i:s'); 
                            $reactions = $user -> post_reactions($id_post);
-                            var_dump($reactions);
+                            //var_dump($reactions);
                            ?>
                      
 
-                        </div>
-                        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-                        <script>
-                        $( function() {
-    $( "#datepicker" ).datepicker();
-  } );
-  </script>
-
-20
-21
-22
-23
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>jQuery UI Datepicker - Default functionality</title>
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <link rel="stylesheet" href="/resources/demos/style.css">
-  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  <script>
-  $( function() {
-    $( "#datepicker" ).datepicker();
-  } );
-  </script>
-</head>
-<body>
- 
-<p>Date: <input type="text" id="datepicker"></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script>
-     
-    </script>
+                    <?php }else{?>
+                        <span class="info_connected"> vous devez être connecté pour accéder à cette page !</span>
+                    <?php } ?>
 </main>
 <footer>
     <?php

@@ -48,14 +48,20 @@ require 'class/Config.php';
            <div class="col text-center mb-3">
                 <span class="subtitle_index">Retrouvez vos partenaires de code sur le réseau social de la Plateforme_</span>
             </div>
-            <!--<div class="col text-center">
-                <a id="index_button" href="inscription.php">nous rejoindre</a>
-            </div>-->
+            <?php if(empty($_SESSION['user'])){ ?>
             <div class="col text-center">
                 <a class="index_button" href="inscription.php">
                     nous rejoindre
                 </a>
             </div>
+            <?php } ?>
+            <?php if(!empty($_SESSION['user']) && isset($_SESSION['user'])){ ?>
+            <div class="col text-center">
+                <a class="index_button" href="profile.php">
+                    mon profil
+                </a>
+            </div>
+            <?php } ?>
         </div>
     </div>
 </main>

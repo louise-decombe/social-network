@@ -15,7 +15,7 @@ $user_details = $user->test($id_user_follow);
 //var_dump($user_details);
 $user_followers = $user->followers($id_user_follow);
 $already_follower = $user->already_follow($id_user_follow, $id_user);
-var_dump($already_follower);
+//var_dump($already_follower);
 //var_dump($user_followers);
 $count_followers = $user->count_followers($id_user_follow);
 //var_dump($count_followers);
@@ -56,11 +56,22 @@ $last_post = $user->last_post($id_user_follow);
     <div class="ovale_2"></div>
     <div class="ovale_3"></div>
 
+
     <section id="cover-pic">
-        <img id="cover" src="<?= $_SESSION['user']['cover']?>" alt="cover-picture">
-        <img id="profile-mini-pic" src="<?= $user_details['photo']?>" alt="profile-mini-pic">
+        <img class="cover-pic" id="cover" src="php/<?= $user_details['cover']?>" alt="cover-picture">
         <h1 id="profile_name">@ <?= $user_details['firstname'] ?> <?= $user_details['lastname'] ?></h1>
+        <div class="p-cover"></div>
     </section>
+
+    <div class="row container_pic_profile">
+        <div class="small-12 medium-2 large-2 columns">
+            <div class="circle">
+                <!-- User Profile Image -->
+                <img class="profile-pic" src="php/<?= $user_details['photo']?>" alt="profile-mini-pic" width="112.5">
+            </div>
+            <div class="p-image"></div>
+        </div>
+    </div>
 
     <input type="hidden" id="id_user" name="id_user" value="<?= $id_user ?>">
     <input type="hidden" id="id_user_follow" name="id_user_follow" value="<?= $id_user_follow ?>">
@@ -85,32 +96,57 @@ $last_post = $user->last_post($id_user_follow);
                     <img class="underline_wave" src="img/wave.png" alt="underline_wave">
 
                     <div id="user_details1">
-                        <div class="category_details">
-                            <i class="fas fa-info-circle"></i>
-                            <span id="cursus">&nbsp<?= $user_details['name_cursus']?></span>
+                        <div class="personal_details">
+                            <?php if(!empty($user_details['birthday'] )){ $birth = $user_details['birthday']?>
+                            <div class="user_details1"><i class="fas fa-birthday-cake"></i>&nbsp;<?= (new DateTime($birth))->format('d-m-Y')?></div>
+                            <?php } ?>
+
+                            <?php if(!empty($user_details['localite'] )){ ?>
+                            <div class="user_details1"><i class="fas fa-map-marker-alt"></i>&nbsp;<?= $user_details['localite']?></div>
+                            <?php } ?>
+
+                            <?php if(!empty($user_details['entreprise'] )){ ?>
+                            <div class="user_details1"><i class="far fa-building"></i>&nbsp<?= $user_details['entreprise'] ?></div>
+                            <?php } ?>
                         </div>
                  
-                        <?php if(!empty($user_details['entreprise'] )){ ?>
-                        <div class="category_details">
-                            <i class="far fa-building"></i>
-                            <span id="entreprise">&nbsp<?= $user_details['entreprise'] ?></span>
+                        <div class="personal_details">
+                            <?php if(!empty($user_details['cursus'] )){ ?>
+                            <div class="user_details1"><i class="fas fa-info-circle"></i>&nbsp<?= $user_details['name_cursus']?></div>
+                            <?php } ?>
+
+                            <?php if(!empty($user_details['website'] )){ ?>
+                            <div class="user_details1"><i class="fas fa-globe-americas"></i>&nbsp<?= $user_details['website'] ?></div>
+                            <?php } ?>
                         </div>
-                        <?php } ?>
 
-                        <?php if(!empty($user_details['website'] )){ ?>
-                        <div class="category_details"><i class="fas fa-globe-americas"></i><span id="website">&nbsp<?= $user_details['website'] ?></span></div>
-                        <?php } ?>
+                        <div class="personal_details">
+                            <?php if(!empty($user_details['hobbies'] )){ ?>
+                            <div class="user_details1"><i class="far fa-heart"></i>&nbsp<?= $user_details['hobbies']?>&nbsp</div>
+                            <?php } ?>
+                        </div>
+                       
+                        <div class="personal_details">
+                            <?php if(!empty($user_details['bio'] )){ ?>
+                            <div id="user_details_bio"><strong>À PROPOS DE MOI</strong> &nbsp<?= $user_details['bio']?></div>
+                            <?php } ?>
+                        </div>
                     </div>
+                    <aside class="infos_user_skills">
+                        <div class="category_details">
+                        <?php
+                        if(!empty($tech_name)){ ?>
+                        <span data-text="vos skills"> SKILLS </span>
+                        <img class="underline_wave" src="img/wave.png" alt="underline_wave">
+                        <?php
+                        foreach ($tech_name as $technologies){ //var_dump($technologies);
+                        ?>
+                            <span id="technologies"><i class="fas fa-check"></i>&nbsp<?= $technologies['nom']?></span>
+                        <?php }; }; ?>
+                        </div>
+                    </aside>
                 </article>
 
-                <article class="infos_user_profile">
-                    <span data-text="vos skills">
-                        SKILLS 
-                    </span>
-                    <img class="underline_wave" src="img/wave.png" alt="underline_wave">
-
-            
-                </article>
                
                 <article class="infos_user_profile">
                     <span data-text="vos informations">
