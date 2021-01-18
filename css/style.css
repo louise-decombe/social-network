@@ -33,7 +33,18 @@ a{
 .navbar-custom{
     color:white !important;
 }
- 
+
+#dropdown-deco {
+  background-color: none;
+  color : white;
+  border:none;
+  background:none;
+}
+
+#dropdown-deco:hover{
+  color:lightgray;
+}
+
 nav .link-header{
     font-size: 9px !important;
 }
@@ -108,6 +119,18 @@ nav .link-header{
     margin-right: 10px;
   }
 }
+
+.fa-envelope {
+  color:white;
+  width: 200%;
+  font-size: 180%;
+}
+
+
+.fa-envelope:hover {
+  color:lightgray;
+}
+
 
 /*** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - ***/
 /*----------------------------------------------------*/
@@ -273,6 +296,30 @@ footer{
   font-size:10px;
   color:#71767E;
 }
+
+
+/*** HEADER SEARCH ***/
+.photo-header-search img{
+
+  border-radius: 50%;
+  padding: 1%;
+  margin: 1%;
+}
+
+.search-header-result {
+  display: flex;
+  
+}
+
+search-result  {
+   color : white !important; 
+}
+
+search-result a:hover {
+  color : lightgray;
+}
+
+/*** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  ***/
 
 /*** RESPONSIVE FOOTER ***/
 /*** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  ***/

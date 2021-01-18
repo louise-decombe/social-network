@@ -7,7 +7,7 @@ const password_error_connect = "Le mot de passe est invalide.";
 
 /*----------------------------------------------------*/
 /* CONNEXION FORM
------------------------------------------------------- */
+
 //console.log('document ok')
 $(document).ready(function(){
     
@@ -43,7 +43,7 @@ $(document).ready(function(){
         };
     });
 });
-
+------------------------------------------------------ */
 
 $(document).ready(function(){
 

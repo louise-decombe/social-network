@@ -54,6 +54,7 @@ if (isset($_POST['valider'])){
             else{
                 $message = NULL;
             }
+
            
             if (!empty($_FILES['files']['name'])){
                 if($_POST['type'] == "photo" || $_POST['type'] == "video"){
@@ -86,8 +87,48 @@ if (isset($_POST['valider'])){
         }else {
             echo json_encode(["erreur" => " Au moins un des champs doit etre remplis !"]);
         }
-    }
+    }    
+
+    if(isset($_POST['action'])){
+        
+        if (!empty($_POST['message']) ||  !empty($_POST['files'])){
             
+            if (!empty($_POST['message'])){
+                $message = $_POST['message'];
+            }
+            else{
+                $message = NULL;
+            }
+
+            if (!empty($_POST['files'])){
+                $url = $_POST['files'];
+                $type = 3;
+            }else{
+                $url = NULL;
+                $type = 4;  
+            }
+            
+           
+           
+
+            //verification url
+            if (!filter_var($url, FILTER_VALIDATE_URL) === false) {
+                $post->setPost($message,$url,$id_user,$type);
+                echo  true;
+            }
+            else {
+                echo json_encode(["erreur" => "URL non valide !"]);
+            }
+
+           
+
+        }
+        
+        if (empty($_POST['files'])){
+            echo "false";
+        }
+    }  
+
 }
 
 ?>

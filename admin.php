@@ -37,7 +37,6 @@ $formations = $cursus->getCursus();
     <script src="js/fonctions/fonctions_posts.js"></script>
     <script src="js/fonctions/fonctions_langages.js"></script>
     <script src="js/fonctions/fonctions_cursus.js"></script>
-    
     <script src="js/admin.js"></script>
 
     <!-- template -->

@@ -19,6 +19,20 @@ Class Message extends User {
 	}
 
 
+public function create($table, $fields = array()){
+  $columns = implode(',', array_keys($fields));
+  $values  = ':'.implode(', :', array_keys($fields));
+  $sql     = "INSERT INTO {$table} ({$columns}) VALUES ({$values})";
+
+  if($stmt = $this->connect->prepare($sql)){
+      foreach ($fields as $key => $data) {
+          $stmt->bindValue(':'.$key, $data);
+      }
+      $stmt->execute();
+      return $this->connect->lastInsertId();
+  }
+}
+
   
         public function recentMessages($id){
           $stmt = $this->connect->prepare("SELECT * FROM `messages` LEFT JOIN users ON `messageFrom` = `id` AND `id_message` IN (SELECT max(`id_message`) FROM `messages` WHERE `messageFrom` = `id`) WHERE `messageTo` = :id and `messageFrom` = id GROUP BY `id` ORDER BY `id_message` DESC ");
@@ -93,20 +107,7 @@ Class Message extends User {
           $stmt->execute();
         }
     
-      
-        public function create($table, $fields = array()){
-          $columns = implode(',', array_keys($fields));
-          $values  = ':'.implode(', :', array_keys($fields));
-          $sql     = "INSERT INTO {$table} ({$columns}) VALUES ({$values})";
-      
-          if($stmt = $this->connect->prepare($sql)){
-            foreach ($fields as $key => $data) {
-              $stmt->bindValue(':'.$key, $data);
-            }
-            $stmt->execute();
-            return $this->connect->lastInsertId();
-          }
-        }
+   
        
 
         // il faut que je fixe ça l'upload ne marchep as surement le chemin -> j'ai repris le chemin d'un code pour faire ça.
@@ -139,5 +140,7 @@ Class Message extends User {
                       $GLOBALS['imgError'] = " JPG, PNG JPEG autorisés";
                    }
        }
+
+       
     
 }

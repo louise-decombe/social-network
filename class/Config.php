@@ -15,13 +15,11 @@ $db = new DB();
     require 'Message.php';
     $message = new Message($db);
 
-    require 'Hashtag.php';
-    $tendance = new Hashtag($db);
 
     require 'Reactions.php';
     $reaction = new Reactions($db);
 
-    //traitement de la déconnexion
+//traitement de la déconnexion
 if (isset($_POST["deco"])) {
     $user->disconnect();
 }
