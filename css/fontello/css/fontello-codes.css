@@ -9,5 +9,10 @@
 .icon-trash:before { content: '\e807'; } /* '' */
 .icon-link:before { content: '\e808'; } /* '' */
 .icon-cancel-1:before { content: '\e809'; } /* '' */
+.icon-thumbs-up:before { content: '\e80a'; } /* '' */
+.icon-chat-1:before { content: '\e80b'; } /* '' */
+.icon-share:before { content: '\e80c'; } /* '' */
+.icon-menu:before { content: '\e80d'; } /* '' */
 .icon-bell-alt:before { content: '\f0f3'; } /* '' */
 .icon-youtube-play:before { content: '\f16a'; } /* '' */
+.icon-paper-plane:before { content: '\f1d8'; } /* '' */

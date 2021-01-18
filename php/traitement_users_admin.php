@@ -38,7 +38,7 @@ require "../class/Config.php";
     //Filtration
     if($_POST['action'] == "filtre"){
         
-        ///switch
+        
         if ($_POST['donnee'] == "utilisateur" || $_POST['donnee'] == "administrateur" ){
 
             $filtre = "droits";

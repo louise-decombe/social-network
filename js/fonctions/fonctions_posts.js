@@ -1,14 +1,12 @@
 function recuperationPost(){
-        
     $("thead").empty();
     let signal = "post";
     $("thead").append( tablePost(signal) );
     $.ajax({
-        url: "php/traitement_posts_admin.php",
+        url:"php/traitement_posts_admin.php",
         method: "POST",
         dataType: "json",
         data: {action: "recuperation"},
-
         success:function(data){
             
             if (data.length != 0){
@@ -22,13 +20,15 @@ function recuperationPost(){
             }
         }
     })
+   
 }
 
 function paginationPost(data){
+    console.log(data.length);
     $("#pagination").empty();
     //creation des liens pagination
-    let total_page = (data.length / 5) + 1;
-          
+    let total_page = (data.length / 5) ;
+      console.log(total_page)   ; 
     for (let i = 1 ; i < total_page ; i++){
         $("#pagination").append("<button class='btn page page-link' value='"+i+"'>"+i+"</button>")    
     }
@@ -40,13 +40,14 @@ function paginationPost(data){
         let debut = (valeur - 1 ) * 5 ; /// valeur de depart de la boucle
         let max = 5 * valeur; 
         for ( let i = debut ; i < max ; i++){
-            let toto = 'posts';
-            $("#tbody").append(tableauPost(data,i,toto));
+            let type = 'posts';
+            $("#tbody").append(tableauPost(data,i,type));
         }
     })
 }
 
 function recuperationPostsSignal(){
+   
     $("thead").empty();
     $("#message_admin").empty();
     $("#message_admin").remove('.alert');

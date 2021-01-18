@@ -4,6 +4,7 @@
     <h2>Gestion des posts</h2>
 </div>
 <span id="message_admin"></span>
+<div id="affichage_post_signale"></div>
 
 <table class="table table_admin table-responsive">
     <thead>
