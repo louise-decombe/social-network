@@ -167,7 +167,7 @@ footer{
 }
 
 .input-email button, .input-email input[type=email]{
-  color:white;
+  color:#275fa0;
   outline: none;
   padding:5px;
   font-size: 12px;
@@ -198,6 +198,11 @@ footer{
   -webkit-transition: right 0.5s;
   transition: right 0.5s;
   cursor: pointer;
+}
+
+#message-newsletter{
+  display: flex;
+  color:#275fa0;
 }
 
 #infos-footer{
@@ -710,8 +715,6 @@ footer{
 }
 
 
-
-
 /*----------------------------------------------------*/
 /* WAVE
 ------------------------------------------------------ */
@@ -721,9 +724,9 @@ footer{
 }
 
 .right-wave {
-  width: 600px;
+  width: 400px;
   height: 300px;
-  margin-left:50%;
+  margin-left:40%;
   position: absolute;
 }
 
@@ -767,4 +770,30 @@ path {
 .wavy-line-green:before { text-decoration-color: #275fa0; }
 .wavy-line-blue:before { text-decoration-color: #1FB5D1; }
 .wavy-line-yellow:before { text-decoration-color: #F9B930; }
+
+@media(max-width:1490px){
+  .right-wave {
+    width: 500px;
+    height: 200px;
+    margin-left:55%;
+    position: absolute;
+  }
+}
+
+@media(max-width:690px){
+  .right-wave {
+    display: none;
+    visibility:hidden;
+  }
+}
+
+@media(max-width:490px){
+  .right-wave {
+    display: none;
+    visibility:hidden;
+  }
+}
+
+
+
 

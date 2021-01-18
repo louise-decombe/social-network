@@ -1,5 +1,6 @@
 <?php $page_selected = 'index_1'; 
 session_start();
+require 'class/Config.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -47,14 +48,20 @@ session_start();
            <div class="col text-center mb-3">
                 <span class="subtitle_index">Retrouvez vos partenaires de code sur le réseau social de la Plateforme_</span>
             </div>
-            <!--<div class="col text-center">
-                <a id="index_button" href="inscription.php">nous rejoindre</a>
-            </div>-->
+            <?php if(empty($_SESSION['user'])){ ?>
             <div class="col text-center">
                 <a class="index_button" href="inscription.php">
                     nous rejoindre
                 </a>
             </div>
+            <?php } ?>
+            <?php if(!empty($_SESSION['user']) && isset($_SESSION['user'])){ ?>
+            <div class="col text-center">
+                <a class="index_button" href="profile.php">
+                    mon profil
+                </a>
+            </div>
+            <?php } ?>
         </div>
     </div>
 </main>
@@ -65,7 +72,6 @@ session_start();
 </footer>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 <script type="text/javascript" src="js/wave.js"></script>
-<script type="text/javascript" src="js/form_newsletter.js"></script>
 <!-- <script type="text/javascript" src="js/transition.js"></script> -->
 <!-- <script type="text/javascript" src="js/form_connexion.js"></script> -->
 <!-- <script type="text/javascript" src="js/form_inscription.js"></script> -->
