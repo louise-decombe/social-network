@@ -9,7 +9,8 @@
    	  	 $hashtag = $_POST['hashtag'];
 
 		  if(substr($hashtag, 0,1) === '#'){
-		  	 $trend   = str_replace('#', '', $hashtag);
+			   $trend   = str_replace('#', '', $hashtag);
+
 		  	 $trend   = $tendance->getHashtag($trend);
 			  
 			   
@@ -18,7 +19,6 @@
 		  	 }
 		   }
 
-   	  
    	  }
    }
  

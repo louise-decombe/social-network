@@ -243,6 +243,59 @@
     width : 60%;
 }
 
+#user_details1{
+    display:flex !important;
+    justify-content:space-around;
+    flex-direction: row !important;
+    flex-wrap : wrap !important;
+    max-width: 100% !important;
+    font-weight:400 !important;
+    font-size:15px !important;
+}
+
+#user_details1 span{
+    width: 40%;
+    padding-bottom:10px !important;
+}
+
+#user_details1 i{
+    font-size:15px;
+}
+
+#form_user_informations{
+    display: flex !important;
+    align-items: center !important;
+    justify-content : center !important;
+    background-color:red !important;
+    flex-direction: column !important;
+    width: 100% !important;
+}
+
+.modify_input{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: greenyellow;
+    width:95%;
+}
+
+.modify_input label{
+    font-size : 11px;
+}
+
+.modify_input i{
+    font-size : 30px;
+    font-weight:400;
+}
+
+.modify_input_details{
+    border-radius:20px;
+    border:0.1px solid gray;
+    width: 75%;
+    padding: 5px 10px;
+    font-size:12px;
+}
+
 /*** RESPONSIVE PROFILE ***/
 /*** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - ***/
 
