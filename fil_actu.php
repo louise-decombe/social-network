@@ -90,10 +90,10 @@
                         <div class="div_amis_communs">
                             <?php   $info = $user->GetUserById($valeur);   ?>
                             <?php if ($info['photo'] == NULL) :?>
-                                <img  src="uploads/default_avatar.png" alt="<?= $info['firstname']." ".$info['lastname'] ?>">
+                                <img  src="php/upload/default_avatar.png" alt="<?= $info['firstname']." ".$info['lastname'] ?>">
                             <?php else :?>
                             <!-- A RENDRE DINAMIQUE -->
-                                <img  src="<?= $info['photo'] ?>" alt="<?= $info['firstname']." ".$info['lastname'] ?>">
+                                <img  src="php/<?= $info['photo'] ?>" alt="<?= $info['firstname']." ".$info['lastname'] ?>">
                             <?php endif ;?>
                             <div class="div_suggestion_amis">
                                 <a href="profile_public.php?id=<?= $info['id'] ?>"><h4><?= ucfirst($info['firstname'])." ".ucfirst($info['lastname']) ?></h4></a>
@@ -143,10 +143,10 @@
                         <div class="div_amis_communs">
                             <?php   $info = $user->GetUserById($valeur);   ?>
                             <?php if ($info['photo'] == NULL) :?>
-                                <img  src="uploads/default_avatar.png" alt="<?= $info['firstname']." ".$info['lastname'] ?>">
+                                <img  src="php/uploads/default_avatar.png" alt="<?= $info['firstname']." ".$info['lastname'] ?>">
                             <?php else :?>
                             <!-- A RENDRE DINAMIQUE -->
-                                <img  src="<?= $info['photo'] ?>" alt="<?= $info['firstname']." ".$info['lastname'] ?>">
+                                <img  src="php/<?=$info['photo']?>" alt="<?= $info['firstname']." ".$info['lastname'] ?>">
                             <?php endif ;?>
                             <div class="div_suggestion_amis">
                                 <a href="profile_public.php?id=<?= $info['id'] ?>"><h4><?= ucfirst($info['firstname'])." ".ucfirst($info['lastname']) ?></h4></a>
@@ -221,7 +221,7 @@
                     <?php if ($posts[$i]['photo'] == NULL ) :?>
                         <img src="images/default_avatar.png" alt="Photo par defaut">
                     <?php else : ?>
-                        <img src="<?= htmlspecialchars($posts[$i]['photo']) ?>" alt=" Photo de <?= htmlspecialchars($posts[$i]['firstname']) ?> <?= htmlspecialchars($posts[$i]['lastname']) ?>">
+                        <img src="php/<?= htmlspecialchars($posts[$i]['photo']) ?>" alt=" Photo de <?= htmlspecialchars($posts[$i]['firstname']) ?> <?= htmlspecialchars($posts[$i]['lastname']) ?>">
                     <?php endif ;?>
                     <div class="div_flex">
                         <div class="div_first">

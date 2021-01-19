@@ -12,7 +12,7 @@ function template_affichage_post(donnees,i,media,classe,reaction,nbr_suivis){
     if (donnees[i].photo == null ){
         var image_profile = "default_avatar.png";
     }else {
-        var image_profile = donnees[i].photo;
+        var image_profile = "php/".donnees[i].photo;
     }
 
     //contenue
@@ -115,7 +115,7 @@ function templatesPosts(donnees,i,media){
     if (donnees[i].photo == null ){
         var image_profile = "images/default_avatar.png";
     }else {
-        var image_profile = donnees[i].photo;
+        var image_profile = "php/".donnees[i].photo;
     }
     var content ;
     if (donnees[i][0].content != null && donnees[i][0].content.length  >= 400){
@@ -217,7 +217,7 @@ function templateCommentaire(data,i){
         return `<section class="section_commentaire">
                
                 <div class="section_commentaire_div">
-                    <img src='${data[i].photo}' alt='${data[i].firstname} ${data[i].lastname}' >
+                    <img src='php/${data[i].photo}' alt='${data[i].firstname} ${data[i].lastname}' >
                     <div class='div_fist'>
                         <div class="section_commentaire_div2">
                             <p class="p_nom"><a href='profile_public.php?id=${data[i].id_user}'>${data[i].firstname} ${data[i].lastname}</a></p>

@@ -88,10 +88,10 @@ $(document).ready(function(){
             type : "post", // la requête est de type POST
             data : ({mail:mail, password:password}),// et on envoie nos données
             success:function(response){
-                //console.log(response);
+                console.log("response");
                 alert(response);
-                response = response.replace(/\s/g, ''); //enleve les espaces
-                console.log (`${response.length}`);
+                // response = response.replace(/\s/g, ''); //enleve les espaces
+                // console.log (`${response.length}`);
                 
                 if (response == "success"){
 
