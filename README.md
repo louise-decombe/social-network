@@ -17,13 +17,16 @@ This is a school project we made in order to code a Social Network for our Codin
 
 Pour faire fonctionner le projet, vous avez besoin d'uploader le fichier de base de donéne social-network.sql.
 
-To run the project locally, you need to upload the database, social-network.sql. 
+----------------------------------------------------------------------------------------------------
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+To run the project locally, you need to upload the database, social-network.sql. 
 
 ### Prerequisites
 
 Vous aurez besoin d'un serveur local installé sur votre machine. 
+
+---------------------------------------------------------------------
+
 
 You need to have a local server installed in your machine.
 
