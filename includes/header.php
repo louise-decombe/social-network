@@ -31,7 +31,7 @@
       </ul>
       </div>
       <ul id="nav-forms">
-         <li><a class="nav-link" href="../index.php"> <i class="fa fa-home" aria-hidden="true"></i></a></li>
+         <li><a class="nav-link" href="../fil_actu.php"> <i class="fa fa-home" aria-hidden="true"></i></a></li>
          <!-- quand on clique on déclenche le pop up -->
          <a class="nav-link1" href="fil_actu.php"><i class="fas fa-home"></i></a>
          <li id="messagePopup" class="nav-item"><i class="fa fa-envelope" aria-hidden="true"></i><span id="messages"><span class="span-i"></span></li>
