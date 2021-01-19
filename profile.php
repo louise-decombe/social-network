@@ -323,7 +323,7 @@ $tech_name = $options->techno($id_user);
                                 • 
                                 <i class="fas fa-globe-americas"></i>
                             <span>
-                            </div>
+                        </div>
                             <div class="post_content">"<?= $post['content'] ?>"</div>
                                 <div class="post_media">
                                 <?php if(!empty($post['media'])){ ?>
@@ -421,6 +421,7 @@ $tech_name = $options->techno($id_user);
                             <img class="underline_wave" src="img/wave.png" alt="underline_wave">
                             <h2>vos publications...</h2>
                         </div>
+                        <?php if(!empty($post_users)){ ?>
                         <div id="profile_post">
                             <?php foreach($post_users as $post){ //var_dump($post);
                             $date_post = $post['created_at'];
@@ -471,12 +472,9 @@ $tech_name = $options->techno($id_user);
                                 
                                 </div>
         
-                           <?php } ?>
-                           <?php 
-                           echo date_format($date, 'd/m/Y H:i:s'); 
-                           $reactions = $user -> post_reactions($id_post);
-                            //var_dump($reactions);
-                           ?>
+                           <?php } }else{?>
+                            <span> Participez, plateformez dès maintenant sur le <a hre="fil_actu.php">fil d'actualité</a></span>
+                            <?php } ?>
                      
 
                     <?php }else{?>

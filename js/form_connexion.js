@@ -90,7 +90,7 @@ $(document).ready(function(){
             success:function(response){
                 console.log("response");
                 alert(response);
-                // response = response.replace(/\s/g, ''); //enleve les espaces
+                response = response.replace(/\s/g, ''); //enleve les espaces
                 // console.log (`${response.length}`);
                 
                 if (response == "success"){

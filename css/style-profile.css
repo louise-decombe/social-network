@@ -191,7 +191,16 @@
     font-size:15px;
 }
 
-#button_follow{
+#follow_container{
+    display:flex;
+    width : 27.5%;
+    align-items:center;
+    justify-content:space-between;
+    position:relative;
+    margin-top : 4%;
+}
+
+.button_follow{
     display:flex !important;
     width: 120px !important;
     border: 1px solid #275fa0 !important;
@@ -202,12 +211,9 @@
     justify-content:space-around !important;
     text-transform: uppercase !important;
     font-weight:700 !important;
-    position:relative !important;
-    margin-top:2.5% !important;
-    margin-left:-20% !important;
 }
 
-#button_follow:hover{
+.button_follow:hover{
     color: #275fa0;
 }
 
@@ -505,11 +511,11 @@
 }
 
 .p-cover {
-    position: absolute;
+    position:absolute;
     color: #666666;
     transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
-    margin-left: -27.5%;
-    /*margin-top:27.5%;*/
+    margin-left: -75%;
+    margin-top: -22.5%;
 }
 .p-cover:hover {
   transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
@@ -592,16 +598,25 @@
     color:gray;
 }
 
-
-
 #button_pic_profile{
     /*display:none;*/
     visibility: hidden;
+    padding:10px;
+    border-radius:10px;
+    border:none;
 }
 
 .submit-cover{
     /*display:none;*/
     visibility: hidden;
+    padding : 5px;
+    border-radius : 10px;
+}
+
+.submit-cover:hover{
+    background-color:#275fa0;
+    color:white;
+    transition:0.5s;
 }
 
 .submit_pic{

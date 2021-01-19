@@ -39,6 +39,7 @@ $(document).ready(function() {
 
         $(".upload-button").remove();
         $("#button_pic_profile").css("visibility", "visible");
+        $("#button_pic_profile").css("background-color", "#88c1d0");
         //$(".upload-button").append();
     
         /*$.ajax({
@@ -86,6 +87,7 @@ $(document).ready(function() {
 
         $(".upload-cover").remove();
         $(".submit-cover").css("visibility", "visible");
+        $(".submit-cover").css("background-color", "#88c1d0");
         
     });
 

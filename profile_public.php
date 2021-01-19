@@ -15,11 +15,12 @@ $user_details = $user->test($id_user_follow);
 //var_dump($user_details);
 $user_followers = $user->followers($id_user_follow);
 $already_follower = $user->already_follow($id_user_follow, $id_user);
-var_dump($already_follower);
+//var_dump($already_follower);
 //var_dump($user_followers);
 $count_followers = $user->count_followers($id_user_follow);
 //var_dump($count_followers);
 $post_users = $user->post_users($id_user_follow);
+//var_dump($post_users);
 $last_post = $user->last_post($id_user_follow);
 $tech_name = $options->techno($id_user);
 //var_dump($last_post);
@@ -51,12 +52,10 @@ $tech_name = $options->techno($id_user);
    ?>
 </header>
 <main id="main-profile">
-<?php //var_dump($_SESSION);?>
 
     <!--<div class="ovale_1"></div>-->
     <div class="ovale_2"></div>
     <div class="ovale_3"></div>
-
 
     <?php if(!empty($_SESSION['user'])){ ?>
         <section id="cover-pic">
@@ -65,41 +64,41 @@ $tech_name = $options->techno($id_user);
         </section>
 
         <input type="hidden" id="id_user" name="id_user" value="<?= $id_user ?>">
-            <input type="hidden" id="id_user_follow" name="id_user_follow" value="<?= $id_user_follow ?>">
+        <input type="hidden" id="id_user_follow" name="id_user_follow" value="<?= $id_user_follow ?>">
 
-            <?php if(!empty ($already_follower)){ ?>
+        <?php if(!empty ($already_follower)){ ?>
         
-                <button type="submit" class="button_follow">Unfollow</button>
+        <div id="follow_container">
+            <button type="submit" class="button_follow">Unfollow</button>
+        </div>
 
-            <?php }else{ ?>
+        <?php }else{ ?>
 
+        <div id="follow_container">
             <button type="submit" class="button_follow"><img src="images/icon_follow.png" alt="icon_follow" width=30>Follow</button>
-            <div>vous connaissez @ <?= $user_details['firstname'] ?> <?= $user_details['lastname'] ?> ?</div>
+            <span>si vous connaissez @ <?= $user_details['firstname'] ?> <?= $user_details['lastname'] ?> ?</span>
+        </div>
 
-            <?php } ?>
+        <?php } ?>
 
         <div class="row container_pic_profile">
             <div class="small-12 medium-2 large-2 columns">
-            <div class="circle">
-                <!-- User Profile Image -->
-                <img class="profile-pic" src="php/<?= $user_details['photo']?>" alt="profile-mini-pic" width="112.5">
-            </div>
-            <div class="p-image"></div>
+                <div class="circle">
+                    <!-- User Profile Image -->
+                    <img class="profile-pic" src="php/<?= $user_details['photo']?>" alt="profile-mini-pic" width="112.5">
+                </div>
+                <div class="p-image"></div>
             </div>
         </div>
 
-   
+        <div class="container-fluid sh-100 d-flex flex-column justify-content-center index_content">
+            <div class="row">
+                <div class="col-4">
+                    <article class="infos_user_profile">
+                        <span data-text="vos informations">INFORMATIONS</span>
+                        <img class="underline_wave" src="img/wave.png" alt="underline_wave">
 
-    <div class="container-fluid sh-100 d-flex flex-column justify-content-center index_content">
-        <div class="row">
-            <div class="col-4">
-                <article class="infos_user_profile">
-                    <span data-text="vos informations">
-                        INFORMATIONS
-                    </span>
-                    <img class="underline_wave" src="img/wave.png" alt="underline_wave">
-
-                    <div id="user_details1">
+                        <div id="user_details1">
                         <div class="personal_details">
                             <?php if(!empty($user_details['birthday'] )){ $birth = $user_details['birthday']?>
                             <div class="user_details1"><i class="fas fa-birthday-cake"></i>&nbsp;<?= (new DateTime($birth))->format('d-m-Y')?></div>
@@ -137,12 +136,11 @@ $tech_name = $options->techno($id_user);
                         </div>
                     </div>
                     <aside class="infos_user_skills">
-                        <div class="category_details">
-                        <?php
-                        if(!empty($tech_name)){ ?>
                         <span data-text="vos skills"> SKILLS </span>
                         <img class="underline_wave" src="img/wave.png" alt="underline_wave">
+                        <div class="category_details">
                         <?php
+                        if(!empty($tech_name)){ 
                         foreach ($tech_name as $technologies){ //var_dump($technologies);
                         ?>
                             <span id="technologies"><i class="fas fa-check"></i>&nbsp<?= $technologies['nom']?></span>
@@ -151,26 +149,25 @@ $tech_name = $options->techno($id_user);
                     </aside>
                 </article>
 
-               
+                <?php if(!empty ($already_follower)){ ?>
                 <article class="infos_user_profile">
-                    <span data-text="vos informations">
-                        RELATIONS EN COMMUN 
-                    </span>
+                    <span data-text="vos informations">RELATIONS </span>
                     <img class="underline_wave" src="img/wave.png" alt="underline_wave">
                     <div id="user_followers">
-                    <?php 
-                        foreach ($user_followers as $followers){ ?>
-
+                        <?php foreach ($user_followers as $followers){ ?>
                         <div class="followers">
-                            <img class="followers_img" src="<?=$followers['photo'] ?>" alt="follower_mini_pic">
-                            <span><?=$followers['firstname']?><?=$followers['lastname']?></span>
+                            <?php if($id_user == $followers['id']){ ?>
+                                <img class="followers_img" src="php/<?=$followers['photo'] ?>" alt="follower_mini_pic">
+                                <a href="profile.php"><?=$followers['firstname']?>&nbsp<?=$followers['lastname']?></a>
+                            <?php }else{ ?>
+                                <img class="followers_img" src="php/<?=$followers['photo'] ?>" alt="follower_mini_pic">
+                                <a href="profile_public.php?id=<?= $followers['id'] ?>"><?=$followers['firstname']?>&nbsp<?=$followers['lastname']?></a>
+                            <?php } ?>
                         </div>
-
-                    <?php
-                        }
-                    ?>
+                        <?php } ?>
                     </div>
                 </article>
+                <?php } ?> 
             </div>
             <div class="col-8">
                 <div class="profile_category">
@@ -179,35 +176,68 @@ $tech_name = $options->techno($id_user);
                 </div>
                 
                 <div id="operation1">
+                    <div id="profile_title">
+                        <img class="underline_wave" src="img/wave.png" alt="underline_wave">
+                        <h2> publications...</h2>
+                    </div>
+                    <?php if ($already_follower != true){
+                            if(empty($post_user)){ ?>
+                    <div id="profile_post">
+                        <?php foreach($post_users as $post){ 
+                                $date_post =  $post['created_at'];
+                                $id_post = $post['id'];
+                        ?>
+                        <div id="user_post">
+                            <div>
+                                <img class="pic_post" src="php/<?= $user_details['photo']?>" alt="input-pic">
+                                <?php
+                                $date_origin = new DateTime($date_post);
+                                $date_target = new DateTime();
+                                $interval = $date_origin->diff($date_target);
+                                ?>
+                                <span class="days"><?= $interval->format('%a j'); ?> • 
+                                    <i class="fas fa-globe-americas"></i>
+                                <span>
+                            </div>
+                            <div class="post_content">"<?= $post['content'] ?>"</div>
+                            <div class="post_media">
+                                <?php if(!empty($post['media'])){ ?>
+                                    <?= $post['media'] ?>
+                                <?php } ?>
+                            </div>
+                            <div class="post_reactions">
+                                <?php 
+                                $likes = $user->count_like($id_post); 
+                                $com = $user->count_comments($id_post); 
+                                ?>    
+                                <span>
+                                    <?php if($likes[0] > 0){ ?>
+                                        <?= $likes[0];?> 
+                                    <?php } ?>
+                                    <i class="far fa-thumbs-up"></i>
+                                <span>
+                                <span>
+                                    <?php if($com[0] > 0){ ?>
+                                        <?= $com[0];?> 
+                                    <?php } ?>
+                                    <i class="far fa-comment-dots"></i>
+                                <span>
+                            </div>
+                        </div>
+                    </div>
+                    <?php } }else{ ?>
+                    <span>@ <?= $user_details['firstname'] ?> <?= $user_details['lastname'] ?> n'a pas encore publié de post ! </span>
+                    <?php } }else{ ?>
+                    
+                    <span> vous devez FOLLOW @ <?= $user_details['firstname'] ?> <?= $user_details['lastname'] ?> pour accèder à ses posts</span>
 
-        <div id="profile_title">
-            <img class="underline_wave" src="img/wave.png" alt="underline_wave">
-            <h2>vos publications...</h2>
-        </div>
-        <div id="profile_post">
-            <?php foreach($post_users as $post){ ?>
-            <div id="user_post">
-                <img id="input-pic" src="<?= $_SESSION['user']['photo']?>" alt="input-pic">
-                    posté le : <?= $post['created_at'] ?>
-                    message : <?= $post['content'] ?>
-                    media : <?= $post['media'] ?>
-            </div>
-            <?php } ?>
-            <?php 
-                echo date_format($date, 'd/m/Y H:i:s'); 
-            ?>
-        </div>
-  
-</div>
-<div id="operation1">
-    <div id="profile_title">
-        <img class="underline_wave" src="img/wave.png" alt="underline_wave">
-        <h2>Publications...</h2>
-    </div>
-    <article>
+                    <?php } ?>
+                </div>
+
+
+
         pour accèder aux publications de @ <?= $user_details['firstname'] ?> <?= $user_details['lastname'] ?>, ajouter le à votre liste d'amis !
-    </article>
-</div>
+
 <div id="operation2">
     <div id="profile_title">
         <img class="underline_wave" src="img/wave.png" alt="underline_wave">
@@ -235,12 +265,13 @@ $tech_name = $options->techno($id_user);
                     <div id="profile_publications">
                         <div id="profile_title">
                             <img class="underline_wave" src="img/wave.png" alt="underline_wave">
-                            <h2>vos publications...</h2>
+                            <h2>publications...</h2>
                         </div>
-                        <div id="profile_post">
+                        <?php if(!empty($post_users)){ ?>
+                            <div id="profile_post">
                             <?php foreach($post_users as $post){ //var_dump($post);
-                            $date_post = $post['created_at'];
-                            $id_post = $post['id'];
+                                $date_post = $post['created_at'];
+                                $id_post = $post['id'];
                             ?>
                             <div id="user_post">
                                 <div>
@@ -259,40 +290,35 @@ $tech_name = $options->techno($id_user);
                                 </div>
                                 <div class="post_content">"<?= $post['content'] ?>"</div>
                                 <div class="post_media">
-                                <?php if(!empty($post['media'])){ ?>
+                                    <?php if(!empty($post['media'])){ ?>
                                     <?= $post['media'] ?>
-                                <?php } ?>
+                                    <?php } ?>
                                 </div>
                                 <div class="post_reactions">
                                     <?php 
                                     $likes = $user->count_like($id_post); 
                                     $com = $user->count_comments($id_post); 
                                     ?>
-                                        
                                     <span>
                                         <?php if($likes[0] > 0){ ?>
                                             <?= $likes[0];?> 
                                         <?php } ?>
                                         <i class="far fa-thumbs-up"></i>
                                     <span>
-
                                     <span>
                                         <?php if($com[0] > 0){ ?>
                                             <?= $com[0];?> 
                                         <?php } ?>
                                         <i class="far fa-comment-dots"></i>
                                     <span>
-   
                                 </div>
-                                
-                                </div>
+                            </div>
         
                            <?php } ?>
-                           <?php 
-                           echo date_format($date, 'd/m/Y H:i:s'); 
-                           $reactions = $user -> post_reactions($id_post);
-                            //var_dump($reactions);
-                           ?>
+
+                        
+                        <?php } ?>
+        
     <?php }else{?>
         <span class="info_connected"> vous devez être connecté pour accéder à cette page !</span>
     <?php } ?>

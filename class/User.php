@@ -194,7 +194,7 @@ class User{
 
         if (empty($errors)) {
             $photo = "upload/default_avatar.png";
-            $cover = "upload_cover/default_cover.jpg";
+            $cover = "upload_cover/cover_default.jpg";
             $q1 = $connexion->prepare(
                 "INSERT INTO users (firstname, lastname, password, mail, cursus, photo, cover) VALUES (:firstname,:lastname,:password,:mail,:cursus, :photo, :cover)"
             );
