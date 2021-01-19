@@ -59,13 +59,15 @@ $(document).ready(function(){
 
 
     //changemenet de page en fonction du click sur la nav barre
-    $("#posts").click(function(){
+    $("#posts").on("click",function(){
         ChangementDePage("admin_posts.php","post");
         
     })
 
-    //recup post signaler
-    $(document).on("click",'#signal_posts',recuperationPostsSignal)
+    //recup post signaler///////// ===>
+    $(document).on("click",'#signal_posts',function(){
+        ChangementDePage("admin_posts.php","signal");
+    })
 
     //sup post signalé
     $(document).on("click",".supp_post",clickOnbtnSupp);
@@ -115,15 +117,69 @@ $(document).ready(function(){
         ChangementDePage("admin_posts.php","signal");
     })
 
-    /////////////////////////////////////////////////////////////////////////////
-    //////////////////////// PARTIE GROUPE ///////////////////////////////////////
+    $(document).on('click','.voir_post',function(){
 
-    //changement de page ==> groupe
-    $("#groupe").click(function(e){
-        e.preventDefault();
-        ChangementDePage("admin_groupe.php","groupe");
-        recuperationTopGroupe();
+        var genre = $(this).attr('data-genre');
+        //on recupere l'id du post
+        var id_post = $(this).attr('data-id');
+        $("#page").empty();
+        
+        if (genre == "post") {
+            $.ajax({
+                url: 'php/traitement_posts_admin.php',
+                type: 'POST',
+                dataType: "JSON",
+                data: {action:"affichage post signalé" , id:id_post},
+    
+                success: function(data){
+                    //on recupere le contenue du post ainsi que le media
+                    console.log(data);
+                
+                    
+                    if (data[0].type_media == 1 ) {
+                       var media = `<img class="img_signal" src="php/upload_media_post/${data[0].media}" />`;
+                    }
+                    else if (data[0].type_media == 2){
+                        var media = `<video controls width="250">
+                                    <source src="php/upload_media_post/${data[0].media}">
+                                </video>`;
+                    }else {
+                        var media = ``;
+                    }
+    
+                    console.log(media);
+                    
+                    $("#page").append("<p class='p_post_signal'>"+data[0].content+"</p>");
+                    $("#page").append(media);
+                    $("#page").append("<button id='fermeture_post_signal'>Fermer</buuton>");
+                }
+            })
+        }
+        if (genre == "comment"){
+           console.log('toto')
+            $.ajax({
+                url: 'php/traitement_posts_admin.php',
+                type: 'POST',
+                dataType: "JSON",
+                data: {action:"affichage comment signalé" , id:id_post},
+    
+                success: function(data){
+                    console.log(data);
+                    $("#page").append("<p class='p_post_signal'>"+data.content+"</p>");
+                    $("#page").append("<button id='fermeture_post_signal'>Fermer</buuton>");
+                }
+            })
+
+        }
+        
     })
+
+    $(document).on('click',"#fermeture_post_signal",function(){
+        $("#page").empty();
+        ChangementDePage("admin_posts.php","signal");
+    })
+
+
 
     /////////////////////////////////////////////////////////////////////////////
     //////////////////////// PARTIE LANGAGE /////////////////////////////////////
@@ -216,4 +272,6 @@ $(document).ready(function(){
         $("#modale").css("display","flex");
         deleteCursus(id_cursus);
     })
-})
+
+
+});

@@ -10,7 +10,7 @@ function GetFormulaire(id_nom_form,input1,valeur1,valeur2,input2,boutton,valeur_
   
 }
 function RegisterPost(){
-    $("#toto").empty()
+    $("#formulaire_post").empty()
    
     var form = GetFormulaire('#form_post','#message',"message","files",'#files',"valider",'#btn_valider',"type","#type_media");
 
@@ -29,8 +29,9 @@ function RegisterPost(){
             if (data == 1){
                 console.log("ici")
                
-                $("#toto").append("<p> Post envoyé !</p>")
-                $("#toto").css('color','green')
+                $("#formulaire_post").append("Post envoyé !")
+                $("#formulaire_post").css('color','green')
+            
                 form.delete("message");
                 form.delete("files");
                 form.delete("valider");
@@ -39,10 +40,7 @@ function RegisterPost(){
                 $("#input_form").empty();
 
                 $("#form_post")[0].reset();
-                $("#modale2").css('display',"none");
-                
-                
-               
+                $("#modale2").css('display',"none");  
             }else {
                 let json_datas = JSON.parse(data);
 
@@ -54,61 +52,11 @@ function RegisterPost(){
                 }
             }
 
-            
-
         }
     })
     
-
- 
-
 }
 
-function registerPostUrl(){
-    
-    // $("#message_post").empty();
-    let url = $("#files").val();
-    let valider = $("#btn_valider").val();
-    let message = $("#message").val();
-    
-    
-
-    
-    $.ajax({
-        url : 'php/traitement_messages.php',
-        type : 'POST',
-        dataType: "json",
-        data: {files: url ,valider:valider,  message: message, action: "url"},
-      
-
-        success: function(data){
-            console.log(data);
-          
-            if (data == 1){
-                console.log("ici")
-                $("#toto").empty();
-                $("#toto").append("Message Envoyé !");
-               
-                $("#form_post")[0].reset();
-                $("#modale2").css('display',"none");
-
-                $("#message").text('De quoi souhaitez-vous discuter ?')
-                $("#input_form").empty();
-            }
-            if (data == 0){
-                console.log("la");
-                $("#message_erreur").empty();
-                $("#message_erreur").text("Le champs ne peut pas etre vide !");
-            }
-
-            if (data.erreur){
-                $("#message_erreur").empty();
-                $("#message_erreur").text(data.erreur);
-            }
-        },
-        
-    })
-}
 
 function SavePost(template){
     $("#input_form").empty();
@@ -127,4 +75,45 @@ function AlertError(element,input1,input2){
     $(element).css("color","red");
     $(input1).css('background',"red!important")
     $(input2).css('background',"red!important")
+}
+
+function NewPosts(){  
+    $.ajax({
+        url: "php/traitement_posts_feed.php",
+        type: "POST",
+        
+        success: function(data){
+            console.log(data)
+           var datas = JSON.parse(data);
+          
+            if (datas.post !== undefined ){
+                if ($("#btn_new_post").length == 0 ){
+                    $("#btn_new_message").append("<button id='btn_new_post'><span class='icon-up-fat'></span>Nouveaux messages</button>");
+                }
+
+                if (val === undefined ){
+                    var val = [];
+                    var val = JSON.stringify(datas.post);   
+                }
+                else {
+                    val.push(JSON.stringify(datas.post));
+                }
+               
+                localStorage.setItem('post', val);
+
+            }
+
+        }   
+    
+    })
+
+}
+
+function Formatdate(dateDujour){
+    let maDate = new Date(dateDujour);
+    let jour = maDate.getDate(); //Jour
+    let annee = maDate.getFullYear(); //annee
+    let mois = (maDate.getMonth()) +1; //Mois (commence à 0, donc +1);
+    let retour  = jour+'/'+mois+'/'+annee
+    return retour;
 }

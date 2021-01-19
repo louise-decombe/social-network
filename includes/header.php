@@ -1,12 +1,19 @@
- 
-<head>
-   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-</head>
+
+  
+
+<!--  Include de la navbar -->
+<?php 
+?>
+
 <header>
    <!--  Include de la navbar -->
    <?php 
+
+$_SESSION['user']['id'] = 1;
+$_SESSION['id'] = 1;
+
+
       if(isset($_SESSION['user']['id'])){
-      session_start();
        ?>
    <!-- navbar connect -->
    <nav class="navbar navbar-dark navbar-expand-lg" style="background-color: #000000;">
@@ -43,23 +50,34 @@
       </ul>
       </div>
    </nav>
-   <?php
-      }else{ ?>
-   <!-- navbar non connecté -->
-   <nav class="navbar navbar-dark" style="background-color: #000000;">
-      <a class="navbar-brand" href="index.php">
-      <img src="img/PICT_LOGO_WHITE_TEXT.png" width="60" height="45" class="d-inline-block align-top" alt="white_logo_plateformer_" loading="lazy">
-      </a>
-      <ul id="nav-forms">
-         <li><a class="icon-responsive" href="connexion.php"><i class="fas fa-user-circle"></i></a>
-         <li><a class="icon-responsive" href="inscription.php"><i class="fas fa-user-plus"></i></a>
-         <li><a class="link-navbar" class="link-active" href="inscription.php">s'inscrire</a></li>
-         <li>
+
+
+<?php
+}else{ 
+?>
+
+<!-- navbar non connecté -->
+<nav class="navbar navbar-dark" style="background-color: #000000;">
+    <a class="navbar-brand" href="index.php">
+        <img src="img/PICT_LOGO_WHITE_TEXT.png" width="60" height="45" class="d-inline-block align-top" alt="white_logo_plateformer_" loading="lazy">
+    </a>
+    <ul id="nav-forms">
+        <li>
+            <a class="icon-responsive" href="connexion.php"><i class="fas fa-user-circle"></i></a>
+        </li>
+        <li>
+            <a class="icon-responsive" href="inscription.php"><i class="fas fa-user-plus"></i></a>
+        </li>
+        <li>
+            <a class="link-navbar" class="link-active" href="inscription.php">s'inscrire</a>
+        </li>
+        <li>
             <div class="vl"></div>
-         </li>
-         <li><a class="link-navbar" href="connexion.php">se connecter</a></li>
-      </ul>
-   </nav>
-   <?php  }    ?> 
-   <script src="jquery-3.5.1.min.js"></script>
-</header>
+        </li>
+        <li>
+            <a class="link-navbar" href="connexion.php">se connecter</a>
+        </li>
+    </ul>
+</nav>
+    
+<?php  } ?> 

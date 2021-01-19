@@ -17,7 +17,7 @@ const check_error = "Les mots de passe ne correspondent pas.";
 $(document).ready(function(){
 
     var regexfirstname=/^([a-zA-Z]{3,25})$/;
-    $("#firstname").change(function(){
+    $("#modify_firstname").change(function(){
  
         var firstname = $(this).val();
         //alert(firstname);

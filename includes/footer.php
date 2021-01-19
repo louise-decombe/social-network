@@ -12,7 +12,7 @@
                 <input type="email" name="email_newsletter" id="email_newsletter" required type="email" spellcheck="false" placeholder="Entrez votre email">
                 <button type="submit" name="submit_newsletter" id="submit_newsletter"><i class="fa fa-arrow-right"></i></button>
             </div>
-            <span class="error-message"></span>
+            <div id="message-newsletter"></div>
             <small id="emailHelp" class="form-text text-muted">Retrouvez les news de Plateformer_ </small>
         </form>
     </section>
@@ -38,3 +38,24 @@
         </a>
         <p>© 2020 Plateformer_ Tous droits réservés</p>
     </section>
+
+<!-- ouverture du chat -->
+
+<?php 
+ if(isset($_SESSION['user']['id'])){
+    session_start();
+?>
+
+<div class="popupChat"></div>
+
+<script src="js/envoi_message.js"></script>
+<script src="js/chat.js"></script>
+<script src="js/search.js"></script>
+
+<!-- c'est cette div qui permet d'ouvrir le pop up du chat -->
+
+<?php
+}
+?>
+
+    <script type="text/javascript" src="js/form_newsletter.js"></script>

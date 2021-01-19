@@ -1,11 +1,24 @@
-<?php $page_selected = 'admin'; 
+<?php session_start();
+
+//$_SESSION['user']['droits'] = "administrateur";
+
+if ($_SESSION['user']['droits'] != "administrateur"){
+    header('location: index.php');
+}
+$page_selected = 'admin'; 
 
 require 'class/Config.php';
-require 'php/admin.php';
+require "class/Cursus.php";
+
+$cursus = new Cursus($db);
+
+$formations = $cursus->getCursus();
+
+
 
 ?>
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html >
+<html lang="fr">
 <head>
     <title>social_network - admin</title>
     <meta charset="utf-8">
@@ -14,7 +27,7 @@ require 'php/admin.php';
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="css/styles.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <link rel="stylesheet" href="css/fontello/css/fontello.css">
     
@@ -22,7 +35,6 @@ require 'php/admin.php';
     <script src="js/fonctions/fonctions_generales.js"></script>
     <script src="js/fonctions/fonctions_users.js"></script>
     <script src="js/fonctions/fonctions_posts.js"></script>
-    <script src="js/fonctions/fonctions_groupe.js"></script>
     <script src="js/fonctions/fonctions_langages.js"></script>
     <script src="js/fonctions/fonctions_cursus.js"></script>
     <script src="js/admin.js"></script>
@@ -35,18 +47,17 @@ require 'php/admin.php';
 <header class="header_admin">
     <h1>DashBord</h1>
     <div class="icones_menu">
-        <p><a id="signalement"class="icon-bell-alt"href='#' title="Signalement"></a> </p>
-        <p class="icon-home"></p>
+        <p><a id="signalement" class="icon-bell-alt" href='#' title="Signalement"></a> </p>
+        <p><a class="icon-home" href="index.php"></a></p>
     </div>
 </header>
 <main class="admin_main">
     <section class="nav_admin">
-        <img class="admin_main_img"src="images/dashbord.png" alt="Logo">
+        <img class="admin_main_img" src="images/dashbord.png" alt="Logo">
         <nav>
             <button id="utilisateurs" class="btn btn-info admin_main_button">Utilisateurs</button>
-            <button id="posts"class="btn btn-info admin_main_button">Les Posts</button>
+            <button id="posts" class="btn btn-info admin_main_button">Les Posts</button>
             <button id="btn_signal" class="btn btn-info admin_main_button">Signalements</button>
-            <button id="groupe" class="btn btn-info admin_main_button">Les groupes</button>
             <button id="langages" class="btn btn-info admin_main_button">Les langages</button>
             <button id="cursus" class="btn btn-info admin_main_button">Les Cursus</button>
         </nav>
@@ -119,7 +130,6 @@ require 'php/admin.php';
     <?php
     include("includes/footer.php") ?>
 </footer>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 
 
 

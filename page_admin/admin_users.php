@@ -2,7 +2,6 @@
 
 
 require '../php/admin2.php';
-//require '../class/Cursus.php';
 
 ?>
 <div class="div_entete">

@@ -1,6 +1,5 @@
 <?php 
 
-
 require 'Db.php';
 $db = new DB();
 
@@ -16,9 +15,14 @@ $db = new DB();
     require 'Message.php';
     $message = new Message($db);
 
-    //traitement de la déconnexion
+
+    require 'Reactions.php';
+    $reaction = new Reactions($db);
+
+//traitement de la déconnexion
 if (isset($_POST["deco"])) {
     $user->disconnect();
 }
-    
+
 ?>
+    

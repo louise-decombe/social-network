@@ -4,12 +4,12 @@
    
    session_start();
    // pour le moment la variable de session est en dur
-   $_SESSION['id'] = 1;
+   //$_SESSION['id'] = 1;
        include '../class/Config.php';
    
    	// on utilise la méthode supprimer 
    	if(isset($_POST['deleteMsg']) && !empty($_POST['deleteMsg'])){
-   		$id   = $_SESSION['id'];
+   		$id   = $_SESSION['user']['id'];
    		$id_message = $_POST['deleteMsg'];
    		$message->deleteMsg($id_message, $id); 
    	}
@@ -22,7 +22,7 @@
    		//  }
    
    
-   		 $id  = 1;
+   		 $id  = $_SESSION['user']['id'];
    		 //$_SESSION['id'];
    		 $message  = $_POST['sendMessage'];
    		 $get_id   =  $_POST['get_id'];
@@ -35,14 +35,14 @@
    
    	 // on récup les msg en bdd
    	if(isset($_POST['showChatMessage']) && !empty($_POST['showChatMessage'])){
-   		$id = $_SESSION['id'];
+   		$id = $_SESSION['user']['id'];
    		$messageFrom = $_POST['showChatMessage'];
    		$message->getMessages($messageFrom, $id);
    	}
    
    	//on affiche la sélection d'envoi de msg
    	if(isset($_POST['showMessage']) && !empty($_POST['showMessage'])){
-           $id = $_SESSION['id'];
+           $id = $_SESSION['user']['id'];
    		$messages = $message->recentMessages($id);
      		?>
 <div class="popup-message-wrap">

@@ -18,12 +18,23 @@ class Post
         return $resultat;
     }
 
-    public function GetPostsByIdUser(){
-        $requete = $this->connect->prepare("SELECT *, date_format(post.created_at,'%d/%m/%Y') AS date_created,post.media FROM post INNER JOIN users ON post.id_user = users.id  ORDER BY created_at DESC ");
+    //recuperation des 5 derniers articles
+    public function GetPostsByIdUser($limit){
+        $requete = $this->connect->prepare("SELECT *,post.id as id_post, date_format(post.created_at,'%d/%m/%Y') AS date_created,post.media FROM post INNER JOIN users ON post.id_user = users.id  ORDER BY post.id DESC LIMIT 5 offset $limit ");
         $requete->execute();
         $resultat = $requete->fetchall(PDO::FETCH_ASSOC);
 
         return $resultat;
+    }
+
+    public function Recuperation_Post(){
+        $requete = $this->connect->prepare("SELECT *,post.id as id_post, date_format(post.created_at,'%d/%m/%Y') AS date_created,post.media FROM post INNER JOIN users ON post.id_user = users.id ORDER BY post.id DESC  ");
+        $requete->execute();
+        $resultat = $requete->fetchall(PDO::FETCH_ASSOC);
+      
+        return $resultat;
+        
+        
     }
 
     public function DeletPost($id){
@@ -43,6 +54,20 @@ class Post
         $requete = $this->connect->prepare("INSERT INTO `post`( `id_user`, `content`, `created_at`, `media`, `type_media`) VALUES (?,?,NOW(),?,?)");
         $requete->execute([$id_user,$message,$image,$type]);
         return true;
+    }
+
+    public function getPostByIdPost($id_post){
+        $requete = $this->connect->prepare("SELECT *,post.id AS id_post FROM post INNER JOIN users ON post.id_user = users.id WHERE post.id = ? ");
+        $requete->execute([$id_post]);
+        $resultat = $requete->fetchAll(PDO::FETCH_ASSOC);
+        return $resultat;
+    }
+
+    public function GetContentById($id){
+        $requete = $this->connect->prepare("SELECT content FROM post WHERE id = ?");
+        $requete->execute([$id]);
+        $resultat = $requete->fetch();
+        return $resultat ;
     }
     
 }

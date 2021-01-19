@@ -18,9 +18,10 @@ $(document).ready(function(){
 
     var regexfirstname=/^([a-zA-Z\-]{3,25})$/;
     $("#firstname").change(function(){
+        $("#error_firstname").empty();
  
         var firstname = $(this).val();
-        //alert(firstname);
+        alert(firstname);
         if (!(firstname).match(regexfirstname)){
              
             $("#error_firstname").append(firstname_error);
@@ -40,6 +41,7 @@ $(document).ready(function(){
 
     var regexlastname=/^([a-zA-Z\-]{3,25})$/;
     $("#lastname").change(function(){
+        $("#error_lastname").empty();
  
         var lastname = $(this).val();
         //alert(email);
@@ -59,7 +61,7 @@ $(document).ready(function(){
 //modification input email
 $(document).ready(function(){
 
-    var regexemail=/^[a-zA-Z0-9\-\.]+@laplateforme\.io$/;
+    var regexemail=/^[a-zA-Z0-9._%+-]+@laplateforme\.io$/;
     $("#mail").change(function(){
         var mail = $(this).val();
         // alert(mail);
@@ -188,4 +190,18 @@ $(document).ready(function(){
             }
         });
     });
-})
+});
+
+/*----------------------------------------------------*/
+/* VALIDATION INSCRIPTION
+------------------------------------------------------ */
+/*$(document);ready(function(){
+    $('#form_register').submit(function(){
+
+        var firstname = $('#firstname').val();
+        var lastname = $('#lastname').val();
+        var password = $('#password').val();
+        var check_password = $('#check_password').val();
+
+    });
+});*/
