@@ -38,7 +38,7 @@ $(document).ready(function() {
         var id_user = $('.id_user').val();*/
 
         $(".upload-button").remove();
-        $(".submit-pic").css("visibility", "visible");
+        $("#button_pic_profile").css("visibility", "visible");
         //$(".upload-button").append();
     
         /*$.ajax({

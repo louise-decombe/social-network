@@ -83,7 +83,7 @@ $tech_name = $options->techno($id_user);
             <div class="p-image">
                 <form class="form_pic_upload" method="post" action="php/upload_pics.php" enctype="multipart/form-data">
                     <i class="fa fa-camera upload-button"></i>
-                    <button id="button_pic" type="submit" name='submit_pic'>
+                    <button id="button_pic_profile" type="submit" name='submit_pic'>
                         <i class="far fa-check-circle submit-pic">&nbsp valider la photo de profil</i>
                     </button>
                     <input type="hidden" name="id_user" class="id_user" value="<?= $id_user ?>">

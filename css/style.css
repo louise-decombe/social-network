@@ -80,6 +80,22 @@ nav .link-header{
   visibility:hidden !important;
 }
 
+.nav-link1{
+  color:white !important;
+  font-size : 25px !important;
+  margin-right : 10px !important;
+}
+
+.circle_nav {
+  border-radius: 1000px !important;
+  overflow: hidden;
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  margin-left : 10px;
+  margin-right : 10px;
+}
+
 
 /*** RESPONSIVE HEADER ***/
 @media (max-width: 1280px){

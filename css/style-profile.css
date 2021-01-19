@@ -192,19 +192,19 @@
 }
 
 #button_follow{
-    display:flex;
-    width: 120px;
-    border: 1px solid #275fa0;
-    background-color: transparent;
-    border-radius: 10px;
-    font-size:20px;
-    align-items:center;
-    justify-content:space-around;
-    text-transform: uppercase;
-    font-weight:700;
-    position:absolute;
-    margin-top:2.5%;
-    margin-left:-20%;
+    display:flex !important;
+    width: 120px !important;
+    border: 1px solid #275fa0 !important;
+    background-color: transparent !important;
+    border-radius: 10px !important;
+    font-size:20px !important;
+    align-items:center !important;
+    justify-content:space-around !important;
+    text-transform: uppercase !important;
+    font-weight:700 !important;
+    position:relative !important;
+    margin-top:2.5% !important;
+    margin-left:-20% !important;
 }
 
 #button_follow:hover{
@@ -594,7 +594,7 @@
 
 
 
-.submit-pic{
+#button_pic_profile{
     /*display:none;*/
     visibility: hidden;
 }
@@ -604,7 +604,7 @@
     visibility: hidden;
 }
 
-#button_pic{
+.submit_pic{
     border:none;
     background-color:transparent;
 }
@@ -627,6 +627,8 @@
     height: 70px;
     border: 8px solid rgba(221, 222, 225, 0.5);
 }
+
+
 
 
 

@@ -4,12 +4,11 @@
 <!--  Include de la navbar -->
 
 
-   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+   <!--<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>-->
 <header>
    <!--  Include de la navbar -->
    <?php 
       if(isset($_SESSION['user']['id'])){
-      session_start();
        ?>
    <!-- navbar connect -->
    <nav class="navbar navbar-dark navbar-expand-lg" style="background-color: #000000;">
@@ -31,10 +30,11 @@
       </ul>
       </div>
       <ul id="nav-forms">
-         <li>    <a class="nav-link" href="../index.php"> <i class="fa fa-home" aria-hidden="true"></i></a></li>
+         <li><a class="nav-link" href="../index.php"> <i class="fa fa-home" aria-hidden="true"></i></a></li>
          <!-- quand on clique on déclenche le pop up -->
+         <a class="nav-link1" href="fil_actu.php"><i class="fas fa-home"></i></a>
          <li id="messagePopup" class="nav-item"><i class="fa fa-envelope" aria-hidden="true"></i><span id="messages"><span class="span-i"></span></li>
-         <a class="nav-link" href="profile.php"> <img src="upload"/></a> 
+         <a class="nav-link1" href="profile.php"><img class="circle_nav" src="php/<?= $_SESSION['user']['photo']?>"/></a>
          <li>
             <div class="vl"></div>
          </li>

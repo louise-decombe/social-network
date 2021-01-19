@@ -15,12 +15,13 @@ $user_details = $user->test($id_user_follow);
 //var_dump($user_details);
 $user_followers = $user->followers($id_user_follow);
 $already_follower = $user->already_follow($id_user_follow, $id_user);
-//var_dump($already_follower);
+var_dump($already_follower);
 //var_dump($user_followers);
 $count_followers = $user->count_followers($id_user_follow);
 //var_dump($count_followers);
 $post_users = $user->post_users($id_user_follow);
 $last_post = $user->last_post($id_user_follow);
+$tech_name = $options->techno($id_user);
 //var_dump($last_post);
 ?>
 <!DOCTYPE html>
@@ -57,34 +58,37 @@ $last_post = $user->last_post($id_user_follow);
     <div class="ovale_3"></div>
 
 
-    <section id="cover-pic">
-        <img class="cover-pic" id="cover" src="php/<?= $user_details['cover']?>" alt="cover-picture">
-        <h1 id="profile_name">@ <?= $user_details['firstname'] ?> <?= $user_details['lastname'] ?></h1>
-        <div class="p-cover"></div>
-    </section>
+    <?php if(!empty($_SESSION['user'])){ ?>
+        <section id="cover-pic">
+            <img class="cover-pic" id="cover" src="php/<?= $user_details['cover']?>" alt="cover-picture">
+            <h1 id="profile_name">@ <?= $user_details['firstname'] ?> <?= $user_details['lastname'] ?></h1>
+        </section>
 
-    <div class="row container_pic_profile">
-        <div class="small-12 medium-2 large-2 columns">
+        <input type="hidden" id="id_user" name="id_user" value="<?= $id_user ?>">
+            <input type="hidden" id="id_user_follow" name="id_user_follow" value="<?= $id_user_follow ?>">
+
+            <?php if(!empty ($already_follower)){ ?>
+        
+                <button type="submit" class="button_follow">Unfollow</button>
+
+            <?php }else{ ?>
+
+            <button type="submit" class="button_follow"><img src="images/icon_follow.png" alt="icon_follow" width=30>Follow</button>
+            <div>vous connaissez @ <?= $user_details['firstname'] ?> <?= $user_details['lastname'] ?> ?</div>
+
+            <?php } ?>
+
+        <div class="row container_pic_profile">
+            <div class="small-12 medium-2 large-2 columns">
             <div class="circle">
                 <!-- User Profile Image -->
                 <img class="profile-pic" src="php/<?= $user_details['photo']?>" alt="profile-mini-pic" width="112.5">
             </div>
             <div class="p-image"></div>
+            </div>
         </div>
-    </div>
 
-    <input type="hidden" id="id_user" name="id_user" value="<?= $id_user ?>">
-    <input type="hidden" id="id_user_follow" name="id_user_follow" value="<?= $id_user_follow ?>">
-
-    <?php if(!empty ($already_follower)){ ?>
-        
-        <button type="submit" id="button_follow">Unfollow</button>
-
-    <?php }else{ ?>
-
-        <button type="submit" id="button_follow"><img src="images/icon_follow.png" alt="icon_follow" width=30>Follow</button>
-
-    <?php } ?>
+   
 
     <div class="container-fluid sh-100 d-flex flex-column justify-content-center index_content">
         <div class="row">
@@ -173,7 +177,7 @@ $last_post = $user->last_post($id_user_follow);
                     <button class="link_content" onclick="show('operation1')">Publications</button>
                     <button class="link_content" onclick="show('operation2')">Relations &nbsp<span id="count_followers"><?= $count_followers[0]?></span></button>
                 </div>
-                <div>vous connaissez @ <?= $user_details['firstname'] ?> <?= $user_details['lastname'] ?> ?</div>
+                
                 <div id="operation1">
 
         <div id="profile_title">
@@ -226,6 +230,72 @@ $last_post = $user->last_post($id_user_follow);
     document.getElementById('profile_publications').innerHTML = document.getElementById(param_div_id).innerHTML;
   }
 </script>
+
+<div class="profile_content">
+                    <div id="profile_publications">
+                        <div id="profile_title">
+                            <img class="underline_wave" src="img/wave.png" alt="underline_wave">
+                            <h2>vos publications...</h2>
+                        </div>
+                        <div id="profile_post">
+                            <?php foreach($post_users as $post){ //var_dump($post);
+                            $date_post = $post['created_at'];
+                            $id_post = $post['id'];
+                            ?>
+                            <div id="user_post">
+                                <div>
+                                    <img class="pic_post" src="php/<?= $user_details['photo']?>" alt="input-pic">
+                                    <!--<span class="date_post">le : <?= (new DateTime($date_post))->format('d-m-Y')?></span>-->
+                                    <?php
+                                        $date_origin = new DateTime($date_post);
+                                        $date_target = new DateTime();
+                                        $interval = $date_origin->diff($date_target);
+                                    ?>
+                                    <span class="days">
+                                        <?= $interval->format('%a j'); ?> 
+                                         • 
+                                        <i class="fas fa-globe-americas"></i>
+                                    <span>
+                                </div>
+                                <div class="post_content">"<?= $post['content'] ?>"</div>
+                                <div class="post_media">
+                                <?php if(!empty($post['media'])){ ?>
+                                    <?= $post['media'] ?>
+                                <?php } ?>
+                                </div>
+                                <div class="post_reactions">
+                                    <?php 
+                                    $likes = $user->count_like($id_post); 
+                                    $com = $user->count_comments($id_post); 
+                                    ?>
+                                        
+                                    <span>
+                                        <?php if($likes[0] > 0){ ?>
+                                            <?= $likes[0];?> 
+                                        <?php } ?>
+                                        <i class="far fa-thumbs-up"></i>
+                                    <span>
+
+                                    <span>
+                                        <?php if($com[0] > 0){ ?>
+                                            <?= $com[0];?> 
+                                        <?php } ?>
+                                        <i class="far fa-comment-dots"></i>
+                                    <span>
+   
+                                </div>
+                                
+                                </div>
+        
+                           <?php } ?>
+                           <?php 
+                           echo date_format($date, 'd/m/Y H:i:s'); 
+                           $reactions = $user -> post_reactions($id_post);
+                            //var_dump($reactions);
+                           ?>
+    <?php }else{?>
+        <span class="info_connected"> vous devez être connecté pour accéder à cette page !</span>
+    <?php } ?>
 </main>
 <footer>
     <?php
