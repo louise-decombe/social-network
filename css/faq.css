@@ -1,0 +1,93 @@
+
+h2 {
+  color: black;
+  font-size: 12px;
+  letter-spacing: 2px;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+p {
+  color: black;
+  font-size: 14px;
+  line-height: 1.5;
+  margin: 25px;
+}
+
+.container {
+  max-width: 640px;
+  margin: 0 auto;
+}
+.acc {
+  margin: 90px 0;
+  overflow: hidden;
+  padding: 0;
+}
+
+.acc li {
+  list-style-type: none;
+  padding: 0;
+}
+
+.acc_ctrl {
+  background: #FFFFFF;
+  border: none;
+  border-bottom: solid 1px #F2F2F2;
+  cursor: pointer;
+  display: block;
+  outline: none;
+  padding: 2em;
+  position: relative;
+  text-align: center;
+  width: 100%;
+}
+
+.acc_ctrl:before {
+  background: #44596B;
+  content: '';
+  height: 2px;
+  margin-right: 37px;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  -o-transform: rotate(90deg);
+  transform: rotate(90deg);
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -ms-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  width: 14px;
+}
+
+.acc_ctrl:after {
+  background: #44596B;
+  content: '';
+  height: 2px;
+  margin-right: 37px;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  width: 14px;
+}
+
+.acc_ctrl.active:before {
+  -webkit-transform: rotate(0deg);
+  -moz-transform: rotate(0deg);
+  -ms-transform: rotate(0deg);
+  -o-transform: rotate(0deg);
+  transform: rotate(0deg);
+}
+
+.acc_ctrl.active h2, .acc_ctrl:focus h2 {
+  position: relative;
+}
+
+.acc_panel {
+  background: #F2F2F2;
+  display: none;
+  overflow: hidden;
+}
