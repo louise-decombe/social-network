@@ -158,6 +158,16 @@ if(isset($id_user) && !empty($id_user) && isset($id_user_follow) && !empty($id_u
     echo "error";
 };
 
+//TRAITEMENT PHP PROFIL UTILISATEUR UNFOLLOW
+if(isset($id_user) && !empty($id_user) && isset($id_user_unfollow) && !empty($id_user_unfollow)){
+
+    $delete_follower = $user->unfollow($id_user, $id_user_unfollow);
+    echo "unfollow";
+
+}else{
+    echo "error";
+};
+
 
 
 ?>

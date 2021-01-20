@@ -69,13 +69,13 @@ $tech_name = $options->techno($id_user);
         <?php if(!empty ($already_follower)){ ?>
         
         <div id="follow_container">
-            <button type="submit" class="button_follow">Unfollow</button>
+            <button type="submit" id="button_unfollow" class="button_follow">Unfollow</button>
         </div>
 
         <?php }else{ ?>
 
         <div id="follow_container">
-            <button type="submit" class="button_follow"><img src="images/icon_follow.png" alt="icon_follow" width=30>Follow</button>
+            <button id="button_follow" type="submit" class="button_follow"><img src="images/icon_follow.png" alt="icon_follow" width=30>Follow</button>
             <span>si vous connaissez @ <?= $user_details['firstname'] ?> <?= $user_details['lastname'] ?> ?</span>
         </div>
 
@@ -180,7 +180,7 @@ $tech_name = $options->techno($id_user);
                         <img class="underline_wave" src="img/wave.png" alt="underline_wave">
                         <h2> publications...</h2>
                     </div>
-                    <?php if ($already_follower != true){
+                    <?php if(!empty ($already_follower)){
                             if(empty($post_user)){ ?>
                     <div id="profile_post">
                         <?php foreach($post_users as $post){ 
@@ -234,32 +234,22 @@ $tech_name = $options->techno($id_user);
                     <?php } ?>
                 </div>
 
+                <div id="operation2">
+                    <div id="profile_title">
+                        <img class="underline_wave" src="img/wave.png" alt="underline_wave">
+                        <h2>vos relations...</h2>
+                    </div>
+                    <div id="container-followers">
+                    <?php foreach ($user_followers as $followers){ ?>
+                        <div class="followers">
+                            <a href="profile_public.php?id=<?= $followers['id'] ?>"><img class="followers_img" src="php/<?=$followers['photo'] ?>" alt="follower_mini_pic"></a>
+                            <span><?=$followers['firstname']?><?=$followers['lastname']?></span>
+                        </div>
+                    <?php }?>
+                    </div>
+                </div>
 
-
-        pour accèder aux publications de @ <?= $user_details['firstname'] ?> <?= $user_details['lastname'] ?>, ajouter le à votre liste d'amis !
-
-<div id="operation2">
-    <div id="profile_title">
-        <img class="underline_wave" src="img/wave.png" alt="underline_wave">
-        <h2>vos relations...</h2>
-    </div>
-    <div id="container-followers">
-    <?php foreach ($user_followers as $followers){ ?>
-        <div class="followers">
-            <a href="profile_public.php?id=<?= $followers['id'] ?>"><img class="followers_img" src="<?=$followers['photo'] ?>" alt="follower_mini_pic"></a>
-            <span><?=$followers['firstname']?><?=$followers['lastname']?></span>
-        </div>
-    <?php }?>
-    </div>
-</div>
-
-
-
-<script>
-  function show(param_div_id) {
-    document.getElementById('profile_publications').innerHTML = document.getElementById(param_div_id).innerHTML;
-  }
-</script>
+                <script src="js/transition.js"></script>
 
 <div class="profile_content">
                     <div id="profile_publications">

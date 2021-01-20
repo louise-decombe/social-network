@@ -458,7 +458,7 @@ $(document).ready(function(){
          
         var id_user = $('#id_user').val();
         var id_user_follow = $('#id_user_follow').val();
-        //alert(id_user_follow);
+        alert(id_user_follow);
                     
             $.ajax({
                 url : "php/form_profile.php", // on donne l'URL du fichier de traitement
@@ -469,6 +469,34 @@ $(document).ready(function(){
                     //alert(response);
                     $('#button_follow').empty();
                     $('#button_follow').append('suivi')
+                    
+                }
+            });
+    });
+});
+
+/*----------------------------------------------------*/
+/* UNFOLLOW
+------------------------------------------------------ */
+
+$(document).ready(function(){
+
+    $('#button_unfollow').click(function(e){
+        e.preventDefault(); // on empêche le bouton d'envoyer le formulaire
+         
+        var id_user = $('#id_user').val();
+        var id_user_unfollow = $('#id_user_follow').val();
+        alert(id_user_unfollow);
+                    
+            $.ajax({
+                url : "php/form_profile.php", // on donne l'URL du fichier de traitement
+                type : "POST", // la requête est de type POST
+                data : ({id_user: id_user, id_user_unfollow: id_user_unfollow}),// et on envoie nos données
+                success:function(response){
+                    console.log(response);
+                    //alert(response);
+                    $('#button_follow').empty();
+                    $('#button_follow').append('follow')
                     
                 }
             });
