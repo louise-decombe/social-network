@@ -1,11 +1,6 @@
 
   
 
-<!--  Include de la navbar -->
-
-
- 
-<header>
    <!--  Include de la navbar -->
    <?php 
       if(isset($_SESSION['user']['id'])){
