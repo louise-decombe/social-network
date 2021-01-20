@@ -29,7 +29,7 @@ session_start();
         <div class="row flex-column align-content-center">
             <?php if(empty($_SESSION['user'])){ ?>
             <form class="form" id="form_connexion" method="POST" action="">
-            <div class="form" id="form_connexion">
+            
                 <h1 id="form-title"><img src="img/PICT_LOGO_BLACK.png" width="70" height="50" alt="blacl_logo_plateformer_">PLATEFORMER_</h1>
                 <h2>Formulaire de connexion</h2>
                 <section>
