@@ -36,7 +36,7 @@
          </li>
          <li>
             <form action="index.php" method="post">
-               <input class="" id="dropdown-deco" name="deco" value="DECONNEXION" type="submit"/>
+               <input class="link_deco" id="dropdown-deco" name="deco" value="DECONNEXION" type="submit"/>
             </form>
          </li>
       </ul>

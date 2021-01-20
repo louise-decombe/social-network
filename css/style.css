@@ -96,6 +96,12 @@ nav .link-header{
   margin-right : 10px;
 }
 
+.link_deco{
+  font-size: 10px;
+  color: white;
+  padding-left:10px;
+}
+
 
 /*** RESPONSIVE HEADER ***/
 @media (max-width: 1280px){
