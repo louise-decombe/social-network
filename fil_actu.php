@@ -109,10 +109,10 @@
                                 <?php if ($info[$i]['photo'] == NULL) :?>
                                     <img  src="images/default_avatar.png" alt="<?= $info[$i]['firstname']." ".$info[$i]['lastname'] ?>">
                                     <?php else :?>
-                                    <img  src="<?= $info[$i]['photo'] ?>" alt="<?= $info[$i]['firstname']." ".$info[$i]['lastname'] ?>">
+                                    <img  src="php/<?= $info[$i]['photo'] ?>" alt="<?= $info[$i]['firstname']." ".$info[$i]['lastname'] ?>">
                                 <?php endif ;?>
                                 <div class="div_suggestion_amis">
-                                    <a href=""><h4><?= ucfirst($info[$i]['firstname'])." ".ucfirst($info[$i]['lastname']) ?></h4></a>                            
+                                    <a href="profile_public.php?id=<?= $info[$i]['id']?>"><h4><?= ucfirst($info[$i]['firstname'])." ".ucfirst($info[$i]['lastname']) ?></h4></a>                            
                                 </div>
                             </div>
                         <?php endfor ;?>
