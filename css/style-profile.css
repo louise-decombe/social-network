@@ -313,10 +313,6 @@
     font-size:15px !important;
 }
 
-#user_details1 span{
-    width: 40%;
-    padding-bottom:10px !important;
-}
 
 #user_details1 i{
     font-size:15px;
@@ -370,11 +366,11 @@
     align-items: center;
     background-color: greenyellow;
     width:90%;
-    margin-bottom : 2.5%;
+    margin-bottom : 1.5%;
 }
 
 .modify_input form label{
-    font-size: 14px;
+    font-size: 13px;
     text-transform: uppercase;
 }
 

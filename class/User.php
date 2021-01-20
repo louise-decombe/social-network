@@ -635,9 +635,8 @@ class User{
 
         if(isset($new_website))
         {
-            $url_required = preg_match("/^(?=.*[A-Za-z]$)[A-Za-z][A-Za-z\-]{2,19}$/", $new_website);
-            preg_match('#(https?|ftp|ssh|mailto):\/\/[a-z0-9\/:%_+.,\#?!@&=-]+#i', $variableChaine, $matches);
-            if (!$url_required) 
+        
+            /*if (!filter_var($new_website, FILTER_VALIDATE_URL)) 
             {
                 $errors[] = "Vous devez entrer une adresse URL";
                 $info = new Infos($errors);
@@ -645,12 +644,12 @@ class User{
             }
             
             if (empty($errors)) 
-            { 
+            {*/
             $update_w = "UPDATE users SET website=:website WHERE id = $id_user ";
             $update_website = $connexion -> prepare($update_w);
             $update_website->bindParam(':website',$new_website, PDO::PARAM_STR);
             $update_website->execute();
-            }
+            //}
             
         }
 

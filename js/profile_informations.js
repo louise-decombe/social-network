@@ -5,6 +5,7 @@ const password_error = "Le mot de passe n'est pas conforme.";
 const check_error = "Les mots de passe ne correspondent pas.";
 const modification_ok = "la modification a bien été prise en compte";
 const site_error = "veuillez entrer une adresse url valide";
+const error_input = "veuillez entrer une valeur pour la valider la modification";
 
 
 /*----------------------------------------------------*/
@@ -27,8 +28,6 @@ $(document).ready(function() {
         }
     }
     
-    
-
     $(".file-upload").on('change', function(){
         console.log(this.files[0]);
         readURL(this);
@@ -68,7 +67,7 @@ $(document).ready(function() {
 ------------------------------------------------------ */
 $(document).ready(function() {
 
-    var readURL = function(input) {
+    var readCover = function(input) {
         if (input.files && input.files[0]) {
             var reader = new FileReader();
             //console.log(input.files[0].size)
@@ -81,9 +80,9 @@ $(document).ready(function() {
         }
     }
 
-    $(".cover-upload").on('change', function(){
+    $(".cover-upload").on('change',function(){
         console.log(this.files[0]);
-        readURL(this);
+        readCover(this);
 
         $(".upload-cover").remove();
         $(".submit-cover").css("visibility", "visible");
@@ -161,12 +160,22 @@ $(document).ready(function(){
         var id_user = $(this).find("input[name=id_user]").val();
         var new_localite = $(this).find("input[name=modify_city]").val();
         //alert(id_user);
-                    
+        //alert(new_localite);
+
+        if(new_localite == ''){
+
+            $('#message_city').append(error_input);
+
+        }else{
+
+            $('#message_city').empty();
+
             $.ajax({
                 url : "php/form_profile.php", // on donne l'URL du fichier de traitement
                 type : "POST", // la requête est de type POST
                 data : ({id_user: id_user, new_localite: new_localite}),// et on envoie nos données
                 success:function(response){
+                    
                     console.log(response);
                     //alert(response);
 
@@ -176,6 +185,9 @@ $(document).ready(function(){
                     
                 }
             });
+
+        }
+                        
     });
 });
 
@@ -190,21 +202,37 @@ $(document).ready(function(){
             
         var id_user = $(this).find("input[name=id_user]").val();
         var new_cursus = $('#modify_cursus').val();
-        //alert(new_cursus);
+        alert(new_cursus);
+
+        if(new_cursus == 'Sélectionner le cursus'){
+
+            $('#message_cursus').append(error_input);
+
+        }else{
+
+            $('#message_cursus').empty();
                     
             $.ajax({
                 url : "php/form_profile.php", // on donne l'URL du fichier de traitement
                 type : "POST", // la requête est de type POST
                 data : ({id_user: id_user, new_cursus: new_cursus}),// et on envoie nos données
                 success:function(response){
+                    
+                    response = response.replace(/\s/g, ''); 
                     console.log(response);
-                    //alert(response);
+                    alert(response);
+
                     if(response == 'cursus'){
+                        
+                        $('#user_role').empty();
+                        $('#user_role').append(new_cursus);
+                        $('#message_cursus').append(modification_ok);
                      
                     }
                     
                 }
             });
+        };
     });
 });
 
@@ -220,6 +248,14 @@ $(document).ready(function(){
         var id_user = $(this).find("input[name=id_user]").val();
         var new_entreprise = $('#modify_entreprise').val();
         //alert(new_entreprise);
+
+        if(new_entreprise == ''){
+
+            $('#message_entreprise').append(error_input);
+
+        }else{
+
+            $('#message_entreprise').empty();
                     
             $.ajax({
                 url : "php/form_profile.php", // on donne l'URL du fichier de traitement
@@ -228,9 +264,18 @@ $(document).ready(function(){
                 success:function(response){
                     console.log(response);
                     //alert(response);
+
+                    if(response == 'entreprise'){
+
+                    $('#user_cie').empty();
+                    $('#user_cie').append('' + new_entreprise);
+                    $('#message_entreprise').append(modification_ok);
+
+                    };
                     
                 }
             });
+        };
     });
 });
 
@@ -240,15 +285,21 @@ $(document).ready(function(){
 
 $(document).ready(function(){
 
-    $('#user_website').submit(function(e){
+    $('#user_site').submit(function(e){
         e.preventDefault(); // on empêche le bouton d'envoyer le formulaire
           
-        var urlregex = /^(http:\/\/www.|https:\/\/www.|ftp:\/\/www.|www.){1}([0-9A-Za-z]+\.)$/;
+        var urlregex = /^(http|https):\/\/[\w\-_]+(\.[\w\-_]+)+([\w\-\.,@?^=%&amp;:/~\+#]*[\w\-\@?^=%&amp;/~\+#])+(.[a-z])?/;
         var id_user = $(this).find("input[name=id_user]").val();
         var new_website = $('#modify_website').val();;
         //alert(new_website);
 
-        if (!(new_website).match(urlregex)){
+        if(new_website == ''){
+
+            $('#message_site').append(error_input);
+
+        }else if (!(new_website).match(urlregex)){
+
+            //alert(new_website);
                     
             $.ajax({
                 url : "php/form_profile.php", // on donne l'URL du fichier de traitement
@@ -256,17 +307,18 @@ $(document).ready(function(){
                 data : ({id_user: id_user, new_website: new_website}),// et on envoie nos données
                 success:function(response){
                     console.log(response);
-                    //alert(response);
+                    alert(response);
 
-                    $('#user_site').empty();
-                    $('#user_site').append(new_localite);
+                    $('#user_website').empty();
+                    $('#user_website').append(new_website);
                     $('#message_site').append(modification_ok);
                 }
             });
-        }else{
-            $('#message_site').append(site_error);
-        };   
-    });
+            }else{
+                $('#message_site').append(site_error);
+            };
+         
+        });
 });
 
 /*----------------------------------------------------*/
@@ -384,7 +436,7 @@ $(document).ready(function(){
         var id_user = $(this).find("input[name=id_user]").val();
         var new_birthday = $('#modify_birthday').val();
 
-        //alert(new_birthday);
+        alert(new_birthday);
                     
             $.ajax({
                 url : "php/form_profile.php", // on donne l'URL du fichier de traitement

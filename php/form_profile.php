@@ -63,7 +63,7 @@ if(isset($new_website) && !empty($new_website)){
 
 }/*else{
     echo "error";
-};*/
+};
 
 /*------------------------------------------------------------------------------------------------------------------------------*/
 
@@ -154,9 +154,9 @@ if(isset($id_user) && !empty($id_user) && isset($id_user_follow) && !empty($id_u
     $new_follower = $user->follow($id_user, $id_user_follow);
     echo "follower";
 
-}else{
+}/*else{
     echo "error";
-};
+};*/
 
 //TRAITEMENT PHP PROFIL UTILISATEUR UNFOLLOW
 if(isset($id_user) && !empty($id_user) && isset($id_user_unfollow) && !empty($id_user_unfollow)){
@@ -164,9 +164,9 @@ if(isset($id_user) && !empty($id_user) && isset($id_user_unfollow) && !empty($id
     $delete_follower = $user->unfollow($id_user, $id_user_unfollow);
     echo "unfollow";
 
-}else{
+}/*else{
     echo "error";
-};
+};*/
 
 
 

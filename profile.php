@@ -43,6 +43,7 @@ $tech_name = $options->techno($id_user);
     <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
     <script src="js/profile_informations.js"></script>
+
     <!--<script src="js/form_profile.js"></script>-->
 </head>
 <body>
@@ -60,7 +61,7 @@ $tech_name = $options->techno($id_user);
 
     <?php if(!empty($_SESSION['user'])){ ?>
     <section id="cover-pic">
-        <img class="cover-pic" id="cover" src="php/<?= $user_details['cover']?>" alt="cover-picture">
+        <img class="cover-pic" src="php/<?= $user_details['cover']?>" alt="cover-picture">
         <h1 id="profile_name">@ <?= $user_details['firstname'] ?> <?= $user_details['lastname'] ?></h1>
         <div class="p-cover">
             <form class="form_cover_upload" method="post" action="php/upload_cover.php" enctype="multipart/form-data">
@@ -70,14 +71,14 @@ $tech_name = $options->techno($id_user);
                 </button>
                 <input type="hidden" name="id_user" class="id_user" value="<?= $id_user ?>">
                 <input class="cover-upload" id="image1" type="file" name="cover" placeholder="Photo" required="" capture>
-            <form>
+            </form>
         </div>
     </section>
 
     <div class="row container_pic_profile">
         <div class="small-12 medium-2 large-2 columns">
             <div class="circle">
-                <!-- User Profile Image -->
+                 <!--User Profile Image-->
                 <img class="profile-pic" src="php/<?= $user_details['photo']?>" alt="profile-mini-pic">
             </div>
             <div class="p-image">
@@ -89,11 +90,10 @@ $tech_name = $options->techno($id_user);
                     <input type="hidden" name="id_user" class="id_user" value="<?= $id_user ?>">
                     <input class="file-upload" id="image" type="file" name="photo" placeholder="Photo" required="" capture>
                     <!--input class="file-upload" type="file" name="pic" accept="image/png, image/jpeg"/-->
-                <form>
+                </form>
             </div>
         </div>
     </div>
-
     <div class="container-fluid sh-100 d-flex flex-column justify-content-center index_content">
         <div class="row">
             <div class="col-4">
@@ -112,7 +112,7 @@ $tech_name = $options->techno($id_user);
                             <div id="form_user_informations">
                                 <p>modifier vos informations personnelles</p>
                                 <div class="modify_input">
-                                    <form id="user_birthday" method="post" action="">
+                                    <form id="user_birthday" method="POST" action="">
                                         <label>▪ ajouter ou modifier un anniversaire</label>
                                         <div class="container_input">
                                             <input type="hidden" name="id_user" class="id_user" value="<?= $id_user ?>">
@@ -232,21 +232,21 @@ $tech_name = $options->techno($id_user);
                             <?php } ?>
 
                             <?php if(!empty($user_details['localite'] )){ ?>
-                            <div class="user_details1"><i class="fas fa-map-marker-alt"></i>&nbsp;<?= $user_details['localite']?></div>
+                            <div class="user_details1"><i class="fas fa-map-marker-alt" id="user_city">&nbsp;<?= $user_details['localite']?></i></div>
                             <?php } ?>
 
                             <?php if(!empty($user_details['entreprise'] )){ ?>
-                            <div class="user_details1"><i class="far fa-building"></i>&nbsp<?= $user_details['entreprise'] ?></div>
+                            <div class="user_details1"><i class="far fa-building" id="user_cie">&nbsp<?= $user_details['entreprise'] ?></i></div>
                             <?php } ?>
                         </div>
                  
                         <div class="personal_details">
                             <?php if(!empty($user_details['cursus'] )){ ?>
-                            <div class="user_details1"><i class="fas fa-info-circle"></i>&nbsp<?= $user_details['name_cursus']?></div>
+                            <div class="user_details1"><i class="fas fa-info-circle" id="user_role">&nbsp<?= $user_details['name_cursus']?></i></div>
                             <?php } ?>
 
                             <?php if(!empty($user_details['website'] )){ ?>
-                            <div class="user_details1"><i class="fas fa-globe-americas"></i>&nbsp<?= $user_details['website'] ?></div>
+                            <div class="user_details1"><i class="fas fa-globe-americas" id="user_website">&nbsp<?= $user_details['website'] ?></i></div>
                             <?php } ?>
                         </div>
 
