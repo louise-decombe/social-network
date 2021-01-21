@@ -116,7 +116,7 @@ $tech_name = $options->techno($id_user);
                                         <label>▪ ajouter ou modifier un anniversaire</label>
                                         <div class="container_input">
                                             <input type="hidden" name="id_user" class="id_user" value="<?= $id_user ?>">
-                                            <input type="date" id="modify_birthday" class="modify_input_details" name="modify_birthday">
+                                            <input type="date" id="modify_birthday" class="modify_input_details" name="modify_birthday" placeholder="<?= $user_details['birthday']?>">
                                             <button type="submit" id="submit_birthday"><i class="far fa-check-circle"></i></button>
                                         </div>
                                         <div id="message_birthday"></div>
@@ -147,7 +147,7 @@ $tech_name = $options->techno($id_user);
                                             <select id="modify_cursus" class="modify_input_details" name="modify_cursus" required>
                                                 <option selected>Sélectionner le cursus</option>
                                                 <?php foreach ($cursus as $all_cursus){ ?>
-                                                <option value="<?= $all_cursus['id_cursus'];?>"><?= $all_cursus['name_cursus'];?></option>
+                                                <option value="<?= $all_cursus['id_cursus'];?>" name="<?= $all_cursus['name_cursus'];?>"><?= $all_cursus['name_cursus'];?></option>
                                                 <?php } ?>
                                             </select>
                                             <button type="submit" id="submit_cursus"><i class="far fa-check-circle"></i></button>
@@ -200,7 +200,7 @@ $tech_name = $options->techno($id_user);
                                         <label>▪ ajouter ou modifier les centres d'intérêt</label>
                                         <div class="container_input">
                                             <input type="hidden" name="id_user" class="id_user" value="<?= $id_user ?>">
-                                            <input type="text" id="modify_hobbies" class="modify_input_details" name="modify_hobbies" placeholder="centres d'intérêt">
+                                            <input type="text" id="modify_hobbies" class="modify_input_details" name="modify_hobbies" placeholder="centres d'intérêt" maxlength="40" size="0">
                                             <button type="submit" id="submit_hobbies"><i class="far fa-check-circle"></i></button>
                                         </div>
                                     </form>
@@ -211,7 +211,7 @@ $tech_name = $options->techno($id_user);
                                         <label>▪ ajouter ou modifier la bio</label>
                                         <div class="container_input">
                                             <input type="hidden" name="id_user" class="id_user" value="<?= $id_user ?>">
-                                            <input type="textarea" id="modify_bio"name="modify_bio" placeholder="bio">
+                                            <input type="textarea" id="modify_bio"name="modify_bio" placeholder="bio" rows="5" cols="33">
                                             <button type="submit" id="submit_bio"><i class="far fa-check-circle"></i></button>
                                         </div>
                                     </form>
@@ -228,7 +228,7 @@ $tech_name = $options->techno($id_user);
                     <div id="user_details1">
                         <div class="personal_details">
                             <?php if(!empty($user_details['birthday'] )){ $birth = $user_details['birthday']?>
-                            <div class="user_details1"><i class="fas fa-birthday-cake"></i>&nbsp;<?= (new DateTime($birth))->format('d-m-Y')?></div>
+                            <div class="user_details1"><i class="fas fa-birthday-cake" id="user_birth">&nbsp;<?= (new DateTime($birth))->format('d-m-Y')?></i></div>
                             <?php } ?>
 
                             <?php if(!empty($user_details['localite'] )){ ?>
@@ -252,15 +252,17 @@ $tech_name = $options->techno($id_user);
 
                         <div class="personal_details">
                             <?php if(!empty($user_details['hobbies'] )){ ?>
-                            <div class="user_details1"><i class="far fa-heart"></i>&nbsp<?= $user_details['hobbies']?>&nbsp</div>
+                            <div class="user_details1"><i class="far fa-heart" id="user_loisirs">&nbsp<?= $user_details['hobbies']?>&nbsp</i></div>
                             <?php } ?>
                         </div>
                        
-                        <div class="personal_details">
-                            <?php if(!empty($user_details['bio'] )){ ?>
-                            <div id="user_details_bio"><strong>À PROPOS DE MOI</strong> &nbsp<?= $user_details['bio']?></div>
-                            <?php } ?>
-                        </div>
+                        <strong>À PROPOS DE MOI</strong>
+                        <?php if(!empty($user_details['bio'] )){ ?>
+                            <div class="personal_details">
+                                <div id="user_details_bio"> &nbsp<?= $user_details['bio']?></div>
+                            </div>
+                        <?php } ?>
+                       
                     </div>
                     <aside class="infos_user_skills">
                         <span data-text="vos skills"> SKILLS </span>

@@ -4,6 +4,7 @@
 const password_error = "Le mot de passe n'est pas conforme.";
 const check_error = "Les mots de passe ne correspondent pas.";
 const modification_ok = "la modification a bien été prise en compte";
+const modification_ko = "la modification n'a pas pu être effectuée";
 const site_error = "veuillez entrer une adresse url valide";
 const error_input = "veuillez entrer une valeur pour la valider la modification";
 
@@ -20,11 +21,8 @@ $(document).ready(function() {
             reader.onload = function (e) {
                 console.log(e)
                 $('.profile-pic').attr('src', e.target.result);
-            
             }
-    
             reader.readAsDataURL(input.files[0]);
-
         }
     }
     
@@ -40,20 +38,6 @@ $(document).ready(function() {
         $("#button_pic_profile").css("visibility", "visible");
         $("#button_pic_profile").css("background-color", "#88c1d0");
         //$(".upload-button").append();
-    
-        /*$.ajax({
-            url : "php/upload_test.php", // on donne l'URL du fichier de traitement
-            type : "POST", // la requête est de type POST
-            //enctype:'multipart/form-data',
-            //dataType: 'json',
-            //data : formdata,
-            data : ({id_user: id_user, photo: photo, type:type, size:size}),// et on envoie nos données
-            success:function(response){
-                console.log(response);
-                //alert(response);
-                
-        }*/
-    //});
         
     });
     
@@ -136,16 +120,10 @@ $(document).ready(function () {
                         $('#modify_city').val(event.target.innerText);
                         $('#result_city ul li').remove();
                     });
-
                 });
-
             }
-
-
         });
-
     });
-
 });
 
 /*----------------------------------------------------*/
@@ -176,12 +154,21 @@ $(document).ready(function(){
                 data : ({id_user: id_user, new_localite: new_localite}),// et on envoie nos données
                 success:function(response){
                     
+                    response = response.replace(/\s/g, ''); 
                     console.log(response);
                     //alert(response);
 
+                    if(response == 'city'){
+
                     $('#user_city').empty();
-                    $('#user_city').append(new_localite);
+                    $('#user_city').append('&nbsp;' + new_localite);
                     $('#message_city').append(modification_ok);
+
+                    }else{
+
+                    $('#message_city').append(modification_ko);
+
+                    }
                     
                 }
             });
@@ -202,7 +189,11 @@ $(document).ready(function(){
             
         var id_user = $(this).find("input[name=id_user]").val();
         var new_cursus = $('#modify_cursus').val();
-        alert(new_cursus);
+        //alert(new_cursus);
+        var name_cursus = $(this).find('option:selected').attr("name");
+        //alert(name_cursus);
+
+
 
         if(new_cursus == 'Sélectionner le cursus'){
 
@@ -220,14 +211,18 @@ $(document).ready(function(){
                     
                     response = response.replace(/\s/g, ''); 
                     console.log(response);
-                    alert(response);
+                    //alert(response);
 
                     if(response == 'cursus'){
                         
                         $('#user_role').empty();
-                        $('#user_role').append(new_cursus);
+                        $('#user_role').append('&nbsp;' + name_cursus);
                         $('#message_cursus').append(modification_ok);
                      
+                    }else{
+
+                        $('#message_cursus').append(modification_ko);
+    
                     }
                     
                 }
@@ -262,16 +257,21 @@ $(document).ready(function(){
                 type : "POST", // la requête est de type POST
                 data : ({id_user: id_user, new_entreprise: new_entreprise}),// et on envoie nos données
                 success:function(response){
+                    response = response.replace(/\s/g, ''); 
                     console.log(response);
                     //alert(response);
 
                     if(response == 'entreprise'){
 
                     $('#user_cie').empty();
-                    $('#user_cie').append('' + new_entreprise);
+                    $('#user_cie').append('&nbsp;' + new_entreprise);
                     $('#message_entreprise').append(modification_ok);
 
-                    };
+                    }else{
+                        
+                    $('#message_entreprise').append(modification_ko);
+
+                    }
                     
                 }
             });
@@ -333,6 +333,12 @@ $(document).ready(function(){
         var id_user = $(this).find("input[name=id_user]").val();
         var new_bio = $('#modify_bio').val();;
         //alert(new_bio);
+
+        if(new_bio == ''){
+
+            $('#message_bio').append(error_input);
+
+        }else{
                     
             $.ajax({
                 url : "php/form_profile.php", // on donne l'URL du fichier de traitement
@@ -341,9 +347,14 @@ $(document).ready(function(){
                 success:function(response){
                     console.log(response);
                     //alert(response);
+
+                    $('#user_details_bio').empty();
+                    $('#user_details_bio').append(new_bio);
+                    $('#message_bio').append(modification_ok);
                     
                 }
             });
+        }
     });
 });
 
@@ -358,18 +369,32 @@ $(document).ready(function(){
             
         var id_user = $(this).find("input[name=id_user]").val();
         var new_hobbies = $('#modify_hobbies').val();
-        //alert(new_hobbies);
+        alert(new_hobbies);
+
+        if(new_hobbies == ''){
+
+            $('#message_hobbies').append(error_input);
+
+        }else{
                     
             $.ajax({
                 url : "php/form_profile.php", // on donne l'URL du fichier de traitement
                 type : "POST", // la requête est de type POST
                 data : ({id_user: id_user, new_hobbies: new_hobbies}),// et on envoie nos données
                 success:function(response){
+                    response = response.replace(/\s/g, ''); 
                     console.log(response);
                     //alert(response);
+
+
+                    $('#user_loisirs').empty();
+                    $('#user_loisirs').append(new_bio);
+                    $('#message_hobbies').append(modification_ok);
+
                     
                 }
             });
+        }
     });
 });
 /*----------------------------------------------------*/
@@ -436,18 +461,28 @@ $(document).ready(function(){
         var id_user = $(this).find("input[name=id_user]").val();
         var new_birthday = $('#modify_birthday').val();
 
-        alert(new_birthday);
+        //alert(new_birthday);
                     
             $.ajax({
                 url : "php/form_profile.php", // on donne l'URL du fichier de traitement
                 type : "POST", // la requête est de type POST
                 data : ({id_user: id_user, new_birthday: new_birthday}),// et on envoie nos données
                 success:function(response){
+
+                    response = response.replace(/\s/g, ''); 
                     console.log(response);
+
+                    if(response == 'birthday'){
                     //alert(response);
                     $('#user_birth').empty();
                     $('#user_birth').append(new_birthday);
                     $('#message_birthday').append(modification_ok);
+
+                    }else{
+
+                    $('#message_birthday').append(modification_ko);
+
+                    }
                 }
             });
     });

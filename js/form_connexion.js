@@ -2,11 +2,11 @@
 /* MESSAGES ERREUR
 ------------------------------------------------------ */
 const mail_error_exist = "cette adresse email n'est pas enregistrée";
-const mail_error = "L'email n'est pas conforme. </br> l'adresse doit se terminer par </br> @laplateforme.io";
+const mail_error = "L'email n'est pas conforme.</br>";
 const password_error_connect = "Le mot de passe est invalide.";
 
 /*----------------------------------------------------*/
-/* CONNEXION FORM
+/* CONNEXION FORM*/
 
 //console.log('document ok')
 $(document).ready(function(){
@@ -43,7 +43,7 @@ $(document).ready(function(){
         };
     });
 });
------------------------------------------------------- */
+//------------------------------------------------------ */
 
 $(document).ready(function(){
 
@@ -58,7 +58,7 @@ $(document).ready(function(){
             data : ({mail:mail, password:password}),// et on envoie nos données
             success:function(response){
                 //console.log(response);
-                //alert(response);
+                alert(response);
                 if ((response) == 'exist password_correct'){
                     $("#error_password").empty();
                     $("#password_connexion").css("background-color", "#D1F1BE"); 
