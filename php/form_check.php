@@ -34,7 +34,7 @@ $connexion->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
     }
 
     if (!empty($_POST['mail']) && isset($_POST['mail']) && !empty($_POST['password']) && isset($_POST['password'])){
-
+        
         $mail = $_POST['mail'];
         $password = $_POST['password'];
 
