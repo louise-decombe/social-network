@@ -4,7 +4,7 @@
 //$(document).ready(function(){
 
 let xs = []
-for (var i = 0; i <= 500; i++) {
+for (var i = 0; i <= 400; i++) {
   xs.push(i)
 }
 
@@ -14,7 +14,7 @@ function animate() {
   
   let points = xs.map(x => {
     
-    let y = 200 + 20 * Math.sin((x + t) / 20)
+    let y = 150 + 14 * Math.sin((x + t) / 20)
     
     return [x, y]
   })
