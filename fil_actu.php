@@ -85,8 +85,9 @@
         
                 
                 <!-- A RENDRE DYNAMIQUE METTRE LE NOM EN LIEN VERS LE PROFIL -->
-                <?php if (isset($amis_en_communs)) :?>
-                    <?php foreach($amis_en_communs as $key => $valeur) :?>  
+                <?php if (isset($amis_en_communs)) : ?>
+                    <?php foreach($amis_en_communs as $key => $valeur) :?> 
+                    <?= $valeur?> 
                         <div class="div_amis_communs">
                             <?php   $info = $user->GetUserById($valeur);   ?>
                             <?php if ($info['photo'] == NULL) :?>

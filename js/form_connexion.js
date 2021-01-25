@@ -13,13 +13,13 @@ $(document).ready(function(){
     
     $("#mail_connexion").change(function(){
         $("#error_email1").empty();
-        var regexemail=/^[a-zA-Z0-9._%+-]+@laplateforme\.io$/;
+        var regexemail=/^[a-zA-Z0-9]+@laplateforme\.io$/;
         var mail = $(this).val();
         //alert(mail);
-        if (!(mail).match(regexemail)){
-            $("#mail").css("background-color","#D1F1BE" );
-            $("#error_email1").append(mail_error);
-        }else{
+        // if (!(mail).match(regexemail)){
+        //     $("#mail").css("background-color","#D1F1BE" );
+        //     $("#error_email1").append(mail_error);
+        // }else{
             $.ajax({
             url : "php/form_check.php", // on donne l'URL du fichier de traitement
             type : "post", // la requête est de type POST
@@ -27,21 +27,22 @@ $(document).ready(function(){
             success:function(response){
                 //console.log(response);
                 //alert(response);
-                if ((response) == 'exist'){
+                response = response.replace(/\s/g, '');
+                if (response == 'exist'){
                     $("#error_email1").empty();
                     $("#mail_connexion").css("background-color", "#D1F1BE");  // si le login existe style vert pour l'input
                     $( "#password_connexion" ).prop( "disabled", false );    // on rend accessible l'input password
                     $( "#submit_connexion" ).prop( "disabled", false);      // on rend accesible le bouton submit
                 }else{
-                    $("#error_email1").append(mail_error);
+                    //$("#error_email1").append(mail_error);
                     $("#mail_connexion").css("background-color", "#F1BFBE");   // si login existant style rouge pour l'input
                     $( "#password_connexion" ).prop( "disabled", true );   // on rend inaccessible l'input password
                     $( "#submit_connexion" ).prop( "disabled", true );        
                 }
             }
             });
-        };
-    });
+        // };
+     });
 });
 //------------------------------------------------------ */
 
@@ -58,7 +59,8 @@ $(document).ready(function(){
             data : ({mail:mail, password:password}),// et on envoie nos données
             success:function(response){
                 //console.log(response);
-                alert(response);
+                //response = response.replace(/\s/g, '');
+                //alert(response);
                 if ((response) == 'exist password_correct'){
                     $("#error_password").empty();
                     $("#password_connexion").css("background-color", "#D1F1BE"); 
@@ -89,7 +91,7 @@ $(document).ready(function(){
             data : ({mail:mail, password:password}),// et on envoie nos données
             success:function(response){
                 console.log("response");
-                alert(response);
+                //alert(response);
                 response = response.replace(/\s/g, ''); //enleve les espaces
                 // console.log (`${response.length}`);
                 
