@@ -99,6 +99,23 @@ if(isset($new_hobbies) && !empty($new_hobbies)){
 
 /*------------------------------------------------------------------------------------------------------------------------------*/
 
+//TRAITEMENT PHP PROFIL UTILISATEUR TECHNOLOGIES
+if(isset($new_tech) && !empty($new_tech)){
+
+    //$id_user = $_POST['id_user'];
+    //$new_hobbies = $_POST['modify_hobbies'];
+
+    // on fait appel à la class user pour enregistrer les infos passées dans le formulaire
+    $update_tech = $user->modify_tech($id_user, $new_tech);
+    echo 1;
+
+}/*else{
+    echo "error";
+};
+
+
+/*------------------------------------------------------------------------------------------------------------------------------*/
+
 //TRAITEMENT PHP PROFIL UTILISATEUR MODIFICATION FIRSTNAME  
 if(isset($new_firstname) && !empty($new_firstname)){
 
@@ -140,6 +157,7 @@ if(isset($new_birthday) && !empty($new_birthday)){
 if(isset($new_password) && !empty($new_password) && isset($new_check_password) && !empty($new_check_password)){
 
     $update_pass = $user->modify_password($id_user, $new_password, $new_check_password);
+    
     echo "password";
 
 }/*else{

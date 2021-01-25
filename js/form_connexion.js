@@ -13,7 +13,7 @@ $(document).ready(function(){
     
     $("#mail_connexion").change(function(){
         $("#error_email1").empty();
-        var regexemail=/^[a-zA-Z0-9]+@laplateforme\.io$/;
+        var regexemail=/^[a-zA-Z0-9._%+-]+@laplateforme\.io$/;
         var mail = $(this).val();
         //alert(mail);
         if (!(mail).match(regexemail)){

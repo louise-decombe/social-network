@@ -1,8 +1,7 @@
 /*----------------------------------------------------*/
 /* MESSAGES
 ------------------------------------------------------ */
-const password_error = "Le mot de passe n'est pas conforme.";
-const check_error = "Les mots de passe ne correspondent pas.";
+
 const modification_ok = "la modification a bien été prise en compte";
 const modification_ko = "la modification n'a pas pu être effectuée";
 const site_error = "veuillez entrer une adresse url valide";
@@ -397,57 +396,38 @@ $(document).ready(function(){
         }
     });
 });
+
+
 /*----------------------------------------------------*/
-/* FIRSTNAME UPDATE
+/* CHARGEMENT DIV MODIFICATION PARAMÈTRES PERSOS
 ------------------------------------------------------ */
+$(document).ready(function(){
 
-/*$(document).ready(function(){
+    $('#contentParameters').click(function(e){
+        console.log('ruben');
+        var id_user = $(".id_user").val();
 
-    $('#user_firstname').submit(function(e){
-        //e.preventDefault(); // on empêche le bouton d'envoyer le formulaire
+        $.ajax({
+            url : "operation3.php",
+            type : "POST", // la requête est de type POST
+            data : ({id_user: id_user}),// et on envoie nos données
+
+            success: function(data){
+                $("#profile_publications").empty();
+                    let form_content = $(data).find("#essai");
+                    $("#profile_publications").append(data);
+                    //$(form_content).fadeIn(350);
+                console.log(data);
+                
+            }
             
-        //var id_user = $(this).find("input[name=id_user]").val();
-        var new_firstname = $('#modify_firstname').val();
-        alert(new_firstname);
-                    
-            /*$.ajax({
-                url : "php/form_profile.php", // on donne l'URL du fichier de traitement
-                type : "POST", // la requête est de type POST
-                data : ({id_user: id_user, new_firstname: new_firstname}),// et on envoie nos données
-                success:function(response){
-                    console.log(response);
-                    //alert(response);
-                    
-                }
-            });
+        })
+
     });
+
+
 });
 
-/*----------------------------------------------------*/
-/* LASTNAME UPDATE
------------------------------------------------------- */
-
-/*$(document).ready(function(){
-
-    $('#user_lastname').submit(function(e){
-        e.preventDefault(); // on empêche le bouton d'envoyer le formulaire
-            
-        var id_user = $(this).find("input[name=id_user]").val();
-        var new_lastname = $('#modify_lastname').val();
-        //alert(new_lastname);
-                    
-            $.ajax({
-                url : "php/form_profile.php", // on donne l'URL du fichier de traitement
-                type : "POST", // la requête est de type POST
-                data : ({id_user: id_user, new_lastname: new_lastname}),// et on envoie nos données
-                success:function(response){
-                    console.log(response);
-                    //alert(response);
-                    
-                }
-            });
-    });
-});*/
 
 /*----------------------------------------------------*/
 /* BIRTHDAY UPDATE
@@ -489,48 +469,46 @@ $(document).ready(function(){
 });
 
 /*----------------------------------------------------*/
-/* PASSWORD UPDATE
+/* SKILLS UPDATE
 ------------------------------------------------------ */
 
 $(document).ready(function(){
 
-    $('#user_password').submit(function(e){
+    $('#user_tech').submit(function(e){
         e.preventDefault(); // on empêche le bouton d'envoyer le formulaire
-
-           
+            
         var id_user = $(this).find("input[name=id_user]").val();
-        var new_password = $('#modify_password').val();
-        var new_check_password = $('#modify_confirmation_password').val();
-        var regexpassword=/^(?=.*?[A-Z]{1,})(?=.*?[a-z]{1,})(?=.*?[0-9]{1,})(?=.*?[\W]{1,}).{8,20}$/; 
-        //alert(new_password);
+        //var checkedValue = $('.techCheckbox:checked').val();
+        var new_tech = [];
 
-        if (!(new_password).match(regexpassword)){
-            $("#error_newPassword").append(password_error);
-            $('#modify_password').css("background-color","#D30404" );
-        }
-        else if(new_password != new_check_password){
-            $('#error_newPassword').append(check_error);
-            $('#modify_password').css("background-color","#D30404" );
-            $('#modify_confirmation_password').css("background-color","#D30404" );
-        }
-        else{
+        $(".techCheckbox").each(function(){
+            if ($(this).is(":checked")) {
+                new_tech.push($(this).val());
+            }
+        });
 
+        /*$('.techCheckbox:checked').each(function() {
+            //console.log(this.value);
+            alert(this.value);
+         });*/
+
+         if (id_user !=="" && new_tech.length > 0) {
             $.ajax({
-                url : "php/form_profile.php", // on donne l'URL du fichier de traitement
-                type : "POST", // la requête est de type POST
-                data : ({id_user: id_user, new_password: new_password, new_check_password: new_check_password}),// et on envoie nos données
-                success:function(response){
-                    console.log(response);
-                    //alert(response);
-                    
+              url : "php/form_profile.php",
+              type: "POST",
+              cache: false,
+              data : {id_user:id_user,new_tech:new_tech},
+              success:function(result){
+                if (result==1) {
+                    $("#user_tech").trigger("reset");
+                    alert("Data insert in database successfully");
                 }
+              }
             });
-
-            $("#error_newPassword").empty();
-
-        }
+          }else{
+            alert("Fill the required fields");
+          }
                     
-           
     });
 });
 

@@ -11,6 +11,7 @@ $user = new User($db);
 $options = new Options($db);
 $cursus = $options->cursus_list();
 $technos = $options->tech_list();
+//var_dump($technos);
 $date = new DateTime();
 $id_user = $_SESSION['user']['id'];
 //var_dump($id_user);
@@ -22,6 +23,7 @@ $count_followers = $user->count_followers($id_user);
 //var_dump($count_followers);
 $post_users = $user->post_users($id_user);
 $tech_name = $options->techno($id_user);
+//var_dump($techn_name);
 
 }
 ?>
@@ -29,7 +31,8 @@ $tech_name = $options->techno($id_user);
 <html>
 <head>
     <title>social_network - profile</title>
-    <meta charset="utf-8">
+    <meta 
+    rset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="shortcut icon" type="image/x-icon" href="#">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
@@ -42,8 +45,6 @@ $tech_name = $options->techno($id_user);
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
     <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-    <script src="js/profile_informations.js"></script>
-
     <!--<script src="js/form_profile.js"></script>-->
 </head>
 <body>
@@ -53,7 +54,6 @@ $tech_name = $options->techno($id_user);
     ?>
 </header>
 <main id="main-profile">
-<?php //var_dump($_SESSION);?>
 
     <!--<div class="ovale_1"></div>-->
     <div class="ovale_2"></div>
@@ -62,7 +62,10 @@ $tech_name = $options->techno($id_user);
     <?php if(!empty($_SESSION['user'])){ ?>
     <section id="cover-pic">
         <img class="cover-pic" src="php/<?= $user_details['cover']?>" alt="cover-picture">
-        <h1 id="profile_name">@ <?= $user_details['firstname'] ?> <?= $user_details['lastname'] ?></h1>
+        <div id="profile_name">@
+            <span id="profile_firstname"><?= $user_details['firstname'] ?></span> 
+            <span id="profile_lastname"><?= $user_details['lastname'] ?></span>
+        </div>
         <div class="p-cover">
             <form class="form_cover_upload" method="post" action="php/upload_cover.php" enctype="multipart/form-data">
                 <i class="fa fa-camera upload-cover"></i>
@@ -79,7 +82,7 @@ $tech_name = $options->techno($id_user);
         <div class="small-12 medium-2 large-2 columns">
             <div class="circle">
                  <!--User Profile Image-->
-                <img class="profile-pic" src="php/<?= $user_details['photo']?>" alt="profile-mini-pic">
+                <img class="profile-pic" src="php/<?= $user_details['photo']?>" alt="profile-mini-pic" width="112.5">
             </div>
             <div class="p-image">
                 <form class="form_pic_upload" method="post" action="php/upload_pics.php" enctype="multipart/form-data">
@@ -108,7 +111,6 @@ $tech_name = $options->techno($id_user);
                         
                          <!-- Modal HTML embedded directly into document -->
                         <div id="ex1" class="modal">
-
                             <div id="form_user_informations">
                                 <p>modifier vos informations personnelles</p>
                                 <div class="modify_input">
@@ -161,12 +163,10 @@ $tech_name = $options->techno($id_user);
                                         <span>▪ technologies</span>
                                         <?php
                                         foreach ($technos as $tech) { //var_dump($tech);
-                                            
                                         ?>
-                                            
-                                            <input type="checkbox" id="<?= $tech['id'] ?>" name="<?= $tech['nom']?>" value="<?= $tech['id']?>">
+                                            <input type="hidden" name="id_user" class="id_user" value="<?= $id_user ?>">
+                                            <input class="techCheckbox" type="checkbox" id="<?= $tech['id'] ?>" name="<?= $tech['nom']?>" value="<?= $tech['id']?>">
                                             <label for="<?= $tech['id'] ?>"><?= $tech['nom']?></label>
-                           
                                         <?php
                                         } ?>
                                         <button type="submit" id="submit_tech"><i class="far fa-check-circle"></i></button>
@@ -256,14 +256,15 @@ $tech_name = $options->techno($id_user);
                             <?php } ?>
                         </div>
                        
-                        <strong>À PROPOS DE MOI</strong>
                         <?php if(!empty($user_details['bio'] )){ ?>
+                            <strong>À PROPOS DE MOI</strong>
                             <div class="personal_details">
                                 <div id="user_details_bio"> &nbsp<?= $user_details['bio']?></div>
                             </div>
                         <?php } ?>
-                       
                     </div>
+                
+                    <?php if(!empty($tech_name)){ ?>
                     <aside class="infos_user_skills">
                         <span data-text="vos skills"> SKILLS </span>
                         <img class="underline_wave" src="img/wave.png" alt="underline_wave">
@@ -276,13 +277,14 @@ $tech_name = $options->techno($id_user);
                         <?php }; }; ?>
                         </div>
                     </aside>
+                    <?php }; ?>
                 </article>
 
+               
                 <article class="infos_user_profile">
-                    <span data-text="vos informations">
-                        VOS RELATIONS
-                    </span>
+                    <span data-text="vos informations">VOS RELATIONS</span>
                     <img class="underline_wave" src="img/wave.png" alt="underline_wave">
+                    <?php if(!empty($user_followers)){ ?>
                     <div id="user_followers">
                         <?php 
                         foreach ($user_followers as $followers){ ?>
@@ -294,38 +296,41 @@ $tech_name = $options->techno($id_user);
                         }
                         ?>
                     </div>
+                    <?php } else {?>
+                    <span> vous n'avez pas encore de relations, 
+                    <?php } ?>
                 </article>
             </div>
             <div class="col-8">
                 <div class="profile_category">
                     <button class="link_content" onclick="show('operation1')">Publications</button>
                     <button class="link_content" onclick="show('operation2')">Relations &nbsp<span id="count_followers"><?= $count_followers[0]?></span></button>
-                    <button class="link_content" onclick="show('operation3')">Paramètres personnels</button>         
+                    <button class="link_content" id="contentParameters" >Paramètres personnels</button>           
                 </div>
                 <div id="operation1">
-                    <div id="profile_title">
+                    <div class="profile_title">
                         <img class="underline_wave" src="img/wave.png" alt="underline_wave">
                         <h2>vos publications...</h2>
                     </div>
+                    <?php if(!empty($post_users)) : ?>
                     <div id="profile_post">
                     <?php foreach($post_users as $post){ 
                         $date_post =  $post['created_at'];
                         $id_post = $post['id'];
                     ?>
-                    <div id="user_post">
-                        <div>
-                            <img class="pic_post" src="php/<?= $user_details['photo']?>" alt="input-pic">
-                            <?php
+                        <div id="user_post">
+                            <div>
+                                <img class="pic_post" src="php/<?= $user_details['photo']?>" alt="input-pic">
+                                <?php
                                 $date_origin = new DateTime($date_post);
                                 $date_target = new DateTime();
                                 $interval = $date_origin->diff($date_target);
-                            ?>
-                            <span class="days">
-                                <?= $interval->format('%a j'); ?> 
-                                • 
-                                <i class="fas fa-globe-americas"></i>
-                            <span>
-                        </div>
+                                ?>
+                                <span class="days">
+                                    <?= $interval->format('%a j'); ?> • 
+                                    <i class="fas fa-globe-americas"></i>
+                                <span>
+                            </div>
                             <div class="post_content">"<?= $post['content'] ?>"</div>
                                 <div class="post_media">
                                 <?php if(!empty($post['media'])){ ?>
@@ -353,10 +358,13 @@ $tech_name = $options->techno($id_user);
                         </div>
                     <?php } ?>
                     </div>
+                    <?php else: ?>
+                        <a href="fil_actu.php"> Participez, plateformez dès maintenant sur le wall</a>
+                    <?php endif; ?>
                 </div>
 
                 <div id="operation2">
-                    <div id="profile_title">
+                    <div class="profile_title">
                         <img class="underline_wave" src="img/wave.png" alt="underline_wave">
                         <h2>vos relations...</h2>
                     </div>
@@ -372,58 +380,17 @@ $tech_name = $options->techno($id_user);
                         }
                         ?>
                     </div>
-                    <!--<section id="remove-row">
-                        <button id="load_more" data-id="<?= $id;?>" data-id_page="<?= $id_page;?>">LOAD MORE</button>
-                    </section>-->
+                    <!-- <section id="remove-row"> -->
+                        <!-- <button id="load_more" data-id="<?= $id;?>" data-id_page="<?= $id_page;?>">LOAD MORE</button> -->
+                    <!-- </section> -->
                 </div>
-
-                <div id="operation3">
-                    <div id="profile_title">
-                        <img class="underline_wave" src="img/wave.png" alt="underline_wave">
-                        <h2>vos paramètres personnels...</h2>
-                    </div>
-                    <p>modifier vos informations personnelles</p>
-                    <div class="modify_input">
-                        <form id="tete" method="post" action="">
-                            <label> ▪ Modifier le prénom</label>
-                            <input type="hidden" name="id_user" class="id_user" value="<?= $id_user ?>">
-                            <input type="text" id="modify_firstname" name="modify_firstname" placeholder="prénom">
-                            <button type="submit" id="submit_firstname"><i class="far fa-check-circle"></i></button>
-                        </form>
-                    </div>
-                    <div class="modify_input">
-                        <form id="user_lastname" method="post" action="">
-                            <label> ▪ Modifier le nom</label>
-                            <input type="hidden" name="id_user" class="id_user" value="<?= $id_user ?>">
-                            <input type="text" id="modify_lastname" name="modify_lastname" placeholder="nom">
-                            <button type="submit" id="submit_lastname" value='<?= $id_user ?>'><i class="far fa-check-circle"></i></button>
-                        </form>
-                    </div>
-                    <div class="modify_input">
-                        <form id="user_password" method="post" action="">
-                            <label> ▪ Modifier votre password</label>
-                            <input type="hidden" name="id_user" class="id_user" value="<?= $id_user ?>">
-                            <input type="password" id="modify_password" name="modify_password" placeholder="nouveau password">
-                            <input type="password" id="modify_confirmation_password" name="modify_confirmation_password" placeholder="confirmer le nouveau password">
-                            <button type="submit" id="submit_password"><i class="far fa-check-circle"></i></button>
-                        </form>
-                        <div id="error_newPassword"></div>
-                    </div>
-                </div>
-
-<script>
-  function show(param_div_id) {
-    document.getElementById('profile_publications').innerHTML = document.getElementById(param_div_id).innerHTML;
-  }
-</script>
-
                 <div class="profile_content">
                     <div id="profile_publications">
-                        <div id="profile_title">
+                        <div class="profile_title">
                             <img class="underline_wave" src="img/wave.png" alt="underline_wave">
                             <h2>vos publications...</h2>
                         </div>
-                        <?php if(!empty($post_users)){ ?>
+                        <?php if(!empty($post_users)): ?>
                         <div id="profile_post">
                             <?php foreach($post_users as $post){ //var_dump($post);
                             $date_post = $post['created_at'];
@@ -457,9 +424,9 @@ $tech_name = $options->techno($id_user);
                                     ?>
                                         
                                     <span>
-                                        <?php if($likes[0] > 0){ ?>
+                                        <?php if($likes[0] > 0) : ?>
                                             <?= $likes[0];?> 
-                                        <?php } ?>
+                                        <?php endif; ?>
                                         <i class="far fa-thumbs-up"></i>
                                     <span>
 
@@ -474,9 +441,10 @@ $tech_name = $options->techno($id_user);
                                 
                                 </div>
         
-                           <?php } }else{?>
+                           <?php } ?>
+                            <?php else:?>
                             <span> Participez, plateformez dès maintenant sur le <a hre="fil_actu.php">fil d'actualité</a></span>
-                            <?php } ?>
+                            <?php endif; ?>
                      
 
                     <?php }else{?>
@@ -487,5 +455,11 @@ $tech_name = $options->techno($id_user);
     <?php
     include("includes/footer.php") ?>
 </footer>
+<script>
+  function show(param_div_id) {
+    document.getElementById('profile_publications').innerHTML = document.getElementById(param_div_id).innerHTML;
+  }
+</script>
+<script src="js/profile_informations.js"></script>     
 </body>
 </html>

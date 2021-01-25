@@ -450,6 +450,7 @@ class User{
         //UPDATE FIRSTNAME
         if(isset($new_firstname))
         {
+            
             $firstname_required = preg_match("/^(?=.*[A-Za-z]$)[A-Za-z][A-Za-z\-]{2,19}$/", $new_firstname);
             if (!$firstname_required) 
             {
@@ -519,21 +520,24 @@ class User{
     {
         $connexion = $this->db->connectDb(); 
 
-        if(isset($new_password) && isset($check_password)){
+        if(isset($new_password) && isset($new_check_password)){
             $password_required = preg_match("/^(?=.*?[A-Z]{1,})(?=.*?[a-z]{1,})(?=.*?[0-9]{1,})(?=.*?[\W]{1,}).{8,20}$/",$new_password);
             if (!$password_required) {
                 $errors[] = "Le mot de passe doit contenir:<br>- Entre 8 et 20 caractères<br>- Au moins 1 caractère spécial<br>- Au moins 1 majuscule et 1 minuscule<br>- Au moins un chiffre.";
             }
-            if ($new_password != $check_password) {
+            if ($new_password != $new_check_password) {
                 $errors[] = "Les mots de passe ne correspondent pas.";
             } else {
     
                 $password_modified = password_hash($new_password, PASSWORD_BCRYPT, array('cost' => 10));
 
-                $update_pass = "UPDATE users SET password=:pass WHERE id = $id_user";
+                $update_pass = "UPDATE users SET password=:password WHERE id = $id_user";
                 $update_password = $connexion -> prepare($update_pass);
-                $update_password->bindParam(':pass',$password_modified, PDO::PARAM_STR);
+                $update_password->bindParam(':password',$password_modified, PDO::PARAM_STR);
                 $update_password->execute();
+                
+                $this->disconnect();
+               
             }
         }
         if (!empty($errors))
@@ -598,12 +602,13 @@ class User{
 
     public function modify_tech ($id_user, $new_tech)
     {
+
         $connexion = $this->db->connectDb(); 
         if(isset($new_tech)){
             $new_technologies = "INSERT INTO user_tech(id_user, id_technologie) values (:id_user, :id_technologie)";
             $tech = $connexion -> prepare($new_technologies);
             $tech->bindParam(':id_user',$id_user, PDO::PARAM_INT);
-            $tech->bindParam(':id_technologie',$id_user_follow, PDO::PARAM_INT);
+            $tech->bindParam(':id_technologie',$new_tech, PDO::PARAM_INT);
             $tech->execute();
         }
     }
