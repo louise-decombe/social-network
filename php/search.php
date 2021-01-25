@@ -12,7 +12,7 @@ if(isset($_POST['search']) && !empty($_POST['search'])){
 					<li>
 				  		<div class="search-header-result">
                             <div class="photo-header-search">
-								<a href="'.$users->firstname.'"><img src="'.$users->photo.'" width="30px"></a>
+								<a href="'.$users->firstname.'"><img src="php/'.$users->photo.'" width="30px"></a>
 							</div>
 									<a href="">'.$users->lastname. '  '.$users->firstname.'
                                     </a><hr>

@@ -38,6 +38,7 @@ $tech_name = $options->techno($id_user);
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" type="text/css" href="css/style-profile.css">
+    <link rel="stylesheet" href="css/chat.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"></script>
@@ -46,6 +47,8 @@ $tech_name = $options->techno($id_user);
     <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
     <!--<script src="js/form_profile.js"></script>-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="css/fontello/css/fontello.css">
     
 </head>
 <body>
@@ -455,6 +458,7 @@ $tech_name = $options->techno($id_user);
                     <?php }else{?>
                         <span class="info_connected"> vous devez être connecté pour accéder à cette page !</span>
                     <?php } ?>
+                    <div class="popupChat"></div>
 </main>
 <footer>
     <?php
@@ -465,6 +469,10 @@ $tech_name = $options->techno($id_user);
     document.getElementById('profile_publications').innerHTML = document.getElementById(param_div_id).innerHTML;
   }
 </script>
-<script src="js/profile_informations.js"></script>     
+<script src="js/profile_informations.js"></script>   
+<script src="js/search.js"></script>    
+<script src="js/search_chat.js"></script> 
+<script type="text/javascript" src="js/chat.js"></script> 
+<script src="js/envoi_message.js"></script>
 </body>
 </html>

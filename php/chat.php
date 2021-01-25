@@ -76,7 +76,7 @@
                <div class="user-message" data-user="<?php echo $message->id;?>">
                   <div class="user-inner">
                      <div class="user-img">
-                        <img src="<?php echo $message->photo;?>"/>
+                        <img src="php/<?php echo $message->photo;?>"/>
                      </div>
                      <div class="name-right2">
                         <span><a href="#"><?php echo $message->firstname;?></a></span><span><?php echo $message->lastname;?></span>
@@ -111,7 +111,7 @@
                <div class="user-message" data-user="<?php echo $message->id;?>">
                   <div class="user-inner">
                      <div class="user-img">
-                        <img src="<?php echo $message->photo;?>"/>
+                        <img src="php/<?php echo $message->photo;?>"/>
                      </div>
                      <div class="name-right2">
                         <span><a href="#"><?php echo $message->firstname;?></a></span><span><?php echo $message->lastname;?></span>
@@ -149,7 +149,7 @@
             </div>
             <div class="message-h-cen">
                <div class="message-head-img">
-                  <img src="<?php echo $user->photo;?>"/>
+                  <img src="php/<?php echo $user->photo;?>"/>
                   <p>Chat avec <?php echo $user->firstname; echo $user->lastname?></p>
                </div>
             </div>

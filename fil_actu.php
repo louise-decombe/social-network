@@ -21,10 +21,12 @@
     <!-- liens css (css) -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/hashtag.css">
+    <link rel="stylesheet" href="css/chat.css">
+
     <link  rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" type="text/css" href="css/fontello/css/fontello.css">
 
-    <link rel="stylesheet" href="css/chat.css">
+    <!-- <link rel="stylesheet" href="css/chat.css"> -->
     <link rel="stylesheet" type="text/css" href="css/style-forms.css">
     <!-- liens css (bootstrap, fontawesome) -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -388,6 +390,7 @@
         </section>
 
     </section>
+    <div class="popupChat"></div>
   
 </main>
 
@@ -396,5 +399,7 @@
 </footer>
 
 <?php unset($_SESSION['erreur']) ;?>
+<script type="text/javascript" src="js/chat.js"></script>
+<script src="js/envoi_message.js"></script>
 </body>
 </html>
