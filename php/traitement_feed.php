@@ -79,7 +79,8 @@ if (!empty($followers)){
     if (isset($tab_communs)){
         //comparer les 2 Tab //On supprime les valeurs identique car cela nous indique que l utilisateur sur deja la personne
         $amis_en_communs = array_unique(array_diff($tab_communs,$tab_user));
-
+        // On re index le tableau
+        
         //recuperation de tous les amis de cette personnes
         for ($i = 0 ; $i < COUNT($amis_en_communs) ; $i++){
             $tab1[$i] = count($follow->GetFollowerUser($amis_en_communs[$i]));
