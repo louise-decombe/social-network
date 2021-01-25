@@ -24,35 +24,13 @@
     background-color:#275fa0 !important;
 }
 
-#profile-mini-pic{
-    position:absolute;
-    width:13.5%;
-    height:auto;
-    border-radius:50%;
-    margin-top:25%;
-    margin-left:-65%;
-}
-
-#change_profile_pic{
-    position:absolute;
-    color:#EEEFEE;
-    margin-left:-52.5%;
-    margin-top:32.5%;
-}
-
-#change_cover_pic{
-    position:absolute;
-    color:#EEEFEE;
-    margin-left:92.5%;
-    margin-top:-25%;
-}
-
 #profile_name{
     position:absolute;
     margin-top:42.5%;
     margin-left:-65%;
     text-transform: uppercase;
     font-weight:700;
+    font-size : 30px;
 }
 
 #user_post{
@@ -68,21 +46,6 @@
     border:1px solid #275fa0;
 }
 
-.reaction_posts{
-    display: flex;
-    min-height:10%;
-}
-
-#name_profile{
-    display:flex !important;
-    background-color :gray !important;
-    font-size : 40px !important;
-    text-transform : uppercase !important;
-    font-weight : 700 !important;
-    z-index: 10 !important;
-    color : blueviolet !important;
-    position:absolute !important;
-}
 
 .infos_user_profile{
     display:flex !important;
@@ -103,9 +66,6 @@
     align-items: center;
     justify-content:center;
     width:100%;
-}
-
-.infos_user_profile span i{
     font-size : 20px;
 }
 
@@ -133,14 +93,6 @@
     font-size : 20px;
 }
 
-#relations_user_profile{
-    display:flex !important;
-    background-color : rgba(221, 222, 225, 0.5) !important;
-    height : 40vh;
-    width : 100%;
-    margin-top:5%;
-}
-
 .profile_category{
     display:flex;
     width:95%;
@@ -159,13 +111,6 @@
 
 .underline_wave{
     width:50%;
-}
-
-#user_details_part1{
-    display:flex;
-    width : 100%;
-    align-items:center;
-    justify-content:space-around;
 }
 
 #user_details_bio{
@@ -187,32 +132,6 @@
 #user_bio span{
     font-weight: 700;
     font-size:15px;
-}
-
-#follow_container{
-    display:flex;
-    width : 27.5%;
-    align-items:center;
-    justify-content:space-between;
-    position:relative;
-    margin-top : 4%;
-}
-
-.button_follow{
-    display:flex !important;
-    width: 120px !important;
-    border: 1px solid #275fa0 !important;
-    background-color: transparent !important;
-    border-radius: 10px !important;
-    font-size:20px !important;
-    align-items:center !important;
-    justify-content:space-around !important;
-    text-transform: uppercase !important;
-    font-weight:700 !important;
-}
-
-.button_follow:hover{
-    color: #275fa0;
 }
 
 #user_followers{
@@ -243,61 +162,22 @@
     width : 80% !important;
     height : 80% !important;
 }
+ 
 
-#profile_form{
-    display:flex;
-    justify-content: space-around;
-    width:95%;
-    border:5px solid #275fa0;
-    padding-top:2.5%;
-    padding-bottom:2.5%;
-    margin-top: 2.5%;
-}
-
-.input-icons i { 
-    position: absolute; 
-    margin-left : 3.5%;
-    margin-top : 1%;
-    color:#275fa0;
-    font-size:30px;
-} 
-  
-.input-icons { 
-    width: 100%; 
-    margin-bottom: 10px; 
-} 
-  
-.icon { 
-    padding: 10px; 
-    color: #275fa0; 
-    min-width: 50px; 
-    text-align: center; 
-} 
-  
-.input-field { 
-    width: 60%; 
-    border-radius: 40px;
-    border : 0.1px solid gray;
-    padding: 10px; 
-    text-align: center; 
-    color:#275fa0 !important;
-    background-color: rgba(221, 222, 225, 0.5)!important;
-} 
-
-#profile_title{
+.profile_title{
     display:flex;
     width: 95%;
     align-items:center;
     justify-content:space-between;
 }
 
-#profile_title h2{
+.profile_title h2{
     font-size:30px;
     text-transform: uppercase;
     letter-spacing: 1px;
 }
 
-#profile_title img{
+.profile_title img{
     width : 60%;
 }
 
@@ -311,9 +191,19 @@
     font-size:15px !important;
 }
 
-
 #user_details1 i{
-    font-size:15px;
+    font-size:14px;
+    font-weight:700;
+}
+
+.user_details1{
+    display:flex;
+    justify-content:center;
+    align-items: center;
+    width: 90%;
+    font-size:12px;
+    padding-left:20px;
+    font-family: 'Open Sans', sans-serif;
 }
 
 .personal_details{
@@ -324,13 +214,9 @@
     margin-bottom:5%;
 }
 
-.user_details1{
+#user_role{
     display:flex;
-    justify-content:center;
-    align-items: center;
-    width: 90%;
-    font-size:12px;
-    padding-left:20px;
+    width:100%;
 }
 
 #technologies{
@@ -341,6 +227,34 @@
 
 #technologies i{
     font-size:10px;
+}
+
+/* --------------- PUBLIC PROFILE ----------------*/
+
+#follow_container{
+    display:flex;
+    width : 27.5%;
+    align-items:center;
+    justify-content:space-between;
+    position:relative;
+    margin-top : 4%;
+}
+
+.button_follow{
+    display:flex !important;
+    width: 120px !important;
+    border: 1px solid #275fa0 !important;
+    background-color: transparent !important;
+    border-radius: 10px !important;
+    font-size:20px !important;
+    align-items:center !important;
+    justify-content:space-around !important;
+    text-transform: uppercase !important;
+    font-weight:700 !important;
+}
+
+.button_follow:hover{
+    color: #275fa0;
 }
 
 
@@ -449,8 +363,7 @@
     width:100%;
 }
 
-/*** RESPONSIVE PROFILE ***/
-/*** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - ***/
+
 
 .profile-pic {
     max-width: 200px;
@@ -636,6 +549,10 @@
     height: 70px;
     border: 8px solid rgba(221, 222, 225, 0.5);
 }
+
+/*** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - ***/
+/*** RESPONSIVE PROFILE ***/
+/*** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - ***/
 
 
 

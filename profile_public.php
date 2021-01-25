@@ -99,185 +99,183 @@ $tech_name = $options->techno($id_user);
                         <img class="underline_wave" src="img/wave.png" alt="underline_wave">
 
                         <div id="user_details1">
-                        <div class="personal_details">
-                            <?php if(!empty($user_details['birthday'] )){ $birth = $user_details['birthday']?>
-                            <div class="user_details1"><i class="fas fa-birthday-cake"></i>&nbsp;<?= (new DateTime($birth))->format('d-m-Y')?></div>
-                            <?php } ?>
+                            <div class="personal_details">
+                                <?php if(!empty($user_details['birthday'] )){ $birth = $user_details['birthday']?>
+                                <div class="user_details1"><i class="fas fa-birthday-cake"></i>&nbsp;<?= (new DateTime($birth))->format('d-m-Y')?></div>
+                                <?php } ?>
 
-                            <?php if(!empty($user_details['localite'] )){ ?>
-                            <div class="user_details1"><i class="fas fa-map-marker-alt"></i>&nbsp;<?= $user_details['localite']?></div>
-                            <?php } ?>
+                                <?php if(!empty($user_details['localite'] )){ ?>
+                                <div class="user_details1"><i class="fas fa-map-marker-alt"></i>&nbsp;<?= $user_details['localite']?></div>
+                                <?php } ?>
 
-                            <?php if(!empty($user_details['entreprise'] )){ ?>
-                            <div class="user_details1"><i class="far fa-building"></i>&nbsp<?= $user_details['entreprise'] ?></div>
-                            <?php } ?>
-                        </div>
-                 
-                        <div class="personal_details">
-                            <?php if(!empty($user_details['cursus'] )){ ?>
-                            <div class="user_details1"><i class="fas fa-info-circle"></i>&nbsp<?= $user_details['name_cursus']?></div>
-                            <?php } ?>
-
-                            <?php if(!empty($user_details['website'] )){ ?>
-                            <div class="user_details1"><i class="fas fa-globe-americas"></i>&nbsp<?= $user_details['website'] ?></div>
-                            <?php } ?>
-                        </div>
-
-                        <div class="personal_details">
-                            <?php if(!empty($user_details['hobbies'] )){ ?>
-                            <div class="user_details1"><i class="far fa-heart"></i>&nbsp<?= $user_details['hobbies']?>&nbsp</div>
-                            <?php } ?>
-                        </div>
-                       
-                        <div class="personal_details">
-                            <?php if(!empty($user_details['bio'] )){ ?>
-                            <div id="user_details_bio"><strong>À PROPOS DE MOI</strong> &nbsp<?= $user_details['bio']?></div>
-                            <?php } ?>
-                        </div>
-                    </div>
-                    <aside class="infos_user_skills">
-                        <span data-text="vos skills"> SKILLS </span>
-                        <img class="underline_wave" src="img/wave.png" alt="underline_wave">
-                        <div class="category_details">
-                        <?php
-                        if(!empty($tech_name)){ 
-                        foreach ($tech_name as $technologies){ //var_dump($technologies);
-                        ?>
-                            <span id="technologies"><i class="fas fa-check"></i>&nbsp<?= $technologies['nom']?></span>
-                        <?php }; }; ?>
-                        </div>
-                    </aside>
-                </article>
-
-                <?php if(!empty ($already_follower)){ ?>
-                <article class="infos_user_profile">
-                    <span data-text="vos informations">RELATIONS </span>
-                    <img class="underline_wave" src="img/wave.png" alt="underline_wave">
-                    <div id="user_followers">
-                        <?php foreach ($user_followers as $followers){ ?>
-                        <div class="followers">
-                            <?php if($id_user == $followers['id']){ ?>
-                                <img class="followers_img" src="php/<?=$followers['photo'] ?>" alt="follower_mini_pic">
-                                <a href="profile.php"><?=$followers['firstname']?>&nbsp<?=$followers['lastname']?></a>
-                            <?php }else{ ?>
-                                <img class="followers_img" src="php/<?=$followers['photo'] ?>" alt="follower_mini_pic">
-                                <a href="profile_public.php?id=<?= $followers['id'] ?>"><?=$followers['firstname']?>&nbsp<?=$followers['lastname']?></a>
-                            <?php } ?>
-                        </div>
-                        <?php } ?>
-                    </div>
-                </article>
-                <?php } ?> 
-            </div>
-            <div class="col-8">
-                <div class="profile_category">
-                    <button class="link_content" onclick="show('operation1')">Publications</button>
-                    <button class="link_content" onclick="show('operation2')">Relations &nbsp<span id="count_followers"><?= $count_followers[0]?></span></button>
-                </div>
-                
-                <div id="operation1">
-                    <div id="profile_title">
-                        <img class="underline_wave" src="img/wave.png" alt="underline_wave">
-                        <h2> publications...</h2>
-                    </div>
-                    <?php if(!empty ($already_follower)){
-                            if(empty($post_user)){ ?>
-                    <div id="profile_post">
-                        <?php foreach($post_users as $post){ 
-                                $date_post =  $post['created_at'];
-                                $id_post = $post['id'];
-                        ?>
-                        <div id="user_post">
-                            <div>
-                                <img class="pic_post" src="php/<?= $user_details['photo']?>" alt="input-pic">
-                                <?php
-                                $date_origin = new DateTime($date_post);
-                                $date_target = new DateTime();
-                                $interval = $date_origin->diff($date_target);
-                                ?>
-                                <span class="days"><?= $interval->format('%a j'); ?> • 
-                                    <i class="fas fa-globe-americas"></i>
-                                <span>
-                            </div>
-                            <div class="post_content">"<?= $post['content'] ?>"</div>
-                            <div class="post_media">
-                                <?php if(!empty($post['media'])){ ?>
-                                    <?= $post['media'] ?>
+                                <?php if(!empty($user_details['entreprise'] )){ ?>
+                                <div class="user_details1"><i class="far fa-building"></i>&nbsp<?= $user_details['entreprise'] ?></div>
                                 <?php } ?>
                             </div>
-                            <div class="post_reactions">
-                                <?php 
-                                $likes = $user->count_like($id_post); 
-                                $com = $user->count_comments($id_post); 
-                                ?>    
-                                <span>
-                                    <?php if($likes[0] > 0){ ?>
-                                        <?= $likes[0];?> 
-                                    <?php } ?>
-                                    <i class="far fa-thumbs-up"></i>
-                                <span>
-                                <span>
-                                    <?php if($com[0] > 0){ ?>
-                                        <?= $com[0];?> 
-                                    <?php } ?>
-                                    <i class="far fa-comment-dots"></i>
-                                <span>
+                 
+                            <div class="personal_details">
+                                <?php if(!empty($user_details['cursus'] )){ ?>
+                                <div class="user_details1"><i class="fas fa-info-circle"></i>&nbsp<?= $user_details['name_cursus']?></div>
+                                <?php } ?>
+
+                                <?php if(!empty($user_details['website'] )){ ?>
+                                <div class="user_details1"><i class="fas fa-globe-americas"></i>&nbsp<?= $user_details['website'] ?></div>
+                                <?php } ?>
+                            </div>
+
+                            <div class="personal_details">
+                                <?php if(!empty($user_details['hobbies'] )){ ?>
+                                <div class="user_details1"><i class="far fa-heart"></i>&nbsp<?= $user_details['hobbies']?>&nbsp</div>
+                                <?php } ?>
+                            </div>
+                       
+                            <div class="personal_details">
+                                <?php if(!empty($user_details['bio'] )){ ?>
+                                <div id="user_details_bio"><strong>À PROPOS DE MOI</strong> &nbsp<?= $user_details['bio']?></div>
+                                <?php } ?>
                             </div>
                         </div>
-                    </div>
-                    <?php } }else{ ?>
-                    <span>@ <?= $user_details['firstname'] ?> <?= $user_details['lastname'] ?> n'a pas encore publié de post ! </span>
-                    <?php } }else{ ?>
-                    
-                    <span> vous devez FOLLOW @ <?= $user_details['firstname'] ?> <?= $user_details['lastname'] ?> pour accèder à ses posts</span>
+                        <aside class="infos_user_skills">
+                            <span data-text="vos skills"> SKILLS </span>
+                            <img class="underline_wave" src="img/wave.png" alt="underline_wave">
+                            <div class="category_details">
+                                <?php if(!empty($tech_name)){ 
+                                    foreach ($tech_name as $technologies){ //var_dump($technologies);
+                                ?>
+                                <span id="technologies"><i class="fas fa-check"></i>&nbsp<?= $technologies['nom']?></span>
+                                <?php }; }; ?>
+                            </div>
+                        </aside>
+                    </article>
 
-                    <?php } ?>
-                </div>
-
-                <div id="operation2">
-                    <div id="profile_title">
+                    <?php if(!empty ($already_follower)) : ?>
+                    <article class="infos_user_profile">
+                        <span data-text="vos informations">RELATIONS </span>
                         <img class="underline_wave" src="img/wave.png" alt="underline_wave">
-                        <h2>vos relations...</h2>
-                    </div>
-                    <div id="container-followers">
-                    <?php foreach ($user_followers as $followers){ ?>
-                        <div class="followers">
-                            <a href="profile_public.php?id=<?= $followers['id'] ?>"><img class="followers_img" src="php/<?=$followers['photo'] ?>" alt="follower_mini_pic"></a>
-                            <span><?=$followers['firstname']?><?=$followers['lastname']?></span>
+                        <div id="user_followers">
+                            <?php foreach ($user_followers as $followers){ ?>
+                                <div class="followers">
+                                    <?php if($id_user == $followers['id']){ ?>
+                                    <img class="followers_img" src="php/<?=$followers['photo'] ?>" alt="follower_mini_pic">
+                                    <a href="profile.php"><?=$followers['firstname']?>&nbsp<?=$followers['lastname']?></a>
+                                    <?php }else{ ?>
+                                    <img class="followers_img" src="php/<?=$followers['photo'] ?>" alt="follower_mini_pic">
+                                    <a href="profile_public.php?id=<?= $followers['id'] ?>"><?=$followers['firstname']?>&nbsp<?=$followers['lastname']?></a>
+                                    <?php } ?>
+                                </div>
+                            <?php } ?>
                         </div>
-                    <?php }?>
-                    </div>
+                    </article>
+                    <?php endif;?> 
                 </div>
-
-                <script src="js/transition.js"></script>
-
-<div class="profile_content">
-                    <div id="profile_publications">
+                <div class="col-8">
+                    <div class="profile_category">
+                        <button class="link_content" onclick="show('operation1')">Publications</button>
+                        <button class="link_content" onclick="show('operation2')">Relations &nbsp<span id="count_followers"><?= $count_followers[0]?></span></button>
+                    </div>
+                
+                    <div id="operation1">
                         <div id="profile_title">
                             <img class="underline_wave" src="img/wave.png" alt="underline_wave">
-                            <h2>publications...</h2>
+                            <h2> publications...</h2>
                         </div>
-                        <?php if(!empty($post_users)){ ?>
+                        <?php if(!empty ($already_follower)){
+                                if(empty($post_user)){ ?>
                             <div id="profile_post">
-                            <?php foreach($post_users as $post){ //var_dump($post);
+                                <?php foreach($post_users as $post){ 
+                                    $date_post =  $post['created_at'];
+                                    $id_post = $post['id'];
+                                ?>
+                                <div id="user_post">
+                                    <div>
+                                        <img class="pic_post" src="php/<?= $user_details['photo']?>" alt="input-pic">
+                                        <?php
+                                            $date_origin = new DateTime($date_post);
+                                            $date_target = new DateTime();
+                                            $interval = $date_origin->diff($date_target);
+                                        ?>
+                                        <span class="days"><?= $interval->format('%a j'); ?> • 
+                                            <i class="fas fa-globe-americas"></i>
+                                        <span>
+                                    </div>
+                                    <div class="post_content">"<?= $post['content'] ?>"</div>
+                                    <div class="post_media">
+                                        <?php if(!empty($post['media'])){ ?>
+                                            <?= $post['media'] ?>
+                                        <?php } ?>
+                                    </div>
+                                    <div class="post_reactions">
+                                        <?php 
+                                            $likes = $user->count_like($id_post); 
+                                            $com = $user->count_comments($id_post); 
+                                        ?>    
+                                        <span>
+                                            <?php if($likes[0] > 0){ ?>
+                                                <?= $likes[0];?> 
+                                            <?php } ?>
+                                            <i class="far fa-thumbs-up"></i>
+                                        </span>
+                                        <span>
+                                            <?php if($com[0] > 0){ ?>
+                                                <?= $com[0];?> 
+                                            <?php } ?>
+                                            <i class="far fa-comment-dots"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php } }else{ ?>
+                        <span>@ <?= $user_details['firstname'] ?> <?= $user_details['lastname'] ?> n'a pas encore publié de post ! </span>
+                        <?php } }else{ ?>
+                        <span> vous devez FOLLOW @ <?= $user_details['firstname'] ?> <?= $user_details['lastname'] ?> pour accèder à ses posts</span>
+                        <?php } ?>
+                    </div>
+
+                    <div id="operation2">
+                        <div id="profile_title">
+                            <img class="underline_wave" src="img/wave.png" alt="underline_wave">
+                            <h2>vos relations...</h2>
+                        </div>
+                        <div id="container-followers">
+                            <?php foreach ($user_followers as $followers){ ?>
+                                <div class="followers">
+                                    <a href="profile_public.php?id=<?= $followers['id'] ?>"><img class="followers_img" src="php/<?=$followers['photo'] ?>" alt="follower_mini_pic"></a>
+                                    <span><?=$followers['firstname']?><?=$followers['lastname']?></span>
+                                </div>
+                            <?php }?>
+                        </div>
+                    </div>
+
+                    <script> function show(param_div_id) {
+                                  document.getElementById('profile_publications').innerHTML = document.getElementById(param_div_id).innerHTML;
+                         }
+                    </script>
+
+                    <div class="profile_content">
+                        <div id="profile_publications">
+                            <div id="profile_title">
+                                <img class="underline_wave" src="img/wave.png" alt="underline_wave">
+                                <h2>publications...</h2>
+                            </div>
+                            <?php if(!empty($post_users)){ ?>
+                            <div id="profile_post">
+                                <?php foreach($post_users as $post){ //var_dump($post);
                                 $date_post = $post['created_at'];
                                 $id_post = $post['id'];
-                            ?>
-                            <div id="user_post">
-                                <div>
-                                    <img class="pic_post" src="php/<?= $user_details['photo']?>" alt="input-pic">
-                                    <!--<span class="date_post">le : <?= (new DateTime($date_post))->format('d-m-Y')?></span>-->
-                                    <?php
+                                ?>
+                                <div id="user_post">
+                                    <div>
+                                        <img class="pic_post" src="php/<?= $user_details['photo']?>" alt="input-pic">
+                                        <!--<span class="date_post">le : <?= (new DateTime($date_post))->format('d-m-Y')?></span>-->
+                                        <?php
                                         $date_origin = new DateTime($date_post);
                                         $date_target = new DateTime();
                                         $interval = $date_origin->diff($date_target);
-                                    ?>
-                                    <span class="days">
-                                        <?= $interval->format('%a j'); ?> 
-                                         • 
-                                        <i class="fas fa-globe-americas"></i>
-                                    <span>
-                                </div>
+                                        ?>
+                                        <span class="days"><?= $interval->format('%a j'); ?> • 
+                                            <i class="fas fa-globe-americas"></i>
+                                        <span>
+                                    </div>
                                 <div class="post_content">"<?= $post['content'] ?>"</div>
                                 <div class="post_media">
                                     <?php if(!empty($post['media'])){ ?>
