@@ -297,7 +297,7 @@ $tech_name = $options->techno($id_user);
                         ?>
                     </div>
                     <?php } else {?>
-                    <span> vous n'avez pas encore de relations, 
+                    <span> vous n'avez pas encore de relations ! </span>
                     <?php } ?>
                 </article>
             </div>
@@ -368,6 +368,7 @@ $tech_name = $options->techno($id_user);
                         <img class="underline_wave" src="img/wave.png" alt="underline_wave">
                         <h2>vos relations...</h2>
                     </div>
+                    <?php if(!empty ($user_followers )) : ?>
                     <div id="container_followers">
                         <?php foreach ($user_followers as $followers){ ?>
                         <div class="followers">
@@ -380,6 +381,9 @@ $tech_name = $options->techno($id_user);
                         }
                         ?>
                     </div>
+                    <?php else : ?>
+                    <span>Vous n'avez pas encore de relations !</span>
+                    <?php endif; ?>
                     <!-- <section id="remove-row"> -->
                         <!-- <button id="load_more" data-id="<?= $id;?>" data-id_page="<?= $id_page;?>">LOAD MORE</button> -->
                     <!-- </section> -->
@@ -443,7 +447,7 @@ $tech_name = $options->techno($id_user);
         
                            <?php } ?>
                             <?php else:?>
-                            <span> Participez, plateformez dès maintenant sur le <a hre="fil_actu.php">fil d'actualité</a></span>
+                                <a href="fil_actu.php"> Participez, plateformez dès maintenant sur le wall !</a>
                             <?php endif; ?>
                      
 

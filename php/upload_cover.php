@@ -12,7 +12,7 @@ $connexion->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 ------------------------------------------------------ */
 
     // Vérifie si le fichier a été uploadé sans erreur.
-    if(isset($_FILES["cover"]) && $_FILES["cover"]["error"] == 0 && empty($_FILES["photo"])){
+    if(isset($_FILES["cover"]) && $_FILES["cover"]["error"] == 0 ){
         $allowed = array("jpg" => "image/jpg", "jpeg" => "image/jpeg", "gif" => "image/gif", "png" => "image/png");
         $filename = $_FILES["cover"]["name"];
         $filetype = $_FILES["cover"]["type"];
@@ -55,6 +55,7 @@ $connexion->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
     } else{
         echo "Error: " . $_FILES["cover"]["error"];
     }
+
 }
 
 

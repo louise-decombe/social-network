@@ -135,6 +135,7 @@ $tech_name = $options->techno($id_user);
                                 <?php } ?>
                             </div>
                         </div>
+                        <?php if(!empty($tech_name)): ?>
                         <aside class="infos_user_skills">
                             <span data-text="vos skills"> SKILLS </span>
                             <img class="underline_wave" src="img/wave.png" alt="underline_wave">
@@ -146,6 +147,7 @@ $tech_name = $options->techno($id_user);
                                 <?php }; }; ?>
                             </div>
                         </aside>
+                        <?php endif; ?>
                     </article>
 
                     <?php if(!empty ($already_follower)) : ?>
@@ -257,6 +259,7 @@ $tech_name = $options->techno($id_user);
                                 <img class="underline_wave" src="img/wave.png" alt="underline_wave">
                                 <h2>publications...</h2>
                             </div>
+                            <?php if(!empty ($already_follower)) : ?>
                             <?php if(!empty($post_users)){ ?>
                             <div id="profile_post">
                                 <?php foreach($post_users as $post){ //var_dump($post);
@@ -306,6 +309,9 @@ $tech_name = $options->techno($id_user);
 
                         
                         <?php } ?>
+                        <?php else : ?>
+                        <span>Vous devez suivre @ <?= $user_details['firstname'] ?> <?= $user_details['lastname'] ?> pour accèder à ses publications</span>
+                        <?php endif; ?>
         
     <?php }else{?>
         <span class="info_connected"> vous devez être connecté pour accéder à cette page !</span>
