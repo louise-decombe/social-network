@@ -47,7 +47,7 @@
 <script src="js/envoi_message.js"></script>
 <script src="js/chat.js"></script>
 <script src="js/search.js"></script>
-<script src="js/hashtag.js"></script>
+<!-- <script src="js/hashtag.js"></script> -->
 
 <!-- c'est cette div qui permet d'ouvrir le pop up du chat -->
 
