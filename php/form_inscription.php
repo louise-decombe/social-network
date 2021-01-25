@@ -21,7 +21,7 @@ if(isset($_POST['submit_register'])){
 try
 {
 
-$connexion=new PDO("mysql:host=localhost;dbname=social-network",'root','');
+$connexion=new PDO("mysql:host=localhost;dbname=social-network",'root','root');
 $connexion->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 
 if (!empty($_POST['mail']) && isset($_POST['mail'])){

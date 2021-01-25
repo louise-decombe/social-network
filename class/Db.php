@@ -4,7 +4,7 @@ class DB
 {
     private $host    = "localhost";
     private $username = "root";
-    private $password = "";
+    private $password = "root";
     private $database = "social-network";
 	public $db;
 
