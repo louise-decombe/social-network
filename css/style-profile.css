@@ -24,6 +24,13 @@
     background-color:#275fa0 !important;
 }
 
+.cover-pic{
+   overflow: hidden !important;
+   width: 99%;
+   height: 99%;
+   position: absolute;
+}
+
 #profile_name{
     position:absolute;
     margin-top:42.5%;
@@ -156,12 +163,6 @@
     color:black;
 }
 
-
-.followers_img{
-    position:relative;
-    width : 80% !important;
-    height : 80% !important;
-}
  
 
 .profile_title{
@@ -370,12 +371,6 @@
     display: block;
 }
 
-.cover-pic{
-    position:relative;
-    width: 98.5%;
-    height:95%;
-    display:block;
-}
 
 .file-upload {
     display: none;
@@ -572,6 +567,433 @@
 /*** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - ***/
 /*** RESPONSIVE PROFILE ***/
 /*** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - ***/
+@media(max-width:2390px){
+    #cover-pic{
+        height : 60vh !important;
+    }
+
+    #button_cover{
+        margin-top : 10%;
+    }
+
+    #button_pic_profile{
+        margin-top : 10%;
+    }
+
+    .circle{
+        margin-top:30%;
+        margin-left:-32.5%;
+    }
+
+    #profile_name{
+        margin-top:40%;
+        margin-left:-65%;
+        font-size : 30px;
+    }
+}
+
+@media(max-width:2290px){
+
+    #button_pic_profile{
+        margin-top : 10%;
+    }
+
+    .circle{
+        margin-top:32.5%;
+        margin-left:-32.5%;
+    }
+
+    #profile_name{
+        margin-top:42.5%;
+        margin-left:-65%;
+        font-size : 30px;
+    }
+}
+
+
+@media(max-width:2190px){
+    #cover-pic{
+        height : 60vh !important;
+    }
+    #button_cover{
+        margin-top : 10%;
+    }
+
+    #button_pic_profile{
+        margin-top : 10%;
+    }
+
+    .circle{
+        margin-top:33.5%;
+        margin-left:-32.5%;
+    }
+
+    #profile_name{
+        margin-top:45%;
+        margin-left:-65%;
+        font-size : 30px;
+    }
+}
+
+@media(max-width:1990px){
+    #cover-pic{
+        height : 50vh !important;
+    }
+    #button_cover{
+        margin-top : 10%;
+    }
+
+    #button_pic_profile{
+        margin-top : 10%;
+        margin-left:-25%;
+    }
+
+    .circle{
+        margin-top:30%;
+        margin-left:-32.5%;
+    }
+
+    #profile_name{
+        margin-top:42.5%;
+        margin-left:-65%;
+        font-size : 30px;
+    }
+
+}
+
+@media(max-width:1890px){
+    #cover-pic{
+        height : 50vh !important;
+    }
+    #button_cover{
+        margin-top : 10%;
+    }
+
+    #button_pic_profile{
+        margin-top : 10%;
+    }
+
+    .circle{
+        margin-top:32.5%;
+        margin-left:-34%;
+    }
+
+    #profile_name{
+        margin-top:44.5%;
+        margin-left:-65%;
+        font-size : 30px;
+    }
+
+}
+
+@media(max-width:1690px){
+    #cover-pic{
+        height : 50vh !important;
+    }
+    #button_cover{
+        margin-top : 2.5%;
+    }
+
+    #button_pic_profile{
+        margin-top : 10%;
+    }
+
+    .circle{
+        margin-top:36.5%;
+        margin-left:-34.5%;
+    }
+
+    #profile_name{
+        margin-top:50%;
+        margin-left:-65%;
+        font-size : 30px;
+    }
+
+    #index_content{
+        margin-top:7.5%;
+    }
+
+}
+
+@media(max-width:1490px){
+    #cover-pic{
+        height : 45vh !important;
+    }
+    #button_cover{
+        margin-top : 2.5%;
+    }
+
+    #button_pic_profile{
+        margin-top : 10%;
+    }
+
+    .circle{
+        margin-top:25%;
+        margin-left:-35%;
+    }
+
+    #profile_name{
+        margin-top:40%;
+        margin-left:-65%;
+        font-size : 30px;
+    }
+    .index_content{
+        margin-top :2.5%
+    }
+
+}
+@media(max-width:1390px){
+    #cover-pic{
+        height : 45vh !important;
+    }
+    #button_cover{
+        margin-top : 0.5%;
+    }
+
+    #button_pic_profile{
+        margin-top : 10%;
+    }
+
+    .circle{
+        margin-top:36%;
+        margin-left:-35%;
+    }
+
+    #profile_name{
+        margin-top:53.5%;
+        margin-left:-65%;
+        font-size : 30px;
+    }
+    .index_content{
+        margin-top :2.5%
+    }
+
+}
+@media(max-width:1290px){
+    #cover-pic{
+        height : 40vh !important;
+    }
+
+    #button_cover{
+        margin-top : -5% !important;
+        margin-left:5% !important;
+    }
+
+    #button_pic_profile{
+        margin-top : 7.5% !important;
+    }
+
+    .circle{
+        margin-top:36%;
+        margin-left:-38%;
+    }
+
+    #profile_name{
+        margin-top:57%;
+        margin-left:-70%;
+        font-size : 30px;
+    }
+
+    .index_content{
+        margin-top:5%;
+    }
+
+    .followers_img{
+        width : 50px !important;
+        height : 50px !important;
+    }
+
+    .followers a{
+        font-size : 9px;
+    }
+
+
+    #user_followers{
+    width: 250px;
+    }
+
+}
+
+@media(max-width:1120px){
+    #cover-pic{
+        height : 40vh !important;
+    }
+
+    .form_cover_upload i{
+        margin-top : -15% !important;
+        font-size : 18px !important;
+        margin-left : 30%;
+    }
+
+    #button_pic_profile{
+        margin-top : 7.5% !important;
+    }
+
+    .circle{
+        margin-top:42%;
+        margin-left:-39%;
+    }
+
+    #profile_name{
+        margin-top:70%;
+        margin-left:-67%;
+        font-size : 30px;
+    }
+
+    .index_content{
+        margin-top:10%;
+    }
+
+}
+
+@media(max-width:990px){
+    #cover-pic{
+        height : 30vh !important;
+        width:100% !important;
+        margin-top:0 !important;
+        background-color:transparent !important;
+    }
+    .form_cover_upload i{
+        margin-top : -15% !important;
+        font-size : 18px !important;
+        margin-left : 20%;
+    }
+
+    #button_pic_profile{
+        margin-top : 7.5% !important;
+    }
+
+    .circle{
+        margin-top:30%;
+        margin-left:-42%;
+    }
+
+    #profile_name{
+        margin-top:60%;
+        margin-left:-67%;
+        font-size : 24px;
+    }
+
+    .index_content{
+        margin-top:10%;
+    }
+
+    .profile_title h2{
+        font-size : 18px;
+    }
+
+    .index_content{
+        flex-direction: column !important;
+    }
+
+    .link_content{
+        font-size : 11px;
+    }
+
+  }
+
+  @media(max-width:890px){
+    #cover-pic{
+        height : 30vh !important;
+        width:100% !important;
+        margin-top:0 !important;
+        background-color:transparent !important;
+    }
+
+    .form_cover_upload i{
+        margin-top : -15% !important;
+        font-size : 18px !important;
+        margin-left : 20%;
+    }
+
+    .circle{
+        margin-top:30%;
+        margin-left:-42%;
+    }
+
+    #profile_name{
+        margin-top:60%;
+        margin-left:-67%;
+        font-size : 24px;
+    }
+
+    .index_content{
+        margin-top:10%;
+    }
+
+  }
+
+  @media(max-width:790px){
+    #cover-pic{
+        height : 30vh !important;
+        width:100% !important;
+        margin-top:0 !important;
+        background-color:transparent !important;
+    }
+
+    #button_pic_profile{
+        margin-top : 7.5% !important;
+    }
+
+    .circle{
+        margin-top:37.5%;
+        margin-left:-42%;
+    }
+
+    #profile_name{
+        margin-top:70%;
+        margin-left:-67%;
+        font-size : 24px;
+    }
+
+    .index_content{
+        margin-top:10%;
+    }
+
+
+  }
+  
+  @media(max-width:690px){
+    #cover-pic{
+        height : 20vh !important;
+    }
+
+    .circle{
+        margin-top:27.5%;
+        margin-left:-42%;
+    }
+
+    .form_pic_upload i{
+        margin-left : 10%;
+
+    }
+    #profile_name{
+        margin-top:65%;
+    }
+  
+  }
+  
+  @media(max-width:490px){
+    #cover-pic{
+        display : none;
+        visibility : hidden;
+    }
+
+    .circle{
+        margin-top:27.5%;
+        margin-left:-15%;
+    }
+
+    .form_pic_upload i{
+        display : none;
+        visibility : hidden;
+
+    }
+    #profile_name{
+        margin-top:65%;
+    }
+ 
+  }
 
 
 

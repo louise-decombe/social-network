@@ -95,7 +95,7 @@ $you_follow = $user->you_follow($id_user_follow);
 
         <div class="container-fluid sh-100 d-flex flex-column justify-content-center index_content">
             <div class="row">
-                <div class="col-4">
+                <div class="col-12 col-md-4">
                     <article class="infos_user_profile">
                         <span data-text="vos informations">INFORMATIONS</span>
                         <img class="underline_wave" src="img/wave.png" alt="underline_wave">
@@ -171,7 +171,7 @@ $you_follow = $user->you_follow($id_user_follow);
                     </article>
                 </div>
 
-                <div class="col-8">
+                <div class="col-12 col-md-8">
                     <div class="profile_category">
                         <button class="link_content" onclick="show('operation1')">Publications</button>
                         <button class="link_content" onclick="show('operation2')">Followers &nbsp;<span id="count_followers"><?= $count_followers[0]?></span></button>

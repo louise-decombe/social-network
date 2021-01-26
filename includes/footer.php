@@ -18,6 +18,9 @@
     </section>
     <section id="infos-footer">
         <article id="infos-content">
+            <?php if($_SESSION['user']['droits'] = "administrateur") : ?>
+            <a href="admin.php">Espace Administrateur</a></br>
+            <?php endif; ?>
             <span> QUI SOMMES-NOUS ?</span>
             <p>Plateformer_ est l'application dédiée à la communauté de la Plateforme_, école innovante
                dans les métiers du digital au coeur de la Cité Phocéenne. La Plateforme_ est membre du 

@@ -108,7 +108,7 @@ $tech_name = $options->techno($id_user);
     </div>
     <div class="container-fluid sh-100 d-flex flex-column justify-content-center index_content">
         <div class="row">
-            <div class="col-4">
+            <div class="col-12 col-md-4">
                 <article class="infos_user_profile">
                     <span data-text="vos informations">
                         VOS INFORMATIONS &nbsp; 
@@ -167,7 +167,7 @@ $tech_name = $options->techno($id_user);
                                     <div id="message_cursus"></div>
                                 </div>
 
-                                <div class="modify_input">
+                                <!--<div class="modify_input">
                                     <form id="user_tech" method="post" action="">
                                         <span>▪ technologies</span>
                                         <?php
@@ -180,7 +180,7 @@ $tech_name = $options->techno($id_user);
                                         } ?>
                                         <button type="submit" id="submit_tech"><i class="far fa-check-circle"></i></button>
                                     </form>
-                                </div>
+                                </div>-->
 
                                 <div class="modify_input">
                                     <form id="user_entreprise" method="post" action="">
@@ -193,7 +193,7 @@ $tech_name = $options->techno($id_user);
                                     </form>
                                     <div id="message_entreprise"></div>
                                 </div>
-                                <div class="modify_input">
+                                <!--<div class="modify_input">
                                     <form id="user_site" method="post" action="">
                                         <label>▪ ajouter ou modifier le site internet</label>
                                         <div class="container_input">
@@ -203,7 +203,7 @@ $tech_name = $options->techno($id_user);
                                         </div>
                                     </form>
                                     <div id="message_site"></div>
-                                </div>
+                                </div>-->
                                 <div class="modify_input">
                                     <form id="user_hobbies" method="post" action="">
                                         <label>▪ ajouter ou modifier les centres d'intérêt</label>
@@ -254,11 +254,9 @@ $tech_name = $options->techno($id_user);
                             <?php } ?>
 
                             <?php if(!empty($user_details['website'] )){ ?>
-                            <div class="user_details1"><i class="fas fa-globe-americas" id="user_website">&nbsp<?= $user_details['website'] ?></i></div>
+                            <!--<div class="user_details1"><i class="fas fa-globe-americas" id="user_website">&nbsp<?= $user_details['website'] ?></i></div>-->
                             <?php } ?>
-                        </div>
 
-                        <div class="personal_details">
                             <?php if(!empty($user_details['hobbies'] )){ ?>
                             <div class="user_details1"><i class="far fa-heart" id="user_loisirs">&nbsp<?= $user_details['hobbies']?>&nbsp</i></div>
                             <?php } ?>
@@ -288,7 +286,7 @@ $tech_name = $options->techno($id_user);
                 </article>
 
                
-                <article class="infos_user_profile">
+                <article class="infos_user_profile followers_part">
                     <span id="relations_link" data-text="vos informations" onclick="show('operation2')">VOS RELATIONS</span>
                     <img class="underline_wave" src="img/wave.png" alt="underline_wave">
                     <?php if(!empty($user_followers)){ ?>
@@ -308,7 +306,7 @@ $tech_name = $options->techno($id_user);
                     <?php } ?>
                 </article>
             </div>
-            <div class="col-8">
+            <div class="col-12 col-md-8">
                 <div class="profile_category">
                     <button class="link_content" onclick="show('operation1')">Publications</button>
                     <button class="link_content" onclick="show('operation2')">Followers &nbsp<span id="count_followers"><?= $count_followers[0]?></span></button>
