@@ -52,7 +52,7 @@ public function create($table, $fields = array()){
               echo '<div class="main-msg-body-right">
                   <div class="main-msg">
                     <div class="msg-img">
-                      <a href="#"><img src="'.$message->photo.'"/></a>
+                      <a href="#"><img src="php/'.$message->photo.'"/></a>
                     </div>
                     <div class="msg">'.$message->message_content.'
                       <div class="msg-time">
@@ -67,8 +67,8 @@ public function create($table, $fields = array()){
               echo '<div class="main-msg-body-left">
                 <div class="main-msg-l">
                   <div class="msg-img-l">
-                    <a href="#"><img src="'.$message->photo.'"/></a>
-                  </div>
+                    <a href="#"><img src="php/'.$message->photo.'"/></a>
+                                      </div>
                   <div class="msg-l">'.$message->message_content.'
                 
 
