@@ -399,37 +399,6 @@ $(document).ready(function(){
 
 
 /*----------------------------------------------------*/
-/* CHARGEMENT DIV MODIFICATION PARAMÈTRES PERSOS
------------------------------------------------------- */
-$(document).ready(function(){
-
-    $('#contentParameters').click(function(e){
-        console.log('ruben');
-        var id_user = $(".id_user").val();
-
-        $.ajax({
-            url : "operation3.php",
-            type : "POST", // la requête est de type POST
-            data : ({id_user: id_user}),// et on envoie nos données
-
-            success: function(data){
-                $("#profile_publications").empty();
-                    let form_content = $(data).find("#essai");
-                    $("#profile_publications").append(data);
-                    //$(form_content).fadeIn(350);
-                console.log(data);
-                
-            }
-            
-        })
-
-    });
-
-
-});
-
-
-/*----------------------------------------------------*/
 /* BIRTHDAY UPDATE
 ------------------------------------------------------ */
 
@@ -523,7 +492,7 @@ $(document).ready(function(){
          
         var id_user = $('#id_user').val();
         var id_user_follow = $('#id_user_follow').val();
-        alert(id_user_follow);
+        //alert(id_user_follow);
                     
             $.ajax({
                 url : "php/form_profile.php", // on donne l'URL du fichier de traitement
@@ -533,7 +502,8 @@ $(document).ready(function(){
                     console.log(response);
                     //alert(response);
                     $('#button_follow').empty();
-                    $('#button_follow').append('suivi')
+                    $('#button_follow').append('suivi');
+                    window.location.href = window.location.href; 
                     
                 }
             });
@@ -551,7 +521,7 @@ $(document).ready(function(){
          
         var id_user = $('#id_user').val();
         var id_user_unfollow = $('#id_user_follow').val();
-        alert(id_user_unfollow);
+        //alert(id_user_unfollow);
                     
             $.ajax({
                 url : "php/form_profile.php", // on donne l'URL du fichier de traitement
@@ -561,11 +531,42 @@ $(document).ready(function(){
                     console.log(response);
                     //alert(response);
                     $('#button_follow').empty();
-                    $('#button_follow').append('follow')
+                    $('#button_follow').append('follow');
+                    window.location.href = window.location.href; 
                     
                 }
             });
     });
+});
+
+/*----------------------------------------------------*/
+/* CHARGEMENT DIV MODIFICATION PARAMÈTRES PERSOS
+------------------------------------------------------ */
+$(document).ready(function(){
+
+    $('#contentParameters').click(function(e){
+        console.log('ruben');
+        var id_user = $(".id_user").val();
+
+        $.ajax({
+            url : "operation3.php",
+            type : "POST", // la requête est de type POST
+            data : ({id_user: id_user}),// et on envoie nos données
+
+            success: function(data){
+                $("#profile_publications").empty();
+                    let form_content = $(data).find("#essai");
+                    $("#profile_publications").append(data);
+                    //$(form_content).fadeIn(350);
+                console.log(data);
+                
+            }
+            
+        })
+
+    });
+
+
 });
 
 

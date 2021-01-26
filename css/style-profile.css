@@ -276,7 +276,6 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    background-color: greenyellow;
     width:90%;
     margin-bottom : 1.5%;
 }
@@ -319,7 +318,6 @@
 #message_hobbies{
     display: flex;
     width: 90%;
-    background-color:pink;
     font-size:12px;
     padding-top:10px;
     color: #275fa0;
@@ -327,8 +325,9 @@
 
 #modify_bio{
     display: flex;
-    background-color:blue;
     width:100%;
+    padding-top:10px;
+    padding-bottom:10px;
 }
 
 #form_user_informations p{
@@ -471,6 +470,15 @@
     overflow-y : auto;
 }
 
+#relations_link{
+    cursor: pointer;
+}
+
+#relations_link:hover{
+    color: #275fa0;
+    transition:0.5s;
+}
+
 .followers span{
     text-transform: uppercase;
     margin-top : 5px;
@@ -479,8 +487,19 @@
 
 .followers_img_section{
     position:relative;
-    width : 70% !important;
-    height : 70% !important;
+    width : 120px !important;
+    height : 120px !important;
+    overflow: hidden !important;
+    border: 2px solid rgba(255, 255, 255, 0.7);
+}
+
+
+.followers_img{
+    position:relative;
+    width : 80px !important;
+    height : 80px !important;
+    overflow: hidden !important;
+    border: 2px solid rgba(255, 255, 255, 0.7);
 }
 
 

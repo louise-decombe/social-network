@@ -19,8 +19,13 @@ $user_details = $user->test($id_user);
 //var_dump($user_details);
 $user_followers = $user->followers($id_user);
 //var_dump($user_followers);
+$count_follow = $user->count_follow($id_user);
 $count_followers = $user->count_followers($id_user);
 //var_dump($count_followers);
+$is_follow = $user->is_follow($id_user);
+//var_dump($is_follow);
+$you_follow = $user->you_follow($id_user);
+//var_dump($you_follow);
 $post_users = $user->post_users($id_user);
 $tech_name = $options->techno($id_user);
 //var_dump($techn_name);
@@ -222,7 +227,6 @@ $tech_name = $options->techno($id_user);
                                     <div id="message_bio"></div>
                                 </div>
                             </div>
-                        
                             <a href="#" rel="modal:close">Close</a>
                         </div>
                     </span>
@@ -259,16 +263,15 @@ $tech_name = $options->techno($id_user);
                             <div class="user_details1"><i class="far fa-heart" id="user_loisirs">&nbsp<?= $user_details['hobbies']?>&nbsp</i></div>
                             <?php } ?>
                         </div>
-                       
-                        <?php if(!empty($user_details['bio'] )){ ?>
-                            <strong>À PROPOS DE MOI</strong>
-                            <div class="personal_details">
-                                <div id="user_details_bio"> &nbsp<?= $user_details['bio']?></div>
-                            </div>
-                        <?php } ?>
+
+                        <div class="personal_details">
+                            <?php if(!empty($user_details['bio'] )){ ?>
+                            <div id="user_details_bio"><strong>À PROPOS DE MOI</strong> &nbsp<?= $user_details['bio']?></div>
+                            <?php } ?>
+                        </div>
                     </div>
                 
-                    <?php if(!empty($tech_name)){ ?>
+                    <?php if(!empty($tech_name)):?>
                     <aside class="infos_user_skills">
                         <span data-text="vos skills"> SKILLS </span>
                         <img class="underline_wave" src="img/wave.png" alt="underline_wave">
@@ -281,12 +284,12 @@ $tech_name = $options->techno($id_user);
                         <?php }; }; ?>
                         </div>
                     </aside>
-                    <?php }; ?>
+                    <?php endif; ?>
                 </article>
 
                
                 <article class="infos_user_profile">
-                    <span data-text="vos informations">VOS RELATIONS</span>
+                    <span id="relations_link" data-text="vos informations" onclick="show('operation2')">VOS RELATIONS</span>
                     <img class="underline_wave" src="img/wave.png" alt="underline_wave">
                     <?php if(!empty($user_followers)){ ?>
                     <div id="user_followers">
@@ -308,7 +311,8 @@ $tech_name = $options->techno($id_user);
             <div class="col-8">
                 <div class="profile_category">
                     <button class="link_content" onclick="show('operation1')">Publications</button>
-                    <button class="link_content" onclick="show('operation2')">Relations &nbsp<span id="count_followers"><?= $count_followers[0]?></span></button>
+                    <button class="link_content" onclick="show('operation2')">Followers &nbsp<span id="count_followers"><?= $count_followers[0]?></span></button>
+                    <button class="link_content" onclick="show('operation3')">Suivis &nbsp<span id="count_followers"><?= $count_follow[0]?></span></button>
                     <button class="link_content" id="contentParameters" >Paramètres personnels</button>           
                 </div>
                 <div id="operation1">
@@ -333,10 +337,10 @@ $tech_name = $options->techno($id_user);
                                 <span class="days">
                                     <?= $interval->format('%a j'); ?> • 
                                     <i class="fas fa-globe-americas"></i>
-                                <span>
+                                </span>
                             </div>
                             <div class="post_content">"<?= $post['content'] ?>"</div>
-                                <div class="post_media">
+                            <div class="post_media">
                                 <?php if(!empty($post['media'])){ ?>
                                     <?= $post['media'] ?>
                                 <?php } ?>
@@ -351,13 +355,13 @@ $tech_name = $options->techno($id_user);
                                         <?= $likes[0];?> 
                                     <?php } ?>
                                     <i class="far fa-thumbs-up"></i>
-                                <span>
+                                </span>
                                 <span>
                                     <?php if($com[0] > 0){ ?>
                                         <?= $com[0];?> 
                                     <?php } ?>
                                     <i class="far fa-comment-dots"></i>
-                                <span>
+                                </span>
                             </div>
                         </div>
                     <?php } ?>
@@ -372,26 +376,47 @@ $tech_name = $options->techno($id_user);
                         <img class="underline_wave" src="img/wave.png" alt="underline_wave">
                         <h2>vos relations...</h2>
                     </div>
-                    <?php if(!empty ($user_followers )) : ?>
+                    <?php if(!empty($is_follow)) : ?>
                     <div id="container_followers">
-                        <?php foreach ($user_followers as $followers){ ?>
+                        <?php foreach ($is_follow as $is_follows){ ?>
                         <div class="followers">
-                            <a href="profile_public.php?id=<?= $followers['id'] ?>" target="_blank">
-                                <img class="followers_img_section" src="php/<?=$followers['photo'] ?>" alt="follower_mini_pic">
+                            <a href="profile_public.php?id=<?= $is_follows['id'] ?>" target="_blank">
+                                <img class="followers_img_section" src="php/<?=$is_follows['photo'] ?>" alt="follower_mini_pic">
                             </a>
-                            <span><?=$followers['firstname']?> <?=$followers['lastname']?></span>
+                            <span><?=$is_follows['firstname']?> <?=$is_follows['lastname']?></span>
                         </div>
                         <?php
                         }
                         ?>
                     </div>
                     <?php else : ?>
-                    <span>Vous n'avez pas encore de relations !</span>
+                    <span>Vous n'avez pas encore de followers !</span>
                     <?php endif; ?>
-                    <!-- <section id="remove-row"> -->
-                        <!-- <button id="load_more" data-id="<?= $id;?>" data-id_page="<?= $id_page;?>">LOAD MORE</button> -->
-                    <!-- </section> -->
                 </div>
+
+                <div id="operation3">
+                    <div class="profile_title">
+                        <img class="underline_wave" src="img/wave.png" alt="underline_wave">
+                        <h2>vos relations...</h2>
+                    </div>
+                    <?php if(!empty($you_follow)) : ?>
+                    <div id="container_followers">
+                        <?php foreach ($you_follow as $you_follows){ ?>
+                        <div class="followers">
+                            <a href="profile_public.php?id=<?= $you_follows['id'] ?>" target="_blank">
+                                <img class="followers_img_section" src="php/<?=$you_follows['photo'] ?>" alt="follower_mini_pic">
+                            </a>
+                            <span><?=$you_follows['firstname']?> <?=$you_follows['lastname']?></span>
+                        </div>
+                        <?php
+                        }
+                        ?>
+                    </div>
+                    <?php else : ?>
+                    <span>Vous ne suivez encore personne !</span>
+                    <?php endif; ?>
+                </div>
+
                 <div class="profile_content">
                     <div id="profile_publications">
                         <div class="profile_title">
@@ -417,7 +442,7 @@ $tech_name = $options->techno($id_user);
                                         <?= $interval->format('%a j'); ?> 
                                          • 
                                         <i class="fas fa-globe-americas"></i>
-                                    <span>
+                                    </span>
                                 </div>
                                 <div class="post_content">"<?= $post['content'] ?>"</div>
                                 <div class="post_media">
@@ -436,18 +461,16 @@ $tech_name = $options->techno($id_user);
                                             <?= $likes[0];?> 
                                         <?php endif; ?>
                                         <i class="far fa-thumbs-up"></i>
-                                    <span>
+                                    </span>
 
                                     <span>
                                         <?php if($com[0] > 0){ ?>
                                             <?= $com[0];?> 
                                         <?php } ?>
                                         <i class="far fa-comment-dots"></i>
-                                    <span>
-   
+                                    </span>
                                 </div>
-                                
-                                </div>
+                            </div>
         
                            <?php } ?>
                             <?php else:?>
