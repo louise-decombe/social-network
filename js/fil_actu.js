@@ -189,7 +189,7 @@ $(document).ready(function(){
     var limit = 0;
     //btn voir plus de posts
     $(document).on("click","#More_post",function(){
-      
+      console.log("ici")
       limit = limit + 5;
      
       $("#More_post").detach();
