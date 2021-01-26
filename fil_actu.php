@@ -216,26 +216,26 @@
         <section id="section_affichage_posts">
             
         <?php if (isset($posts)) : ?>
-            <?php for ($i = 0 ; $i < COUNT( $posts ) ; $i++) :?>
+            <?php foreach ($posts as $valeur) :?>
                
                 
-            <section class="section_posts" id="section_<?= htmlspecialchars($posts[$i]['id_post']) ?>">
+            <section class="section_posts" id="section_<?= htmlspecialchars($valeur['id_post']) ?>">
                 <div class="infos_user">
-                    <?php if ($posts[$i]['photo'] == NULL ) :?>
+                    <?php if ($valeur['photo'] == NULL ) :?>
                         <img src="images/default_avatar.png" alt="Photo par defaut">
                     <?php else : ?>
-                        <img src="php/<?= htmlspecialchars($posts[$i]['photo']) ?>" alt=" Photo de <?= htmlspecialchars($posts[$i]['firstname']) ?> <?= htmlspecialchars($posts[$i]['lastname']) ?>">
+                        <img src="php/<?= htmlspecialchars($valeur['photo']) ?>" alt=" Photo de <?= htmlspecialchars($valeur['firstname']) ?> <?= htmlspecialchars($valeur['lastname']) ?>">
                     <?php endif ;?>
                     <div class="div_flex">
                         <div class="div_first">
-                            <p><a href='profile_public.php?id=<?= $posts[$i]['id_user'] ?>'><?= ucfirst(htmlspecialchars($posts[$i]['firstname'])) ?> <?= ucfirst(htmlspecialchars($posts[$i]['lastname'])) ?></a></p>
-                            <p>Suivis par <?= htmlspecialchars($follow->FollowedBy($posts[$i]['id'])) ?> personne(s)</p>
-                            <p><?= htmlspecialchars($posts[$i]['date_created']) ?></p>
+                            <p><a href='profile_public.php?id=<?= $valeur['id_user'] ?>'><?= ucfirst(htmlspecialchars($valeur['firstname'])) ?> <?= ucfirst(htmlspecialchars($valeur['lastname'])) ?></a></p>
+                            <p>Suivis par <?= htmlspecialchars($follow->FollowedBy($valeur['id'])) ?> personne(s)</p>
+                            <p><?= htmlspecialchars($valeur['date_created']) ?></p>
                         </div>
                         <div class="div2">
                             <div>
-                                <p class=" menu_signal menu_signal_<?= $posts[$i]['id_post'] ?>" data-id_post='<?= $posts[$i]['id_post'] ?>' data-statut='off'>°°°</p>
-                                <div class='none div_signal div_signal_<?= $posts[$i]['id_post'] ?>' data-id_post='<?= $posts[$i]['id_post'] ?>' >
+                                <p class=" menu_signal menu_signal_<?= $valeur['id_post'] ?>" data-id_post='<?= $valeur['id_post'] ?>' data-statut='off'>°°°</p>
+                                <div class='none div_signal div_signal_<?= $valeur['id_post'] ?>' data-id_post='<?= $valeur['id_post'] ?>' >
                                     <a href="" >Signaler le post</a>
                                 </div>
                             </div>
@@ -244,38 +244,38 @@
                     </div>
                 </div>
                 <div>
-                    <?php if (strlen($posts[$i]['content']) > 400) : ?>
-                        <?php if (!isset($_GET['id']) || $_GET['id'] !== $posts[$i]['id_post']) :?>
-                            <p class="p_content" id="p_<?= htmlspecialchars($posts[$i]['id_post']) ?>"><?= htmlspecialchars(mb_strimwidth($posts[$i]['content'],0,400,'...'))  ?>   <a class="plus plus_<?= htmlspecialchars($posts[$i]['id_post']) ?>" id="<?= htmlspecialchars($posts[$i]['id_post']) ?>" href="fil_actu.php?id=<?= htmlspecialchars($posts[$i]['id_post']) ?>#section_<?= htmlspecialchars($posts[$i]['id_post']) ?>">... Voir plus</a></p>
+                    <?php if (strlen($valeur['content']) > 400) : ?>
+                        <?php if (!isset($_GET['id']) || $_GET['id'] !== $valeur['id_post']) :?>
+                            <p class="p_content" id="p_<?= htmlspecialchars($valeur['id_post']) ?>"><?= htmlspecialchars(mb_strimwidth($valeur['content'],0,400,'...'))  ?>   <a class="plus plus_<?= htmlspecialchars($valeur['id_post']) ?>" id="<?= htmlspecialchars($valeur['id_post']) ?>" href="fil_actu.php?id=<?= htmlspecialchars($valeur['id_post']) ?>#section_<?= htmlspecialchars($valeur['id_post']) ?>">... Voir plus</a></p>
                           
                         <?php else:?>
-                            <p class="p_content" id="p_<?= htmlspecialchars($posts[$i]['id_post']) ?>"><?= htmlspecialchars($posts[$i]['content'])  ?> </p>
-                            <a class="moins" id="<?= htmlspecialchars($posts[$i]['id_post']) ?>" href="fil_actu.php#section_<?= htmlspecialchars($posts[$i]['id_post']) ?>">... Voir moins</a>
+                            <p class="p_content" id="p_<?= htmlspecialchars($valeur['id_post']) ?>"><?= htmlspecialchars($valeur['content'])  ?> </p>
+                            <a class="moins" id="<?= htmlspecialchars($valeur['id_post']) ?>" href="fil_actu.php#section_<?= htmlspecialchars($valeur['id_post']) ?>">... Voir moins</a>
                         <?php endif ;?>
                     <?php else :?>
-                        <p class="p_content"><?= htmlspecialchars($posts[$i]['content'])  ?> </p>
+                        <p class="p_content"><?= htmlspecialchars($valeur['content'])  ?> </p>
                     <?php endif ;?>
                     
                     
                      <div class="media">
                         
-                        <?php if ($posts[$i]['type_media'] == 1 ) :?>
-                            <img src="php/upload_media_post/<?= htmlspecialchars($posts[$i]['media']) ?>" alt="Image/photo">
-                        <?php elseif ($posts[$i]['type_media'] == 2 ) :?>
-                            <video controls src="php/upload_media_post/<?= htmlspecialchars($posts[$i]['media']) ?>" width="50">Ici la description alternative</video>
-                        <?php elseif ($posts[$i]['type_media'] == 3 ) :?>
-                            <a href="<?= htmlspecialchars($posts[$i]['media']) ?>"><?= htmlspecialchars($posts[$i]['media']) ?></a>
+                        <?php if ($valeur['type_media'] == 1 ) :?>
+                            <img src="php/upload_media_post/<?= htmlspecialchars($valeur['media']) ?>" alt="Image/photo">
+                        <?php elseif ($valeur['type_media'] == 2 ) :?>
+                            <video controls src="php/upload_media_post/<?= htmlspecialchars($valeur['media']) ?>" width="50">Ici la description alternative</video>
+                        <?php elseif ($valeur['type_media'] == 3 ) :?>
+                            <a href="<?= htmlspecialchars($valeur['media']) ?>"><?= htmlspecialchars($valeur['media']) ?></a>
                         <?php endif ;?>
 
                     </div>
                     
                 <div>
                 
-                    <a  href='#'><div class="reactions_miniatures reactions_miniatures_<?= htmlspecialchars($posts[$i]['id_post']) ?>" data-id_post="<?= htmlspecialchars($posts[$i]['id_post']) ?>">
+                    <a  href='#'><div class="reactions_miniatures reactions_miniatures_<?= htmlspecialchars($valeur['id_post']) ?>" data-id_post="<?= htmlspecialchars($valeur['id_post']) ?>">
                            
                         <?php 
                         for ($c = 1 ; $c <= 6 ; $c ++){
-                            $react[$c] = $reaction->GetreactionByReaction($posts[$i]['id_post'],$c);
+                            $react[$c] = $reaction->GetreactionByReaction($valeur['id_post'],$c);
                             
                         }?>
                        
@@ -293,43 +293,43 @@
                        <?php endif ;?>   
 
                     </div></a>
-                    <p class="p_commentaires p_commentaires_<?=$posts[$i]['id_post']?>" data-id_post='<?=$posts[$i]['id_post']?>'><?= COUNT($comment->GetCommentByIdPost($posts[$i]['id_post'])) ?> Commentaire(s)</p>
+                    <p class="p_commentaires p_commentaires_<?=$valeur['id_post']?>" data-id_post='<?= $valeur['id_post']?>'><?= COUNT($comment->GetCommentByIdPost($valeur['id_post'])) ?> Commentaire(s)</p>
                         <!-- Les likes , recation et nombre commentaire -->
                         <hr>
                         <div class="reactions">
                             <!-- Reactions -->
-                            <div class="modale_reaction modale_reaction_<?= htmlspecialchars($posts[$i]['id_post']) ?>">
+                            <div class="modale_reaction modale_reaction_<?= htmlspecialchars($valeur['id_post']) ?>">
                                
                                 <div>
                                     <span class="jaime span_titre_reaction">J'aime</span>
-                                    <a href="" ><img id="jaime" class="icon_block" src="images/pouce.png" alt="j'aime" data-id_post=<?= htmlspecialchars($posts[$i]['id_post']) ?>></a>
+                                    <a href="" ><img id="jaime" class="icon_block" src="images/pouce.png" alt="j'aime" data-id_post=<?= htmlspecialchars($valeur['id_post']) ?>></a>
                                 </div> 
                                 <div>  
                                     <span class="bravo span_titre_reaction">Bravo</span>
-                                    <a href=""  ><img id="bravo" class="icon_block" src="images/bravo.png" alt="bravo" data-id_post=<?= htmlspecialchars($posts[$i]['id_post']) ?>></a>
+                                    <a href=""  ><img id="bravo" class="icon_block" src="images/bravo.png" alt="bravo" data-id_post=<?= htmlspecialchars($valeur['id_post']) ?>></a>
                                 </div>
                                 <div>    
                                     <span class="soutien span_titre_reaction">Soutien</span>
-                                    <a href=""  ><img id="soutien" class="icon_block" src="images/soutien.png" alt="soutien" data-id_post=<?= htmlspecialchars($posts[$i]['id_post']) ?>></a>
+                                    <a href=""  ><img id="soutien" class="icon_block" src="images/soutien.png" alt="soutien" data-id_post=<?= htmlspecialchars($valeur['id_post']) ?>></a>
                                 </div>
                                 <div>    
                                     <span class="jadore span_titre_reaction">J'adore</span>
-                                    <a href="" ><img id="jadore" class="icon_block" src="images/jadore.png" alt="j'adore" data-id_post=<?= htmlspecialchars($posts[$i]['id_post']) ?>></a>
+                                    <a href="" ><img id="jadore" class="icon_block" src="images/jadore.png" alt="j'adore" data-id_post=<?= htmlspecialchars($valeur['id_post']) ?>></a>
                                 </div>
                                 <div>    
                                     <span class="instructif span_titre_reaction">Instructif</span>
-                                    <a href="" ><img id="instructif" class="icon_block" src="images/instructif.png" alt="instructif" data-id_post=<?= htmlspecialchars($posts[$i]['id_post']) ?>></a>
+                                    <a href="" ><img id="instructif" class="icon_block" src="images/instructif.png" alt="instructif" data-id_post=<?= htmlspecialchars($valeur['id_post']) ?>></a>
                                 </div>    
                                 <div>     
                                     <span class="interressant span_titre_reaction">Interressant</span>
-                                    <a href="" ><img id="interressant" class="icon_block" src="images/interressant.png" alt="interressant" data-id_post=<?= htmlspecialchars($posts[$i]['id_post']) ?>></a>
+                                    <a href="" ><img id="interressant" class="icon_block" src="images/interressant.png" alt="interressant" data-id_post=<?= htmlspecialchars($valeur['id_post']) ?>></a>
                                 </div>
                             </div>
                              
                             <?php if (isset($reaction_post)) : $reactions = false; ?>
                                 <?php for ($j = 0 ; $j < COUNT($reaction_post) ; $j++) :  ?>
                                             
-                                    <?php if ($reaction_post[$j]['id_post'] == $posts[$i]['id_post'] && $reaction_post[$j]['id_user'] == $posts[$i]['id_user']) :?>
+                                    <?php if ($reaction_post[$j]['id_post'] == $valeur['id_post'] && $reaction_post[$j]['id_user'] == $valeur['id_user']) :?>
                                         
                                         <?php $reactions = true; $id_reaction = $reaction_post[$j]['id_reactions']; ?>
                                            
@@ -339,46 +339,46 @@
                                 <?php if ($reactions == true ) :?>
                                     
                                     <?php if ($id_reaction == '1') :?>
-                                        <div class="bleu div_icon  div_icon-thumbs-up<?= htmlspecialchars($posts[$i]['id_post']) ?>" data-react='modale_reaction_<?= htmlspecialchars($posts[$i]['id_post']) ?>' data-id_post='<?= htmlspecialchars($posts[$i]['id_post']) ?>'><span class="icon-thumbs-up"></span>J'aime</div>
+                                        <div class="bleu div_icon  div_icon-thumbs-up<?= htmlspecialchars($valeur['id_post']) ?>" data-react='modale_reaction_<?= htmlspecialchars($valeur['id_post']) ?>' data-id_post='<?= htmlspecialchars($valeur['id_post']) ?>'><span class="icon-thumbs-up"></span>J'aime</div>
                                     <?php elseif ($id_reaction == '2'):?>
-                                        <div class="bleu div_icon  div_icon-thumbs-up<?= htmlspecialchars($posts[$i]['id_post']) ?>" data-react='modale_reaction_<?= htmlspecialchars($posts[$i]['id_post']) ?>' data-id_post='<?= htmlspecialchars($posts[$i]['id_post']) ?>'><span class="icon-thumbs-up"></span>Bravo</div>
+                                        <div class="bleu div_icon  div_icon-thumbs-up<?= htmlspecialchars($valeur['id_post']) ?>" data-react='modale_reaction_<?= htmlspecialchars($valeur['id_post']) ?>' data-id_post='<?= htmlspecialchars($valeur['id_post']) ?>'><span class="icon-thumbs-up"></span>Bravo</div>
                                     <?php elseif ($id_reaction == '3'):?>
-                                        <div class="bleu div_icon  div_icon-thumbs-up<?= htmlspecialchars($posts[$i]['id_post']) ?>" data-react='modale_reaction_<?= htmlspecialchars($posts[$i]['id_post']) ?>' data-id_post='<?= htmlspecialchars($posts[$i]['id_post']) ?>'><span class="icon-thumbs-up"></span>Soutien</div>
+                                        <div class="bleu div_icon  div_icon-thumbs-up<?= htmlspecialchars($valeur['id_post']) ?>" data-react='modale_reaction_<?= htmlspecialchars($valeur['id_post']) ?>' data-id_post='<?= htmlspecialchars($valeur['id_post']) ?>'><span class="icon-thumbs-up"></span>Soutien</div>
                                     <?php elseif ($id_reaction == '4'):?>
-                                        <div class="bleu div_icon  div_icon-thumbs-up<?= htmlspecialchars($posts[$i]['id_post']) ?>" data-react='modale_reaction_<?= htmlspecialchars($posts[$i]['id_post']) ?>' data-id_post='<?= htmlspecialchars($posts[$i]['id_post']) ?>'><span class="icon-thumbs-up"></span>J'adore</div>
+                                        <div class="bleu div_icon  div_icon-thumbs-up<?= htmlspecialchars($valeur['id_post']) ?>" data-react='modale_reaction_<?= htmlspecialchars($valeur['id_post']) ?>' data-id_post='<?= htmlspecialchars($valeur['id_post']) ?>'><span class="icon-thumbs-up"></span>J'adore</div>
                                     <?php elseif ($id_reaction == '5'):?>
-                                        <div class="bleu div_icon  div_icon-thumbs-up<?= htmlspecialchars($posts[$i]['id_post']) ?>" data-react='modale_reaction_<?= htmlspecialchars($posts[$i]['id_post']) ?>' data-id_post='<?= htmlspecialchars($posts[$i]['id_post']) ?>'><span class="icon-thumbs-up"></span>Instructif</div>
+                                        <div class="bleu div_icon  div_icon-thumbs-up<?= htmlspecialchars($valeur['id_post']) ?>" data-react='modale_reaction_<?= htmlspecialchars($valeur['id_post']) ?>' data-id_post='<?= htmlspecialchars($valeur['id_post']) ?>'><span class="icon-thumbs-up"></span>Instructif</div>
                                     <?php elseif ($id_reaction == '6'):?>
-                                        <div class="bleu div_icon  div_icon-thumbs-up<?= htmlspecialchars($posts[$i]['id_post']) ?>" data-react='modale_reaction_<?= htmlspecialchars($posts[$i]['id_post']) ?>' data-id_post='<?= htmlspecialchars($posts[$i]['id_post']) ?>'><span class="icon-thumbs-up"></span>Interressant</div>
+                                        <div class="bleu div_icon  div_icon-thumbs-up<?= htmlspecialchars($valeur['id_post']) ?>" data-react='modale_reaction_<?= htmlspecialchars($valeur['id_post']) ?>' data-id_post='<?= htmlspecialchars($valeur['id_post']) ?>'><span class="icon-thumbs-up"></span>Interressant</div>
                                     <?php endif ;?>
                                     
                                 <?php else : ?>
-                                    <div class=" div_icon  div_icon-thumbs-up<?= htmlspecialchars($posts[$i]['id_post']) ?>" data-react='modale_reaction_<?= htmlspecialchars($posts[$i]['id_post']) ?>' data-id_post='<?= htmlspecialchars($posts[$i]['id_post']) ?>'><span class="icon-thumbs-up"></span>J'aime</div>
+                                    <div class=" div_icon  div_icon-thumbs-up<?= htmlspecialchars($valeur['id_post']) ?>" data-react='modale_reaction_<?= htmlspecialchars($valeur['id_post']) ?>' data-id_post='<?= htmlspecialchars($valeur['id_post']) ?>'><span class="icon-thumbs-up"></span>J'aime</div>
                                 <?php endif ;?>
                             <?php endif ;?>
                           
  
-                            <div class="icon-c icon-c<?= htmlspecialchars($posts[$i]['id_post']) ?>" data-id_post='<?= htmlspecialchars($posts[$i]['id_post']) ?>'><span class="icon-chat-1"></span>Commenter</div>
+                            <div class="icon-c icon-c<?= htmlspecialchars($valeur['id_post']) ?>" data-id_post='<?= htmlspecialchars($valeur['id_post']) ?>'><span class="icon-chat-1"></span>Commenter</div>
                         </div>
                     </div>
 
                 </div>
                 
-                <section class="" id="section_liste_reactions_<?= htmlspecialchars($posts[$i]['id_post']) ?>"  >
+                <section class="" id="section_liste_reactions_<?= htmlspecialchars($valeur['id_post']) ?>"  >
                     
                 </section>
                 
-                <section id="section_form_commentaire_p<?= htmlspecialchars($posts[$i]['id_post']) ?>">
+                <section id="section_form_commentaire_p<?= htmlspecialchars($valeur['id_post']) ?>">
 
                 </section>
-                <section id='formulaire_ajout_commentaire_<?= htmlspecialchars($posts[$i]['id_post']) ?>'>
+                <section id='formulaire_ajout_commentaire_<?= htmlspecialchars($valeur['id_post']) ?>'>
                 <?php if (!empty($_SESSION['erreur'])) :?>
                     <p><?= $_SESSION['erreur'] ?></p>
                 <?php endif ;?>
                 </section> 
             </section>
            
-            <?php endfor ;?>  
+            <?php endforeach ;?>  
             
             <?php if ( COUNT($posts) >4 ) : ?>            
                 <button id="More_post">Voir plus</button>

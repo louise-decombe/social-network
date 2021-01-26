@@ -38,4 +38,4 @@
         </a>
         <p>© 2020 Plateformer_ Tous droits réservés</p>
     </section>
-    <!-- <script type="text/javascript" src="js/form_newsletter.js"></script> -->
+    <script type="text/javascript" src="js/form_newsletter.js"></script>
