@@ -21,20 +21,22 @@ session_start();
     include("includes/header.php");
    ?>
 </header>
-<main>
+<main id="main-connexion">
     <div class="ovale_1"></div>
     <div class="ovale_2"></div>
     <div class="ovale_3"></div>
     <div class="container-fluid sh-100 d-flex flex-column justify-content-center index_content">
         <div class="row flex-column align-content-center">
+        <img class="underline_wave" src="img/wave.png" alt="underline_wave" width:="50">
             <?php if(empty($_SESSION['user'])){ ?>
-            <form class="form" id="form_connexion" method="POST" action="">
+            <!--<form class="form" id="form_connexion" method="POST" action="">-->
+                <div class="form" id="form_connexion">
             
                 <h1 id="form-title"><img src="img/PICT_LOGO_BLACK.png" width="70" height="50" alt="blacl_logo_plateformer_">PLATEFORMER_</h1>
                 <h2>Formulaire de connexion</h2>
                 <section>
                     <div class="form-group">
-                        <input id="mail_connexion" type="email" name="mail" class="form-control" class="col-xs-4" aria-describedby="basic-addon2" placeholder="email@laplateforme.io">
+                        <input id="mail_connexion" type="email" name="mail" class="form-control mail_connexion" class="col-xs-4" aria-describedby="basic-addon2" placeholder="email@laplateforme.io">
                     </div>
                     <div id="error_email"></div>
                     <div id="error_email1"></div>
@@ -44,10 +46,12 @@ session_start();
                         </div>
                         <input type="password" class="form-control" name="password" id="password_connexion" placeholder="mot de passe">
                     </div>
-                    <div id="error_password"></div>
                 </section>
+                <div id="error_password"></div>
                 <button id="submit_connexion" type="submit" name="submit_connexion" class="btn btn-primary btn_submit_register">Se connecter</button>
-            </form>
+                
+                </div>
+            <!--</form>-->
             <?php }else{ ?>
                 <article class="info_connected">
                     Vous êtes connecté @ Plateformer ! 
@@ -67,9 +71,6 @@ session_start();
 <!--<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>-->
 <!--<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>-->
 <script type="text/javascript" src="js/form_connexion.js"></script>
-<!--<script type="text/javascript" src="js/transition.js"></script> -->
-
- <script type="text/javascript" src="js/wave.js"></script> 
 
 </body>
 </html>

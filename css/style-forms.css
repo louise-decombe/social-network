@@ -257,10 +257,15 @@ a{
 
 #main-connexion{
   display: flex;
-  flex-direction: column;
-  align-items:center;
-  justify-content:center;
-  min-height:80vh;
+  min-height:75vh;
+}
+
+.underline_wave{
+  margin-top:-1.5%;
+  margin-left:-5.5%;
+  width:37.5%;
+  height:12.5%;
+  position:absolute;
 }
 
 #form_connexion{
@@ -286,8 +291,35 @@ a{
   margin-bottom: 5% !important;
 }
 
+#error_email1, #error_mail, #error_password{
+  display: flex;
+  width: 100%;
+  color : red;
+  padding:2px;
+}
+
 
 
 /*** RESPONSIVE CONNEXION ***/
 /*** - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - ***/
+@media(max-width:990px){
+  .underline_wave{
+    display:none;
+    visibility:hidden;
+  }
+}
+
+@media(max-width:690px){
+  #main-connexion{
+    display: flex;
+    min-height:60vh;
+  }  
+}
+
+@media(max-width:490px){
+  #main-connexion{
+    display: flex;
+    min-height:50vh;
+  }  
+}
 
