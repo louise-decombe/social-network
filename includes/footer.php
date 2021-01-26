@@ -18,7 +18,7 @@
     </section>
     <section id="infos-footer">
         <article id="infos-content">
-            <?php if($_SESSION['user']['droits'] = "administrateur") : ?>
+            <?php if($_SESSION['user']['droits'] == "administrateur") : ?>
             <a href="admin.php">Espace Administrateur</a></br>
             <?php endif; ?>
             <span> QUI SOMMES-NOUS ?</span>
