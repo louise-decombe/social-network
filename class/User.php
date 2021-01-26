@@ -230,6 +230,29 @@ class User{
     }
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  //
+    /*----------------------------------------------------*/
+    /* FONCTION FONCTION CHECK PASSWORD USER
+    ------------------------------------------------------ */
+
+    public function get_password($mail, $password){
+        $connexion = $this->db->connectDb();
+        $q = $connexion->prepare("SELECT * FROM users WHERE mail = :mail");
+        $q->bindParam(':mail', $mail, PDO::PARAM_STR);
+        $q->execute();
+        $user = $q->fetch(PDO::FETCH_ASSOC);
+        
+        if (!empty($user)){
+
+            if(password_verify($password, $user['password'])){
+
+                return 1; 
+
+            }
+        }
+    }
+
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  //
     /*-------------------------------------------------------------------------------------------*/
     /* FONCTION INFOS PERSONNELLES USER = récupère seulement les infos de la table Users
     ---------------------------------------------------------------------------------------------*/
@@ -358,15 +381,46 @@ class User{
                                   INNER JOIN users
                                   ON follower.id_user =  users.id
                                   WHERE follower.id_user_follow = $id_user
-                                  LIMIT 9");
+                                  LIMIT 8");
         $q->execute();
         $followers = $q->fetchAll(PDO::FETCH_ASSOC);
         return $followers;
     }
 
+     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  //
+    /*------------------------------------------------------------------------------------------------------*/
+    /* FONCTION FOLLOWERS = récupère seulement les personnes que vous suivez
+    --------------------------------------------------------------------------------------------------------*/
+    public function you_follow($id_user){
+        $connexion = $this->db->connectDb();
+        $q = $connexion->prepare("SELECT *
+                                  FROM follower
+                                  INNER JOIN users
+                                  ON follower.id_user_follow = users.id
+                                  WHERE follower.id_user = $id_user");
+        $q->execute();
+        $you_follow = $q->fetchAll(PDO::FETCH_ASSOC);
+        return $you_follow;
+    }
+        // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  //
+    /*------------------------------------------------------------------------------------------------------*/
+    /* FONCTION FOLLOWERS = récupère seulement les personnes qui vous suivent
+    --------------------------------------------------------------------------------------------------------*/
+    public function is_follow($id_user){
+        $connexion = $this->db->connectDb();
+        $q = $connexion->prepare("SELECT *
+                                  FROM follower
+                                  INNER JOIN users
+                                  ON follower.id_user = users.id
+                                  WHERE follower.id_user_follow = $id_user");
+        $q->execute();
+        $is_follow = $q->fetchAll(PDO::FETCH_ASSOC);
+        return $is_follow;
+    }
+
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  //
     /*------------------------------------------------------------------------------------------------------*/
-    /* FONCTION COUNT nb de Followers d'un User = récupère seulement les infos de la table Users + followers
+    /* FONCTION COUNT nb de Followers d'un User 
     --------------------------------------------------------------------------------------------------------*/
 
     public function count_followers($id_user){
@@ -381,6 +435,22 @@ class User{
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  //
     /*------------------------------------------------------------------------------------------------------*/
+    /* FONCTION COUNT nb de personnes suivies par un User 
+    --------------------------------------------------------------------------------------------------------*/
+
+    public function count_follow($id_user){
+        $connexion = $this->db->connectDb();
+        $q = $connexion->prepare("SELECT COUNT(*)
+                                  FROM follower
+                                  WHERE id_user= $id_user");
+        $q->execute();
+        $count_follow = $q->fetch();
+        return $count_follow;
+    }
+
+
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  //
+    /*------------------------------------------------------------------------------------------------------*/
     /* FONCTION SELECT POST USER : récupère les posts d'un utilisateur
     --------------------------------------------------------------------------------------------------------*/
 
@@ -388,7 +458,8 @@ class User{
         $connexion = $this->db->connectDb();
         $q = $connexion->prepare("SELECT *
                                   FROM post
-                                  WHERE id_user = $id_user");
+                                  WHERE id_user = $id_user
+                                  ORDER BY created_at DESC");
         $q->execute();
         $post_users = $q->fetchAll(PDO::FETCH_ASSOC);
         return $post_users;
