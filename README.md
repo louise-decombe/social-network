@@ -1,6 +1,6 @@
 # Plateformer Social Network
 
-[![forthebadge](http://forthebadge.com/images/badges/made-with-php.svg)](http://forthebadge.com)
+[![forthebadge](https://forthebadge.com/images/badges/made-with-javascript.svg)](https://forthebadge.com)
 [![forthebadge](http://forthebadge.com/images/badges/built-with-love.svg)](http://forthebadge.com)
 
 :arrow_right: Notre projet est de créer un réseau social pour l'école de La Plateforme_ à Marseille. C'est une école qui propose des formations professionnelles 
