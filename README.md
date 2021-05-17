@@ -42,6 +42,7 @@ You need to have a local server installed in your machine.
 
 * Bootstrap
 * Jquery
+* PHP
 
 ## Authors
 
